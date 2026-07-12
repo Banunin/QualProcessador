@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fórum de Hardware - QualProcessador</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin crossOrigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background-color: #f1f5f9; color: #0f172a; margin: 0; padding: 0; }
+
+        .btn-reset-emergencia {
+            background: #ef4444;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: 800;
+            cursor: pointer;
+            border: none;
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        /* Menu de Navegação */
+        .portal-nav { background-color: white; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 5; }
+        .nav-container { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; gap: 5px; justify-content: space-between; align-items: center; }
+        .nav-links-box { display: flex; gap: 5px; }
+        .nav-link { padding: 20px 25px; color: #475569; text-decoration: none; font-weight: 700; font-size: 0.95rem; border-bottom: 3px solid transparent; display: inline-block; }
+        .nav-link:hover, .nav-link.active { color: #38bdf8; border-bottom-color: #38bdf8; background-color: #f8fafc; }
+
+        /* Widget de Usuário Logado */
+        .nav-user-status { font-size: 0.85rem; font-weight: 600; color: #475569; display: flex; align-items: center; gap: 12px; }
+        .nav-btn { background: #e2e8f0; color: #1e293b; border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.8rem; cursor: pointer; font-weight: 700; text-decoration: none; }
+        .nav-btn.logout { background: #ef4444; color: white; }
+        .nav-btn.login-btn { background: #38bdf8; color: white; }
+
+        .container { max-width: 1400px; margin: 30px auto; padding: 0 40px; }
+        .breadcrumbs { font-size: 0.85rem; color: #64748b; margin-bottom: 20px; }
+        .breadcrumbs a { color: #64748b; text-decoration: none; }
+        .breadcrumbs a:hover { color: #38bdf8; text-decoration: underline; }
+
+        /* Grade do Layout */
+        .forum-grid { display: grid; grid-template-columns: 1fr 350px; gap: 30px; align-items: start; }
+        .main-forum-area { display: flex; flex-direction: column; gap: 20px; }
+
+        /* Cabeçalho da listagem */
+        .forum-action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        .forum-action-header h2 { margin: 0; font-size: 1.6rem; font-weight: 800; }
+        .btn-main { background: #0f172a; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 700; font-size: 0.9rem; cursor: pointer; text-decoration: none; transition: background 0.2s; display: inline-block; }
+        .btn-main:hover { background: #38bdf8; }
+
+        /* Linhas da lista de tópicos */
+        .topic-row-card { background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 20px 25px; display: flex; justify-content: space-between; align-items: center; text-decoration: none; color: inherit; transition: transform 0.2s, border-color 0.2s; }
+        .topic-row-card:hover { transform: translateY(-2px); border-color: #cbd5e1; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
+        .topic-info h3 { margin: 0 0 6px 0; font-size: 1.1rem; font-weight: 700; color: #0f172a; line-height: 1.4; }
+        .topic-info h3:hover { color: #38bdf8; }
+        .topic-details { font-size: 0.8rem; color: #64748b; }
+        .topic-replies-badge { background: #f1f5f9; color: #475569; font-weight: 700; font-size: 0.85rem; padding: 6px 14px; border-radius: 20px; border: 1px solid #e2e8f0; }
+
+        /* Detalhes do Tópico Aberto */
+        .topic-header-panel { background: white; padding: 25px 30px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 20px; }
+        .topic-header-panel h1 { margin: 0 0 8px 0; font-size: 1.7rem; font-weight: 800; }
+        
+        .post-card { display: flex; background: white; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; margin-bottom: 20px; }
+        .post-user { width: 180px; background: #f8fafc; padding: 25px 15px; border-right: 1px solid #e2e8f0; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+        .user-avatar { width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; color: white; font-size: 1.6rem; background: #64748b; text-shadow: 0 1px 2px rgba(0,0,0,0.2); object-fit: cover; }
+        .user-avatar.admin-style { background: #ef4444; }
+        .user-name { font-weight: 700; font-size: 0.9rem; margin: 0; color: #0f172a; word-break: break-word; }
+        .user-badge { font-size: 0.7rem; padding: 2px 8px; border-radius: 20px; font-weight: 700; text-transform: uppercase; }
+        .badge-user { background: #e2e8f0; color: #475569; }
+        .badge-admin { background: #ef4444; color: white; }
+        .user-bio-incard { font-size: 0.72rem; color: #64748b; font-style: italic; margin-top: 5px; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-align: center; width: 100%; word-break: break-word; }
+        
+        .post-body { flex: 1; padding: 25px 30px; display: flex; flex-direction: column; justify-content: space-between; position: relative; }
+        .post-date { font-size: 0.75rem; color: #94a3b8; margin-bottom: 12px; }
+        .post-text { font-size: 0.95rem; line-height: 1.7; color: #334155; margin: 0; white-space: pre-line; }
+        
+        /* Controles de Edição/Exclusão */
+        .post-actions { display: flex; gap: 10px; margin-top: 15px; justify-content: flex-end; border-top: 1px solid #f1f5f9; padding-top: 10px; }
+        .action-link { font-size: 0.8rem; font-weight: 600; color: #64748b; cursor: pointer; border: none; background: none; padding: 0; }
+        .action-link:hover { color: #38bdf8; text-decoration: underline; }
+        .action-link.delete:hover { color: #ef4444; }
+
+        /* Formulários e Autenticação */
+        .form-card { background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.02); }
+        .form-card h2 { margin: 0 0 20px 0; font-size: 1.4rem; font-weight: 800; }
+        .form-group { margin-bottom: 15px; display: flex; flex-direction: column; gap: 6px; }
+        .form-group label { font-size: 0.85rem; font-weight: 700; color: #334155; }
+        .form-group input, .form-group textarea, .form-group select { font-family: 'Poppins', sans-serif; padding: 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.95rem; outline: none; }
+        .form-group input:focus, .form-group textarea:focus { border-color: #38bdf8; }
+        .auth-tabs { display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px; }
+        .auth-tab-btn { background: none; border: none; font-weight: 700; font-size: 1rem; color: #94a3b8; cursor: pointer; padding: 5px 10px; }
+        .auth-tab-btn.active { color: #0f172a; border-bottom: 3px solid #0f172a; }
+        
+        .inline-edit-box { width: 100%; display: flex; flex-direction: column; gap: 10px; }
+
+        /* Barra Lateral */
+        .forum-sidebar { display: flex; flex-direction: column; gap: 25px; }
+        .widget-panel { background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 25px; }
+        .widget-panel h3 { margin: 0 0 15px 0; font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
+        .sidebar-list { display: flex; flex-direction: column; gap: 12px; }
+        .sidebar-item { display: flex; flex-direction: column; text-decoration: none; color: inherit; padding-bottom: 10px; border-bottom: 1px solid #f1f5f9; }
+        .sidebar-item:last-child { border-bottom: none; padding-bottom: 0; }
+        .sidebar-item h4 { margin: 0; font-size: 0.85rem; font-weight: 600; color: #1e293b; }
+        .sidebar-item h4:hover { color: #38bdf8; }
+        .sidebar-item span { font-size: 0.75rem; color: #94a3b8; margin-top: 2px; }
+
+        .auth-gate-box { text-align: center; padding: 20px; border: 1px dashed #cbd5e1; border-radius: 8px; background: #f8fafc; }
+        .error-screen { background: #fef2f2; border: 2px dashed #f87171; border-radius: 12px; padding: 30px; color: #991b1b; }
+
+        footer { text-align: center; padding: 40px; color: #64748b; border-top: 1px solid #e2e8f0; font-size: 0.85rem; margin-top: 60px; }
+        @media (max-width: 1024px) { .forum-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <nav class="portal-nav">
+        <div class="nav-container">
+            <div class="nav-links-box">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="analises.html" class="nav-link">Análises</a>
+                <a href="forum.html" class="nav-link active">Fórum</a>
+                <a href="#" class="nav-link">Grupos</a>
+            </div>
+            <div id="navbar-user-box" class="nav-user-status"></div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="breadcrumbs" id="forum-breadcrumbs">
+            <a href="index.html">Home</a> &gt; <a href="forum.html">Fórum</a>
+        </div>
+
+        <div class="forum-grid">
+            <div class="main-forum-area" id="render-target"></div>
+
+            <aside class="forum-sidebar">
+                <div class="widget-panel">
+                    <h3>Discussões Ativas</h3>
+                    <div class="sidebar-list" id="sidebar-recent-topics"></div>
+                </div>
+            </aside>
+        </div>
+    </div>
+
+    <footer>&copy; 2026 QualProcessador - Comunidade Viva de Hardware.</footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        function limparBancoDeDadosManual() {
+            localStorage.removeItem('qp_user_session');
+            alert("Sessão local limpa! Recarregando.");
+            window.location.href = "forum.html";
+        }
+
+        // COLOQUE SUAS CHAVES DO SUPABASE ABAIXO:
+        const SUPABASE_URL = "https://sterozqxsblanvjyzjmi.supabase.co"; 
+        const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN0ZXJvenF4c2JsYW52anl6am1pIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4Mzc5Nzc5MCwiZXhwIjoyMDk5MzczNzkwfQ.LnU1u7jpLt69Ia8UEsrF5_RBlQbS2f5GL386OansCEs";
+        const dbClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        let target = document.getElementById('render-target');
+        const params = new URLSearchParams(window.location.search);
+        const idTopico = parseInt(params.get('id'));
+        const acao = params.get('action');
+        let currentTab = 'login';
+
+        function obterUsuarioLogado() {
+            return JSON.parse(localStorage.getItem('qp_user_session'));
+        }
+
+        // CONFIGURAÇÃO AUTOMÁTICA ULTRA LEVE DO BANUNIN
+        async function autoConfigurarBanco() {
+            let { data: adminExists } = await dbClient.from('usuarios').select('username').eq('username', 'Banunin').maybeSingle();
+            if (!adminExists) {
+                await dbClient.from('usuarios').insert([{
+                    email: "banunin@qualprocessador.com",
+                    username: "Banunin",
+                    password: "Banunin344",
+                    role: "admin",
+                    bio: "Criador",
+                    avatar: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+                }]);
+            }
+
+            let { count } = await dbClient.from('topicos').select('*', { count: 'exact', head: true });
+            if (count === 0) {
+                await dbClient.from('topicos').insert([{
+                    id: 1001,
+                    titulo: "Bem-vindo ao Novo Fórum QualProcessador na Nuvem!",
+                    autor: "Banunin",
+                    autor_avatar: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
+                    autor_role: "admin",
+                    autor_bio: "Criador e Administrador Chefe do Fórum.",
+                    conteudo: "Olá comunidade! O nosso fórum agora está rodando de forma 100% profissional na nuvem. Sinta-se à vontade para criar tópicos, conversar e trocar experiências sobre hardware.\n\nQualquer dúvida, a administração está à disposição!",
+                    respostas: [],
+                    data: new Date().toLocaleDateString('pt-BR')
+                }]);
+                if (!idTopico && !acao) renderizarListaTopicos();
+            }
+        }
+
+        function gerarAvatarHTML(username, avatarUrl, role, classesAdicionais = "") {
+            const isAdm = role === 'admin';
+            if (avatarUrl && avatarUrl.trim() !== "") {
+                return `<img src="${avatarUrl}" class="user-avatar ${isAdm ? 'admin-style' : ''} ${classesAdicionais}" alt="Avatar">`;
+            }
+            return `<div class="user-avatar ${isAdm ? 'admin-style' : ''} ${classesAdicionais}">${username.charAt(0).toUpperCase()}</div>`;
+        }
+
+        async function atualizarNavbarUser() {
+            const user = obterUsuarioLogado();
+            const box = document.getElementById('navbar-user-box');
+            if(user) {
+                const isAdm = user.role === 'admin';
+                let avatarNav = gerarAvatarHTML(user.username, user.avatar, user.role, "");
+                avatarNav = avatarNav.replace('class="user-avatar', 'class="user-avatar" style="width:32px; height:32px; font-size:0.85rem; display:inline-flex; align-items:center; justify-content:center;"');
+
+                box.innerHTML = `
+                    ${avatarNav}
+                    <span>Olá, <strong>${user.username}</strong> ${isAdm ? '<b style="color:#ef4444;">[ADM]</b>' : ''}</span>
+                    <a href="forum.html?action=perfil" class="nav-btn">Meu Perfil</a>
+                    <button class="nav-btn logout" onclick="deslogarUsuario()">Sair</button>
+                `;
+            } else {
+                box.innerHTML = `
+                    <span style="color:#94a3b8; font-size:0.8rem;">Modo Visitante</span>
+                    <a href="forum.html?action=auth" class="nav-btn login-btn">Entrar / Cadastrar</a>
+                `;
+            }
+        }
+
+        function deslogarUsuario() {
+            localStorage.removeItem('qp_user_session');
+            window.location.href = 'forum.html';
+        }
+
+        async function carregarSidebar() {
+            try {
+                let { data: topicos } = await dbClient.from('topicos').select('id, titulo, autor, respostas').order('id', { ascending: false }).limit(5);
+                const sidebar = document.getElementById('sidebar-recent-topics');
+                sidebar.innerHTML = '';
+                if(topicos) {
+                    topicos.forEach(t => {
+                        let totalResp = Array.isArray(t.respostas) ? t.respostas.length : 0;
+                        sidebar.innerHTML += `<a href="forum.html?id=${t.id}" class="sidebar-item"><h4>${t.titulo}</h4><span>Por ${t.autor} • ${totalResp} resp.</span></a>`;
+                    });
+                }
+            } catch(e){}
+        }
+
+        function alternarAbaAuth(aba) {
+            currentTab = aba;
+            renderizarTelaAuth();
+        }
+
+        async function executarCadastro(e) {
+            e.preventDefault();
+            const email = document.getElementById('auth-email').value.trim();
+            const username = document.getElementById('auth-username').value.trim();
+            const password = document.getElementById('auth-password').value;
+
+            let { data: checkUser } = await dbClient.from('usuarios').select('username').eq('username', username).maybeSingle();
+            if(checkUser) return alert("Erro: Usuário em uso.");
+
+            const novoUsuario = { email, username, password, role: "user", bio: "Novo membro.", avatar: "" };
+            let { error } = await dbClient.from('usuarios').insert([novoUsuario]);
+            if(error) return alert("Erro ao salvar.");
+
+            localStorage.setItem('qp_user_session', JSON.stringify(novoUsuario));
+            window.location.href = 'forum.html';
+        }
+
+        async function executarLogin(e) {
+            e.preventDefault();
+            const loginId = document.getElementById('auth-loginid').value.trim();
+            const pass = document.getElementById('auth-password').value;
+
+            let { data: conta } = await dbClient.from('usuarios').select('*').eq('email', loginId).maybeSingle();
+            if(!conta) {
+                let { data: contaPorUser } = await dbClient.from('usuarios').select('*').eq('username', loginId).maybeSingle();
+                conta = contaPorUser;
+            }
+
+            if(conta && conta.password === pass) {
+                localStorage.setItem('qp_user_session', JSON.stringify(conta));
+                window.location.href = 'forum.html';
+            } else {
+                alert("Credenciais incorretas.");
+            }
+        }
+
+        function renderizarTelaAuth() {
+            document.getElementById('forum-breadcrumbs').innerHTML = `<a href="index.html">Home</a> &gt; <a href="forum.html">Fórum</a> &gt; Autenticação`;
+            if (currentTab === 'login') {
+                target.innerHTML = `
+                    <div class="form-card">
+                        <div class="auth-tabs"><button class="auth-tab-btn active" onclick="alternarAbaAuth('login')">Entrar</button><button class="auth-tab-btn" onclick="alternarAbaAuth('cadastro')">Cadastrar</button></div>
+                        <form onsubmit="executarLogin(event)">
+                            <div class="form-group"><label>E-mail ou Usuário:</label><input type="text" id="auth-loginid" required></div>
+                            <div class="form-group"><label>Senha:</label><input type="password" id="auth-password" required></div>
+                            <button type="submit" class="btn-main" style="width:100%;">Entrar</button>
+                        </form>
+                    </div>`;
+            } else {
+                target.innerHTML = `
+                    <div class="form-card">
+                        <div class="auth-tabs"><button class="auth-tab-btn" onclick="alternarAbaAuth('login')">Entrar</button><button class="auth-tab-btn active" onclick="alternarAbaAuth('cadastro')">Cadastrar</button></div>
+                        <form onsubmit="executarCadastro(event)">
+                            <div class="form-group"><label>E-mail:</label><input type="email" id="auth-email" required></div>
+                            <div class="form-group"><label>Usuário:</label><input type="text" id="auth-username" required></div>
+                            <div class="form-group"><label>Senha:</label><input type="password" id="auth-password" required></div>
+                            <button type="submit" class="btn-main" style="width:100%;">Cadastrar</button>
+                        </form>
+                    </div>`;
+            }
+        }
+
+        async function salvarPerfil(e) {
+            e.preventDefault();
+            const logado = obterUsuarioLogado();
+            const novoUsername = document.getElementById('perf-username').value.trim();
+            const novoAvatar = document.getElementById('perf-avatar').value.trim();
+            const novaBio = document.getElementById('perf-bio').value.trim();
+
+            let { error } = await dbClient.from('usuarios').update({ username: novoUsername, avatar: novoAvatar, bio: novaBio }).eq('email', logado.email);
+            if(error) return alert("Erro ao salvar.");
+            
+            logado.username = novoUsername;
+            logado.avatar = novoAvatar;
+            logado.bio = novaBio;
+            localStorage.setItem('qp_user_session', JSON.stringify(logado));
+            alert("Perfil salvo!");
+            window.location.href = "forum.html";
+        }
+
+        async function renderizarTelaPerfil() {
+            const user = obterUsuarioLogado();
+            if(!user) return window.location.href = "forum.html?action=auth";
+            document.getElementById('forum-breadcrumbs').innerHTML = `<a href="index.html">Home</a> &gt; <a href="forum.html">Fórum</a> &gt; Perfil`;
+            target.innerHTML = `
+                <div class="form-card">
+                    <h2>Personalizar Perfil</h2>
+                    <form onsubmit="salvarPerfil(event)">
+                        <div class="form-group"><label>Username:</label><input type="text" id="perf-username" value="${user.username}" required></div>
+                        <div class="form-group"><label>URL Avatar:</label><input type="url" id="perf-avatar" value="${user.avatar || ''}"></div>
+                        <div class="form-group"><label>Biografia:</label><textarea id="perf-bio" rows="3">${user.bio || ''}</textarea></div>
+                        <button type="submit" class="btn-main">Salvar</button>
+                    </form>
+                </div>`;
+        }
+
+        function checarPermissaoEscrita(autorPost) {
+            const logado = obterUsuarioLogado();
+            if(!logado) return false;
+            if(logado.role === 'admin') return true; 
+            return logado.username.toLowerCase() === autorPost.toLowerCase();
+        }
+
+        async function excluirTopicoCompleto(id) {
+            if(confirm("Deletar permanentemente?")){
+                await dbClient.from('topicos').delete().eq('id', id);
+                window.location.href = "forum.html";
+            }
+        }
+
+        async function excluirRespostaIndividual(idTopico, idResposta) {
+            if(confirm("Remover comentário?")){
+                let { data: t } = await dbClient.from('topicos').select('respostas').eq('id', idTopico).single();
+                if(t && Array.isArray(t.respostas)) {
+                    let novasResp = t.respostas.filter(r => r.id !== idResposta);
+                    await dbClient.from('topicos').update({ respostas: novasResp }).eq('id', idTopico);
+                    window.location.reload();
+                }
+            }
+        }
+
+        async function criarNovoTopicoPost(e) {
+            e.preventDefault();
+            const logado = obterUsuarioLogado();
+            const novo = {
+                id: Math.floor(Math.random() * 10000000),
+                titulo: document.getElementById('new-title').value.trim(),
+                autor: logado.username,
+                autor_avatar: logado.avatar || '',
+                autor_role: logado.role || 'user',
+                autor_bio: logado.bio || 'Membro do fórum',
+                conteudo: document.getElementById('new-content').value.trim(),
+                respostas: [],
+                data: new Date().toLocaleDateString('pt-BR')
+            };
+            await dbClient.from('topicos').insert([novo]);
+            window.location.href = "forum.html";
+        }
+
+        async function postarRespostaComentario(e, id) {
+            e.preventDefault();
+            const logado = obterUsuarioLogado();
+            let { data: t } = await dbClient.from('topicos').select('respostas').eq('id', id).single();
+            
+            let listaRespostas = Array.isArray(t.respostas) ? t.respostas : [];
+            listaRespostas.push({
+                id: Date.now(),
+                autor: logado.username,
+                autor_avatar: logado.avatar || '',
+                autor_role: logado.role || 'user',
+                autor_bio: logado.bio || 'Membro do fórum',
+                data: new Date().toLocaleDateString('pt-BR'),
+                conteudo: document.getElementById('resp-text').value.trim()
+            });
+
+            await dbClient.from('topicos').update({ respostas: listaRespostas }).eq('id', id);
+            window.location.reload();
+        }
+
+        async function renderizarListaTopicos() {
+            let { data: listaTopicos } = await dbClient.from('topicos').select('*').order('id', { ascending: false });
+            let listaHTML = '';
+            if(listaTopicos && listaTopicos.length > 0) {
+                listaTopicos.forEach(item => {
+                    let totalResp = Array.isArray(item.respostas) ? item.respostas.length : 0;
+                    listaHTML += `<a href="forum.html?id=${item.id}" class="topic-row-card"><div class="topic-info"><h3>${item.titulo}</h3><div class="topic-details">Por <strong>${item.autor}</strong></div></div><div class="topic-replies-badge">${totalResp} respostas</div></a>`;
+                });
+            } else {
+                listaHTML = `<p style="color:#64748b; padding:20px 0;">Nenhum tópico encontrado.</p>`;
+            }
+            target.innerHTML = `<div class="forum-action-header"><h2>Discussões do Fórum</h2><a href="forum.html?action=novo" class="btn-main">+ Iniciar Tópico</a></div>${listaHTML}`;
+        }
+
+        async function inicializarForum() {
+            await autoConfigurarBanco();
+            atualizarNavbarUser();
+            carregarSidebar();
+
+            if (acao === 'auth') {
+                renderizarTelaAuth();
+            } else if (acao === 'perfil') {
+                await renderizarTelaPerfil();
+            } else if (acao === 'novo') {
+                if(!obterUsuarioLogado()) window.location.href="forum.html?action=auth";
+                else {
+                    target.innerHTML = `
+                        <div class="form-card">
+                            <h2>Iniciar Nova Discussão</h2>
+                            <form onsubmit="criarNovoTopicoPost(event)">
+                                <div class="form-group"><label>Título:</label><input type="text" id="new-title" required></div>
+                                <div class="form-group"><label>Mensagem:</label><textarea id="new-content" rows="6" required></textarea></div>
+                                <button type="submit" class="btn-main">Publicar Tópico</button>
+                            </form>
+                        </div>`;
+                }
+            } else if (idTopico) {
+                let { data: t } = await dbClient.from('topicos').select('*').eq('id', idTopico).maybeSingle();
+                if(t) {
+                    const permissaoTopico = checarPermissaoEscrita(t.autor);
+                    const tIsAdm = t.autor_role === 'admin';
+                    let avatarTopicoHTML = gerarAvatarHTML(t.autor, t.autor_avatar, t.autor_role);
+
+                    let respostasHTML = '';
+                    let listaRespostas = Array.isArray(t.respostas) ? t.respostas : [];
+                    
+                    listaRespostas.forEach(r => {
+                        const permissaoResp = checarPermissaoEscrita(r.autor);
+                        const rIsAdm = r.autor_role === 'admin';
+                        let respostasAvatar = gerarAvatarHTML(r.autor, r.autor_avatar, r.autor_role);
+
+                        respostasHTML += `
+                            <div class="post-card">
+                                <div class="post-user">
+                                    ${respostasAvatar}
+                                    <h4 class="user-name">${r.autor}</h4>
+                                    <span class="user-badge ${rIsAdm ? 'badge-admin' : 'badge-user'}">${rIsAdm ? 'ADM' : 'Membro'}</span>
+                                    <div class="user-bio-incard">${r.autor_bio || 'Membro do fórum'}</div>
+                                </div>
+                                <div class="post-body">
+                                    <div><div class="post-date">Postado em ${r.data || 'Recente'}</div><p class="post-text">${r.conteudo}</p></div>
+                                    ${permissaoResp ? `<div class="post-actions"><button class="action-link delete" onclick="excluirRespostaIndividual(${t.id}, ${r.id})">Excluir</button></div>` : ''}
+                                </div>
+                            </div>`;
+                    });
+
+                    let formRespostaHTML = `<div class="auth-gate-box"><p>Você precisa estar logado para responder.</p><a href="forum.html?action=auth" class="btn-main">Entrar</a></div>`;
+                    if(obterUsuarioLogado()) {
+                        formRespostaHTML = `<div class="form-card"><h3>Deixar uma Resposta</h3><form onsubmit="postarRespostaComentario(event, ${t.id})"><div class="form-group"><textarea id="resp-text" rows="4" required></textarea></div><button type="submit" class="btn-main">Enviar Comentário</button></form></div>`;
+                    }
+
+                    target.innerHTML = `
+                        <div><a href="forum.html" class="btn-main" style="background:#64748b; margin-bottom:15px;">⬅ Voltar</a></div>
+                        <div class="topic-header-panel"><h1>${t.titulo}</h1></div>
+                        <div class="post-card" style="border-left:5px solid #38bdf8;">
+                            <div class="post-user">${avatarTopicoHTML}<h4 class="user-name">${t.autor}</h4><span class="user-badge ${tIsAdm ? 'badge-admin' : 'badge-user'}">${tIsAdm ? 'ADM' : 'Membro'}</span><div class="user-bio-incard">${t.autor_bio || ''}</div></div>
+                            <div class="post-body">
+                                <div><div class="post-date">Postado em ${t.data || 'Recente'}</div><p class="post-text">${t.conteudo}</p></div>
+                                ${permissaoTopico ? `<div class="post-actions"><button class="action-link delete" onclick="excluirTopicoCompleto(${t.id})">Excluir Tópico</button></div>` : ''}
+                            </div>
+                        </div>
+                        ${respostasHTML}${formRespostaHTML}`;
+                }
+            } else {
+                await renderizarListaTopicos();
+            }
+        }
+
+        inicializarForum();
+    </script>
+</body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise Editorial - QualProcessador</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <style>
+        * { box-sizing: border-box; }
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background-color: #f8fafc; 
+            color: #0f172a; 
+            margin: 0; 
+            padding: 0; 
+        }
+
+        /* BARRA DE NAVEGAÇÃO SUPERIOR */
+        .article-nav {
+            background-color: #0f172a;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .article-nav a { 
+            color: #94a3b8; 
+            text-decoration: none; 
+            font-weight: 600; 
+            font-size: 0.9rem; 
+            transition: color 0.2s; 
+        }
+        .article-nav a:hover { color: #38bdf8; }
+
+        /* CABEÇALHO DO ARTIGO (HERO) */
+        .article-header {
+            max-width: 850px;
+            margin: 50px auto 30px auto;
+            padding: 0 20px;
+            text-align: left;
+        }
+        .meta-category { 
+            color: #ef4444; 
+            font-weight: 800; 
+            font-size: 0.85rem; 
+            text-transform: uppercase; 
+            letter-spacing: 1.5px; 
+            display: block;
+            margin-bottom: 12px;
+        }
+        .article-title { 
+            font-size: 2.6rem; 
+            font-weight: 800; 
+            line-height: 1.25; 
+            color: #0f172a; 
+            letter-spacing: -1.5px;
+            margin: 0 0 20px 0;
+        }
+        .article-meta-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 0.88rem;
+            color: #64748b;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 25px;
+            font-weight: 500;
+        }
+        .author-avatar {
+            width: 35px;
+            height: 35px;
+            background-color: #cbd5e1;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #475569;
+            font-size: 0.8rem;
+        }
+
+        /* CORPO DO TEXTO (FOCO EM LEITURA PREMIUM) */
+        .article-container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 0 20px 80px 20px;
+        }
+        
+        /* Mudamos a fonte do corpo do texto para Lora (Serifada) para não cansar os olhos */
+        .article-body {
+            font-family: 'Lora', serif;
+            font-size: 1.15rem;
+            line-height: 1.85;
+            color: #334155;
+        }
+
+        /* Estilização dos elementos HTML injetados pelo dados.js */
+        .article-body h2 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin-top: 45px;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+        }
+        .article-body p { margin-bottom: 25px; }
+
+        /* Caixa de Destaque / Alerta */
+        .alert-box {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0fdf4;
+            border-left: 4px solid #10b981;
+            padding: 20px;
+            border-radius: 0 8px 8px 0;
+            font-size: 1rem;
+            color: #14532d;
+            margin: 35px 0;
+            line-height: 1.6;
+        }
+
+        /* Tabelas de Benchmark Profissionais */
+        .article-table {
+            font-family: 'Poppins', sans-serif;
+            width: 100%;
+            border-collapse: collapse;
+            margin: 35px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
+            border: 1px solid #e2e8f0;
+            font-size: 0.95rem;
+        }
+        .article-table th {
+            background-color: #1e293b;
+            color: white;
+            text-align: left;
+            padding: 14px 20px;
+            font-weight: 600;
+        }
+        .article-table td {
+            padding: 14px 20px;
+            border-bottom: 1px solid #f1f5f9;
+            color: #475569;
+        }
+        .article-table tr:last-child td { border-bottom: none; }
+        .article-table tr:nth-child(even) { background-color: #f8fafc; }
+
+        footer { text-align: center; padding: 40px; color: #64748b; border-top: 1px solid #e2e8f0; font-size: 0.85rem; font-weight: 600; background: white; }
+
+        @media (max-width: 768px) {
+            .article-title { font-size: 2rem; }
+            .article-body { font-size: 1.05rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="article-nav">
+        <a href="analises.html">← Voltar para Análises</a>
+        <a href="index.html">Página Inicial</a>
+    </nav>
+
+    <main id="conteudo-artigo-dinamico">
+        </main>
+
+    <footer>&copy; 2026 QualProcessador - Editoriais de Alta Performance.</footer>
+
+    <script src="dados.js"></script>
+    <script>
+        // 1. Pegar o ID do artigo pela URL (ex: ler-artigo.html?id=0)
+        const parametrosUrl = new URLSearchParams(window.location.search);
+        const idArtigo = parseInt(parametrosUrl.get('id')) || 0;
+
+        // 2. Procurar a CPU correspondente na nossa dados.js
+        const cpu = listaDeCpus.find(item => item.id === idArtigo);
+        const mainContainer = document.getElementById('conteudo-artigo-dinamico');
+
+        if (cpu && cpu.analiseCompleta) {
+            // Alterar o título da aba do navegador dinamicamente
+            document.title = `Review: ${cpu.nome} - QualProcessador`;
+
+            // Definir uma tag amigável baseada na marca
+            const marcaTexto = cpu.marca === 'amd' ? 'Review AMD' : 'Review Intel';
+
+            // 3. Montar a estrutura da página de leitura
+            mainContainer.innerHTML = `
+                <header class="article-header">
+                    <span class="meta-category">${marcaTexto} • Análise Técnica</span>
+                    <h1 class="article-title">Análise Completa: O ${cpu.nome} ainda vale a pena em 2026?</h1>
+                    
+                    <div class="article-meta-info">
+                        <div class="author-avatar">QP</div>
+                        <div>
+                            Publicado por <strong>Equipe QualProcessador</strong> • Atualizado em Julho de 2026
+                        </div>
+                    </div>
+                </header>
+
+                <div class="article-container">
+                    <div class="article-body">
+                        ${cpu.analiseCompleta}
+                    </div>
+                </div>
+            `;
+        } else {
+            // Caso o artigo não exista ou não tenha texto escrito
+            mainContainer.innerHTML = `
+                <div class="article-container" style="text-align: center; margin-top: 100px;">
+                    <h2>Artigo Não Encontrado</h2>
+                    <p>De momento, esta análise editorial ainda está a ser redigida pela nossa equipa técnica.</p>
+                    <a href="analises.html" style="color: #38bdf8; font-weight: bold;">Voltar ao Hub de Análises</a>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
