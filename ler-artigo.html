@@ -88,7 +88,7 @@
             padding: 0 20px 80px 20px;
         }
         
-        /* Mudamos a fonte do corpo do texto para Lora (Serifada) para não cansar os olhos */
+        /* Fonte do corpo do texto para Lora (Serifada) para não cansar os olhos */
         .article-body {
             font-family: 'Lora', serif;
             font-size: 1.15rem;
@@ -107,6 +107,8 @@
             letter-spacing: -0.5px;
         }
         .article-body p { margin-bottom: 25px; }
+        .article-body ul, .article-body ol { margin-bottom: 25px; padding-left: 20px; }
+        .article-body li { margin-bottom: 10px; }
 
         /* Caixa de Destaque / Alerta */
         .alert-box {
@@ -120,6 +122,7 @@
             margin: 35px 0;
             line-height: 1.6;
         }
+        .alert-box strong { color: #166534; }
 
         /* Tabelas de Benchmark Profissionais */
         .article-table {
@@ -171,27 +174,104 @@
 
     <script src="dados.js"></script>
     <script>
-        // 1. Pegar o ID do artigo pela URL (ex: ler-artigo.html?id=0)
+        // 1. Pegar o ID do artigo pela URL (ex: ler-artigo.html?id=100)
         const parametrosUrl = new URLSearchParams(window.location.search);
         const idArtigo = parseInt(parametrosUrl.get('id')) || 0;
 
-        // 2. Procurar a CPU correspondente na nossa dados.js
-        const cpu = listaDeCpus.find(item => item.id === idArtigo);
         const mainContainer = document.getElementById('conteudo-artigo-dinamico');
 
-        if (cpu && cpu.analiseCompleta) {
-            // Alterar o título da aba do navegador dinamicamente
-            document.title = `Review: ${cpu.nome} - QualProcessador`;
+        // 2. Banco de dados de Guias Gerais escritos diretamente aqui por ID
+        const guiasGerais = {
+            100: {
+                titulo: "O que é uma APU? Entenda como funciona um processador com vídeo integrado",
+                categoria: "Guia de Hardware • Tecnologia",
+                texto: `
+                    <p>Uma <strong>APU (Accelerated Processing Unit)</strong> é um processador que reúne CPU e GPU no mesmo chip. Em outras palavras, além de executar as tarefas tradicionais do computador, ela também é capaz de processar gráficos sem a necessidade de uma placa de vídeo dedicada.</p>
+                    
+                    <p>O termo APU foi criado pela AMD e ficou conhecido por identificar processadores que combinam núcleos de processamento Ryzen com gráficos Radeon integrados. Atualmente, embora a empresa utilize com mais frequência a expressão "processadores Ryzen com gráficos Radeon", o conceito continua o mesmo: oferecer um único chip capaz de executar tanto as tarefas do sistema quanto o processamento gráfico.</p>
+                    
+                    <p>Atualmente, as APUs da AMD estão presentes principalmente nas linhas Ryzen Série 5000G e Ryzen Série 8000G para desktops. Modelos como o Ryzen 5 5600GT(AM4), Ryzen 7 5700G(AM4), Ryzen 5 8600G(AM5) combinam núcleos de processamento Ryzen com gráficos Radeon integrados, oferecendo excelente desempenho para produtividade, multimídia e jogos leves sem a necessidade de uma placa de vídeo dedicada.</p>
+                    
+                    <div class="alert-box">
+                        <strong>Evolução Importante:</strong> A Série 8000G representa uma evolução importante em relação às gerações anteriores, trazendo gráficos integrados mais potentes e recursos modernos que ampliam a experiência em jogos e aplicações aceleradas por GPU.
+                    </div>
+                    
+                    <p>Essa integração reduz custos, economiza espaço interno do computador e diminui o consumo de energia, tornando as APUs uma excelente escolha para computadores domésticos, notebooks, escritórios e até mesmo para quem deseja jogar títulos leves sem investir imediatamente em uma placa de vídeo dedicada.</p>
 
-            // Definir uma tag amigável baseada na marca
-            const marcaTexto = cpu.marca === 'amd' ? 'Review AMD' : 'Review Intel';
+                    <h2>Como funciona uma APU?</h2>
+                    <p>Em uma APU, a CPU e a GPU compartilham o mesmo encapsulamento e trabalham em conjunto utilizando a memória RAM do sistema. Enquanto a CPU executa cálculos, programas e processos do sistema operacional, a GPU integrada é responsável pela geração de imagens, reprodução de vídeos e acionamento gráfico.</p>
+                    <p>Como ambas fazem parte do mesmo chip, a comunicação entre elas é extremamente rápida, reduzindo latências e aumentando a eficiência energética. Além disso, essa integração simplifica o projeto do computador e elimina a necessidade de instalar uma placa de vídeo dedicada para as tarefas do dia a dia.</p>
 
-            // 3. Montar a estrutura da página de leitura
+                    <h2>Vantagens das APUs</h2>
+                    <ul>
+                        <li>Menor custo para montar um computador de entrada.</li>
+                        <li>Não exige uma placa de vídeo dedicada para o uso diário.</li>
+                        <li>Excelente eficiência energética com menor consumo de energia e geração de calor.</li>
+                        <li>Reprodução de vídeos em alta resolução com aceleração por hardware.</li>
+                        <li>Capacidade de executar diversos jogos competitivos e títulos leves utilizando apenas a GPU integrada.</li>
+                        <li>Facilidade para futuras atualizações, permitindo adicionar uma placa de vídeo dedicada quando necessário.</li>
+                    </ul>
+
+                    <h2>Desvantagens das APUs</h2>
+                    <ul>
+                        <li>O desempenho gráfico é inferior ao de placas de vídeo dedicadas de gama média/alta.</li>
+                        <li>Utilizam parte da memória RAM do computador como memória de vídeo (VRAM compartilhada).</li>
+                        <li>O desempenho gráfico depende bastante da velocidade e da configuração em dois canais (Dual Channel) das memórias RAM.</li>
+                        <li>Em jogos muito pesados ou aplicações profissionais complexas, uma GPU dedicada continua sendo indispensável.</li>
+                    </ul>
+
+                    <h2>APU ou processador comum: qual a diferença?</h2>
+                    <p>A principal diferença está na presença da GPU integrada. Um processador convencional pode não possuir vídeo integrado, exigindo obrigatoriamente uma placa de vídeo para gerar imagem no monitor. Já uma APU combina CPU e GPU no mesmo chip, permitindo utilizar o computador normalmente sem hardware gráfico adicional.</p>
+                    
+                    <div class="alert-box">
+                        <strong>Fique atento aos sufixos:</strong> Nem todo processador Ryzen possui gráficos integrados focados em jogos. Modelos terminados em <strong>"G"</strong>, como o Ryzen 5 5600G e o Ryzen 7 8700G, são as APUs verdadeiras. Já modelos antigos terminados em "X" ou sem sufixo podem não ter vídeo integrado ou trazer apenas chips básicos de vídeo para dar vídeo no sistema.
+                    </div>
+
+                    <h2>Uma APU consegue rodar jogos?</h2>
+                    <p>Sim. As APUs atuais evoluíram significativamente e conseguem executar muitos jogos populares, especialmente quando combinadas com memórias DDR4 ou DDR5 de alta frequência em configuração de dois canais (Dual Channel).</p>
+                    <p>Jogos como <em>Counter-Strike 2, Valorant, League of Legends, Dota 2, Rocket League, Minecraft, EA Sports FC e Fortnite</em> podem ser jogados com boa fluidez utilizando apenas a GPU integrada, desde que as configurações gráficas sejam ajustadas de acordo com o desempenho do processador.</p>
+                    <p>Já os modelos da Série 8000G entregam desempenho gráfico superior aos da Série 5000G, permitindo rodar uma quantidade ainda maior de jogos em resolução Full HD com qualidade gráfica reduzida ou média, dependendo do título. Para jogos AAA recentes em qualidade alta ou ultra, entretanto, uma placa de vídeo dedicada continua oferecendo desempenho muito superior.</p>
+
+                    <h2>Vale a pena comprar uma APU?</h2>
+                    <p>Para quem está montando um computador de entrada ou intermediário, uma APU oferece um excelente custo-benefício. Ela permite utilizar o computador imediatamente, economizando na compra de uma placa de vídeo dedicada, e ainda oferece a possibilidade de instalar uma GPU mais potente futuramente, caso seja necessário aumentar o desempenho em jogos ou aplicações profissionais.</p>
+                    <p>Atualmente, modelos como o Ryzen 5 5600G continuam sendo excelentes opções para quem busca economia máxima, enquanto processadores como o Ryzen 5 8600G e o Ryzen 7 8700G representam algumas das APUs mais avançadas da AMD, entregando desempenho gráfico integrado que supera com folga gerações anteriores.</p>
+                `
+            }
+        };
+
+        // 3. Lógica de renderização inteligente
+        if (guiasGerais[idArtigo]) {
+            // Se o ID corresponder a um Guia Geral cadastrado acima
+            const artigo = guiasGerais[idArtigo];
+            document.title = `${artigo.titulo} - QualProcessador`;
+            renderizarHtml(artigo.titulo, artigo.categoria, artigo.texto);
+        } else {
+            // Caso contrário, busca a CPU correspondente no arquivo dados.js
+            const cpu = listaDeCpus.find(item => item.id === idArtigo);
+            
+            if (cpu && cpu.analiseCompleta) {
+                document.title = `Review: ${cpu.nome} - QualProcessador`;
+                const marcaTexto = cpu.marca === 'amd' ? 'Review AMD' : 'Review Intel';
+                const tituloReview = `Análise Completa: O ${cpu.nome} ainda vale a pena em 2026?`;
+                renderizarHtml(tituloReview, `${marcaTexto} • Análise Técnica`, cpu.analiseCompleta);
+            } else {
+                // Caso o artigo/ID não exista em nenhum dos dois bancos de dados
+                mainContainer.innerHTML = `
+                    <div class="article-container" style="text-align: center; margin-top: 100px;">
+                        <h2>Artigo Não Encontrado</h2>
+                        <p>No momento, esta análise editorial ainda está sendo redigida pela nossa equipe técnica.</p>
+                        <a href="analises.html" style="color: #38bdf8; font-weight: bold;">Voltar ao Hub de Análises</a>
+                    </div>
+                `;
+            }
+        }
+
+        // Função responsável por montar o HTML na estrutura comum da página
+        function renderizarHtml(titulo, categoria, corpoTexto) {
             mainContainer.innerHTML = `
                 <header class="article-header">
-                    <span class="meta-category">${marcaTexto} • Análise Técnica</span>
-                    <h1 class="article-title">Análise Completa: O ${cpu.nome} ainda vale a pena em 2026?</h1>
-                    
+                    <span class="meta-category">${categoria}</span>
+                    <h1 class="article-title">${titulo}</h1>
                     <div class="article-meta-info">
                         <div class="author-avatar">QP</div>
                         <div>
@@ -202,17 +282,8 @@
 
                 <div class="article-container">
                     <div class="article-body">
-                        ${cpu.analiseCompleta}
+                        ${corpoTexto}
                     </div>
-                </div>
-            `;
-        } else {
-            // Caso o artigo não exista ou não tenha texto escrito
-            mainContainer.innerHTML = `
-                <div class="article-container" style="text-align: center; margin-top: 100px;">
-                    <h2>Artigo Não Encontrado</h2>
-                    <p>De momento, esta análise editorial ainda está a ser redigida pela nossa equipa técnica.</p>
-                    <a href="analises.html" style="color: #38bdf8; font-weight: bold;">Voltar ao Hub de Análises</a>
                 </div>
             `;
         }
