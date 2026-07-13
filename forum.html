@@ -145,7 +145,7 @@
         </div>
     </div>
 
-    <footer>&copy; 2026 QualProcessador - Comunidade Viva de Hardware.</footer>
+    <footer>&copy; 2026 QualProcessador.</footer>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
@@ -155,7 +155,6 @@
             window.location.href = "forum.html";
         }
 
-        // COLOQUE SUAS CHAVES DO SUPABASE ABAIXO:
         const SUPABASE_URL = "https://sterozqxsblanvjyzjmi.supabase.co"; 
         const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN0ZXJvenF4c2JsYW52anl6am1pIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4Mzc5Nzc5MCwiZXhwIjoyMDk5MzczNzkwfQ.LnU1u7jpLt69Ia8UEsrF5_RBlQbS2f5GL386OansCEs";
         const dbClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
@@ -170,7 +169,6 @@
             return JSON.parse(localStorage.getItem('qp_user_session'));
         }
 
-        // CONFIGURAÇÃO AUTOMÁTICA ULTRA LEVE DO BANUNIN
         async function autoConfigurarBanco() {
             let { data: adminExists } = await dbClient.from('usuarios').select('username').eq('username', 'Banunin').maybeSingle();
             if (!adminExists) {
@@ -188,12 +186,12 @@
             if (count === 0) {
                 await dbClient.from('topicos').insert([{
                     id: 1001,
-                    titulo: "Bem-vindo ao Novo Fórum QualProcessador na Nuvem!",
+                    titulo: "Bem-vindo ao Novo Fórum QualProcessador",
                     autor: "Banunin",
                     autor_avatar: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
                     autor_role: "admin",
                     autor_bio: "Criador e Administrador Chefe do Fórum.",
-                    conteudo: "Olá comunidade! O nosso fórum agora está rodando de forma 100% profissional na nuvem. Sinta-se à vontade para criar tópicos, conversar e trocar experiências sobre hardware.\n\nQualquer dúvida, a administração está à disposição!",
+                    conteudo: "Olá comunidade! O nosso fórum agora está rodando de forma 100% professional na nuvem. Sinta-se à vontade para criar tópicos, conversar e trocar experiências sobre hardware.\n\nQualquer dúvida, a administração está à disposição!",
                     respostas: [],
                     data: new Date().toLocaleDateString('pt-BR')
                 }]);
@@ -335,6 +333,66 @@
             window.location.href = "forum.html";
         }
 
+        async function fazerUploadFoto(event) {
+            const arquivo = event.target.files[0];
+            if (!arquivo) return;
+            
+            const logado = obterUsuarioLogado();
+            if (!logado) return alert("Faça login para subir imagens.");
+
+            if (arquivo.size > 2 * 1024 * 1024) {
+                return alert("Escolha uma imagem de até 2MB.");
+            }
+
+            const extensao = arquivo.name.split('.').pop();
+            const nomeUnico = `${logado.username}-${Date.now()}.${extensao}`;
+            
+            try {
+                let { data, error } = await dbClient.storage
+                    .from('avatars')
+                    .upload(nomeUnico, arquivo, { cacheControl: '3600', upsert: true });
+
+                if (error) throw error;
+
+                const { data: urlData } = dbClient.storage.from('avatars').getPublicUrl(nomeUnico);
+                
+                document.getElementById('perf-avatar').value = urlData.publicUrl;
+                alert("Foto carregada com sucesso! Clique em 'Salvar' abaixo para confirmar as alterações no perfil.");
+            } catch (err) {
+                alert("Falha ao subir imagem: " + err.message);
+            }
+        }
+
+        async function alterarEmailManual(e) {
+            e.preventDefault();
+            const logado = obterUsuarioLogado();
+            const novoEmail = document.getElementById('sec-email').value.trim();
+            if(!novoEmail) return;
+
+            let { error } = await dbClient.from('usuarios').update({ email: novoEmail }).eq('email', logado.email);
+            if(error) return alert("Erro ao atualizar e-mail: " + error.message);
+
+            logado.email = novoEmail;
+            localStorage.setItem('qp_user_session', JSON.stringify(logado));
+            alert("E-mail atualizado com sucesso!");
+            window.location.reload();
+        }
+
+        async function alterarSenhaManual(e) {
+            e.preventDefault();
+            const logado = obterUsuarioLogado();
+            const novaSenha = document.getElementById('sec-password').value;
+            if(!novaSenha || novaSenha.length < 4) return alert("A senha deve ter pelo menos 4 caracteres.");
+
+            let { error } = await dbClient.from('usuarios').update({ password: novaSenha }).eq('email', logado.email);
+            if(error) return alert("Erro ao atualizar senha: " + error.message);
+
+            logado.password = novaSenha;
+            localStorage.setItem('qp_user_session', JSON.stringify(logado));
+            alert("Senha modificada com sucesso!");
+            window.location.reload();
+        }
+
         async function renderizarTelaPerfil() {
             const user = obterUsuarioLogado();
             if(!user) return window.location.href = "forum.html?action=auth";
@@ -344,9 +402,33 @@
                     <h2>Personalizar Perfil</h2>
                     <form onsubmit="salvarPerfil(event)">
                         <div class="form-group"><label>Username:</label><input type="text" id="perf-username" value="${user.username}" required></div>
-                        <div class="form-group"><label>URL Avatar:</label><input type="url" id="perf-avatar" value="${user.avatar || ''}"></div>
+                        <div class="form-group">
+                            <label>URL Avatar:</label>
+                            <input type="url" id="perf-avatar" value="${user.avatar || ''}">
+                            <label style="font-size:0.75rem; color:#64748b; margin-top:5px; font-weight:normal;">Ou faça o upload de um arquivo direto:</label>
+                            <input type="file" id="perf-file-upload" accept="image/*" onchange="fazerUploadFoto(event)" style="border:none; padding:5px 0;">
+                        </div>
                         <div class="form-group"><label>Biografia:</label><textarea id="perf-bio" rows="3">${user.bio || ''}</textarea></div>
-                        <button type="submit" class="btn-main">Salvar</button>
+                        <button type="submit" class="btn-main">Salvar Dados Básicos</button>
+                    </form>
+
+                    <hr style="border:0; border-top:1px solid #e2e8f0; margin:30px 0;">
+
+                    <h2>Segurança da Conta</h2>
+                    <form onsubmit="alterarEmailManual(event)" style="margin-bottom:20px;">
+                        <div class="form-group">
+                            <label>Alterar E-mail do Fórum:</label>
+                            <input type="email" id="sec-email" value="${user.email}" required>
+                        </div>
+                        <button type="submit" class="btn-main" style="background:#475569;">Atualizar E-mail</button>
+                    </form>
+
+                    <form onsubmit="alterarSenhaManual(event)">
+                        <div class="form-group">
+                            <label>Mudar Senha de Acesso:</label>
+                            <input type="password" id="sec-password" placeholder="Digite a nova senha de segurança" required>
+                        </div>
+                        <button type="submit" class="btn-main" style="background:#64748b;">Atualizar Senha</button>
                     </form>
                 </div>`;
         }
