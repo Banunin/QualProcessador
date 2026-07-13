@@ -3,302 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>QualProcessador | Compare Processadores AMD e Intel para Jogos e Trabalho</title>
-    
-    <meta name="description" content="Compare especificações técnicas detalhadas, analise benchmarks de hardware em jogos ou produtividade e tire dúvidas na nossa comunidade. Descubra qual processador comprar para o seu setup.">
-    
+    <title>Artigos de Hardware - QualProcessador</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* MANTENHA TODO O SEU CSS AQUI EXATAMENTE COMO ESTAVA ANTES */
         * { box-sizing: border-box; }
         body { font-family: 'Poppins', sans-serif; background-color: #f4f7fa; color: #0f172a; margin: 0; padding: 0; }
-        .hero { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white; padding: 50px 40px; text-align: center; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
-        .hero h1 { margin: 0; font-size: 2.8rem; font-weight: 800; letter-spacing: -1.5px; background: linear-gradient(135deg, #ffffff 50%, #94a3b8 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
-        .hero p { margin: 10px auto 25px auto; font-size: 1.05rem; color: #94a3b8; max-width: 600px; }
-        .search-wrapper { position: relative; max-width: 600px; margin: 0 auto; }
-        .search-input { width: 100%; padding: 16px 22px; border: 2px solid #334155; border-radius: 12px; background-color: #0f172a; color: white; font-family: 'Poppins', sans-serif; font-size: 1rem; outline: none; transition: all 0.3s; }
-        .search-input:focus { border-color: #38bdf8; box-shadow: 0 0 15px rgba(56, 189, 248, 0.2); }
-        .suggestions-box { position: absolute; top: 105%; left: 0; width: 100%; background: white; border-radius: 10px; box-shadow: 0 15px 35px rgba(0,0,0,0.15); display: none; z-index: 10; border: 1px solid #e2e8f0; text-align: left; }
-        .suggestion-item { padding: 14px 22px; color: #334155; cursor: pointer; font-weight: 600; border-bottom: 1px solid #f1f5f9; }
-        .suggestion-item:hover { background-color: #f8fafc; color: #0f172a; }
+
+        .hero-magazine { background: #0f172a; color: white; padding: 50px 40px; text-align: center; }
+        .hero-magazine h1 { margin: 0; font-size: 2.5rem; font-weight: 800; }
+        .hero-magazine p { margin: 10px 0 25px 0; color: #94a3b8; font-size: 1.05rem; }
+
+        /* Barra de Busca de Artigos */
+        .search-magazine { max-width: 600px; margin: 0 auto; display: flex; gap: 10px; }
+        .search-magazine input { flex: 1; padding: 14px 20px; border-radius: 8px; border: none; font-family: 'Poppins', sans-serif; font-size: 1rem; outline: none; }
+        .search-magazine button { padding: 0 25px; border-radius: 8px; border: none; background: #38bdf8; color: #0f172a; font-weight: 800; cursor: pointer; transition: opacity 0.2s; }
+        .search-magazine button:hover { opacity: 0.9; }
+
         .portal-nav { background-color: white; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 5; }
         .nav-container { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; gap: 5px; }
-        .nav-link { padding: 20px 25px; color: #475569; text-decoration: none; font-weight: 700; font-size: 0.95rem; border-bottom: 3px solid transparent; cursor: pointer; transition: all 0.2s; }
+        .nav-link { padding: 20px 25px; color: #475569; text-decoration: none; font-weight: 700; font-size: 0.95rem; border-bottom: 3px solid transparent; }
         .nav-link:hover, .nav-link.active { color: #38bdf8; border-bottom-color: #38bdf8; background-color: #f8fafc; }
-        .container { width: 100%; max-width: 1400px; margin: 40px auto; padding: 0 40px; }
-        .section-title { font-size: 1.6rem; font-weight: 800; color: #0f172a; margin-bottom: 25px; display: flex; align-items: center; gap: 12px; }
-        .section-title::before { content: ''; width: 5px; height: 24px; background: linear-gradient(to bottom, #0f172a, #64748b); border-radius: 4px; display: inline-block; }
-        .tab-content { animation: fadeIn 0.35s ease-in-out; }
-        #topico-analises { display: block; }
-        .editorial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-bottom: 60px; }
-        .editorial-card { position: relative; border-radius: 16px; overflow: hidden; height: 280px; display: flex; align-items: flex-end; text-decoration: none; box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05); transition: transform 0.3s; background-color: #1e293b; }
-        .editorial-card:hover { transform: translateY(-5px); box-shadow: 0 15px 35px rgba(15, 23, 42, 0.1); }
-        .editorial-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; transition: transform 0.5s; }
-        .editorial-card:hover .editorial-bg { transform: scale(1.05); }
-        .editorial-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to top, rgba(15,23,42,0.95) 0%, rgba(15,23,42,0.4) 50%, transparent 100%); }
-        .editorial-content { position: relative; z-index: 2; padding: 25px; width: 100%; }
-        .editorial-tag { background: #ef4444; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; display: inline-block; }
-        .editorial-content h3 { margin: 0; color: white; font-size: 1.3rem; font-weight: 800; line-height: 1.3; text-shadow: 0 2px 4px rgba(0,0,0,0.5); }
-        .filtros-panel { display: none; background: white; border: 1px solid #e2e8f0; border-radius: 14px; padding: 20px; margin-bottom: 30px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; box-shadow: 0 4px 15px rgba(15,23,42,0.02); }
-        .filter-group { display: flex; flex-direction: column; gap: 6px; }
-        .filter-group label { font-size: 0.75rem; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; }
-        .filter-select { padding: 12px 14px; border-radius: 8px; border: 1px solid #cbd5e1; background-color: #f8fafc; font-family: 'Poppins', sans-serif; font-size: 0.9rem; font-weight: 600; color: #334155; outline: none; cursor: pointer; transition: all 0.2s; }
-        .filter-select:focus { border-color: #38bdf8; background-color: white; box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15); }
-        .reviews-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 25px; }
-        .cpu-card { background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 25px; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.25s; box-shadow: 0 4px 15px rgba(15,23,42,0.02); }
-        .cpu-card.brand-amd { border-left: 5px solid #ef4444; }
-        .cpu-card.brand-intel { border-left: 5px solid #3b82f6; }
-        .cpu-card:hover { transform: translateY(-4px); border-color: #cbd5e1; }
-        .card-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
-        .card-top h2 { margin: 0; font-size: 1.3rem; font-weight: 800; color: #0f172a; }
-        .badge { padding: 5px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; color: white; }
-        .bg-verde { background: linear-gradient(135deg, #10b981 0%, #047857 100%); }
-        .bg-azul { background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); }
-        .cpu-tagline { font-size: 0.88rem; color: #64748b; margin: 0 0 18px 0; font-weight: 600; }
-        .card-specs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; background-color: #f8fafc; padding: 12px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #f1f5f9; }
-        .card-spec-item { text-align: center; }
-        .card-spec-item strong { display: block; font-size: 1.05rem; color: #1e293b; font-weight: 800; }
-        .card-spec-item span { display: block; font-size: 0.65rem; color: #64748b; text-transform: uppercase; font-weight: 600; }
-        .btn-read { width: 100%; padding: 12px; border: none; border-radius: 8px; color: white; font-weight: 700; font-size: 0.9rem; cursor: pointer; text-align: center; text-decoration: none; }
-        .btn-amd { background: linear-gradient(135deg, #ef4444 0%, #991b1b 100%); }
-        .btn-intel { background: linear-gradient(135deg, #3b82f6 0%, #1e3a8a 100%); }
-        .ver-todos-wrapper { text-align: center; margin-top: 35px; display: block; }
-        .btn-outline { display: inline-block; padding: 14px 36px; border: 2px solid #0f172a; background: transparent; color: #0f172a; font-weight: 700; border-radius: 10px; cursor: pointer; transition: all 0.25s; font-size: 0.95rem; font-family: 'Poppins', sans-serif; }
-        .btn-outline:hover { background: #0f172a; color: white; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(15,23,42,0.1); }
-        .aviso-vazio { grid-column: 1 / -1; text-align: center; padding: 40px; color: #64748b; font-weight: 600; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
-        footer { text-align: center; padding: 40px; margin-top: 60px; color: #64748b; border-top: 1px solid #e2e8f0; font-size: 0.85rem; }
+
+        .container { width: 100%; max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+
+        /* LISTA DE ARTIGOS/ANÁLISES */
+        .articles-list { display: flex; flex-direction: column; gap: 30px; }
+        
+        .article-card-horizontal {
+            display: flex;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(15, 23, 42, 0.03);
+            border: 1px solid #e2e8f0;
+            transition: transform 0.2s, box-shadow 0.2s;
+            text-decoration: none;
+            color: inherit;
+            height: 220px;
+        }
+        .article-card-horizontal:hover { transform: translateY(-4px); box-shadow: 0 12px 25px rgba(15, 23, 42, 0.08); border-color: #cbd5e1; }
+        
+        .article-image { width: 350px; background-size: cover; background-position: center; background-color: #e2e8f0; }
+        
+        .article-content { padding: 30px; display: flex; flex-direction: column; justify-content: center; flex: 1; }
+        .article-tag { font-size: 0.8rem; font-weight: 800; color: #ef4444; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+        .article-content h2 { margin: 0 0 10px 0; font-size: 1.6rem; font-weight: 800; color: #0f172a; line-height: 1.2; }
+        .article-content p { margin: 0; color: #64748b; font-size: 0.95rem; line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+        
+        .article-meta { margin-top: 15px; font-size: 0.85rem; color: #94a3b8; font-weight: 600; display: flex; gap: 15px; }
+
+        footer { text-align: center; padding: 40px; color: #64748b; border-top: 1px solid #e2e8f0; font-size: 0.85rem; margin-top: 60px; }
+
+        @media (max-width: 768px) {
+            .article-card-horizontal { flex-direction: column; height: auto; }
+            .article-image { width: 100%; height: 200px; }
+        }
     </style>
 </head>
 <body>
 
-    <header class="hero">
-        <h1>Guia de Processadores: Encontre o Melhor Chip para o seu PC</h1>
+    <header class="hero-magazine">
+        <h1>Artigos</h1>
+        <p>Testes de desempenho práticos, benchmarks e vereditos editoriais.</p>
         
-        <p>Compare fichas técnicas completas, analise o desempenho em jogos ou trabalho e monte o setup ideal com as últimas novidades de hardware AMD Ryzen e Intel Core.</p>
-        
-        <div class="search-wrapper">
-            <input type="text" id="campo-busca" class="search-input" placeholder="Pesquise por uma ficha de CPU... (Ex: Ryzen 5)" autocomplete="off">
-            <div id="caixa-sugestoes" class="suggestions-box"></div>
+        <div class="search-magazine">
+            <input type="text" placeholder="Buscar por Artigos (Ex: Ryzen 7, Teste de temperatura)...">
+            <button>Procurar</button>
         </div>
     </header>
 
     <nav class="portal-nav">
         <div class="nav-container">
-            <a id="aba-home" class="nav-link active">Home</a>
-            <a id="aba-cpus" class="nav-link">CPUs</a>
-            <a href="analises.html" class="nav-link">Artigos</a>
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="analises.html" class="nav-link active">Artigos</a>
             <a href="forum.html" class="nav-link">Fórum</a>
+            <a href="#" class="nav-link">Grupos</a>
         </div>
     </nav>
 
-    <div class="container tab-content">
-        <section id="topico-analises">
-            <h2 class="section-title">Artigos em Destaque</h2>
-            <div class="editorial-grid">
-                <a href="ler-artigo.html?id=0" class="editorial-card">
-                    <div class="editorial-bg" style="background-color: #334155; background-image: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiqGvFbuJtbZslorlAFZHmHOtqs26Kb6cvvzvMGbiP3qoFMqVIhfMZF_adQSxkyheX94_M9swnQg4aRBDy5jaeQt_EpeSN6GL5jHSGXm8zSgAYCWUMU9yUgjAPCyaub50gcKZa5mILd2YT_VYa0CXg4AkUN5nLR4xLkTTs0ixlR3MpUYVZMaitrPtgFqHmi/s1254/ryzen4500ima.png');"></div>
-                    <div class="editorial-overlay"></div>
-                    <div class="editorial-content">
-                        <span class="editorial-tag" style="background-color: #ef4444;">Review AMD</span>
-                        <h3>AMD Ryzen 5 4500: Ainda vale a pena montar um PC barato com ele?</h3>
-                    </div>
-                </a>
-                
-                <a href="ler-artigo.html?id=100" class="editorial-card">
-                    <div class="editorial-bg" style="background-color: #1e293b; background-image: url('https://images.unsplash.com/photo-1591488320449-011701bb6704?q=80&w=600&auto=format&fit=crop');"></div>
-                    <div class="editorial-overlay"></div>
-                    <div class="editorial-content">
-                        <span class="editorial-tag" style="background-color: #10b981;">Guia de Hardware</span>
-                        <h3>O que é uma APU? Entenda como funciona um processador com vídeo integrado</h3>
-                    </div>
-                </a>
-            </div>
-        </section>
-
-        <section id="topico-fichas">
-            <h2 id="titulo-fichas" class="section-title">Últimos Processadores e Ficha Técnicas Catalogadas</h2>
+    <div class="container">
+        <div class="articles-list">
             
-            <div id="filtros-container" class="filtros-panel">
-                <div class="filter-group">
-                    <label for="filtro-marca">Fabricante</label>
-                    <select id="filtro-marca" class="filter-select">
-                        <option value="todos">Todos</option>
-                        <option value="amd">AMD Ryzen</option>
-                        <option value="intel">Intel Core</option>
-                    </select>
+            <a href="ler-artigo.html?id=0" class="article-card-horizontal">
+                <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=600&auto=format&fit=crop');"></div>
+                <div class="article-content">
+                    <span class="article-tag" style="color: #ef4444;">Review AMD</span>
+                    <h2>AMD Ryzen 5 4500: Ainda vale a pena montar um PC barato com ele?</h2>
+                    <p>Testamos o processador de entrada da AMD. Ele ainda tem fôlego ou o baixo cache L3 afunda a experiência em pleno 2026?</p>
+                    <div class="article-meta">
+                        <span>🗓️ Julho de 2026</span>
+                        <span>⏱️ Leitura: 5 min</span>
+                    </div>
                 </div>
-                <div class="filter-group">
-                    <label for="filtro-cores">Mapeamento de Cores</label>
-                    <select id="filtro-cores" class="filter-select">
-                        <option value="todos">Qualquer quantidade</option>
-                        <option value="6">6 Cores ou mais</option>
-                        <option value="8">8 Cores ou mais</option>
-                        <option value="12">12 Cores ou mais</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label for="ordenar-por">Organizar por</label>
-                    <select id="ordenar-por" class="filter-select">
-                        <option value="padrao">Padrão (Recentes)</option>
-                        <option value="nome">Nome</option>
-                        <option value="cores">Por Cores</option>
-                        <option value="tdp">Consumo (Maior TDP)</option>
-                    </select>
-                </div>
-            </div>
+            </a>
 
-            <div class="reviews-grid" id="grid-processadores"></div>
-
-            <div class="ver-todos-wrapper" id="wrapper-ver-todos">
-                <button id="btn-ver-todos" class="btn-outline">Ver Mais CPUs</button>
-            </div>
-        </section>
+               <a href="ler-artigo.html?id=100" class="article-card-horizontal">
+                        <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1591488320449-011701bb6704?q=80&w=600&auto=format&fit=crop');"></div>
+                        <div class="article-content">
+                              <span class="article-tag" style="color: #10b981;">Guia de Hardware</span>
+                             <h2>O que é uma APU? Entenda como funciona um processador com vídeo integrado</h2>
+                             <p>Descubra como funcionam os processadores que reúnem CPU e GPU no mesmo chip. Entenda as vantagens, desvantagens e se vale a pena comprar uma APU para rodar jogos sem placa de vídeo dedicada.</p>
+                            <div class="article-meta">
+                                <span>🗓️ Julho de 2026</span>
+                                <span>⏱️ Leitura: 5 min</span>
+        </div>
     </div>
+</a>
 
-    <footer>&copy; 2026 QualProcessador - Inteligência Estruturada em Hardware.</footer>
+    <footer>&copy; 2026 QualProcessador</footer>
 
-    <script src="dados.js"></script>
-    <script>
-        function gerarSlug(texto) {
-            return texto.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-        }
-
-        let abaAtiva = 'home';
-        let filtroMarca = 'todos';
-        let filtroCoresMinimo = 'todos';
-        let tipoOrdenacao = 'padrao';
-
-        const abaHome = document.getElementById('aba-home');
-        const abaCpus = document.getElementById('aba-cpus');
-        const topicoAnalises = document.getElementById('topico-analises');
-        const tituloFichas = document.getElementById('titulo-fichas');
-        const filtrosContainer = document.getElementById('filtros-container');
-        const wrapperVerTodos = document.getElementById('wrapper-ver-todos');
-        const gridProcessadores = document.getElementById('grid-processadores');
-        const btnVerTodos = document.getElementById('btn-ver-todos');
-
-        function alternarAba(novaAba) {
-            abaAtiva = novaAba;
-            filtroMarca = 'todos'; filtroCoresMinimo = 'todos'; tipoOrdenacao = 'padrao';
-            document.getElementById('filtro-marca').value = 'todos';
-            document.getElementById('filtro-cores').value = 'todos';
-            document.getElementById('ordenar-por').value = 'padrao';
-
-            if (abaAtiva === 'home') {
-                abaHome.classList.add('active'); abaCpus.classList.remove('active');
-                topicoAnalises.style.display = 'block'; filtrosContainer.style.display = 'none';
-                wrapperVerTodos.style.display = 'block'; 
-                tituloFichas.innerText = 'Últimos Processadores e Fichas Técnicas Catalogadas';
-            } else if (abaAtiva === 'cpus') {
-                abaCpus.classList.add('active'); abaHome.classList.remove('active');
-                topicoAnalises.style.display = 'none'; filtrosContainer.style.display = 'grid';
-                wrapperVerTodos.style.display = 'none'; 
-                tituloFichas.innerText = 'Catálogo Completo de Processadores Intel e AMD';
-            }
-            renderizarCards();
-        }
-
-        function renderizarCards() {
-            gridProcessadores.innerHTML = '';
-            if (typeof listaDeCpus !== 'undefined' && Array.isArray(listaDeCpus)) {
-                let cpusFiltradas = listaDeCpus.filter(cpu => {
-                    const atendeMarca = filtroMarca === 'todos' || cpu.marca === filtroMarca;
-                    const atendeCores = filtroCoresMinimo === 'todos' || parseInt(cpu.cores) >= parseInt(filtroCoresMinimo);
-                    return atendeMarca && atendeCores;
-                });
-
-                if (tipoOrdenacao === 'nome') cpusFiltradas.sort((a, b) => a.nome.localeCompare(b.nome));
-                else if (tipoOrdenacao === 'cores') cpusFiltradas.sort((a, b) => parseInt(b.cores) - parseInt(a.cores));
-                else if (tipoOrdenacao === 'tdp') cpusFiltradas.sort((a, b) => parseInt(b.tdp) - parseInt(a.tdp));
-                else if (tipoOrdenacao === 'padrao') cpusFiltradas.sort((a, b) => a.id - b.id);
-
-                if (abaAtiva === 'home') cpusFiltradas = cpusFiltradas.slice(0, 3);
-
-                if (cpusFiltradas.length === 0) {
-                    gridProcessadores.innerHTML = `<div class="aviso-vazio">Nenhum processador corresponde aos filtros ativos.</div>`;
-                    return;
-                }
-
-                cpusFiltradas.forEach(cpu => {
-                    const card = document.createElement('div');
-                    const classeBtn = cpu.marca === 'amd' ? 'btn-amd' : 'btn-intel';
-                    card.className = `cpu-card brand-${cpu.marca}`;
-                    
-                    const slug = gerarSlug(cpu.nome);
-                    const urlDetalhes = `detalhes.html?id=${cpu.id}&marca=${cpu.marca}&cpu=${slug}`;
-
-                    card.innerHTML = `
-                        <div>
-                            <div class="card-top"><h2>${cpu.nome}</h2></div>
-                            <p class="cpu-tagline">${cpu.detalhe}</p>
-                            <div class="card-specs">
-                                <div class="card-spec-item"><strong>${cpu.cores}/${cpu.threads}</strong><span>Cores/Threads</span></div>
-                                <div class="card-spec-item"><strong>${cpu.freqBoost}</strong><span>Boost Clocks</span></div>
-                                <div class="card-spec-item"><strong>${cpu.tdp}</strong><span>TDP</span></div>
-                            </div>
-                        </div>
-                        <a href="${urlDetalhes}" class="btn-read ${classeBtn}">Visualizar Ficha Completa</a>
-                    `;
-                    gridProcessadores.appendChild(card);
-                });
-            } else {
-                gridProcessadores.innerHTML = `<div class="aviso-vazio">Erro: O arquivo de dados dos processadores não foi carregado corretamente.</div>`;
-            }
-        }
-
-        /* CORREÇÃO DO BOTÃO VOLTAR DO MOUSE: Mudança via hash (#) no histórico */
-        abaHome.addEventListener('click', () => location.hash = 'home');
-        abaCpus.addEventListener('click', () => location.hash = 'cpus');
-        btnVerTodos.addEventListener('click', () => location.hash = 'cpus');
-
-        document.getElementById('filtro-marca').addEventListener('change', (e) => { filtroMarca = e.target.value; renderizarCards(); });
-        document.getElementById('filtro-cores').addEventListener('change', (e) => { filtroCoresMinimo = e.target.value; renderizarCards(); });
-        document.getElementById('ordenar-por').addEventListener('change', (e) => { tipoOrdenacao = e.target.value; renderizarCards(); });
-
-        const campoBusca = document.getElementById('campo-busca');
-        const caixaSugestoes = document.getElementById('caixa-sugestoes');
-        if(campoBusca) {
-            campoBusca.addEventListener('input', (e) => {
-                const texto = e.target.value.toLowerCase().trim();
-                caixaSugestoes.innerHTML = '';
-                if (texto.length === 0) { caixaSugestoes.style.display = 'none'; return; }
-                if (typeof listaDeCpus !== 'undefined' && Array.isArray(listaDeCpus)) {
-                    const filtrados = listaDeCpus.filter(cpu => cpu.nome.toLowerCase().includes(texto));
-                    if (filtrados.length > 0) {
-                        caixaSugestoes.style.display = 'block';
-                        filtrados.forEach(cpu => {
-                            const item = document.createElement('div');
-                            item.className = 'suggestion-item';
-                            item.innerText = cpu.nome;
-                            item.addEventListener('click', () => { 
-                                window.location.href = `detalhes.html?id=${cpu.id}&marca=${cpu.marca}&cpu=${gerarSlug(cpu.nome)}`;
-                            });
-                            caixaSugestoes.appendChild(item);
-                        });
-                    } else { caixaSugestoes.style.display = 'none'; }
-                }
-            });
-        }
-        document.addEventListener('click', (e) => { if (!e.target.closest('.search-wrapper')) caixaSugestoes.style.display = 'none'; });
-        
-        function gerenciarNavegacaoPorHash() {
-            const hash = location.hash.replace('#', '');
-            if (hash === 'cpus') {
-                alternarAba('cpus');
-            } else {
-                alternarAba('home');
-            }
-        }
-
-        window.addEventListener('hashchange', gerenciarNavegacaoPorHash);
-
-        document.addEventListener('DOMContentLoaded', () => {
-            gerenciarNavegacaoPorHash();
-        });
-    </script>
 </body>
 </html>
