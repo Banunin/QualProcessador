@@ -90,14 +90,14 @@
         <div class="nav-container">
             <a id="aba-home" class="nav-link active">Home</a>
             <a id="aba-cpus" class="nav-link">CPUs</a>
-            <a href="analises.html" class="nav-link">Análises</a>
+            <a href="analises.html" class="nav-link">Artigos</a>
             <a href="forum.html" class="nav-link">Fórum</a>
         </div>
     </nav>
 
     <div class="container tab-content">
         <section id="topico-analises">
-            <h2 class="section-title">Análises em Destaque</h2>
+            <h2 class="section-title">Artigos em Destaque</h2>
             <div class="editorial-grid">
                 <a href="ler-artigo.html?id=0" class="editorial-card">
                     <div class="editorial-bg" style="background-color: #334155; background-image: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiqGvFbuJtbZslorlAFZHmHOtqs26Kb6cvvzvMGbiP3qoFMqVIhfMZF_adQSxkyheX94_M9swnQg4aRBDy5jaeQt_EpeSN6GL5jHSGXm8zSgAYCWUMU9yUgjAPCyaub50gcKZa5mILd2YT_VYa0CXg4AkUN5nLR4xLkTTs0ixlR3MpUYVZMaitrPtgFqHmi/s1254/ryzen4500ima.png');"></div>
@@ -107,12 +107,13 @@
                         <h3>AMD Ryzen 5 4500: Ainda vale a pena montar um PC barato com ele?</h3>
                     </div>
                 </a>
-                <a href="ler-artigo.html?id=2" class="editorial-card">
-                    <div class="editorial-bg" style="background-color: #1e3a8a; background-image: url('https://images.unsplash.com/photo-1535223289827-42f1e9919769?q=80&w=600&auto=format&fit=crop');"></div>
+                
+                <a href="ler-artigo.html?id=100" class="editorial-card">
+                    <div class="editorial-bg" style="background-color: #1e293b; background-image: url('https://images.unsplash.com/photo-1591488320449-011701bb6704?q=80&w=600&auto=format&fit=crop');"></div>
                     <div class="editorial-overlay"></div>
                     <div class="editorial-content">
-                        <span class="editorial-tag" style="background-color: #3b82f6;">Lançamento Intel</span>
-                        <h3>Core Ultra 5 225F em testes: O fim do Hyper-Threading foi um erro?</h3>
+                        <span class="editorial-tag" style="background-color: #10b981;">Guia de Hardware</span>
+                        <h3>O que é uma APU? Entenda como funciona um processador com vídeo integrado</h3>
                     </div>
                 </a>
             </div>
@@ -143,8 +144,8 @@
                     <label for="ordenar-por">Organizar por</label>
                     <select id="ordenar-por" class="filter-select">
                         <option value="padrao">Padrão (Recentes)</option>
-                        <option value="nome">Nome (A - Z)</option>
-                        <option value="cores">Performance (Mais Cores)</option>
+                        <option value="nome">Nome</option>
+                        <option value="cores">Por Cores</option>
                         <option value="tdp">Consumo (Maior TDP)</option>
                     </select>
                 </div>
@@ -191,13 +192,11 @@
                 abaHome.classList.add('active'); abaCpus.classList.remove('active');
                 topicoAnalises.style.display = 'block'; filtrosContainer.style.display = 'none';
                 wrapperVerTodos.style.display = 'block'; 
-                // 5. ATUALIZAÇÃO ESTRATÉGICA DINÂMICA DO TÍTULO DA SEÇÃO DA HOME
                 tituloFichas.innerText = 'Últimos Processadores e Fichas Técnicas Catalogadas';
             } else if (abaAtiva === 'cpus') {
                 abaCpus.classList.add('active'); abaHome.classList.remove('active');
                 topicoAnalises.style.display = 'none'; filtrosContainer.style.display = 'grid';
                 wrapperVerTodos.style.display = 'none'; 
-                // 6. ATUALIZAÇÃO ESTRATÉGICA DINÂMICA DO TÍTULO DO CATÁLOGO COMPLETO
                 tituloFichas.innerText = 'Catálogo Completo de Processadores Intel e AMD';
             }
             renderizarCards();
@@ -205,7 +204,7 @@
 
         function renderizarCards() {
             gridProcessadores.innerHTML = '';
-            if (typeof listaDeCpus !== 'undefined') {
+            if (typeof listaDeCpus !== 'undefined' && Array.isArray(listaDeCpus)) {
                 let cpusFiltradas = listaDeCpus.filter(cpu => {
                     const atendeMarca = filtroMarca === 'todos' || cpu.marca === filtroMarca;
                     const atendeCores = filtroCoresMinimo === 'todos' || parseInt(cpu.cores) >= parseInt(filtroCoresMinimo);
@@ -234,7 +233,7 @@
 
                     card.innerHTML = `
                         <div>
-                            <div class="card-top"><h2>${cpu.nome}</h2><span class="badge ${cpu.corSelo}">${cpu.selo}</span></div>
+                            <div class="card-top"><h2>${cpu.nome}</h2></div>
                             <p class="cpu-tagline">${cpu.detalhe}</p>
                             <div class="card-specs">
                                 <div class="card-spec-item"><strong>${cpu.cores}/${cpu.threads}</strong><span>Cores/Threads</span></div>
@@ -246,12 +245,15 @@
                     `;
                     gridProcessadores.appendChild(card);
                 });
+            } else {
+                gridProcessadores.innerHTML = `<div class="aviso-vazio">Erro: O arquivo de dados dos processadores não foi carregado corretamente.</div>`;
             }
         }
 
-        abaHome.addEventListener('click', () => alternarAba('home'));
-        abaCpus.addEventListener('click', () => alternarAba('cpus'));
-        btnVerTodos.addEventListener('click', () => alternarAba('cpus'));
+        /* CORREÇÃO DO BOTÃO VOLTAR DO MOUSE: Mudança via hash (#) no histórico */
+        abaHome.addEventListener('click', () => location.hash = 'home');
+        abaCpus.addEventListener('click', () => location.hash = 'cpus');
+        btnVerTodos.addEventListener('click', () => location.hash = 'cpus');
 
         document.getElementById('filtro-marca').addEventListener('change', (e) => { filtroMarca = e.target.value; renderizarCards(); });
         document.getElementById('filtro-cores').addEventListener('change', (e) => { filtroCoresMinimo = e.target.value; renderizarCards(); });
@@ -264,24 +266,39 @@
                 const texto = e.target.value.toLowerCase().trim();
                 caixaSugestoes.innerHTML = '';
                 if (texto.length === 0) { caixaSugestoes.style.display = 'none'; return; }
-                const filtrados = listaDeCpus.filter(cpu => cpu.nome.toLowerCase().includes(texto));
-                if (filtrados.length > 0) {
-                    caixaSugestoes.style.display = 'block';
-                    filtrados.forEach(cpu => {
-                        const item = document.createElement('div');
-                        item.className = 'suggestion-item';
-                        item.innerText = cpu.nome;
-                        item.addEventListener('click', () => { 
-                            window.location.href = `detalhes.html?id=${cpu.id}&marca=${cpu.marca}&cpu=${gerarSlug(cpu.nome)}`;
+                if (typeof listaDeCpus !== 'undefined' && Array.isArray(listaDeCpus)) {
+                    const filtrados = listaDeCpus.filter(cpu => cpu.nome.toLowerCase().includes(texto));
+                    if (filtrados.length > 0) {
+                        caixaSugestoes.style.display = 'block';
+                        filtrados.forEach(cpu => {
+                            const item = document.createElement('div');
+                            item.className = 'suggestion-item';
+                            item.innerText = cpu.nome;
+                            item.addEventListener('click', () => { 
+                                window.location.href = `detalhes.html?id=${cpu.id}&marca=${cpu.marca}&cpu=${gerarSlug(cpu.nome)}`;
+                            });
+                            caixaSugestoes.appendChild(item);
                         });
-                        caixaSugestoes.appendChild(item);
-                    });
-                } else { caixaSugestoes.style.display = 'none'; }
+                    } else { caixaSugestoes.style.display = 'none'; }
+                }
             });
         }
         document.addEventListener('click', (e) => { if (!e.target.closest('.search-wrapper')) caixaSugestoes.style.display = 'none'; });
         
-        renderizarCards();
+        function gerenciarNavegacaoPorHash() {
+            const hash = location.hash.replace('#', '');
+            if (hash === 'cpus') {
+                alternarAba('cpus');
+            } else {
+                alternarAba('home');
+            }
+        }
+
+        window.addEventListener('hashchange', gerenciarNavegacaoPorHash);
+
+        document.addEventListener('DOMContentLoaded', () => {
+            gerenciarNavegacaoPorHash();
+        });
     </script>
 </body>
 </html>
