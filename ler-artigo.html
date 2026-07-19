@@ -4,6 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Análise Editorial - QualProcessador</title>
+    
+    <meta name="description" content="Leia análises detalhadas, guias de hardware e reviews de processadores na QualProcessador.">
+    <meta name="robots" content="index, follow">
+    
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="QualProcessador">
+    
+    <meta name="twitter:card" content="summary_large_image">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
@@ -81,14 +90,13 @@
             font-size: 0.8rem;
         }
 
-        /* CORPO DO TEXTO (FOCO EM LEITURA PREMIUM) */
+        /* CORPO DO TEXTO */
         .article-container {
             max-width: 850px;
             margin: 0 auto;
             padding: 0 20px 80px 20px;
         }
         
-        /* Fonte do corpo do texto para Lora (Serifada) para não cansar os olhos */
         .article-body {
             font-family: 'Lora', serif;
             font-size: 1.15rem;
@@ -96,7 +104,6 @@
             color: #334155;
         }
 
-        /* Estilização dos elementos HTML injetados pelo dados.js */
         .article-body h2 {
             font-family: 'Poppins', sans-serif;
             font-size: 1.6rem;
@@ -124,7 +131,7 @@
         }
         .alert-box strong { color: #166534; }
 
-        /* Tabelas de Benchmark Profissionais */
+        /* Tabelas de Benchmark */
         .article-table {
             font-family: 'Poppins', sans-serif;
             width: 100%;
@@ -163,7 +170,7 @@
 <body>
 
     <nav class="article-nav">
-        <a href="analises.html">← Voltar para Análises</a>
+        <a href="analises.html">← Voltar para Artigos</a>
         <a href="index.html">Página Inicial</a>
     </nav>
 
@@ -174,16 +181,15 @@
 
     <script src="dados.js"></script>
     <script>
-        // 1. Pegar o ID do artigo pela URL (ex: ler-artigo.html?id=100)
         const parametrosUrl = new URLSearchParams(window.location.search);
         const idArtigo = parseInt(parametrosUrl.get('id')) || 0;
-
         const mainContainer = document.getElementById('conteudo-artigo-dinamico');
 
-        // 2. Banco de dados de Guias Gerais escritos diretamente aqui por ID
+        // Banco de dados interno estendido com descrições focadas em SEO por palavra-chave
         const guiasGerais = {
             100: {
                 titulo: "O que é uma APU? Entenda como funciona um processador com vídeo integrado",
+                descricao: "Descubra o que é uma APU, como funciona a integração de CPU e GPU no mesmo chip AMD Ryzen e se vale a pena comprar para jogos em 2026.",
                 categoria: "Guia de Hardware • Tecnologia",
                 texto: `
                     <p>Uma <strong>APU (Accelerated Processing Unit)</strong> é um processador que reúne CPU e GPU no mesmo chip. Em outras palavras, além de executar as tarefas tradicionais do computador, ela também é capaz de processar gráficos sem a necessidade de uma placa de vídeo dedicada.</p>
@@ -239,23 +245,24 @@
             }
         };
 
-        // 3. Lógica de renderização inteligente
+        // Execução da renderização e SEO
         if (guiasGerais[idArtigo]) {
-            // Se o ID corresponder a um Guia Geral cadastrado acima
             const artigo = guiasGerais[idArtigo];
-            document.title = `${artigo.titulo} - QualProcessador`;
+            configurarSEO(artigo.titulo, artigo.descricao);
             renderizarHtml(artigo.titulo, artigo.categoria, artigo.texto);
         } else {
-            // Caso contrário, busca a CPU correspondente no arquivo dados.js
-            const cpu = listaDeCpus.find(item => item.id === idArtigo);
+            // Busca dinâmica no arquivo externo dados.js
+            const cpu = typeof listaDeCpus !== 'undefined' ? listaDeCpus.find(item => item.id === idArtigo) : null;
             
             if (cpu && cpu.analiseCompleta) {
-                document.title = `Review: ${cpu.nome} - QualProcessador`;
                 const marcaTexto = cpu.marca === 'amd' ? 'Review AMD' : 'Review Intel';
                 const tituloReview = `Análise Completa: O ${cpu.nome} ainda vale a pena em 2026?`;
+                const descReview = `Confira a análise técnica completa do processador ${cpu.nome}. Testes de desempenho, especificações, benchmarks em jogos e veredito editorial para 2026.`;
+                
+                configurarSEO(tituloReview, descReview);
                 renderizarHtml(tituloReview, `${marcaTexto} • Análise Técnica`, cpu.analiseCompleta);
             } else {
-                // Caso o artigo/ID não exista em nenhum dos dois bancos de dados
+                configurarSEO("Artigo Não Encontrado - QualProcessador", "O artigo solicitado não foi localizado ou ainda está em desenvolvimento.");
                 mainContainer.innerHTML = `
                     <div class="article-container" style="text-align: center; margin-top: 100px;">
                         <h2>Artigo Não Encontrado</h2>
@@ -266,26 +273,106 @@
             }
         }
 
-        // Função responsável por montar o HTML na estrutura comum da página
+        // Função para injetar conteúdo semântico
         function renderizarHtml(titulo, categoria, corpoTexto) {
             mainContainer.innerHTML = `
-                <header class="article-header">
-                    <span class="meta-category">${categoria}</span>
-                    <h1 class="article-title">${titulo}</h1>
-                    <div class="article-meta-info">
-                        <div class="author-avatar">QP</div>
-                        <div>
-                            Publicado por <strong>Equipe QualProcessador</strong> • Atualizado em Julho de 2026
+                <article>
+                    <header class="article-header">
+                        <span class="meta-category">${categoria}</span>
+                        <h1 class="article-title">${titulo}</h1>
+                        <div class="article-meta-info">
+                            <div class="author-avatar">QP</div>
+                            <div>
+                                Publicado por <strong>Equipe QualProcessador</strong> • Atualizado em Julho de 2026
+                            </div>
+                        </div>
+                    </header>
+
+                    <div class="article-container">
+                        <div class="article-body">
+                            ${corpoTexto}
                         </div>
                     </div>
-                </header>
-
-                <div class="article-container">
-                    <div class="article-body">
-                        ${corpoTexto}
-                    </div>
-                </div>
+                </article>
             `;
+        }
+
+        // Sistema dinâmico de otimização de SEO e metadados
+        function configurarSEO(titulo, descricao) {
+            // 1. Título do documento
+            document.title = `${titulo} - QualProcessador`;
+            
+            // 2. Atualização das Meta Tags nativas e Open Graph
+            definirMetaTag('name', 'description', descricao);
+            definirMetaTag('property', 'og:title', `${titulo} - QualProcessador`);
+            definirMetaTag('property', 'og:description', descricao);
+            definirMetaTag('property', 'og:url', window.location.href);
+            definirMetaTag('name', 'twitter:title', `${titulo} - QualProcessador`);
+            definirMetaTag('name', 'twitter:description', descricao);
+
+            // 3. Injeção de link Canonical limpo
+            let canonicalLink = document.querySelector('link[rel="canonical"]');
+            if (!canonicalLink) {
+                canonicalLink = document.createElement('link');
+                canonicalLink.setAttribute('rel', 'canonical');
+                document.head.appendChild(canonicalLink);
+            }
+            canonicalLink.setAttribute('href', `${window.location.origin}${window.location.pathname}?id=${idArtigo}`);
+
+            // 4. Geração e injeção do Rich Snippet (Schema.org JSON-LD)
+            injetarDadosEstruturados(titulo, descricao);
+        }
+
+        // Auxiliar para manipular meta tags de forma segura
+        function definirMetaTag(atributo, valor, conteudo) {
+            let elemento = document.querySelector(`meta[${atributo}="${valor}"]`);
+            if (!elemento) {
+                elemento = document.createElement('meta');
+                elemento.setAttribute(atributo, valor);
+                document.head.appendChild(elemento);
+            }
+            elemento.setAttribute('content', conteudo);
+        }
+
+        // Auxiliar para construir o JSON-LD que o Google lê para o selo de artigo técnico
+        function injetarDadosEstruturados(titulo, descricao) {
+            const idAntigo = document.getElementById('seo-schema-dinamico');
+            if (idAntigo) idAntigo.remove();
+
+            const jsonLd = {
+                "@context": "https://schema.org",
+                "@type": "TechArticle",
+                "headline": titulo,
+                "description": descricao,
+                "image": [
+                    `${window.location.origin}/assets/og-image-default.jpg` // Substitua pelo link real da imagem padrão do seu portal
+                ],
+                "datePublished": "2026-01-15T08:00:00+03:00",
+                "dateModified": "2026-07-19T13:00:00+03:00", 
+                "author": {
+                    "@type": "Organization",
+                    "name": "Equipe QualProcessador",
+                    "url": window.location.origin
+                },
+                "publisher": {
+                    "@type": "Organization",
+                    "name": "QualProcessador",
+                    "logo": {
+                        "@type": "ImageObject",
+                        "url": `${window.location.origin}/assets/logo-schema.png`
+                    }
+                },
+                "mainEntityOfPage": {
+                    "@type": "WebPage",
+                    "@id": `${window.location.origin}${window.location.pathname}?id=${idArtigo}`
+                }
+            };
+
+            const script = document.createElement('script');
+            script.id = 'seo-schema-dinamico';
+            script.type = 'application/ld+json';
+            script.text = JSON.stringify(jsonLd);
+            document.head.appendChild(script);
         }
     </script>
 </body>
