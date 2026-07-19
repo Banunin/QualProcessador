@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Comunidade Oficial | QualProcessador & RT Hardware</title>
+    <meta name="description" content="Faça parte da comunidade oficial do QualProcessador. Entre no nosso Telegram, acompanhe o canal RT Hardware no YouTube e fique por dentro do mundo do hardware e processadores.">
+    <meta name="keywords" content="comunidade QualProcessador, Telegram hardware, canal de hardware, RT Hardware, notícias de hardware, processadores, tecnologia, hardware Brasil">
+    
+    <meta property="og:title" content="Comunidade Oficial - QualProcessador">
+    <meta property="og:description" content="Junte-se à nossa comunidade de hardware! Participe no Telegram, inscreva-se no RT Hardware e acompanhe nossos projetos.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://seusite.com/comunidade.html">
+    <meta property="og:image" content="https://seusite.com/img/comunidade-banner.jpg"> <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Estilos Globais */
+        * { box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background-color: #f8fafc; color: #0f172a; margin: 0; padding: 0; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+        
+        /* Navegação (Baseada no QualProcessador) */
+        .portal-nav { background-color: white; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 50; }
+        .nav-container { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; gap: 5px; overflow-x: auto; }
+        .nav-link { padding: 20px 25px; color: #475569; text-decoration: none; font-weight: 700; font-size: 0.95rem; border-bottom: 3px solid transparent; transition: all 0.2s; white-space: nowrap; }
+        .nav-link:hover, .nav-link.active { color: #38bdf8; border-bottom-color: #38bdf8; background-color: #f0f9ff; }
+
+        /* Estrutura de Seções */
+        .container { max-width: 1200px; margin: 0 auto; padding: 80px 40px; }
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .section-header h2 { font-size: 2.2rem; font-weight: 800; color: #0f172a; margin-bottom: 15px; letter-spacing: -0.5px; }
+        .section-header p { color: #64748b; font-size: 1.1rem; max-width: 700px; margin: 0 auto; }
+
+        /* Hero Section */
+        .hero { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white; text-align: center; padding: 100px 20px; position: relative; overflow: hidden; }
+        .hero::after { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(circle at center, rgba(56,189,248,0.1) 0%, transparent 70%); pointer-events: none; }
+        .hero-content { position: relative; z-index: 2; max-width: 800px; margin: 0 auto; animation: fadeInDown 0.6s ease-out; }
+        .hero-icon { width: 80px; height: 80px; background: rgba(56, 189, 248, 0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 25px auto; border: 1px solid rgba(56, 189, 248, 0.3); }
+        .hero-icon svg { width: 40px; height: 40px; fill: #38bdf8; }
+        .hero h1 { font-size: 3.5rem; font-weight: 800; margin: 0 0 20px 0; letter-spacing: -1px; }
+        .hero p { font-size: 1.2rem; color: #cbd5e1; margin: 0 auto; max-width: 650px; }
+
+        /* Grid de Canais Oficiais */
+        .channels-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; margin-bottom: 60px; }
+        .channel-card { background: white; border-radius: 20px; border: 1px solid #e2e8f0; padding: 40px; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; align-items: flex-start; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+        .channel-card:hover { transform: translateY(-8px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); border-color: #cbd5e1; }
+        
+        .channel-header { display: flex; align-items: center; gap: 15px; margin-bottom: 20px; width: 100%; }
+        .platform-icon { width: 60px; height: 60px; border-radius: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .platform-icon.telegram { background: #e0f2fe; color: #0284c7; }
+        .platform-icon.youtube { background: #fee2e2; color: #dc2626; }
+        .platform-icon svg { width: 32px; height: 32px; fill: currentColor; }
+        
+        .channel-title h3 { margin: 0 0 4px 0; font-size: 1.4rem; font-weight: 800; color: #0f172a; }
+        .channel-subtitle { font-size: 0.85rem; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; }
+        
+        .channel-card p { color: #475569; font-size: 1rem; line-height: 1.7; margin: 0 0 30px 0; flex-grow: 1; }
+        
+        /* Botões */
+        .btn-channel { width: 100%; text-align: center; padding: 16px; border-radius: 12px; font-weight: 700; font-size: 1rem; text-decoration: none; transition: all 0.2s; border: none; cursor: pointer; display: inline-block; }
+        .btn-telegram { background: #0088cc; color: white; box-shadow: 0 4px 14px rgba(0, 136, 204, 0.3); }
+        .btn-telegram:hover { background: #0077b3; transform: scale(1.02); }
+        .btn-youtube { background: #ff0000; color: white; box-shadow: 0 4px 14px rgba(255, 0, 0, 0.3); }
+        .btn-youtube:hover { background: #cc0000; transform: scale(1.02); }
+
+        /* Em Breve (Próximas Plataformas) */
+        .coming-soon-section { background-color: #f1f5f9; padding: 60px 0; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; }
+        .soon-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; max-width: 900px; margin: 0 auto; }
+        .soon-card { background: white; border: 1px dashed #cbd5e1; border-radius: 16px; padding: 25px; display: flex; align-items: center; gap: 15px; opacity: 0.8; filter: grayscale(80%); transition: all 0.3s; cursor: default; }
+        .soon-card:hover { opacity: 1; filter: grayscale(0%); border-style: solid; border-color: #94a3b8; }
+        .soon-icon { width: 45px; height: 45px; background: #e2e8f0; border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+        .soon-icon svg { width: 24px; height: 24px; fill: #475569; }
+        .soon-info h4 { margin: 0 0 5px 0; font-size: 1.1rem; color: #0f172a; font-weight: 700; }
+        .soon-badge { font-size: 0.75rem; background: #f1f5f9; color: #64748b; padding: 4px 8px; border-radius: 6px; font-weight: 600; }
+
+        /* Por que participar? */
+        .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .benefit-item { padding: 30px; background: white; border-radius: 16px; border: 1px solid #e2e8f0; position: relative; overflow: hidden; z-index: 1; }
+        .benefit-item::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: #38bdf8; z-index: -1; }
+        .benefit-item h3 { font-size: 1.2rem; font-weight: 800; color: #0f172a; margin: 0 0 15px 0; }
+        .benefit-item p { margin: 0; color: #475569; font-size: 0.95rem; line-height: 1.6; }
+
+        footer { text-align: center; padding: 40px; color: #64748b; border-top: 1px solid #e2e8f0; font-size: 0.85rem; background: white; }
+
+        /* Animações */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in-up { animation: fadeInUp 0.6s ease-out forwards; opacity: 0; }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1rem; }
+            .container { padding: 50px 20px; }
+            .channel-card { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="portal-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="index.html#cpus" class="nav-link">CPUs</a>
+            <a href="analises.html" class="nav-link">Artigos</a>
+            <a href="forum.html" class="nav-link">Fórum</a>
+            <a href="comunidade.html" class="nav-link active">Comunidade</a>
+            <a href="ferramentas.html" class="nav-link">Ferramentas</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <div class="hero-icon">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+                </svg>
+            </div>
+            <h1>Comunidade</h1>
+            <p>Faça parte da comunidade oficial do QualProcessador. Receba novidades, participe das discussões, acompanhe novos projetos e fique por dentro de todas as atualizações de hardware.</p>
+        </div>
+    </header>
+
+    <main>
+        <section class="container fade-in-up" style="animation-delay: 0.2s;">
+            <div class="section-header">
+                <h2>Nossos Canais</h2>
+                <p>Escolha a plataforma de sua preferência e junte-se a milhares de entusiastas de tecnologia.</p>
+            </div>
+
+            <div class="channels-grid">
+                <div class="channel-card">
+                    <div class="channel-header">
+                        <div class="platform-icon telegram">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                            </svg>
+                        </div>
+                        <div class="channel-title">
+                            <div class="channel-subtitle">Grupo de Discussão</div>
+                            <h3>Telegram Oficial</h3>
+                        </div>
+                    </div>
+                    <p>Entre no grupo oficial para acompanhar novidades, tirar dúvidas, sugerir melhorias e conversar em tempo real.</p>
+                    <a href="https://t.me/QualProcessador" target="_blank" class="btn-channel btn-telegram">Entrar no Telegram</a> </div>
+
+                <div class="channel-card">
+                    <div class="channel-header">
+                        <div class="platform-icon youtube">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                            </svg>
+                        </div>
+                        <div class="channel-title">
+                            <div class="channel-subtitle">Canal Oficial</div>
+                            <h3>RT Hardware</h3>
+                        </div>
+                    </div>
+                    <p>Canal oficial do projeto com vídeos detalhados sobre processadores, comparativos de hardware, dicas, benchmarks de jogos e as principais novidades do QualProcessador.</p>
+                    <a href="https://www.youtube.com/@RThardware" target="_blank" class="btn-channel btn-youtube">Acessar Canal</a> </div>
+            </div>
+        </section>
+
+        <section class="coming-soon-section fade-in-up" style="animation-delay: 0.4s;">
+            <div class="container" style="padding: 0 40px;">
+                <div class="section-header" style="margin-bottom: 30px;">
+                    <h2 style="font-size: 1.8rem;">Em Breve</h2>
+                    <p style="font-size: 0.95rem;">Nosso ecossistema está em constante evolução. Novas plataformas estão a caminho.</p>
+                </div>
+                
+                <div class="soon-grid">
+                    <div class="soon-card">
+                        <div class="soon-icon">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z"/>
+                            </svg>
+                        </div>
+                        <div class="soon-info">
+                            <h4>Servidor no Discord</h4>
+                            <span class="soon-badge">Disponível futuramente</span>
+                        </div>
+                    </div>
+
+                    <div class="soon-card">
+                        <div class="soon-icon">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+                            </svg>
+                        </div>
+                        <div class="soon-info">
+                            <h4>GitHub (Projetos Open)</h4>
+                            <span class="soon-badge">Disponível futuramente</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="container fade-in-up" style="animation-delay: 0.6s;">
+            <div class="section-header">
+                <h2>Por que participar?</h2>
+                <p>Nossa comunidade é designada à qualquer pessoa. Veja as vantagens de estar conosco.</p>
+            </div>
+
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <h3>Receba novidades em primeira mão</h3>
+                    <p>Acompanhe novas CPUs adicionadas ao banco de dados do site, atualizações estruturais e novos recursos liberados antes de todo mundo.</p>
+                </div>
+                
+                <div class="benefit-item">
+                    <h3>Tire dúvidas e converse</h3>
+                    <p>Compreendeu um benchmark? Está em dúvida sobre qual chip escolher? Converse com outros usuários experientes e compartilhe suas experiências sobre hardware.</p>
+                </div>
+
+                <div class="benefit-item">
+                    <h3>Sugira melhorias</h3>
+                    <p>O QualProcessador é feito para você. Ajude a tornar a plataforma cada vez melhor enviando sugestões, feedbacks e relatando necessidades de ferramentas.</p>
+                </div>
+
+                <div class="benefit-item">
+                    <h3>Conheça novos projetos</h3>
+                    <p>Seja um dos primeiros a baixar e acompanhar ferramentas paralelas desenvolvidas pelo nosso ecossistema, como o <strong>WinFormatKit</strong> e futuras aplicações locais.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>&copy; 2026 QualProcessador</footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const elements = document.querySelectorAll('.fade-in-up');
+            elements.forEach(el => {
+                el.style.opacity = '1';
+            });
+        });
+    </script>
+</body>
+</html>
