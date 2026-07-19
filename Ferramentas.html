@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>WinFormatKit | O Conversor de Arquivos Offline Gratuito para Windows</title>
+    <meta name="description" content="Baixe o WinFormatKit, o melhor conversor de arquivos offline para Windows. Converta imagens (WEBP, PNG, JPG), vídeos (MP4, MKV) e PDF em lote, sem anúncios e 100% grátis.">
+    <meta name="keywords" content="conversor de arquivos, conversor offline, converter imagens, converter vídeos, converter PDF, conversor WEBP, conversor PNG, conversor JPG, conversor MP4, programa para converter arquivos, conversor gratuito, software para Windows, QualProcessador">
+    
+    <meta property="og:title" content="WinFormatKit | Conversor Completo e Offline">
+    <meta property="og:description" content="Converta imagens, vídeos e documentos de forma rápida, segura e totalmente offline no Windows.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://seusite.com/ferramentas.html">
+    <meta property="og:image" content="https://seusite.com/img/winformatkit-banner.jpg"> <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Estilos Globais Baseados no QualProcessador */
+        * { box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background-color: #f4f7fa; color: #0f172a; margin: 0; padding: 0; line-height: 1.6; }
+        
+        /* Navegação */
+        .portal-nav { background-color: white; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 50; }
+        .nav-container { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; gap: 5px; overflow-x: auto; }
+        .nav-link { padding: 20px 25px; color: #475569; text-decoration: none; font-weight: 700; font-size: 0.95rem; border-bottom: 3px solid transparent; transition: all 0.2s; white-space: nowrap; }
+        .nav-link:hover, .nav-link.active { color: #38bdf8; border-bottom-color: #38bdf8; background-color: #f8fafc; }
+
+        /* Botões */
+        .btn-main { background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%); color: white; padding: 14px 28px; border-radius: 8px; font-weight: 700; font-size: 1rem; text-decoration: none; display: inline-block; transition: transform 0.2s, box-shadow 0.2s; border: none; cursor: pointer; }
+        .btn-main:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(56, 189, 248, 0.3); }
+        .btn-outline { background: transparent; color: #f8fafc; padding: 12px 26px; border-radius: 8px; font-weight: 700; font-size: 1rem; text-decoration: none; display: inline-block; transition: all 0.2s; border: 2px solid #94a3b8; }
+        .btn-outline:hover { background: rgba(255,255,255,0.1); border-color: white; color: white; transform: translateY(-2px); }
+        .btn-outline-dark { border-color: #0f172a; color: #0f172a; }
+        .btn-outline-dark:hover { background: #0f172a; color: white; border-color: #0f172a; }
+
+        /* Estrutura de Seções */
+        .container { max-width: 1200px; margin: 0 auto; padding: 80px 40px; }
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .section-header h2 { font-size: 2.2rem; font-weight: 800; color: #0f172a; margin-bottom: 15px; }
+        .section-header p { color: #64748b; font-size: 1.1rem; max-width: 700px; margin: 0 auto; }
+
+        /* Hero Section */
+        .hero { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white; padding: 80px 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; overflow: hidden; position: relative; }
+        .hero-content h1 { font-size: 3.5rem; font-weight: 800; margin: 0 0 20px 0; line-height: 1.1; background: linear-gradient(to right, #38bdf8, #818cf8); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-content p { font-size: 1.15rem; color: #cbd5e1; margin-bottom: 30px; max-width: 90%; }
+        .hero-actions { display: flex; gap: 15px; flex-wrap: wrap; }
+        .hero-mockup { position: relative; perspective: 1000px; }
+        .hero-mockup img { width: 100%; border-radius: 12px; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); transform: rotateY(-5deg) rotateX(5deg); transition: transform 0.5s; }
+        .hero-mockup img:hover { transform: rotateY(0) rotateX(0); }
+        .version-badge { display: inline-block; background: rgba(56, 189, 248, 0.2); color: #38bdf8; padding: 6px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; margin-bottom: 15px; border: 1px solid rgba(56, 189, 248, 0.4); }
+
+        /* Benefícios (Grid) */
+        .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .benefit-card { background: white; padding: 30px; border-radius: 16px; border: 1px solid #e2e8f0; transition: transform 0.3s, box-shadow 0.3s; }
+        .benefit-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(15, 23, 42, 0.05); border-color: #cbd5e1; }
+        .benefit-icon { width: 50px; height: 50px; background: #f0f9ff; color: #0284c7; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin-bottom: 20px; }
+        .benefit-card h3 { font-size: 1.2rem; font-weight: 700; margin: 0 0 10px 0; }
+        .benefit-card p { color: #64748b; font-size: 0.95rem; margin: 0; }
+
+        /* Formatos Suportados */
+        .formats-section { background-color: white; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; }
+        .formats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .format-category { background: #f8fafc; border: 1px solid #e2e8f0; padding: 30px; border-radius: 16px; }
+        .format-category h3 { display: flex; align-items: center; gap: 10px; margin-top: 0; color: #0f172a; border-bottom: 2px solid #e2e8f0; padding-bottom: 15px; }
+        .format-list { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+        .format-list li { background: white; border: 1px solid #cbd5e1; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; color: #475569; }
+
+        /* Screenshots */
+        .screenshot-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .screenshot-item { width: 100%; border-radius: 12px; overflow: hidden; border: 1px solid #e2e8f0; box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        .screenshot-item img { width: 100%; height: auto; display: block; transition: transform 0.4s; }
+        .screenshot-item:hover img { transform: scale(1.03); }
+
+        /* FAQ */
+        .faq-list { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 15px; }
+        details { background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; transition: all 0.2s; }
+        details[open] { border-color: #38bdf8; box-shadow: 0 4px 15px rgba(56,189,248,0.05); }
+        summary { font-weight: 700; font-size: 1.1rem; cursor: pointer; color: #0f172a; list-style: none; position: relative; padding-right: 30px; }
+        summary::-webkit-details-marker { display: none; }
+        summary::after { content: '+'; position: absolute; right: 0; top: 50%; transform: translateY(-50%); font-size: 1.5rem; color: #38bdf8; }
+        details[open] summary::after { content: '-'; }
+        .faq-answer { margin-top: 15px; color: #475569; padding-top: 15px; border-top: 1px solid #f1f5f9; }
+
+        /* Changelog */
+        .changelog-box { background: white; max-width: 800px; margin: 0 auto; border-radius: 16px; border: 1px solid #e2e8f0; padding: 40px; }
+        .version-item { border-left: 2px solid #e2e8f0; padding-left: 25px; position: relative; margin-bottom: 30px; }
+        .version-item:last-child { margin-bottom: 0; border-left-color: transparent; }
+        .version-dot { position: absolute; left: -9px; top: 0; width: 16px; height: 16px; border-radius: 50%; background: #38bdf8; border: 4px solid white; }
+        .version-title { font-size: 1.2rem; font-weight: 800; margin: 0 0 10px 0; color: #0f172a; }
+        .version-date { font-size: 0.85rem; color: #94a3b8; font-weight: 600; margin-left: 10px; }
+        .version-notes { margin: 0; color: #475569; padding-left: 15px; }
+        .version-notes li { margin-bottom: 5px; }
+
+        /* CTA Bottom */
+        .cta-bottom { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white; text-align: center; padding: 80px 40px; border-radius: 24px; margin-top: 40px; }
+        .cta-bottom h2 { font-size: 2.5rem; margin: 0 0 20px 0; }
+        .cta-bottom p { color: #94a3b8; font-size: 1.1rem; margin-bottom: 30px; }
+
+        footer { text-align: center; padding: 40px; color: #64748b; border-top: 1px solid #e2e8f0; font-size: 0.85rem; }
+
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .hero { grid-template-columns: 1fr; text-align: center; padding: 60px 20px; }
+            .hero-content h1 { font-size: 2.5rem; }
+            .hero-content p { margin: 0 auto 30px auto; }
+            .hero-actions { justify-content: center; }
+            .formats-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="portal-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="index.html#cpus" class="nav-link">CPUs</a>
+            <a href="analises.html" class="nav-link">Artigos</a>
+            <a href="forum.html" class="nav-link">Fórum</a>
+            <a href="grupos.html" class="nav-link">Grupos</a>
+            <a href="ferramentas.html" class="nav-link active">Ferramentas</a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <span class="version-badge">Lançamento: Versão 1.0</span>
+                <h1>O kit completo para conversão de arquivos no Windows.</h1>
+                <p>O <strong>WinFormatKit</strong> é a sua nova ferramenta de bolso. Converta imagens, vídeos e documentos de forma rápida, segura e <strong>totalmente offline</strong>. Sem envio de dados, sem limites.</p>
+                <div class="hero-actions">
+                    <a href="#download" class="btn-main">Baixar Grátis (Windows)</a>
+                    <a href="#download" class="btn-outline">Versão Portátil</a>
+                </div>
+            </div>
+            <div class="hero-mockup">
+                <img src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEi0HNdYuIRTS8N_0_bxXqAJCUZ0AggPPd-te0U8xmG5H5ZX1qCwh03Ep62wP7uCKpPSQFyCkJ8Ri1UfweKrzT5AzAO7aTxbOhq-Rkv_bixhBTZtCBirsXzIukYajdlH1EBJvTi7JJfsWTQm7MkU2TYP8yicX8-mXcSjOyZLvre0oiKhIL1w2ELfuhevB-4C/s1920/WinFormatKit.webp" alt="Interface">
+            </div>
+        </section>
+
+        <section class="container" id="beneficios">
+            <div class="section-header">
+                <h2>Por que usar o WinFormatKit?</h2>
+                <p>Criado para resolver a frustração de conversores online cheios de anúncios e limites de envio. Aqui o processamento é seu.</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">🆓</div>
+                    <h3>100% Gratuito</h3>
+                    <p>Sem assinaturas, sem versão premium oculta. Todas as funções estão liberadas para você usar sempre que precisar.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🔒</div>
+                    <h3>Totalmente Offline</h3>
+                    <p>Seus arquivos nunca saem do seu computador. O processamento é local, garantindo máxima privacidade para documentos sensíveis.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🚀</div>
+                    <h3>Conversão em Lote</h3>
+                    <p>Tem 50 imagens para converter? Selecione todas de uma vez. O software processa múltiplas filas rapidamente.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">✨</div>
+                    <h3>Interface Moderna</h3>
+                    <p>Design limpo e focado no usuário. Diga adeus aos programas antigos dos anos 2000. É arrastar, soltar e converter.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">🚫</div>
+                    <h3>Sem Anúncios</h3>
+                    <p>Nenhum banner piscando, nenhum pop-up intrusivo. Uma experiência limpa do início ao fim.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">⚡</div>
+                    <h3>Sem Criar Conta</h3>
+                    <p>Não precisamos do seu e-mail. É só baixar, abrir e começar a usar a ferramenta no mesmo segundo.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="formats-section">
+            <div class="container" id="formatos">
+                <div class="section-header">
+                    <h2>Formatos Suportados</h2>
+                    <p>Cobrimos os formatos mais utilizados no dia a dia para criadores de conteúdo, estudantes e profissionais.</p>
+                </div>
+                <div class="formats-grid">
+                    <div class="format-category">
+                        <h3>🖼️ Imagens</h3>
+                        <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 15px;">Converta fotos e otimize arquivos para a web sem perder qualidade.</p>
+                        <ul class="format-list">
+                            <li>WEBP</li>
+                            <li>PNG</li>
+                            <li>JPEG</li>
+                            <li>JPG</li>
+                            <li>ICO</li>
+                        </ul>
+                    </div>
+                    <div class="format-category">
+                        <h3>🎬 Vídeos & Áudio</h3>
+                        <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 15px;">Extraia áudio ou converta clipes pesados para formatos amigáveis.</p>
+                        <ul class="format-list">
+                            <li>MP4</li>
+                            <li>MKV</li>
+                            <li>MP3 (Extração)</li>
+                        </ul>
+                    </div>
+                    <div class="format-category">
+                        <h3>📄 Documentos</h3>
+                        <p style="font-size: 0.9rem; color: #64748b; margin-bottom: 15px;">Una e converta digitalizações facilmente para formatos de leitura.</p>
+                        <ul class="format-list">
+                            <li>PDF</li>
+                            <li>Imagens → PDF</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="container" id="faq">
+            <div class="section-header">
+                <h2>Perguntas Frequentes</h2>
+            </div>
+            <div class="faq-list">
+                <details>
+                    <summary>O programa é realmente gratuito?</summary>
+                    <div class="faq-answer">Sim! O WinFormatKit é 100% gratuito. Não há funcionalidades bloqueadas, marcas d'água ou limites diários de conversão. O software foi desenvolvido como uma ferramenta para a comunidade do QualProcessador.</div>
+                </details>
+                <details>
+                    <summary>Preciso de internet para converter os arquivos?</summary>
+                    <div class="faq-answer">Não. Um dos maiores diferenciais do WinFormatKit é que ele roda totalmente offline. Isso significa velocidade máxima (usando o poder do seu próprio processador) e garantia absoluta de privacidade.</div>
+                </details>
+                <details>
+                    <summary>O programa exige instalação obrigatória?</summary>
+                    <div class="faq-answer">Não! Nós oferecemos duas versões: o Instalador tradicional (recomendado para atalhos no menu iniciar) e a Versão Portátil (.zip), que você pode apenas extrair e rodar num pendrive sem instalar nada no Windows.</div>
+                </details>
+                <details>
+                    <summary>O software é seguro? Tem vírus?</summary>
+                    <div class="faq-answer">Totalmente seguro. O código não contém anúncios, barras de pesquisa patrocinadas ou malwares. O processamento é todo feito localmente usando bibliotecas seguras (como o FFmpeg embutido).</div>
+                </details>
+            </div>
+        </section>
+
+        <section class="container" id="changelog">
+            <div class="section-header">
+                <h2>Histórico de Atualizações</h2>
+                <p>Acompanhe a evolução constante da ferramenta.</p>
+            </div>
+            <div class="changelog-box">
+                <div class="version-item">
+                    <div class="version-dot"></div>
+                    <h3 class="version-title">Versão 1.1 <span class="version-date">Em breve</span></h3>
+                    <ul class="version-notes">
+                        <li>Inclusão de novos formatos de vídeo (MOV, AVI).</li>
+                        <li>Melhorias de desempenho no uso de multi-threading da CPU para conversão em lote.</li>
+                    </ul>
+                </div>
+                <div class="version-item">
+                    <div class="version-dot"></div>
+                    <h3 class="version-title">Versão 1.0 <span class="version-date">Versão Atual</span></h3>
+                    <ul class="version-notes">
+                        <li>Lançamento público da primeira versão.</li>
+                        <li>Suporte completo para Imagens, Vídeos e geração de PDFs.</li>
+                        <li>Interface gráfica moderna implementada.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="container" id="download" style="padding-top: 0;">
+            <div class="cta-bottom">
+                <h2>Pronto para otimizar seus arquivos?</h2>
+                <p>Faça o download do WinFormatKit agora mesmo e tenha um canivete suíço no seu Windows.</p>
+                <div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; margin-top: 30px;"></div>
+                    <a href="COLE_AQUI_O_LINK_DIRETO_DO_INSTALADOR.exe" download class="btn-main" style="padding: 16px 32px; font-size: 1.1rem;">Baixar Instalador (.msi)</a>
+                    <a href="https://github.com/Banunin/QualProcessador/releases/download/untagged-ffb7595059b4c71c7f23/WinFormatKit.rar" download class="btn-outline" style="padding: 16px 32px; font-size: 1.1rem;">Baixar Versão Portátil (.rar)</a>
+                                    <p style="margin-top: 25px; font-size: 0.85rem; color: #cbd5e1;">Requer Windows 10 ou 11 (64-bits).</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>&copy; 2026 QualProcessador</footer>
+
+</body>
+</html>
