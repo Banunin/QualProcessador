@@ -1,0 +1,8 @@
+
+     ```json
+     {
+       "rewrites": [
+         { "source": "/(.*)", "destination": "/$1.html" }
+       ]
+     }
+     ```
