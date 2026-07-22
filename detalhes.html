@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/icon.ico" type="image/x-icon">
+    <base href="/">
     <title>QualProcessador - Detalhes Técnicos</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -112,6 +114,19 @@
         const dbClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
         const parametrosUrl = new URLSearchParams(window.location.search);
+        // 1. Lê os parâmetros recebidos
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
+        const marca = urlParams.get('marca');
+        const cpuSlug = urlParams.get('cpu');
+
+// 2. Se existirem os dados, reescreve a URL na barra de endereços para a versão Amigável / SEO
+if (marca && cpuSlug) {
+    const urlAmigavel = `/cpu/${marca.toLowerCase()}/${cpuSlug}`;
+    
+    // Altera a URL no navegador sem recarregar a página e sem dar Cannot GET
+    window.history.replaceState({ id: id }, '', urlAmigavel);
+}
         const idCpu = parseInt(parametrosUrl.get('id')) || 0; 
         const cpu = listaDeCpus ? listaDeCpus.find(item => item.id === idCpu) : null;
         const container = document.getElementById('conteudo-dinamico');
@@ -125,7 +140,7 @@
             let ptsMulti = parseInt(cpu.notaTrabalho || 0);
 
             let htmlMiniaturas = '';
-            if (cpu.fotos && Array.isArray(cpu.fotos) && cpu.fotos.length > 0) {
+           if (cpu.fotos && Array.isArray(cpu.fotos) && cpu.fotos.length > 0) {
                 htmlMiniaturas = `
                     <div class="gallery-thumbnails">
                         <img src="img/${cpu.foto}" class="thumb-item active" data-target="${cpu.foto}">
@@ -138,6 +153,7 @@
                 <div class="processor-header">
                     <h1>${cpu.nome}</h1>
                 </div>
+
 
                 <div class="top-specs-bar">
                     <div class="spec-box"><strong>${cpu.cores}</strong><span>Cores</span></div>
@@ -172,7 +188,7 @@
                             <div class="panel-card">
                                 <h2>Geral</h2>
                                 <p>${cpu.analise}</p>
-                                <p>Operando com um consumption de <strong>${cpu.tdp}</strong> e alcançando até <strong>${cpu.freqBoost}</strong>, este é um componente notável. Vale ressaltar que o processador <strong>${cpu.video === 'Não possui' ? 'exigirá uma placa de vídeo dedicada' : 'já possui saída de vídeo de fábrica'}</strong>.</p>
+                                <p>Operando com um consumption de <strong>${cpu.tdp}</strong> e alcançando até <strong>${cpu.freqBoost}</strong>, este é um componente notável. Vale ressaltar que o processador <strong>${cpu.video === 'Não possui' ? 'exigirá uma placa de vídeo dedicada' : 'já possui gráfico integrado'}</strong>.</p>
                             </div>
 
                             <div class="panel-card">
@@ -181,7 +197,7 @@
                                     <div class="fichometro-item">
                                         <div class="fichometro-label">
                                             <span class="tooltip-container">
-                                                Desempenho Single-Core (Jogos)
+                                                Desempenho Single-Core 
                                                 <span class="help-icon" data-tooltip="Mede a força de um único núcleo. É o fator crucial para empurrar as taxas de quadro (FPS) em jogos de PC. Dados:CPU-Z - CPU-monkey.">?</span>
                                             </span>
                                             <strong>${ptsSingle.toLocaleString('pt-BR')} pts</strong>
@@ -193,7 +209,7 @@
                                     <div class="fichometro-item">
                                         <div class="fichometro-label">
                                             <span class="tooltip-container">
-                                                Desempenho Multi-Core (Trabalho & Produtividade)
+                                                Desempenho Multi-Core
                                                 <span class="help-icon" data-tooltip="Mede a potência de todos os núcleos trabalhando juntos. Vital para streaming, render de vídeos e tarefas pesadas em lote.Dados: CPU-Z - CPU-monkey">?</span>
                                             </span>
                                             <strong>${ptsMulti.toLocaleString('pt-BR')} pts</strong>
@@ -266,7 +282,7 @@
 
                             <table class="tech-table" style="margin-bottom: 25px;">
                                 <thead>
-                                    <tr><th colspan="2" class="${classeMarca}">🖥️ Gráficos</th></tr>
+                                    <tr><th colspan="2" class="${classeMarca}"> Gráficos</th></tr>
                                 </thead>
                                 <tbody>
                                     <tr><td>Vídeo integrado</td><td>${cpu.video}</td></tr>
@@ -277,12 +293,11 @@
 
                             <table class="tech-table" style="margin-bottom: 25px;">
                                 <thead>
-                                    <tr><th colspan="2" class="${classeMarca}">🌡️ Energia e Temperatura</th></tr>
+                                    <tr><th colspan="2" class="${classeMarca}"> Energia e Temperatura</th></tr>
                                 </thead>
                                 <tbody>
                                     <tr><td>TDP</td><td>${cpu.tdp}</td></tr>
                                     <tr><td>Consumo máximo (PPT/Turbo)</td><td>${cpu.consumoMaximo || '—'}</td></tr>
-                                    <tr><td>Temperatura máxima</td><td>${cpu.tempMax || '90-95°C'}</td></tr>
                                     <tr><td>Cooler incluso</td><td>${cpu.coolerIncluso || 'Depende do lote / modelo'}</td></tr>
                                     <tr><td>Processo de fabricação (Litografia)</td><td>${cpu.litografia}</td></tr>
                                 </tbody>
@@ -290,7 +305,7 @@
 
                             <table class="tech-table" style="margin-bottom: 25px;">
                                 <thead>
-                                    <tr><th colspan="2" class="${classeMarca}">🔧 Recursos e Tecnologias</th></tr>
+                                    <tr><th colspan="2" class="${classeMarca}"> Recursos e Tecnologias</th></tr>
                                 </thead>
                                 <tbody>
                                     <tr><td>Tecnologia Multithreading (SMT/HT)</td><td>${cpu.threads > cpu.cores ? 'Sim' : 'Não'}</td></tr>
@@ -301,7 +316,7 @@
 
                             <table class="tech-table" style="margin-bottom: 25px;">
                                 <thead>
-                                    <tr><th colspan="2" class="${classeMarca}">🏆 Pontuações de Referência</th></tr>
+                                    <tr><th colspan="2" class="${classeMarca}"> Pontuações de Referência</th></tr>
                                 </thead>
                                 <tbody>
                                     <tr><td>Pontuação Single-Core </td><td>${ptsSingle.toLocaleString('pt-BR')} pontos</td></tr>
