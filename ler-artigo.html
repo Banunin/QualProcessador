@@ -17,6 +17,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+
     <style>
         * { box-sizing: border-box; }
         body { 
@@ -162,6 +168,63 @@
 
         footer { text-align: center; padding: 40px; color: #64748b; border-top: 1px solid #e2e8f0; font-size: 0.85rem; font-weight: 600; background: white; }
 
+        /* --- BOTÃO E MODAL ADMIN --- */
+        .btn-admin-floating {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 14px 22px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            box-shadow: 0 10px 25px rgba(239, 68, 68, 0.35);
+            z-index: 999;
+            transition: transform 0.2s, background 0.2s;
+        }
+        .btn-admin-floating:hover {
+            transform: scale(1.05);
+            background: #dc2626;
+        }
+
+        .admin-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(4px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .admin-modal-box {
+            background: white;
+            width: 100%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 0.9rem; }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-family: 'Poppins', sans-serif;
+        }
+        #editor-container { height: 300px; margin-bottom: 20px; }
+        .modal-actions { display: flex; justify-content: space-between; align-items: center; }
+        .btn-submit { background: #10b981; color: white; border: none; padding: 12px 24px; font-weight: 700; border-radius: 6px; cursor: pointer; }
+        .btn-close { background: #64748b; color: white; border: none; padding: 12px 24px; font-weight: 600; border-radius: 6px; cursor: pointer; }
+
         @media (max-width: 768px) {
             .article-title { font-size: 2rem; }
             .article-body { font-size: 1.05rem; }
@@ -175,106 +238,217 @@
         <a href="index.html">Página Inicial</a>
     </nav>
 
-    <main id="conteudo-artigo-dinamico">
-        </main>
+    <main id="conteudo-artigo-dinamico"></main>
+
+    <button class="btn-admin-floating" id="btnAabrirAdmin" onclick="abrirPainelAdmin()">+ Novo Artigo (Admin)</button>
+
+    <div class="admin-modal-overlay" id="modalAdmin">
+        <div class="admin-modal-box">
+            
+            <div id="secaoLogin" style="display: none;">
+                <h2>Login de Administrador</h2>
+                <p>Apenas <strong>jpsoaresoficial@gmail.com</strong> tem autorização para publicar artigos.</p>
+                <div class="form-group">
+                    <label>E-mail:</label>
+                    <input type="email" id="loginEmail" value="jpsoaresoficial@gmail.com">
+                </div>
+                <div class="form-group">
+                    <label>Senha:</label>
+                    <input type="password" id="loginSenha" placeholder="Sua senha do Supabase">
+                </div>
+                <button class="btn-submit" onclick="fazerLoginAdmin()">Entrar no Painel</button>
+                <button class="btn-close" onclick="fecharPainelAdmin()">Cancelar</button>
+            </div>
+
+            <div id="secaoEditor" style="display: none;">
+                <h2>Publicar Novo Artigo Editorial</h2>
+                <div class="form-group">
+                    <label>Título do Artigo (Focado em SEO):</label>
+                    <input type="text" id="postTitulo" placeholder="Ex: Ryzen 5 5600GT vale a pena em 2026?">
+                </div>
+                <div class="form-group">
+                    <label>Categoria:</label>
+                    <input type="text" id="postCategoria" value="Guia de Hardware • Tecnologia">
+                </div>
+                <div class="form-group">
+                    <label>Descrição Meta (SEO / Resumo no Google):</label>
+                    <input type="text" id="postDescricao" placeholder="Breve descrição de até 160 caracteres para o Google">
+                </div>
+                <div class="form-group">
+                    <label>Conteúdo do Artigo (Use o editor abaixo):</label>
+                    <div id="editor-container"></div>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn-submit" onclick="publicarArtigoSupabase()">🚀 Publicar Artigo</button>
+                    <button class="btn-close" onclick="fecharPainelAdmin()">Fechar</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
 
     <footer>&copy; 2026 QualProcessador - Editoriais de Alta Performance.</footer>
 
     <script src="dados.js"></script>
     <script>
+        // --- 1. CONFIGURAÇÃO DO SUPABASE ---
+        // Preencha com as suas credenciais do painel do Supabase (Project Settings > API)
+        const SUPABASE_URL = "https://sterozqxsblanvjyzjmi.supabase.co";
+        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN0ZXJvenF4c2JsYW52anl6am1pIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4Mzc5Nzc5MCwiZXhwIjoyMDk5MzczNzkwfQ.LnU1u7jpLt69Ia8UEsrF5_RBlQbS2f5GL386OansCEs";
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        const ADMIN_EMAIL = "jpsoaresoficial@gmail.com";
+        let quillEditor = null;
+
+        // Inicialização do Editor Ricos Quill.js
+        document.addEventListener('DOMContentLoaded', () => {
+            quillEditor = new Quill('#editor-container', {
+                theme: 'snow',
+                modules: {
+                    toolbar: [
+                        [{ 'header': [2, 3, false] }],
+                        ['bold', 'italic', 'underline', 'strike'],
+                        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                        ['link', 'image', 'code-block'],
+                        ['clean']
+                    ]
+                }
+            });
+            carregarArtigo();
+        });
+
+        // --- 2. SISTEMA DE LEITURA DE ARTIGOS ---
         const parametrosUrl = new URLSearchParams(window.location.search);
         const idArtigo = parseInt(parametrosUrl.get('id')) || 0;
+        const slugParam = parametrosUrl.get('slug');
         const mainContainer = document.getElementById('conteudo-artigo-dinamico');
 
-        // Banco de dados interno estendido com descrições focadas em SEO por palavra-chave
-        const guiasGerais = {
-            100: {
-                titulo: "O que é uma APU? Entenda como funciona um processador com vídeo integrado",
-                descricao: "Descubra o que é uma APU, como funciona a integração de CPU e GPU no mesmo chip AMD Ryzen e se vale a pena comprar para jogos em 2026.",
-                categoria: "Guia de Hardware • Tecnologia",
-                texto: `
-                    <p>Uma <strong>APU (Accelerated Processing Unit)</strong> é um processador que reúne CPU e GPU no mesmo chip. Em outras palavras, além de executar as tarefas tradicionais do computador, ela também é capaz de processar gráficos sem a necessidade de uma placa de vídeo dedicada.</p>
-                    
-                    <p>O termo APU foi criado pela AMD e ficou conhecido por identificar processadores que combinam núcleos de processamento Ryzen com gráficos Radeon integrados. Atualmente, embora a empresa utilize com mais frequência a expressão "processadores Ryzen com gráficos Radeon", o conceito continua o mesmo: oferecer um único chip capaz de executar tanto as tarefas do sistema quanto o processamento gráfico.</p>
-                    
-                    <p>Atualmente, as APUs da AMD estão presentes principalmente nas linhas Ryzen Série 5000G e Ryzen Série 8000G para desktops. Modelos como o Ryzen 5 5600GT(AM4), Ryzen 7 5700G(AM4), Ryzen 5 8600G(AM5) combinam núcleos de processamento Ryzen com gráficos Radeon integrados, oferecendo excelente desempenho para produtividade, multimídia e jogos leves sem a necessidade de uma placa de vídeo dedicada.</p>
-                    
-                    <div class="alert-box">
-                        <strong>Evolução Importante:</strong> A Série 8000G representa uma evolução importante em relação às gerações anteriores, trazendo gráficos integrados mais potentes e recursos modernos que ampliam a experiência em jogos e aplicações aceleradas por GPU.
-                    </div>
-                    
-                    <p>Essa integração reduz custos, economiza espaço interno do computador e diminui o consumo de energia, tornando as APUs uma excelente escolha para computadores domésticos, notebooks, escritórios e até mesmo para quem deseja jogar títulos leves sem investir imediatamente em uma placa de vídeo dedicada.</p>
-
-                    <h2>Como funciona uma APU?</h2>
-                    <p>Em uma APU, a CPU e a GPU compartilham o mesmo encapsulamento e trabalham em conjunto utilizando a memória RAM do sistema. Enquanto a CPU executa cálculos, programas e processos do sistema operacional, a GPU integrada é responsável pela geração de imagens, reprodução de vídeos e acionamento gráfico.</p>
-                    <p>Como ambas fazem parte do mesmo chip, a comunicação entre elas é extremamente rápida, reduzindo latências e aumentando a eficiência energética. Além disso, essa integração simplifica o projeto do computador e elimina a necessidade de instalar uma placa de vídeo dedicada para as tarefas do dia a dia.</p>
-
-                    <h2>Vantagens das APUs</h2>
-                    <ul>
-                        <li>Menor custo para montar um computador de entrada.</li>
-                        <li>Não exige uma placa de vídeo dedicada para o uso diário.</li>
-                        <li>Excelente eficiência energética com menor consumo de energia e geração de calor.</li>
-                        <li>Reprodução de vídeos em alta resolução com aceleração por hardware.</li>
-                        <li>Capacidade de executar diversos jogos competitivos e títulos leves utilizando apenas a GPU integrada.</li>
-                        <li>Facilidade para futuras atualizações, permitindo adicionar uma placa de vídeo dedicada quando necessário.</li>
-                    </ul>
-
-                    <h2>Desvantagens das APUs</h2>
-                    <ul>
-                        <li>O desempenho gráfico é inferior ao de placas de vídeo dedicadas de gama média/alta.</li>
-                        <li>Utilizam parte da memória RAM do computador como memória de vídeo (VRAM compartilhada).</li>
-                        <li>O desempenho gráfico depende bastante da velocidade e da configuração em dois canais (Dual Channel) das memórias RAM.</li>
-                        <li>Em jogos muito pesados ou aplicações profissionais complexas, uma GPU dedicada continua sendo indispensável.</li>
-                    </ul>
-
-                    <h2>APU ou processador comum: qual a diferença?</h2>
-                    <p>A principal diferença está na presença da GPU integrada. Um processador convencional pode não possuir vídeo integrado, exigindo obrigatoriamente uma placa de vídeo para gerar imagem no monitor. Já uma APU combina CPU e GPU no mesmo chip, permitindo utilizar o computador normalmente sem hardware gráfico adicional.</p>
-                    
-                    <div class="alert-box">
-                        <strong>Fique atento aos sufixos:</strong> Nem todo processador Ryzen possui gráficos integrados focados em jogos. Modelos terminados em <strong>"G"</strong>, como o Ryzen 5 5600G e o Ryzen 7 8700G, são as APUs verdadeiras. Já modelos antigos terminados em "X" ou sem sufixo podem não ter vídeo integrado ou trazer apenas chips básicos de vídeo para dar vídeo no sistema.
-                    </div>
-
-                    <h2>Uma APU consegue rodar jogos?</h2>
-                    <p>Sim. As APUs atuais evoluíram significativamente e conseguem executar muitos jogos populares, especialmente quando combinadas com memórias DDR4 ou DDR5 de alta frequência em configuração de dois canais (Dual Channel).</p>
-                    <p>Jogos como <em>Counter-Strike 2, Valorant, League of Legends, Dota 2, Rocket League, Minecraft, EA Sports FC e Fortnite</em> podem ser jogados com boa fluidez utilizando apenas a GPU integrada, desde que as configurações gráficas sejam ajustadas de acordo com o desempenho do processador.</p>
-                    <p>Já os modelos da Série 8000G entregam desempenho gráfico superior aos da Série 5000G, permitindo rodar uma quantidade ainda maior de jogos em resolução Full HD com qualidade gráfica reduzida ou média, dependendo do título. Para jogos AAA recentes em qualidade alta ou ultra, entretanto, uma placa de vídeo dedicada continua oferecendo desempenho muito superior.</p>
-
-                    <h2>Vale a pena comprar uma APU?</h2>
-                    <p>Para quem está montando um computador de entrada ou intermediário, uma APU oferece um excelente custo-benefício. Ela permite utilizar o computador imediatamente, economizando na compra de uma placa de vídeo dedicada, e ainda oferece a possibilidade de instalar uma GPU mais potente futuramente, caso seja necessário aumentar o desempenho em jogos ou aplicações profissionais.</p>
-                    <p>Atualmente, modelos como o Ryzen 5 5600G continuam sendo excelentes opções para quem busca economia máxima, enquanto processadores como o Ryzen 5 8600G e o Ryzen 7 8700G representam algumas das APUs mais avançadas da AMD, entregando desempenho gráfico integrado que supera com folga gerações anteriores.</p>
-                `
-            }
-        };
-
-        // Execução da renderização e SEO
-        if (guiasGerais[idArtigo]) {
-            const artigo = guiasGerais[idArtigo];
-            configurarSEO(artigo.titulo, artigo.descricao);
-            renderizarHtml(artigo.titulo, artigo.categoria, artigo.texto);
-        } else {
-            // Busca dinâmica no arquivo externo dados.js
-            const cpu = typeof listaDeCpus !== 'undefined' ? listaDeCpus.find(item => item.id === idArtigo) : null;
-            
-            if (cpu && cpu.analiseCompleta) {
-                const marcaTexto = cpu.marca === 'amd' ? 'Review AMD' : 'Review Intel';
-                const tituloReview = `Análise Completa: O ${cpu.nome} ainda vale a pena em 2026?`;
-                const descReview = `Confira a análise técnica completa do processador ${cpu.nome}. Testes de desempenho, especificações, benchmarks em jogos e veredito editorial para 2026.`;
-                
-                configurarSEO(tituloReview, descReview);
-                renderizarHtml(tituloReview, `${marcaTexto} • Análise Técnica`, cpu.analiseCompleta);
+        async function carregarArtigo() {
+            // Tenta buscar no Supabase primeiro (Banco Dinâmico)
+            let query = supabase.from('artigos').select('*');
+            if (slugParam) {
+                query = query.eq('slug', slugParam);
             } else {
-                configurarSEO("Artigo Não Encontrado - QualProcessador", "O artigo solicitado não foi localizado ou ainda está em desenvolvimento.");
+                query = query.eq('id', idArtigo);
+            }
+
+            const { data: artigosSupabase, error } = await query.single();
+
+            if (artigosSupabase) {
+                configurarSEO(artigosSupabase.titulo, artigosSupabase.descricao);
+                renderizarHtml(artigosSupabase.titulo, artigosSupabase.categoria, artigosSupabase.conteudo);
+                return;
+            }
+
+            // Fallback: Banco Local Estático (guiasGerais)
+            if (typeof guiasGerais !== 'undefined' && guiasGerais[idArtigo]) {
+                const artigo = guiasGerais[idArtigo];
+                configurarSEO(artigo.titulo, artigo.descricao);
+                renderizarHtml(artigo.titulo, artigo.categoria, artigo.texto);
+            } else {
+                configurarSEO("Artigo Não Encontrado - QualProcessador", "O artigo solicitado não foi localizado.");
                 mainContainer.innerHTML = `
                     <div class="article-container" style="text-align: center; margin-top: 100px;">
                         <h2>Artigo Não Encontrado</h2>
-                        <p>No momento, esta análise editorial ainda está sendo redigida pela nossa equipe técnica.</p>
+                        <p>No momento, esta análise editorial não foi localizada em nosso banco de dados.</p>
                         <a href="analises.html" style="color: #38bdf8; font-weight: bold;">Voltar ao Hub de Análises</a>
                     </div>
                 `;
             }
         }
 
-        // Função para injetar conteúdo semântico
+        // --- 3. AUTENTICAÇÃO E ADMINISTRAÇÃO ---
+        async function abrirPainelAdmin() {
+            document.getElementById('modalAdmin').style.display = 'flex';
+            
+            // Checar se já existe sessão ativa
+            const { data: { session } } = await supabase.auth.getSession();
+            if (session && session.user.email === ADMIN_EMAIL) {
+                exibirEditor();
+            } else {
+                exibirLogin();
+            }
+        }
+
+        function fecharPainelAdmin() {
+            document.getElementById('modalAdmin').style.display = 'none';
+        }
+
+        function exibirLogin() {
+            document.getElementById('secaoLogin').style.display = 'block';
+            document.getElementById('secaoEditor').style.display = 'none';
+        }
+
+        function exibirEditor() {
+            document.getElementById('secaoLogin').style.display = 'none';
+            document.getElementById('secaoEditor').style.display = 'block';
+        }
+
+        async function fazerLoginAdmin() {
+            const email = document.getElementById('loginEmail').value;
+            const senha = document.getElementById('loginSenha').value;
+
+            if (email !== ADMIN_EMAIL) {
+                alert('Acesso Negado: Este e-mail não é o administrador do sistema.');
+                return;
+            }
+
+            const { data, error } = await supabase.auth.signInWithPassword({ email, password: senha });
+
+            if (error) {
+                alert('Erro na autenticação: ' + error.message);
+            } else {
+                alert('Login efetuado com sucesso!');
+                exibirEditor();
+            }
+        }
+
+        // --- 4. GERAÇÃO DE URL E PUBLICAÇÃO (SUPABASE) ---
+        function gerarSlugSEO(texto) {
+            return texto.toLowerCase()
+                .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // Remove acentos
+                .replace(/[^a-z0-9 -]/g, "") // Remove caracteres especiais
+                .replace(/\s+/g, "-") // Troca espaços por hífens
+                .replace(/-+/g, "-");
+        }
+
+        async function publicarArtigoSupabase() {
+            const titulo = document.getElementById('postTitulo').value;
+            const categoria = document.getElementById('postCategoria').value;
+            const descricao = document.getElementById('postDescricao').value;
+            const conteudoHTML = quillEditor.root.innerHTML;
+
+            if (!titulo || !descricao || quillEditor.isEmpty()) {
+                alert('Por favor, preencha todos os campos do artigo!');
+                return;
+            }
+
+            const slug = gerarSlugSEO(titulo);
+
+            const { data, error } = await supabase
+                .from('artigos')
+                .insert([
+                    {
+                        titulo: titulo,
+                        categoria: categoria,
+                        descricao: descricao,
+                        conteudo: conteudoHTML,
+                        slug: slug,
+                        autor: 'jpsoaresoficial@gmail.com'
+                    }
+                ]);
+
+            if (error) {
+                alert('Erro ao publicar artigo no Supabase: ' + error.message);
+            } else {
+                alert('🎉 Artigo publicado com sucesso!');
+                fecharPainelAdmin();
+                // Redireciona para a URL com o novo artigo
+                window.location.href = `?slug=${slug}`;
+            }
+        }
+
+        // --- 5. RENDERIZAÇÃO DE INTERFACE E METADADOS SEO ---
         function renderizarHtml(titulo, categoria, corpoTexto) {
             mainContainer.innerHTML = `
                 <article>
@@ -298,33 +472,25 @@
             `;
         }
 
-        // Sistema dinâmico de otimização de SEO e metadados
         function configurarSEO(titulo, descricao) {
-            // 1. Título do documento
             document.title = `${titulo} - QualProcessador`;
             
-            // 2. Atualização das Meta Tags nativas e Open Graph
             definirMetaTag('name', 'description', descricao);
             definirMetaTag('property', 'og:title', `${titulo} - QualProcessador`);
             definirMetaTag('property', 'og:description', descricao);
             definirMetaTag('property', 'og:url', window.location.href);
-            definirMetaTag('name', 'twitter:title', `${titulo} - QualProcessador`);
-            definirMetaTag('name', 'twitter:description', descricao);
 
-            // 3. Injeção de link Canonical limpo
             let canonicalLink = document.querySelector('link[rel="canonical"]');
             if (!canonicalLink) {
                 canonicalLink = document.createElement('link');
                 canonicalLink.setAttribute('rel', 'canonical');
                 document.head.appendChild(canonicalLink);
             }
-            canonicalLink.setAttribute('href', `${window.location.origin}${window.location.pathname}?id=${idArtigo}`);
+            canonicalLink.setAttribute('href', window.location.href);
 
-            // 4. Geração e injeção do Rich Snippet (Schema.org JSON-LD)
             injetarDadosEstruturados(titulo, descricao);
         }
 
-        // Auxiliar para manipular meta tags de forma segura
         function definirMetaTag(atributo, valor, conteudo) {
             let elemento = document.querySelector(`meta[${atributo}="${valor}"]`);
             if (!elemento) {
@@ -335,7 +501,6 @@
             elemento.setAttribute('content', conteudo);
         }
 
-        // Auxiliar para construir o JSON-LD que o Google lê para o selo de artigo técnico
         function injetarDadosEstruturados(titulo, descricao) {
             const idAntigo = document.getElementById('seo-schema-dinamico');
             if (idAntigo) idAntigo.remove();
@@ -345,27 +510,10 @@
                 "@type": "TechArticle",
                 "headline": titulo,
                 "description": descricao,
-                "image": [
-                    `${window.location.origin}/assets/og-image-default.jpg` // Substitua pelo link real da imagem padrão do seu portal
-                ],
-                "datePublished": "2026-01-15T08:00:00+03:00",
-                "dateModified": "2026-07-19T13:00:00+03:00", 
                 "author": {
                     "@type": "Organization",
                     "name": "Equipe QualProcessador",
                     "url": window.location.origin
-                },
-                "publisher": {
-                    "@type": "Organization",
-                    "name": "QualProcessador",
-                    "logo": {
-                        "@type": "ImageObject",
-                        "url": `${window.location.origin}/assets/logo-schema.png`
-                    }
-                },
-                "mainEntityOfPage": {
-                    "@type": "WebPage",
-                    "@id": `${window.location.origin}${window.location.pathname}?id=${idArtigo}`
                 }
             };
 
