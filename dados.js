@@ -1439,7 +1439,7 @@ const listaDeCpus = [
         "nome": "AMD Ryzen 5 5600",
         "marca": "amd",
         "categoria": "border-amd",
-        "foto": "5600.webp",
+        "foto": "5600.jpg",
         "detalhe": "Geração 5 • Ryzen 5 focado em Performance Bruta",
         "selo": "Excelente Escolha ⭐",
         "corSelo": "bg-verde",
