@@ -178,7 +178,7 @@
     <main id="conteudo-artigo-dinamico">
         </main>
 
-    <footer>&copy; 2026 QualProcessador.</footer>
+    <footer>&copy; 2026 QualProcessador - Editoriais de Alta Performance.</footer>
 
     <script src="dados.js"></script>
     <script>
@@ -263,11 +263,11 @@
                 configurarSEO(tituloReview, descReview);
                 renderizarHtml(tituloReview, `${marcaTexto} • Análise Técnica`, cpu.analiseCompleta);
             } else {
-                configurarSEO("Artigo Não Encontrado - QualProcessador", "O artigo solicitado não foi localizado ou ainda está em desenvolvimento.");
+                configurarSEO("Artigo Não Encontrado - QualProcessador", "O artigo solicitado não foi localizado.");
                 mainContainer.innerHTML = `
                     <div class="article-container" style="text-align: center; margin-top: 100px;">
                         <h2>Artigo Não Encontrado</h2>
-                        <p>No momento, esta análise editorial ainda está sendo redigida pela nossa equipe técnica.</p>
+                        <p></p>
                         <a href="analises.html" style="color: #38bdf8; font-weight: bold;">Voltar ao Hub de Análises</a>
                     </div>
                 `;
