@@ -5,9 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="img/icon.ico" type="image/x-icon">
     <title>Artigos de Hardware - QualProcessador</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <style>
         * { box-sizing: border-box; }
         body { font-family: 'Poppins', sans-serif; background-color: #f4f7fa; color: #0f172a; margin: 0; padding: 0; }
@@ -27,7 +31,7 @@
         .nav-link { padding: 20px 25px; color: #475569; text-decoration: none; font-weight: 700; font-size: 0.95rem; border-bottom: 3px solid transparent; }
         .nav-link:hover, .nav-link.active { color: #38bdf8; border-bottom-color: #38bdf8; background-color: #f8fafc; }
 
-        .container { width: 100%; max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+        .container { width: 100%; max-width: 1200px; margin: 40px auto; padding: 0 20px; min-height: 50vh; }
 
         /* LISTA DE ARTIGOS/ANÁLISES */
         .articles-list { display: flex; flex-direction: column; gap: 30px; }
@@ -70,8 +74,8 @@
         <p>Testes de desempenho práticos, benchmarks e vereditos editoriais.</p>
         
         <div class="search-magazine">
-            <input type="text" placeholder="Buscar por Artigos (Ex: Ryzen 7, Teste de temperatura)...">
-            <button>Procurar</button>
+            <input type="text" id="campoBusca" placeholder="Buscar por Artigos (Ex: Ryzen 7, APU, Teste de temperatura)..." onkeyup="filtrarArtigos()">
+            <button onclick="filtrarArtigos()">Procurar</button>
         </div>
     </header>
 
@@ -86,35 +90,112 @@
     </nav>
 
     <div class="container">
-        <div class="articles-list">
-            
-            <a href="ler-artigo.html?id=0" class="article-card-horizontal">
-                <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=600&auto=format&fit=crop');"></div>
-                <div class="article-content">
-                    <span class="article-tag" style="color: #ef4444;">Review AMD</span>
-                    <h2>AMD Ryzen 5 4500: Ainda vale a pena montar um PC barato com ele?</h2>
-                    <p>Testamos o processador de entrada da AMD. Ele ainda tem fôlego ou o baixo cache L3 afunda a experiência em pleno 2026?</p>
-                    <div class="article-meta">
-                        <span>🗓️ Julho de 2026</span>
-                        <span>⏱️ Leitura: 5 min</span>
-                    </div>
-                </div>
-            </a>
-
-               <a href="ler-artigo.html?id=100" class="article-card-horizontal">
-                        <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1591488320449-011701bb6704?q=80&w=600&auto=format&fit=crop');"></div>
-                        <div class="article-content">
-                              <span class="article-tag" style="color: #10b981;">Guia de Hardware</span>
-                             <h2>O que é uma APU? Entenda como funciona um processador com vídeo integrado</h2>
-                             <p>Descubra como funcionam os processadores que reúnem CPU e GPU no mesmo chip. Entenda as vantagens, desvantagens e se vale a pena comprar uma APU para rodar jogos sem placa de vídeo dedicada.</p>
-                            <div class="article-meta">
-                                <span>🗓️ Julho de 2026</span>
-                                <span>⏱️ Leitura: 5 min</span>
+        <div class="articles-list" id="listaArtigos">
+            <p style="text-align: center; color: #64748b;">Carregando artigos...</p>
         </div>
     </div>
-</a>
 
     <footer>&copy; 2026 QualProcessador</footer>
 
+    <script>
+        // --- CONFIGURAÇÃO DO SUPABASE ---
+        // Lembre-se de colocar as suas credenciais reais aqui
+        const SUPABASE_URL = "https://sterozqxsblanvjyzjmi.supabase.co";
+        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN0ZXJvenF4c2JsYW52anl6am1pIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4Mzc5Nzc5MCwiZXhwIjoyMDk5MzczNzkwfQ.LnU1u7jpLt69Ia8UEsrF5_RBlQbS2f5GL386OansCEs";
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        // Artigos Padrão/Locais (Caso a conexão falhe ou para servir de base)
+        const artigosLocais = [
+            {
+                url: "ler-artigo.html?id=0",
+                imagem: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=600&auto=format&fit=crop",
+                categoria: "Review AMD",
+                corTag: "#ef4444",
+                titulo: "AMD Ryzen 5 4500: Ainda vale a pena montar um PC barato com ele?",
+                descricao: "Testamos o processador de entrada da AMD. Ele ainda tem fôlego ou o baixo cache L3 afunda a experiência em pleno 2026?",
+                data: "Julho de 2026",
+                leitura: "5 min"
+            },
+            {
+                url: "ler-artigo.html?id=100",
+                imagem: "https://images.unsplash.com/photo-1591488320449-011701bb6704?q=80&w=600&auto=format&fit=crop",
+                categoria: "Guia de Hardware",
+                corTag: "#10b981",
+                titulo: "O que é uma APU? Entenda como funciona um processador com vídeo integrado",
+                descricao: "Descubra como funcionam os processadores que reúnem CPU e GPU no mesmo chip. Entenda as vantagens, desvantagens e se vale a pena comprar uma APU para rodar jogos sem placa de vídeo dedicada.",
+                data: "Julho de 2026",
+                leitura: "5 min"
+            }
+        ];
+
+        let todosOsArtigos = [];
+
+        document.addEventListener('DOMContentLoaded', carregarTodosOsArtigos);
+
+        async function carregarTodosOsArtigos() {
+            let artigosFormatadosSupabase = [];
+
+            try {
+                // Busca artigos salvos no banco do Supabase
+                const { data, error } = await supabase
+                    .from('artigos')
+                    .select('*')
+                    .order('created_at', { ascending: false });
+
+                if (!error && data) {
+                    artigosFormatadosSupabase = data.map(item => ({
+                        url: `ler-artigo.html?slug=${item.slug}`,
+                        imagem: "https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=600&auto=format&fit=crop",
+                        categoria: item.categoria || "Análise Editorial",
+                        corTag: "#38bdf8",
+                        titulo: item.titulo,
+                        descricao: item.descricao,
+                        data: new Date(item.created_at).toLocaleDateString('pt-BR', { month: 'long', year: 'numeric' }),
+                        leitura: "4 min"
+                    }));
+                }
+            } catch (e) {
+                console.log("Serviço do Supabase offline ou ainda não configurado, exibindo apenas locais.");
+            }
+
+            // Junta os artigos criados via Admin com os nativos
+            todosOsArtigos = [...artigosFormatadosSupabase, ...artigosLocais];
+            renderizarLista(todosOsArtigos);
+        }
+
+        function renderizarLista(lista) {
+            const container = document.getElementById('listaArtigos');
+
+            if (lista.length === 0) {
+                container.innerHTML = `<p style="text-align: center; color: #64748b; margin: 40px 0;">Nenhum artigo encontrado com esse termo.</p>`;
+                return;
+            }
+
+            container.innerHTML = lista.map(artigo => `
+                <a href="${artigo.url}" class="article-card-horizontal">
+                    <div class="article-image" style="background-image: url('${artigo.imagem}');"></div>
+                    <div class="article-content">
+                        <span class="article-tag" style="color: ${artigo.corTag};">${artigo.categoria}</span>
+                        <h2>${artigo.titulo}</h2>
+                        <p>${artigo.descricao}</p>
+                        <div class="article-meta">
+                            <span>🗓️ ${artigo.data}</span>
+                            <span>⏱️ Leitura: ${artigo.leitura}</span>
+                        </div>
+                    </div>
+                </a>
+            `).join('');
+        }
+
+        // Função do filtro de busca dinâmica
+        function filtrarArtigos() {
+            const termo = document.getElementById('campoBusca').value.toLowerCase();
+            const artigosFiltrados = todosOsArtigos.filter(artigo => 
+                artigo.titulo.toLowerCase().includes(termo) || 
+                artigo.descricao.toLowerCase().includes(termo)
+            );
+            renderizarLista(artigosFiltrados);
+        }
+    </script>
 </body>
 </html>
