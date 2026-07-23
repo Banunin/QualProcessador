@@ -45,7 +45,7 @@ const listaDeCpus = [
         "nome": "AMD Ryzen 3 1300X",
         "marca": "amd",
         "categoria": "border-amd",
-        "foto": "1300x.webp",
+        "foto": "1300X.webp",
         "detalhe": "Geração 1 • Ryzen 3",
         "selo": "Clássico Barato 💸",
         "corSelo": "bg-azul",
