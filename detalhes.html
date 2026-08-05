@@ -50,11 +50,15 @@
         .modal-zoom-close:hover { color: #f8fafc; }
 
         .side-menu { display: flex; flex-direction: column; margin-top: 25px; border-radius: 12px; overflow: hidden; border: 1px solid #e2e8f0; }
-        .side-menu button { padding: 16px 20px; background-color: white; color: #475569; text-decoration: none; font-weight: 600; font-size: 0.95rem; border: none; border-bottom: 1px solid #f1f5f9; text-align: left; cursor: pointer; transition: all 0.2s; position: relative; font-family: 'Poppins', sans-serif; }
+        .side-menu button { padding: 16px 20px; background-color: white; color: #475569; text-decoration: none; font-weight: 600; font-size: 0.95rem; border: none; border-bottom: 1px solid #f1f5f9; text-align: left; cursor: pointer; transition: all 0.2s; position: relative; font-family: 'Poppins', sans-serif; display: flex; justify-content: space-between; align-items: center; }
         .side-menu button:last-child { border-bottom: none; }
         .side-menu button:hover { background-color: #f8fafc; color: #0f172a; padding-left: 25px; }
         .side-menu button.active { color: white !important; font-weight: 700; }
         .side-menu button.active::after { content: ''; position: absolute; right: 15px; top: 50%; transform: translateY(-50%); border-top: 6px solid transparent; border-bottom: 6px solid transparent; border-left: 6px solid white; }
+        
+        /* Oculta a setinha da aba ativa caso haja um badge lá */
+        .side-menu button.active .badge-tab { background-color: rgba(255,255,255,0.2) !important; color: white !important; }
+
         .main-content-panel { display: flex; flex-direction: column; gap: 30px; }
         .tab-panel { display: none; }
         .tab-panel.active { display: flex; flex-direction: column; gap: 30px; }
@@ -71,17 +75,40 @@
         .tech-table tr td { padding: 18px 25px; background-color: white; border-top: 1px solid #e2e8f0; border-bottom: 1px solid #e2e8f0; font-size: 1rem; color: #334155; }
         .tech-table tr td:first-child { border-left: 1px solid #e2e8f0; border-radius: 12px 0 0 12px; font-weight: 700; color: #1e293b; width: 35%; background-color: #f8fafc; }
         .tech-table tr td:last-child { border-right: 1px solid #e2e8f0; border-radius: 0 12px 12px 0; }
-        .comment-form { display: flex; flex-direction: column; gap: 15px; margin-bottom: 15px; }
-        .comment-form input, .comment-form textarea { width: 100%; padding: 14px; border: 1px solid #cbd5e1; border-radius: 8px; font-family: 'Poppins', sans-serif; font-size: 0.95rem; outline: none; transition: border-color 0.2s; }
-        .comment-form input:focus, .comment-form textarea:focus { border-color: #475569; }
-        .comment-form button, .btn-action { padding: 12px 30px; border: none; border-radius: 8px; color: white; font-weight: 700; font-size: 0.95rem; cursor: pointer; transition: opacity 0.2s; font-family: 'Poppins', sans-serif; }
-        .comment-form button:hover, .btn-action:hover { opacity: 0.9; }
-        .comments-list { display: flex; flex-direction: column; gap: 15px; }
-        .comment-item { background: #f8fafc; padding: 20px; border-radius: 10px; border: 1px solid #e2e8f0; }
-        .comment-header { display: flex; justify-content: space-between; font-size: 0.85rem; color: #64748b; margin-bottom: 8px; }
+
+        /* Autenticação e Comentários */
+        .auth-nav { display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; }
+        .auth-nav button { background: none; border: none; font-weight: 700; font-size: 0.95rem; color: #64748b; cursor: pointer; padding: 6px 12px; border-radius: 6px; transition: all 0.2s; font-family: 'Poppins', sans-serif; }
+        .auth-nav button.active { color: #0f172a; background-color: #e2e8f0; }
+        .auth-box { display: none; }
+        .auth-box.active { display: block; }
+        
+        .comment-form { display: flex; flex-direction: column; gap: 12px; }
+        .comment-form input, .comment-form textarea { width: 100%; padding: 12px 14px; border: 1px solid #cbd5e1; border-radius: 8px; font-family: 'Poppins', sans-serif; font-size: 0.95rem; outline: none; transition: border-color 0.2s; }
+        .comment-form input:focus, .comment-form textarea:focus { border-color: #38bdf8; }
+        .btn-action { padding: 12px 20px; color: white; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; font-family: 'Poppins', sans-serif; }
+        
+        .link-esqueci { font-size: 0.82rem; color: #3b82f6; text-decoration: none; font-weight: 600; cursor: pointer; display: inline-block; margin-top: 4px; }
+        .link-esqueci:hover { text-decoration: underline; }
+
+        .comments-list { display: flex; flex-direction: column; gap: 15px; margin-top: 25px; }
+        .comment-item { background: #ffffff; padding: 18px; border-radius: 10px; border: 1px solid #e2e8f0; }
+        .comment-item.reply { margin-left: 40px; border-left: 3px solid #cbd5e1; background: #f8fafc; }
+        .comment-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .comment-author-info { display: flex; gap: 10px; align-items: center; }
         .comment-author { font-weight: 700; color: #1e293b; font-size: 0.95rem; }
-        .comment-body { color: #334155; line-height: 1.6; font-size: 0.95rem; margin: 0; }
+        .comment-date { font-size: 0.75rem; color: #94a3b8; }
+        .comment-body { color: #334155; line-height: 1.6; font-size: 0.95rem; margin: 8px 0; white-space: pre-wrap; }
+        .comment-actions { display: flex; gap: 12px; font-size: 0.8rem; margin-top: 8px; }
+        .comment-actions button { background: none; border: none; cursor: pointer; color: #64748b; font-weight: bold; font-family: 'Poppins', sans-serif; padding: 0; transition: color 0.2s; }
+        .comment-actions button:hover { color: #0f172a; }
+        .comment-actions button.btn-delete { color: #ef4444; }
         .no-comments { color: #64748b; text-align: center; font-style: italic; margin-top: 10px; }
+
+        /* Contadores Estilizados */
+        .badge-tab { background-color: #e2e8f0; color: #475569; padding: 2px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 800; transition: all 0.2s; z-index: 10; position: relative; }
+        .badge-secao { background-color: #e2e8f0; color: #475569; padding: 4px 12px; border-radius: 20px; font-size: 0.9rem; font-weight: 700; }
+
         footer { text-align: center; padding: 30px; color: #64748b; font-size: 0.9rem; margin-top: 50px; border-top: 1px solid #e2e8f0; }
         
         .tooltip-container { display: inline-flex; align-items: center; gap: 6px; position: relative; }
@@ -114,19 +141,16 @@
         const dbClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
         const parametrosUrl = new URLSearchParams(window.location.search);
-        // 1. Lê os parâmetros recebidos
         const urlParams = new URLSearchParams(window.location.search);
         const id = urlParams.get('id');
         const marca = urlParams.get('marca');
         const cpuSlug = urlParams.get('cpu');
 
-// 2. Se existirem os dados, reescreve a URL na barra de endereços para a versão Amigável / SEO
-if (marca && cpuSlug) {
-    const urlAmigavel = `/cpu/${marca.toLowerCase()}/${cpuSlug}`;
-    
-    // Altera a URL no navegador sem recarregar a página e sem dar Cannot GET
-    window.history.replaceState({ id: id }, '', urlAmigavel);
-}
+        if (marca && cpuSlug) {
+            const urlAmigavel = `/cpu/${marca.toLowerCase()}/${cpuSlug}`;
+            window.history.replaceState({ id: id }, '', urlAmigavel);
+        }
+
         const idCpu = parseInt(parametrosUrl.get('id')) || 0; 
         const cpu = listaDeCpus ? listaDeCpus.find(item => item.id === idCpu) : null;
         const container = document.getElementById('conteudo-dinamico');
@@ -140,7 +164,7 @@ if (marca && cpuSlug) {
             let ptsMulti = parseInt(cpu.notaTrabalho || 0);
 
             let htmlMiniaturas = '';
-           if (cpu.fotos && Array.isArray(cpu.fotos) && cpu.fotos.length > 0) {
+            if (cpu.fotos && Array.isArray(cpu.fotos) && cpu.fotos.length > 0) {
                 htmlMiniaturas = `
                     <div class="gallery-thumbnails">
                         <img src="img/${cpu.foto}" class="thumb-item active" data-target="${cpu.foto}">
@@ -153,7 +177,6 @@ if (marca && cpuSlug) {
                 <div class="processor-header">
                     <h1>${cpu.nome}</h1>
                 </div>
-
 
                 <div class="top-specs-bar">
                     <div class="spec-box"><strong>${cpu.cores}</strong><span>Cores</span></div>
@@ -175,10 +198,13 @@ if (marca && cpuSlug) {
                         ${htmlMiniaturas}
             
                         <div class="side-menu">
-                            <button class="tab-btn active ${classeMarca}" data-tab="ficha">Ficha Técnico</button>
+                            <button class="tab-btn active ${classeMarca}" data-tab="ficha">Ficha Técnica</button>
                             <button class="tab-btn" data-tab="preco">Histórico de Preços</button>
                             <button class="tab-btn" data-tab="comparar">Comparar Modelo</button>
-                            <button class="tab-btn" data-tab="comentarios">Comentários</button>
+                            <button class="tab-btn" data-tab="comentarios">
+                                Comentários
+                                <span id="tab-contador-comentarios" class="badge-tab">0</span>
+                            </button>
                         </div>
                     </div>
 
@@ -188,7 +214,7 @@ if (marca && cpuSlug) {
                             <div class="panel-card">
                                 <h2>Geral</h2>
                                 <p>${cpu.analise}</p>
-                                <p>Operando com um consumption de <strong>${cpu.tdp}</strong> e alcançando até <strong>${cpu.freqBoost}</strong>, este é um componente notável. Vale ressaltar que o processador <strong>${cpu.video === 'Não possui' ? 'exigirá uma placa de vídeo dedicada' : 'já possui gráfico integrado'}</strong>.</p>
+                                <p>Operando com consumo de <strong>${cpu.tdp}</strong> e alcançando até <strong>${cpu.freqBoost}</strong>, este é um componente notável. Vale ressaltar que o processador <strong>${cpu.video === 'Não possui' ? 'exigirá uma placa de vídeo dedicada' : 'já possui gráfico integrado'}</strong>.</p>
                             </div>
 
                             <div class="panel-card">
@@ -198,19 +224,19 @@ if (marca && cpuSlug) {
                                         <div class="fichometro-label">
                                             <span class="tooltip-container">
                                                 Desempenho Single-Core 
-                                                <span class="help-icon" data-tooltip="Mede a força de um único núcleo. É o fator crucial para empurrar as taxas de quadro (FPS) em jogos de PC. Dados:CPU-Z - CPU-monkey.">?</span>
+                                                <span class="help-icon" data-tooltip="Mede a força de um único núcleo. É o fator crucial para empurrar as taxas de quadro (FPS) em jogos de PC. Dados: CPU-Z - CPU-monkey.">?</span>
                                             </span>
                                             <strong>${ptsSingle.toLocaleString('pt-BR')} pts</strong>
                                         </div>
                                         <div class="fichometro-bar-bg">
-                                            <div class="fichometro-bar-fill ${classeMarca}" style="width: ${Math.min((ptsSingle / 3500) * 50, 100)}%"></div>
+                                            <div class="fichometro-bar-fill ${classeMarca}" style="width: ${Math.min((ptsSingle / 3500) * 100, 100)}%"></div>
                                         </div>
                                     </div>
                                     <div class="fichometro-item">
                                         <div class="fichometro-label">
                                             <span class="tooltip-container">
                                                 Desempenho Multi-Core
-                                                <span class="help-icon" data-tooltip="Mede a potência de todos os núcleos trabalhando juntos. Vital para streaming, render de vídeos e tarefas pesadas em lote.Dados: CPU-Z - CPU-monkey">?</span>
+                                                <span class="help-icon" data-tooltip="Mede a potência de todos os núcleos trabalhando juntos. Vital para streaming, render de vídeos e tarefas pesadas em lote. Dados: CPU-Z - CPU-monkey">?</span>
                                             </span>
                                             <strong>${ptsMulti.toLocaleString('pt-BR')} pts</strong>
                                         </div>
@@ -222,9 +248,7 @@ if (marca && cpuSlug) {
                             </div>
 
                             <table class="tech-table" style="margin-bottom: 25px;">
-                                <thead>
-                                    <tr><th colspan="2" class="${classeMarca}"> Informações Básicas</th></tr>
-                                </thead>
+                                <thead><tr><th colspan="2" class="${classeMarca}"> Informações Básicas</th></tr></thead>
                                 <tbody>
                                     <tr><td>Nome completo</td><td>${cpu.nome}</td></tr>
                                     <tr><td>Fabricante</td><td>${cpu.fabricante || (cpu.marca === 'amd' ? 'AMD' : 'Intel')}</td></tr>
@@ -239,9 +263,7 @@ if (marca && cpuSlug) {
                             </table>
 
                             <table class="tech-table" style="margin-bottom: 25px;">
-                                <thead>
-                                    <tr><th colspan="2" class="${classeMarca}"> Desempenho</th></tr>
-                                </thead>
+                                <thead><tr><th colspan="2" class="${classeMarca}"> Desempenho</th></tr></thead>
                                 <tbody>
                                     <tr><td>Núcleos físicos</td><td>${cpu.cores}</td></tr>
                                     <tr><td>Threads</td><td>${cpu.threads}</td></tr>
@@ -256,9 +278,7 @@ if (marca && cpuSlug) {
                             </table>
 
                             <table class="tech-table" style="margin-bottom: 25px;">
-                                <thead>
-                                    <tr><th colspan="2" class="${classeMarca}"> Plataforma</th></tr>
-                                </thead>
+                                <thead><tr><th colspan="2" class="${classeMarca}"> Plataforma</th></tr></thead>
                                 <tbody>
                                     <tr><td>Socket / Soquete</td><td>${cpu.soquete}</td></tr>
                                     <tr><td>Chipsets compatíveis</td><td>${cpu.chipsets || '—'}</td></tr>
@@ -268,9 +288,7 @@ if (marca && cpuSlug) {
                             </table>
 
                             <table class="tech-table" style="margin-bottom: 25px;">
-                                <thead>
-                                    <tr><th colspan="2" class="${classeMarca}"> Memória</th></tr>
-                                </thead>
+                                <thead><tr><th colspan="2" class="${classeMarca}"> Memória</th></tr></thead>
                                 <tbody>
                                     <tr><td>Tipo de memória</td><td>${cpu.memoria}</td></tr>
                                     <tr><td>Canais de memória</td><td>${cpu.canaisMemoria || 'Dual Channel'}</td></tr>
@@ -281,9 +299,7 @@ if (marca && cpuSlug) {
                             </table>
 
                             <table class="tech-table" style="margin-bottom: 25px;">
-                                <thead>
-                                    <tr><th colspan="2" class="${classeMarca}"> Gráficos</th></tr>
-                                </thead>
+                                <thead><tr><th colspan="2" class="${classeMarca}"> Gráficos</th></tr></thead>
                                 <tbody>
                                     <tr><td>Vídeo integrado</td><td>${cpu.video}</td></tr>
                                     <tr><td>GPU integrada</td><td>${cpu.gpuIntegrada || (cpu.video === 'Não possui' ? '—' : 'Possui')}</td></tr>
@@ -292,9 +308,7 @@ if (marca && cpuSlug) {
                             </table>
 
                             <table class="tech-table" style="margin-bottom: 25px;">
-                                <thead>
-                                    <tr><th colspan="2" class="${classeMarca}"> Energia e Temperatura</th></tr>
-                                </thead>
+                                <thead><tr><th colspan="2" class="${classeMarca}"> Energia e Temperatura</th></tr></thead>
                                 <tbody>
                                     <tr><td>TDP</td><td>${cpu.tdp}</td></tr>
                                     <tr><td>Consumo máximo (PPT/Turbo)</td><td>${cpu.consumoMaximo || '—'}</td></tr>
@@ -304,9 +318,7 @@ if (marca && cpuSlug) {
                             </table>
 
                             <table class="tech-table" style="margin-bottom: 25px;">
-                                <thead>
-                                    <tr><th colspan="2" class="${classeMarca}"> Recursos e Tecnologias</th></tr>
-                                </thead>
+                                <thead><tr><th colspan="2" class="${classeMarca}"> Recursos e Tecnologias</th></tr></thead>
                                 <tbody>
                                     <tr><td>Tecnologia Multithreading (SMT/HT)</td><td>${cpu.threads > cpu.cores ? 'Sim' : 'Não'}</td></tr>
                                     <tr><td>Virtualização</td><td>${cpu.virtualizacao || (cpu.marca === 'amd' ? 'AMD-V / SVM' : 'Intel VT-x')}</td></tr>
@@ -315,9 +327,7 @@ if (marca && cpuSlug) {
                             </table>
 
                             <table class="tech-table" style="margin-bottom: 25px;">
-                                <thead>
-                                    <tr><th colspan="2" class="${classeMarca}"> Pontuações de Referência</th></tr>
-                                </thead>
+                                <thead><tr><th colspan="2" class="${classeMarca}"> Pontuações de Referência</th></tr></thead>
                                 <tbody>
                                     <tr><td>Pontuação Single-Core </td><td>${ptsSingle.toLocaleString('pt-BR')} pontos</td></tr>
                                     <tr><td>Pontuação Multi-Core </td><td>${ptsMulti.toLocaleString('pt-BR')} pontos</td></tr>
@@ -336,7 +346,7 @@ if (marca && cpuSlug) {
                             <div class="panel-card">
                                 <h2>Comparar Modelo</h2>
                                 <p>Selecione outro processador para comparar com <strong>${cpu.nome}</strong>.</p>
-                                <select id="comparador-select" style="width:100%;padding:14px;font-size:15px; border:1px solid #cbd5e1; border-radius:10px; margin-top:15px; margin-bottom:25px;">
+                                <select id="comparador-select" style="width:100%;padding:14px;font-size:15px; border:1px solid #cbd5e1; border-radius:10px; margin-top:15px; margin-bottom:25px; outline:none; font-family:'Poppins', sans-serif;">
                                     <option value="">Selecione um processador...</option>
                                     ${listaDeCpus.filter(c=>c.id!==cpu.id).map(c=>`<option value="${c.id}">${c.nome}</option>`).join("")}
                                 </select>
@@ -346,34 +356,50 @@ if (marca && cpuSlug) {
 
                         <div id="panel-comentarios" class="tab-panel">
                             <div class="panel-card">
-                                <h2>Comentários e Discussões</h2>
+                                <h2 style="display: flex; align-items: center; justify-content: space-between;">
+                                    Comentários e Discussões
+                                    <span id="secao-contador-comentarios" class="badge-secao">0</span>
+                                </h2>
                                 
                                 <div id="auth-container">
-                                    <p style="font-size: 0.95rem; color: #64748b; margin-bottom: 20px;">
-                                        É necessário estar autenticado para enviar comentários. Insira suas credenciais abaixo ou crie um novo cadastro.
-                                    </p>
-                                    <form class="comment-form" id="form-auth">
-                                        <input type="email" id="auth-email" placeholder="E-mail corporativo ou pessoal" required>
-                                        <input type="password" id="auth-password" placeholder="Senha de acesso" required>
-                                        <div style="display: flex; gap: 10px; justify-content: flex-end;">
-                                            <button type="button" id="btn-registrar" style="background-color: #64748b;">Criar Conta</button>
-                                            <button type="submit" id="btn-entrar" class="${classeMarca}">Acessar</button>
-                                        </div>
-                                    </form>
+                                    <div class="auth-nav">
+                                        <button type="button" id="tab-login" class="active">Acessar Conta</button>
+                                        <button type="button" id="tab-cadastro">Criar Nova Conta</button>
+                                    </div>
+
+                                    <div id="box-login" class="auth-box active">
+                                        <form class="comment-form" id="form-login">
+                                            <input type="email" id="login-email" placeholder="Seu e-mail cadastrado" required>
+                                            <input type="password" id="login-password" placeholder="Sua senha de acesso" required>
+                                            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 5px;">
+                                                <a href="javascript:void(0)" class="link-esqueci" id="btn-esqueci-senha">Esqueceu a senha?</a>
+                                                <button type="submit" class="btn-action ${classeMarca}">Entrar</button>
+                                            </div>
+                                        </form>
+                                    </div>
+
+                                    <div id="box-cadastro" class="auth-box">
+                                        <form class="comment-form" id="form-cadastro">
+                                            <input type="text" id="cad-username" placeholder="Nome de usuário / Nickname" required>
+                                            <input type="email" id="cad-email" placeholder="E-mail principal" required>
+                                            <input type="password" id="cad-password" placeholder="Senha segura" required>
+                                            <button type="submit" class="btn-action ${classeMarca}" style="align-self: flex-end; margin-top: 5px;">Finalizar Cadastro</button>
+                                        </form>
+                                    </div>
                                 </div>
 
                                 <div id="comment-form-container" style="display: none;">
-                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; background-color: #f1f5f9; padding: 12px 20px; border-radius: 8px; border: 1px solid #e2e8f0;">
-                                        <span style="font-size: 0.95rem; color: #334155;">Usuário autenticado: <strong id="user-logged-email"></strong></span>
+                                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; background-color: #f8fafc; padding: 12px 20px; border-radius: 8px; border: 1px solid #e2e8f0;">
+                                        <span style="font-size: 0.95rem; color: #334155;">Conectado como: <strong id="user-logged-name"></strong></span>
                                         <button type="button" id="btn-logout" style="background: none; border: none; color: #ef4444; font-weight: 700; cursor: pointer; font-family: 'Poppins', sans-serif; font-size: 0.95rem;">Desconectar</button>
                                     </div>
                                     <form class="comment-form" id="form-comentario">
-                                        <textarea id="comment-text" rows="4" placeholder="Escreva sua análise técnica ou dúvida sobre este componente..." required></textarea>
-                                        <button type="submit" class="${classeMarca}" style="align-self: flex-end;">Publicar Comentário</button>
+                                        <textarea id="comment-text" rows="4" placeholder="Escreva sua opinião técnica ou dúvida sobre este processador..." required></textarea>
+                                        <button type="submit" class="btn-action ${classeMarca}" style="align-self: flex-end;">Publicar Comentário</button>
                                     </form>
                                 </div>
 
-                                <div class="comments-list" id="lista-comentarios" style="margin-top: 25px;"></div>
+                                <div class="comments-list" id="lista-comentarios"></div>
                             </div>
                         </div>
 
@@ -381,6 +407,7 @@ if (marca && cpuSlug) {
                 </div>
             `;
 
+            // Gerenciamento de Abas Principais
             const botoesAbas = document.querySelectorAll('.tab-btn');
             const paineisAbas = document.querySelectorAll('.tab-panel');
 
@@ -394,6 +421,7 @@ if (marca && cpuSlug) {
                 });
             });
 
+            // Modal Zoom
             const modalFoto = document.getElementById('modal-foto');
             const imgModalZoom = document.getElementById('img-modal-zoom');
             const containerFotoPrincipal = document.getElementById('container-foto-principal');
@@ -401,24 +429,13 @@ if (marca && cpuSlug) {
             const fecharModal = document.getElementById('fechar-modal');
             const imgTargetPrincipal = document.getElementById('img-target-principal');
 
-            function abrirModalZoom() {
-                imgModalZoom.src = imgTargetPrincipal.src;
-                modalFoto.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
-
-            function fecharModalZoom() {
-                modalFoto.classList.remove('active');
-                document.body.style.overflow = '';
-            }
+            function abrirModalZoom() { imgModalZoom.src = imgTargetPrincipal.src; modalFoto.classList.add('active'); document.body.style.overflow = 'hidden'; }
+            function fecharModalZoom() { modalFoto.classList.remove('active'); document.body.style.overflow = ''; }
 
             containerFotoPrincipal.addEventListener('click', abrirModalZoom);
             txtAmpliarFoto.addEventListener('click', abrirModalZoom);
             fecharModal.addEventListener('click', fecharModalZoom);
-            
-            modalFoto.addEventListener('click', (e) => {
-                if(e.target === modalFoto) fecharModalZoom();
-            });
+            modalFoto.addEventListener('click', (e) => { if(e.target === modalFoto) fecharModalZoom(); });
 
             const miniaturas = document.querySelectorAll('.thumb-item');
             miniaturas.forEach(miniatura => {
@@ -429,69 +446,86 @@ if (marca && cpuSlug) {
                 });
             });
 
+            // --- LÓGICA DE AUTENTICAÇÃO E COMENTÁRIOS ---
+            const tabLogin = document.getElementById('tab-login');
+            const tabCadastro = document.getElementById('tab-cadastro');
+            const boxLogin = document.getElementById('box-login');
+            const boxCadastro = document.getElementById('box-cadastro');
+
+            tabLogin.addEventListener('click', () => {
+                tabLogin.classList.add('active');
+                tabCadastro.classList.remove('active');
+                boxLogin.classList.add('active');
+                boxCadastro.classList.remove('active');
+            });
+
+            tabCadastro.addEventListener('click', () => {
+                tabCadastro.classList.add('active');
+                tabLogin.classList.remove('active');
+                boxCadastro.classList.add('active');
+                boxLogin.classList.remove('active');
+            });
+
+            document.getElementById('btn-esqueci-senha').addEventListener('click', () => {
+                alert('Instruções para redefinição de senha foram enviadas ao seu e-mail de contato, ou procure o suporte.');
+            });
+
             const authContainer = document.getElementById('auth-container');
             const commentFormContainer = document.getElementById('comment-form-container');
-            const userLoggedEmail = document.getElementById('user-logged-email');
-            const formAuth = document.getElementById('form-auth');
-            const btnRegistrar = document.getElementById('btn-registrar');
+            const userLoggedName = document.getElementById('user-logged-name');
+            const formLogin = document.getElementById('form-login');
+            const formCadastro = document.getElementById('form-cadastro');
             const btnLogout = document.getElementById('btn-logout');
             const formComentario = document.getElementById('form-comentario');
             const listaComentarios = document.getElementById('lista-comentarios');
 
             function obterChaveComentarios() { return `comentarios_cpu_${idCpu}`; }
-
-            function obterUsuarioLogado() {
-                return JSON.parse(localStorage.getItem('qp_user_session'));
-            }
+            function obterUsuarioLogado() { return JSON.parse(localStorage.getItem('qp_user_session')); }
 
             function atualizarEstadoAutenticacao() {
                 const usuarioLogado = obterUsuarioLogado();
                 if (usuarioLogado) {
                     authContainer.style.display = 'none';
                     commentFormContainer.style.display = 'block';
-                    userLoggedEmail.innerText = usuarioLogado.username || usuarioLogado.email;
+                    userLoggedName.innerText = usuarioLogado.username || usuarioLogado.email;
                 } else {
                     authContainer.style.display = 'block';
                     commentFormContainer.style.display = 'none';
                 }
             }
 
-            btnRegistrar.addEventListener('click', async () => {
-                const email = document.getElementById('auth-email').value.trim();
-                const senha = document.getElementById('auth-password').value;
+            formCadastro.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const username = document.getElementById('cad-username').value.trim();
+                const email = document.getElementById('cad-email').value.trim();
+                const senha = document.getElementById('cad-password').value;
 
-                if (!email || !senha) {
-                    alert('Insira um e-mail e uma senha válidos para efetuar o cadastro.');
+                if (!username || !email || !senha) {
+                    alert('Preencha todos os campos para criar sua conta.');
                     return;
                 }
 
                 let { data: existente } = await dbClient.from('usuarios').select('id').eq('email', email).maybeSingle();
                 if (existente) {
-                    alert('Este endereço de e-mail já está cadastrado no sistema.');
+                    alert('Este endereço de e-mail já está em uso.');
                     return;
                 }
 
-                const usernamePadrao = email.split('@')[0];
-                const novoUser = {
-                    email: email,
-                    password: senha,
-                    username: usernamePadrao,
-                    role: 'user',
-                    avatar: ''
-                };
-
+                const novoUser = { username, email, password: senha, role: 'user', avatar: '' };
                 let { error } = await dbClient.from('usuarios').insert([novoUser]);
+
                 if (error) {
-                    alert('Erro ao realizar cadastro na nuvem: ' + error.message);
+                    alert('Erro ao criar conta: ' + error.message);
                 } else {
-                    alert('Cadastro realizado com sucesso. Proceda com o login.');
+                    alert('Conta criada com sucesso! Faça login para prosseguir.');
+                    tabLogin.click();
                 }
             });
 
-            formAuth.addEventListener('submit', async (e) => {
+            formLogin.addEventListener('submit', async (e) => {
                 e.preventDefault();
-                const email = document.getElementById('auth-email').value.trim();
-                const senha = document.getElementById('auth-password').value;
+                const email = document.getElementById('login-email').value.trim();
+                const senha = document.getElementById('login-password').value;
 
                 let { data: usuarioValido, error } = await dbClient
                     .from('usuarios')
@@ -501,137 +535,187 @@ if (marca && cpuSlug) {
                     .maybeSingle();
 
                 if (error || !usuarioValido) {
-                    alert('Credenciais incorretas. Verifique o e-mail e a senha informados.');
+                    alert('Credenciais incorretas.');
                     return;
                 }
 
                 localStorage.setItem('qp_user_session', JSON.stringify(usuarioValido));
-                document.getElementById('auth-email').value = '';
-                document.getElementById('auth-password').value = '';
                 atualizarEstadoAutenticacao();
                 carregarComentarios();
             });
 
             async function carregarComentarios() {
-                listaComentarios.innerHTML = '<p class="no-comments">Carregando discussões da nuvem...</p>';
-                
+                listaComentarios.innerHTML = '<p class="no-comments">Carregando discussões...</p>';
                 const chavePost = obterChaveComentarios();
+
                 let { data: comentariosSalvos, error } = await dbClient
                     .from('comentarios_produto')
                     .select('*')
                     .eq('id_post', String(chavePost))
-                    .order('id', { ascending: false });
+                    .order('id', { ascending: true });
 
                 if (error) {
-                    listaComentarios.innerHTML = '<p class="no-comments" style="color: #ef4444;">Erro ao conectar com a nuvem.</p>';
+                    listaComentarios.innerHTML = '<p class="no-comments" style="color:#ef4444;">Erro ao carregar comentários.</p>';
                     return;
                 }
 
-                listaComentarios.innerHTML = '';
+                // Lógica dos contadores!
+                const totalComentarios = comentariosSalvos ? comentariosSalvos.length : 0;
+                const tabContador = document.getElementById('tab-contador-comentarios');
+                const secaoContador = document.getElementById('secao-contador-comentarios');
+                if (tabContador) tabContador.innerText = totalComentarios;
+                if (secaoContador) secaoContador.innerText = totalComentarios;
 
+                listaComentarios.innerHTML = '';
                 if (!comentariosSalvos || comentariosSalvos.length === 0) {
-                    listaComentarios.innerHTML = '<p class="no-comments">Nenhum comentário registrado para este processador.</p>';
+                    listaComentarios.innerHTML = '<p class="no-comments">Nenhum comentário registrado ainda. Seja o primeiro a comentar!</p>';
                     return;
                 }
 
                 const logado = obterUsuarioLogado();
 
-                comentariosSalvos.forEach(c => {
-                    const ehDono = logado && logado.username.toLowerCase() === c.autor.toLowerCase();
-                    const ehAdmin = logado && logado.role === 'admin';
-                    const temPermissao = ehDono || ehAdmin;
+                const principais = comentariosSalvos.filter(c => !c.parent_id);
+                const respostas = comentariosSalvos.filter(c => c.parent_id);
 
-                    const badgeAdmin = c.autor_role === 'admin' ? '<span style="color:#ef4444; font-size:0.75em; font-weight:bold; margin-left:5px;">[ADM]</span>' : '';
-
-                    const div = document.createElement('div');
-                    div.className = 'comment-item';
-                    div.style.position = 'relative';
-                    div.style.marginBottom = '15px';
-                    
-                    div.innerHTML = `
-                        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-                            <div style="display: flex; gap: 12px; align-items: center;">
-                                ${c.autor_avatar ? `<img src="${c.autor_avatar}" style="width:36px; height:36px; border-radius:50%; object-fit:cover;">` : `<div style="width:36px; height:36px; border-radius:50%; background:#64748b; color:white; display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:0.85rem;">${c.autor.charAt(0).toUpperCase()}</div>`}
-                                <div class="comment-header" style="margin: 0; display: flex; flex-direction: column;">
-                                    <span class="comment-author">${c.autor} ${badgeAdmin}</span>
-                                    <span style="font-size: 0.75rem; color:#94a3b8;">${c.data}</span>
-                                </div>
-                            </div>
-                            ${temPermissao ? `
-                                <div style="display:flex; gap:10px; font-size:0.8rem;">
-                                    <button onclick="editarComentarioProduto(${c.id})" style="background:none; border:none; cursor:pointer; color:#64748b; font-weight:bold; font-family:'Poppins';">Editar</button>
-                                    <button onclick="excluirComentarioProduto(${c.id})" style="background:none; border:none; cursor:pointer; color:#ef4444; font-weight:bold; font-family:'Poppins';">Apagar</button>
-                                </div>
-                            ` : ''}
-                        </div>
-                        <p class="comment-body" id="texto-comentario-prod-${c.id}" style="margin-top: 12px; white-space: pre-wrap;">${c.conteudo}</p>
-                        <div id="edit-box-prod-${c.id}" style="margin-top:10px;"></div>
-                    `;
-                    listaComentarios.appendChild(div);
+                principais.reverse().forEach(c => {
+                    renderizarItemComentario(c, false, logado, c.id);
+                    const filhas = respostas.filter(r => r.parent_id === c.id);
+                    filhas.forEach(f => renderizarItemComentario(f, true, logado, c.id));
                 });
+            }
+
+            function renderizarItemComentario(c, ehResposta, logado, idPrincipal) {
+                const ehDono = logado && logado.username.toLowerCase() === c.autor.toLowerCase();
+                const ehAdmin = logado && logado.role === 'admin';
+                const temPermissao = ehDono || ehAdmin;
+
+                const badgeAdmin = c.autor_role === 'admin' ? '<span style="color:#0ea5e9; font-size:0.75em; font-weight:bold; margin-left:4px; background:#e0f2fe; padding:2px 6px; border-radius:4px;">[ADM]</span>' : '';
+                const badgeEditado = c.editado ? '<span style="color:#94a3b8; font-size:0.8em; font-style:italic; margin-left:6px;">(editado)</span>' : '';
+
+                const div = document.createElement('div');
+                div.className = `comment-item ${ehResposta ? 'reply' : ''}`;
+                
+                div.innerHTML = `
+                    <div class="comment-header">
+                        <div class="comment-author-info">
+                            <div style="width:32px; height:32px; border-radius:50%; background:#64748b; color:white; display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:0.8rem;">${c.autor_avatar || c.autor.charAt(0).toUpperCase()}</div>
+                            <div>
+                                <span class="comment-author">${c.autor} ${badgeAdmin}</span>
+                                <div class="comment-date">${c.data} ${badgeEditado}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="comment-body" id="texto-comentario-${c.id}">${c.conteudo}</p>
+                    <div class="comment-actions">
+                        ${logado ? `<button onclick="abrirFormResposta(${c.id}, ${idPrincipal})">Responder</button>` : ''}
+                        ${temPermissao ? `<button onclick="editarComentario(${c.id})">Editar</button>` : ''}
+                        ${temPermissao ? `<button class="btn-delete" onclick="excluirComentario(${c.id})">Apagar</button>` : ''}
+                    </div>
+                    <div id="reply-box-${c.id}" style="margin-top:10px;"></div>
+                    <div id="edit-box-${c.id}" style="margin-top:10px;"></div>
+                `;
+                listaComentarios.appendChild(div);
             }
 
             formComentario.addEventListener('submit', async (e) => {
                 e.preventDefault();
                 const inputTexto = document.getElementById('comment-text');
                 const logado = obterUsuarioLogado();
-
-                if (!logado) {
-                    alert('Sua sessão expirou ou você não está logado.');
-                    return;
-                }
+                if (!logado) return;
 
                 const texto = inputTexto.value.trim();
                 if (!texto) return;
 
-                let { data: perfil } = await dbClient.from('usuarios').select('*').eq('email', logado.email).maybeSingle();
-                if (!perfil) perfil = logado;
-
                 const novoComentario = {
                     id_post: String(obterChaveComentarios()),
-                    autor: perfil.username,
-                    autor_avatar: perfil.avatar || '',
-                    autor_role: perfil.role || 'user',
+                    autor: logado.username,
+                    autor_avatar: logado.avatar || '',
+                    autor_role: logado.role || 'user',
                     conteudo: texto,
                     data: new Date().toLocaleDateString('pt-BR', { hour: '2-digit', minute: '2-digit' })
                 };
 
                 let { error } = await dbClient.from('comentarios_produto').insert([novoComentario]);
-                if (error) {
-                    alert("Erro ao publicar: " + error.message);
-                } else {
+                if (!error) {
                     inputTexto.value = '';
                     carregarComentarios();
+                } else {
+                    alert("Erro ao publicar: " + error.message);
                 }
             });
 
-            window.excluirComentarioProduto = async function(idComentario) {
-                if (confirm("Deseja deletar este comentário permanentemente na nuvem?")) {
+            window.abrirFormResposta = function(idAlvo, idPrincipal) {
+                const box = document.getElementById(`reply-box-${idAlvo}`);
+                box.innerHTML = `
+                    <div style="display:flex; gap:8px; flex-direction:column;">
+                        <textarea id="reply-text-${idAlvo}" rows="2" placeholder="Escreva sua resposta..." style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; font-family:inherit; font-size:0.9rem; outline:none;"></textarea>
+                        <div style="display:flex; gap:8px;">
+                            <button onclick="enviarResposta(${idAlvo}, ${idPrincipal})" style="background:#10b981; color:white; border:none; padding:6px 12px; border-radius:4px; cursor:pointer; font-weight:bold; font-size:0.8rem;">Enviar</button>
+                            <button onclick="carregarComentarios()" style="background:#e2e8f0; color:#0f172a; border:none; padding:6px 12px; border-radius:4px; cursor:pointer; font-weight:bold; font-size:0.8rem;">Cancelar</button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            window.enviarResposta = async function(idAlvo, idPrincipal) {
+                const logado = obterUsuarioLogado();
+                const texto = document.getElementById(`reply-text-${idAlvo}`).value.trim();
+                if (!texto || !logado) return;
+
+                const resposta = {
+                    id_post: String(obterChaveComentarios()),
+                    parent_id: idPrincipal,
+                    autor: logado.username,
+                    autor_avatar: logado.avatar || '',
+                    autor_role: logado.role || 'user',
+                    conteudo: texto,
+                    data: new Date().toLocaleDateString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+                };
+
+                const { error } = await dbClient.from('comentarios_produto').insert([resposta]);
+                if (error) {
+                    alert("Erro ao enviar resposta! Verifique no Supabase se a coluna 'parent_id' existe.\\nDetalhe: " + error.message);
+                    return;
+                }
+                carregarComentarios();
+            }
+
+            window.excluirComentario = async function(idComentario) {
+                if (confirm("Deseja apagar este comentário permanentemente?")) {
                     await dbClient.from('comentarios_produto').delete().eq('id', idComentario);
                     carregarComentarios();
                 }
             }
 
-            window.editarComentarioProduto = async function(idComentario) {
-                const pTexto = document.getElementById(`texto-comentario-prod-${idComentario}`);
+            window.editarComentario = function(idComentario) {
+                const pTexto = document.getElementById(`texto-comentario-${idComentario}`);
                 const original = pTexto.innerText;
-                
-                const editBox = document.getElementById(`edit-box-prod-${idComentario}`);
+                const editBox = document.getElementById(`edit-box-${idComentario}`);
+
                 editBox.innerHTML = `
-                    <textarea id="edit-input-prod-${idComentario}" style="width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:6px; font-family:inherit; font-size:0.95rem;" rows="3">${original}</textarea>
-                    <div style="display:flex; gap:10px; margin-top:8px;">
-                        <button onclick="salvarEdicaoProduto(${idComentario})" style="cursor:pointer; background:#10b981; color:white; border:none; border-radius:4px; padding:6px 12px; font-weight:bold; font-family:'Poppins';">Salvar</button>
-                        <button onclick="carregarComentarios()" style="cursor:pointer; background:#e2e8f0; color:#0f172a; border:none; border-radius:4px; padding:6px 12px; font-weight:bold; font-family:'Poppins';">Cancelar</button>
+                    <textarea id="edit-input-${idComentario}" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; font-family:inherit; font-size:0.9rem; outline:none;" rows="3">${original}</textarea>
+                    <div style="display:flex; gap:8px; margin-top:6px;">
+                        <button onclick="salvarEdicao(${idComentario})" style="background:#3b82f6; color:white; border:none; border-radius:4px; padding:6px 12px; font-weight:bold; font-size:0.8rem; cursor:pointer;">Salvar Edição</button>
+                        <button onclick="carregarComentarios()" style="background:#e2e8f0; color:#0f172a; border:none; border-radius:4px; padding:6px 12px; font-weight:bold; font-size:0.8rem; cursor:pointer;">Cancelar</button>
                     </div>
                 `;
                 pTexto.style.display = 'none';
             }
 
-            window.salvarEdicaoProduto = async function(idComentario) {
-                const novoTexto = document.getElementById(`edit-input-prod-${idComentario}`).value.trim();
+            window.salvarEdicao = async function(idComentario) {
+                const novoTexto = document.getElementById(`edit-input-${idComentario}`).value.trim();
                 if (!novoTexto) return;
 
-                await dbClient.from('comentarios_produto').update({ conteudo: novoTexto }).eq('id', idComentario);
+                const { error } = await dbClient.from('comentarios_produto').update({ 
+                    conteudo: novoTexto,
+                    editado: true 
+                }).eq('id', idComentario);
+                
+                if (error) {
+                    alert("Erro ao salvar edição! Verifique no Supabase se a coluna 'editado' (boolean) existe.\\nDetalhe: " + error.message);
+                    return;
+                }
+                
                 carregarComentarios();
             }
 
@@ -654,49 +738,34 @@ if (marca && cpuSlug) {
             `;
         }
 
-        function numero(valor){
-            if(valor === undefined || valor === null) return 0;
-            return parseFloat(String(valor).replace(",", ".").replace(/[^\d.]/g,"")) || 0;
-        }
-
+        function numero(valor){ return parseFloat(String(valor || 0).replace(",", ".").replace(/[^\d.]/g,"")) || 0; }
         function melhor(maior, a, b){
             if(numero(a)==numero(b)) return ["",""];
-            if(maior){
-                return numero(a)>numero(b) ? ["#d1fae5","#ffffff"] : ["#ffffff","#d1fae5"];
-            }
-            return numero(a)<numero(b) ? ["#d1fae5","#ffffff"] : ["#ffffff","#d1fae5"];
+            return maior ? (numero(a)>numero(b) ? ["#d1fae5","#ffffff"] : ["#ffffff","#d1fae5"]) : (numero(a)<numero(b) ? ["#d1fae5","#ffffff"] : ["#ffffff","#d1fae5"]);
         }
-
-        function compararValores(a, b, maior) { return melhor(maior, a, b); }
-        function compararClocks(a, b) { return melhor(true, a, b); }
-        function compararTdp(a, b) { return melhor(false, a, b); }
-        function compararLitografia(a, b) { return melhor(false, a, b); }
 
         document.addEventListener("change", function(e) {
             if (e.target && e.target.id === "comparador-select") {
                 const resultadoComparacao = document.getElementById("resultado-comparacao");
                 const outro = listaDeCpus.find(cpuItem => cpuItem.id == e.target.value);
 
-                if (!outro) {
-                    resultadoComparacao.innerHTML = "";
-                    return;
-                }
+                if (!outro) { resultadoComparacao.innerHTML = ""; return; }
 
-                const corCores = compararValores(cpu.cores, outro.cores, true);
-                const corThreads = compararValores(cpu.threads, outro.threads, true);
-                const corFreqBase = compararClocks(cpu.freqBase, outro.freqBase);
-                const corFreqBoost = compararClocks(cpu.freqBoost, outro.freqBoost);
-                const corTdp = compararTdp(cpu.tdp, outro.tdp);
-                const corLitografia = compararLitografia(cpu.litografia, outro.litografia);
-                const corCache = compararValores(parseInt(cpu.cacheL3), parseInt(outro.cacheL3), true);
+                const corCores = melhor(true, cpu.cores, outro.cores);
+                const corThreads = melhor(true, cpu.threads, outro.threads);
+                const corFreqBase = melhor(true, cpu.freqBase, outro.freqBase);
+                const corFreqBoost = melhor(true, cpu.freqBoost, outro.freqBoost);
+                const corTdp = melhor(false, cpu.tdp, outro.tdp);
+                const corLitografia = melhor(false, cpu.litografia, outro.litografia);
+                const corCache = melhor(true, parseInt(cpu.cacheL3), parseInt(outro.cacheL3));
 
                 let cpuPtsSingle = parseInt(cpu.notaJogos || 0);
                 let outroPtsSingle = parseInt(outro.notaJogos || 0);
                 let cpuPtsMulti = parseInt(cpu.notaTrabalho || 0);
                 let outroPtsMulti = parseInt(outro.notaTrabalho || 0);
 
-                const corPtsSingle = compararValores(cpuPtsSingle, outroPtsSingle, true);
-                const corPtsMulti = compararValores(cpuPtsMulti, outroPtsMulti, true);
+                const corPtsSingle = melhor(true, cpuPtsSingle, outroPtsSingle);
+                const corPtsMulti = melhor(true, cpuPtsMulti, outroPtsMulti);
 
                 resultadoComparacao.innerHTML = `
                     <table class="tech-table">
@@ -708,93 +777,32 @@ if (marca && cpuSlug) {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Núcleos (Cores)</td>
-                                <td style="background:${corCores[0]};font-weight:bold;">${cpu.cores} Cores</td>
-                                <td style="background:${corCores[1]};font-weight:bold;">${outro.cores} Cores</td>
-                            </tr>
-                            <tr>
-                                <td>Threads</td>
-                                <td style="background:${corThreads[0]};font-weight:bold;">${cpu.threads} Threads</td>
-                                <td style="background:${corThreads[1]};font-weight:bold;">${outro.threads} Threads</td>
-                            </tr>
-                            <tr>
-                                <td>Clock Base</td>
-                                <td style="background:${corFreqBase[0]};font-weight:bold;">${cpu.freqBase}</td>
-                                <td style="background:${corFreqBase[1]};font-weight:bold;">${outro.freqBase}</td>
-                            </tr>
-                            <tr>
-                                <td>Clock Boost</td>
-                                <td style="background:${corFreqBoost[0]};font-weight:bold;">${cpu.freqBoost}</td>
-                                <td style="background:${corFreqBoost[1]};font-weight:bold;">${outro.freqBoost}</td>
-                            </tr>
-                            <tr>
-                                <td>Consumo (TDP)</td>
-                                <td style="background:${corTdp[0]};font-weight:bold;">${cpu.tdp}</td>
-                                <td style="background:${corTdp[1]};font-weight:bold;">${outro.tdp}</td>
-                            </tr>
-                            <tr>
-                                <td>Soquete</td>
-                                <td>${cpu.soquete}</td>
-                                <td>${outro.soquete}</td>
-                            </tr>
-                            <tr>
-                                <td>Arquitetura</td>
-                                <td>${cpu.arquitetura || "-"}</td>
-                                <td>${outro.arquitetura || "-"}</td>
-                            </tr>
-                            <tr>
-                                <td>Litografia</td>
-                                <td style="background:${corLitografia[0]};font-weight:bold;">${cpu.litografia}</td>
-                                <td style="background:${corLitografia[1]};font-weight:bold;">${outro.litografia}</td>
-                            </tr>
-                            <tr>
-                                <td>Cache L3</td>
-                                <td style="background:${corCache[0]};font-weight:bold;">${cpu.cacheL3}</td>
-                                <td style="background:${corCache[1]};font-weight:bold;">${outro.cacheL3}</td>
-                            </tr>
-                            <tr>
-                                <td>Memória</td>
-                                <td>${cpu.memoria}</td>
-                                <td>${outro.memoria}</td>
-                            </tr>
-                            <tr>
-                                <td>Vídeo Integrado</td>
-                                <td>${cpu.video}</td>
-                                <td>${outro.video}</td>
-                            </tr>
+                            <tr><td>Núcleos (Cores)</td><td style="background:${corCores[0]};font-weight:bold;">${cpu.cores} Cores</td><td style="background:${corCores[1]};font-weight:bold;">${outro.cores} Cores</td></tr>
+                            <tr><td>Threads</td><td style="background:${corThreads[0]};font-weight:bold;">${cpu.threads} Threads</td><td style="background:${corThreads[1]};font-weight:bold;">${outro.threads} Threads</td></tr>
+                            <tr><td>Clock Base</td><td style="background:${corFreqBase[0]};font-weight:bold;">${cpu.freqBase}</td><td style="background:${corFreqBase[1]};font-weight:bold;">${outro.freqBase}</td></tr>
+                            <tr><td>Clock Boost</td><td style="background:${corFreqBoost[0]};font-weight:bold;">${cpu.freqBoost}</td><td style="background:${corFreqBoost[1]};font-weight:bold;">${outro.freqBoost}</td></tr>
+                            <tr><td>Consumo (TDP)</td><td style="background:${corTdp[0]};font-weight:bold;">${cpu.tdp}</td><td style="background:${corTdp[1]};font-weight:bold;">${outro.tdp}</td></tr>
+                            <tr><td>Soquete</td><td>${cpu.soquete}</td><td>${outro.soquete}</td></tr>
+                            <tr><td>Litografia</td><td style="background:${corLitografia[0]};font-weight:bold;">${cpu.litografia}</td><td style="background:${corLitografia[1]};font-weight:bold;">${outro.litografia}</td></tr>
+                            <tr><td>Cache L3</td><td style="background:${corCache[0]};font-weight:bold;">${cpu.cacheL3}</td><td style="background:${corCache[1]};font-weight:bold;">${outro.cacheL3}</td></tr>
                         </tbody>
                     </table>
 
                     <div style="margin-top: 35px; border-top: 2px dashed #e2e8f0; padding-top: 25px;">
-                        <h3 style="font-size: 1.3rem; font-weight: 800; color: #0f172a; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.5px;"> Visão Geral De Desempenho</h3>
-                        
+                        <h3 style="font-size: 1.3rem; font-weight: 800; color: #0f172a; margin-bottom: 20px;">Visão Geral De Desempenho</h3>
                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.01);">
-                                <h4 style="margin: 0 0 15px 0; color: #475569; font-size: 0.95rem; font-weight: 700;"> Single-Core</h4>
+                            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px;">
+                                <h4 style="margin: 0 0 15px 0; color: #475569;"> Single-Core</h4>
                                 <div style="display: flex; flex-direction: column; gap: 10px;">
-                                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-radius: 8px; background: ${corPtsSingle[0] || '#ffffff'}; border: 1px solid #e2e8f0;">
-                                        <span style="font-weight: 600; font-size: 0.95rem; color: #1e293b;">${cpu.nome}</span>
-                                        <strong style="font-size: 1.1rem; color: #0f172a;">${cpuPtsSingle.toLocaleString('pt-BR')} pts</strong>
-                                    </div>
-                                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-radius: 8px; background: ${corPtsSingle[1] || '#ffffff'}; border: 1px solid #e2e8f0;">
-                                        <span style="font-weight: 600; font-size: 0.95rem; color: #1e293b;">${outro.nome}</span>
-                                        <strong style="font-size: 1.1rem; color: #0f172a;">${outroPtsSingle.toLocaleString('pt-BR')} pts</strong>
-                                    </div>
+                                    <div style="display: flex; justify-content: space-between; padding: 12px; border-radius: 8px; background: ${corPtsSingle[0] || '#ffffff'}; border: 1px solid #e2e8f0;"><span>${cpu.nome}</span><strong>${cpuPtsSingle.toLocaleString('pt-BR')} pts</strong></div>
+                                    <div style="display: flex; justify-content: space-between; padding: 12px; border-radius: 8px; background: ${corPtsSingle[1] || '#ffffff'}; border: 1px solid #e2e8f0;"><span>${outro.nome}</span><strong>${outroPtsSingle.toLocaleString('pt-BR')} pts</strong></div>
                                 </div>
                             </div>
-                            
-                            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.01);">
-                                <h4 style="margin: 0 0 15px 0; color: #475569; font-size: 0.95rem; font-weight: 700;"> Multi-Core</h4>
+                            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px;">
+                                <h4 style="margin: 0 0 15px 0; color: #475569;"> Multi-Core</h4>
                                 <div style="display: flex; flex-direction: column; gap: 10px;">
-                                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-radius: 8px; background: ${corPtsMulti[0] || '#ffffff'}; border: 1px solid #e2e8f0;">
-                                        <span style="font-weight: 600; font-size: 0.95rem; color: #1e293b;">${cpu.nome}</span>
-                                        <strong style="font-size: 1.1rem; color: #0f172a;">${cpuPtsMulti.toLocaleString('pt-BR')} pts</strong>
-                                    </div>
-                                    <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-radius: 8px; background: ${corPtsMulti[1] || '#ffffff'}; border: 1px solid #e2e8f0;">
-                                        <span style="font-weight: 600; font-size: 0.95rem; color: #1e293b;">${outro.nome}</span>
-                                        <strong style="font-size: 1.1rem; color: #0f172a;">${outroPtsMulti.toLocaleString('pt-BR')} pts</strong>
-                                    </div>
+                                    <div style="display: flex; justify-content: space-between; padding: 12px; border-radius: 8px; background: ${corPtsMulti[0] || '#ffffff'}; border: 1px solid #e2e8f0;"><span>${cpu.nome}</span><strong>${cpuPtsMulti.toLocaleString('pt-BR')} pts</strong></div>
+                                    <div style="display: flex; justify-content: space-between; padding: 12px; border-radius: 8px; background: ${corPtsMulti[1] || '#ffffff'}; border: 1px solid #e2e8f0;"><span>${outro.nome}</span><strong>${outroPtsMulti.toLocaleString('pt-BR')} pts</strong></div>
                                 </div>
                             </div>
                         </div>

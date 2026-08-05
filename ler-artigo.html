@@ -1,171 +1,75 @@
 <!DOCTYPE html>
-<html lang="pt-BR"> 
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="img/icon.ico" type="image/x-icon">
-    <title>Análise Editorial - QualProcessador</title>
+    <title>Carregando Artigo... - QualProcessador</title>
     
-    <meta name="description" content="Leia análises detalhadas, guias de hardware e reviews de processadores na QualProcessador.">
+    <meta name="description" content="Leia nossas análises e descubra se o produto vale a pena.">
     <meta name="robots" content="index, follow">
     
-    <meta property="og:type" content="article">
-    <meta property="og:site_name" content="QualProcessador">
-    
-    <meta name="twitter:card" content="summary_large_image">
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <style>
         * { box-sizing: border-box; }
-        body { 
-            font-family: 'Poppins', sans-serif; 
-            background-color: #f8fafc; 
-            color: #0f172a; 
-            margin: 0; 
-            padding: 0; 
-        }
-
-        /* BARRA DE NAVEGAÇÃO SUPERIOR */
-        .article-nav {
-            background-color: #0f172a;
-            padding: 15px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .article-nav a { 
-            color: #94a3b8; 
-            text-decoration: none; 
-            font-weight: 600; 
-            font-size: 0.9rem; 
-            transition: color 0.2s; 
-        }
+        html { scroll-behavior: smooth; } /* Rolagem suave ao clicar em links âncora */
+        body { font-family: 'Poppins', sans-serif; background-color: #f8fafc; color: #0f172a; margin: 0; padding: 0; }
+        .article-nav { background-color: #0f172a; padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; }
+        .article-nav a { color: #94a3b8; text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: color 0.2s; }
         .article-nav a:hover { color: #38bdf8; }
-
-        /* CABEÇALHO DO ARTIGO (HERO) */
-        .article-header {
-            max-width: 850px;
-            margin: 50px auto 30px auto;
-            padding: 0 20px;
-            text-align: left;
-        }
-        .meta-category { 
-            color: #ef4444; 
-            font-weight: 800; 
-            font-size: 0.85rem; 
-            text-transform: uppercase; 
-            letter-spacing: 1.5px; 
-            display: block;
-            margin-bottom: 12px;
-        }
-        .article-title { 
-            font-size: 2.6rem; 
-            font-weight: 800; 
-            line-height: 1.25; 
-            color: #0f172a; 
-            letter-spacing: -1.5px;
-            margin: 0 0 20px 0;
-        }
-        .article-meta-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-size: 0.88rem;
-            color: #64748b;
-            border-bottom: 1px solid #e2e8f0;
-            padding-bottom: 25px;
-            font-weight: 500;
-        }
-        .author-avatar {
-            width: 35px;
-            height: 35px;
-            background-color: #cbd5e1;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            color: #475569;
-            font-size: 0.8rem;
-        }
-
-        /* CORPO DO TEXTO */
-        .article-container {
-            max-width: 850px;
-            margin: 0 auto;
-            padding: 0 20px 80px 20px;
-        }
-        
-        .article-body {
-            font-family: 'Lora', serif;
-            font-size: 1.15rem;
-            line-height: 1.85;
-            color: #334155;
-        }
-
-        .article-body h2 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: #0f172a;
-            margin-top: 45px;
-            margin-bottom: 15px;
-            letter-spacing: -0.5px;
-        }
+        .article-header { max-width: 850px; margin: 50px auto 30px auto; padding: 0 20px; text-align: left; }
+        .meta-category { color: #ef4444; font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 12px; }
+        .article-title { font-size: 2.6rem; font-weight: 800; line-height: 1.25; color: #0f172a; letter-spacing: -1.5px; margin: 0 0 20px 0; }
+        .article-meta-info { display: flex; align-items: center; gap: 15px; font-size: 0.88rem; color: #64748b; border-bottom: 1px solid #e2e8f0; padding-bottom: 25px; font-weight: 500; }
+        .author-avatar { width: 35px; height: 35px; background-color: #cbd5e1; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #475569; font-size: 0.8rem; }
+        .cover-img { width: 100%; max-height: 420px; object-fit: cover; border-radius: 12px; margin-bottom: 30px; }
+        .article-container { max-width: 850px; margin: 0 auto; padding: 0 20px 80px 20px; }
+        .article-body { font-family: 'Lora', serif; font-size: 1.15rem; line-height: 1.85; color: #334155; }
+        .article-body h2 { font-family: 'Poppins', sans-serif; font-size: 1.6rem; font-weight: 800; color: #0f172a; margin-top: 45px; margin-bottom: 15px; }
         .article-body p { margin-bottom: 25px; }
         .article-body ul, .article-body ol { margin-bottom: 25px; padding-left: 20px; }
         .article-body li { margin-bottom: 10px; }
+        .article-body a { color: #0284c7; text-decoration: underline; font-weight: 600; }
+        
+        .link-comentarios-topo { color: #64748b; text-decoration: none; border-bottom: 1px dashed #cbd5e1; transition: all 0.2s; cursor: pointer; }
+        .link-comentarios-topo:hover { color: #0f172a; border-color: #0f172a; }
 
-        /* Caixa de Destaque / Alerta */
-        .alert-box {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f0fdf4;
-            border-left: 4px solid #10b981;
-            padding: 20px;
-            border-radius: 0 8px 8px 0;
-            font-size: 1rem;
-            color: #14532d;
-            margin: 35px 0;
-            line-height: 1.6;
-        }
-        .alert-box strong { color: #166534; }
-
-        /* Tabelas de Benchmark */
-        .article-table {
-            font-family: 'Poppins', sans-serif;
-            width: 100%;
-            border-collapse: collapse;
-            margin: 35px 0;
-            background: white;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(15, 23, 42, 0.03);
-            border: 1px solid #e2e8f0;
-            font-size: 0.95rem;
-        }
-        .article-table th {
-            background-color: #1e293b;
-            color: white;
-            text-align: left;
-            padding: 14px 20px;
-            font-weight: 600;
-        }
-        .article-table td {
-            padding: 14px 20px;
-            border-bottom: 1px solid #f1f5f9;
-            color: #475569;
-        }
-        .article-table tr:last-child td { border-bottom: none; }
-        .article-table tr:nth-child(even) { background-color: #f8fafc; }
+        /* COMENTÁRIOS E THREADS */
+        .comments-section { max-width: 850px; margin: 0 auto 40px auto; padding: 30px 20px; border-top: 2px solid #e2e8f0; }
+        .comments-section h3 { font-size: 1.5rem; font-weight: 800; color: #0f172a; margin-bottom: 20px; }
+        
+        .badge-contador { background-color: #e2e8f0; color: #475569; padding: 4px 12px; border-radius: 20px; font-size: 0.9rem; font-weight: 700; }
+        
+        .auth-box { background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 25px; box-shadow: 0 4px 12px rgba(15, 23, 42, 0.05); margin-bottom: 30px; }
+        .auth-box h4 { margin-top: 0; margin-bottom: 15px; color: #0f172a; font-size: 1.1rem; }
+        .form-input { width: 100%; padding: 12px 15px; margin-bottom: 15px; border: 1px solid #cbd5e1; border-radius: 8px; font-family: 'Poppins', sans-serif; font-size: 0.95rem; outline: none; transition: border-color 0.2s; }
+        .form-input:focus { border-color: #38bdf8; }
+        .btn-primary { width: 100%; background-color: #0f172a; color: white; border: none; padding: 12px; border-radius: 8px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 1rem; cursor: pointer; transition: background-color 0.2s; }
+        .btn-primary:hover { background-color: #1e293b; }
+        .auth-links { display: flex; justify-content: space-between; margin-top: 15px; }
+        .auth-links button { background: none; border: none; color: #64748b; font-family: 'Poppins', sans-serif; font-size: 0.85rem; font-weight: 600; cursor: pointer; padding: 0; }
+        .auth-links button:hover { color: #38bdf8; text-decoration: underline; }
+        
+        /* ESTILO DOS COMENTÁRIOS EM THREAD */
+        .comment-item { background: #ffffff; padding: 18px; border-radius: 10px; border: 1px solid #e2e8f0; margin-bottom: 15px; }
+        .comment-item.reply { margin-left: 40px; border-left: 3px solid #cbd5e1; background: #f8fafc; }
+        .comment-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .comment-author-info { display: flex; gap: 10px; align-items: center; }
+        .comment-author { font-weight: 700; color: #1e293b; font-size: 0.95rem; }
+        .comment-date { font-size: 0.75rem; color: #94a3b8; }
+        .comment-body { color: #334155; line-height: 1.6; font-size: 0.95rem; margin: 8px 0; white-space: pre-wrap; }
+        .comment-actions { display: flex; gap: 12px; font-size: 0.8rem; margin-top: 8px; }
+        .comment-actions button { background: none; border: none; cursor: pointer; color: #64748b; font-weight: bold; font-family: 'Poppins', sans-serif; padding: 0; transition: color 0.2s; }
+        .comment-actions button:hover { color: #0f172a; }
+        .comment-actions button.btn-delete { color: #ef4444; }
+        .no-comments { color: #64748b; text-align: center; font-style: italic; margin-top: 10px; }
 
         footer { text-align: center; padding: 40px; color: #64748b; border-top: 1px solid #e2e8f0; font-size: 0.85rem; font-weight: 600; background: white; }
-
-        @media (max-width: 768px) {
-            .article-title { font-size: 2rem; }
-            .article-body { font-size: 1.05rem; }
-        }
     </style>
 </head>
 <body>
@@ -176,205 +80,459 @@
     </nav>
 
     <main id="conteudo-artigo-dinamico">
-        </main>
+        <div class="article-container" style="text-align: center; margin-top: 100px;">
+            <h2>Carregando conteúdo...</h2>
+        </div>
+    </main>
+
+    <section id="secao-comentarios" class="comments-section" style="display: none;">
+        <h3>Deixe seu comentário</h3>
+        
+        <div id="auth-container" class="auth-box">
+            <div id="form-registro">
+                <h4>Crie sua conta para comentar</h4>
+                <input type="email" id="reg-email" placeholder="E-mail" class="form-input">
+                <input type="text" id="reg-username" placeholder="Nome de usuário (Como você aparecerá)" class="form-input">
+                <input type="password" id="reg-senha" placeholder="Senha" class="form-input">
+                <button class="btn-primary" onclick="criarContaSupabase()">Criar Minha Conta</button>
+                <div class="auth-links">
+                    <button type="button" onclick="alternarFormulario('login')">Já tem conta? Fazer Login</button>
+                    <button type="button" onclick="alert('Instruções para redefinição de senha foram enviadas ao seu e-mail.')">Esqueci a senha</button>
+                </div>
+            </div>
+
+            <div id="form-login" style="display: none;">
+                <h4>Faça login para comentar</h4>
+                <input type="email" id="log-email" placeholder="Seu E-mail" class="form-input">
+                <input type="password" id="log-senha" placeholder="Senha" class="form-input">
+                <button class="btn-primary" onclick="logarSupabase()">Entrar na Conta</button>
+                <div class="auth-links">
+                    <button type="button" onclick="alternarFormulario('registro')">Não tem conta? Criar conta</button>
+                    <button type="button" onclick="alert('Instruções para redefinição de senha foram enviadas ao seu e-mail.')">Esqueci a senha</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="area-escrever-comentario" class="auth-box" style="display: none;">
+            <h4>Escrevendo como: <strong id="usuario-logado-nome">...</strong></h4>
+            <textarea id="texto-novo-comentario" class="form-input" rows="4" placeholder="O que você achou deste artigo?"></textarea>
+            <button class="btn-primary" onclick="enviarComentario()" style="background-color: #10b981;">Publicar Comentário</button>
+            <div class="auth-links">
+                <button type="button" onclick="deslogarSupabase()" style="color: #ef4444;">Sair da conta</button>
+            </div>
+        </div>
+
+        <div id="lista-comentarios">
+            <h4 style="color: #0f172a; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between;">
+                Comentários
+                <span id="secao-contador-comentarios" class="badge-contador">0</span>
+            </h4>
+            <div id="comentarios-render">
+                <p style="color: #64748b; font-size: 0.9rem;">Carregando comentários...</p>
+            </div>
+        </div>
+    </section>
 
     <footer>&copy; 2026 QualProcessador - Editoriais de Alta Performance.</footer>
 
-    <script src="dados.js"></script>
     <script>
-        const parametrosUrl = new URLSearchParams(window.location.search);
-        const idArtigo = parseInt(parametrosUrl.get('id')) || 0;
-        const mainContainer = document.getElementById('conteudo-artigo-dinamico');
-
-        // Banco de dados interno estendido com descrições focadas em SEO por palavra-chave
-        const guiasGerais = {
-            100: {
-                titulo: "O que é uma APU? Entenda como funciona um processador com vídeo integrado",
-                descricao: "Descubra o que é uma APU, como funciona a integração de CPU e GPU no mesmo chip AMD Ryzen e se vale a pena comprar para jogos em 2026.",
-                categoria: "Guia de Hardware • Tecnologia",
-                texto: `
-                    <p>Uma <strong>APU (Accelerated Processing Unit)</strong> é um processador que reúne CPU e GPU no mesmo chip. Em outras palavras, além de executar as tarefas tradicionais do computador, ela também é capaz de processar gráficos sem a necessidade de uma placa de vídeo dedicada.</p>
-                    
-                    <p>O termo APU foi criado pela AMD e ficou conhecido por identificar processadores que combinam núcleos de processamento Ryzen com gráficos Radeon integrados. Atualmente, embora a empresa utilize com mais frequência a expressão "processadores Ryzen com gráficos Radeon", o conceito continua o mesmo: oferecer um único chip capaz de executar tanto as tarefas do sistema quanto o processamento gráfico.</p>
-                    
-                    <p>Atualmente, as APUs da AMD estão presentes principalmente nas linhas Ryzen Série 5000G e Ryzen Série 8000G para desktops. Modelos como o Ryzen 5 5600GT(AM4), Ryzen 7 5700G(AM4), Ryzen 5 8600G(AM5) combinam núcleos de processamento Ryzen com gráficos Radeon integrados, oferecendo excelente desempenho para produtividade, multimídia e jogos leves sem a necessidade de uma placa de vídeo dedicada.</p>
-                    
-                    <div class="alert-box">
-                        <strong>Evolução Importante:</strong> A Série 8000G representa uma evolução importante em relação às gerações anteriores, trazendo gráficos integrados mais potentes e recursos modernos que ampliam a experiência em jogos e aplicações aceleradas por GPU.
-                    </div>
-                    
-                    <p>Essa integração reduz custos, economiza espaço interno do computador e diminui o consumo de energia, tornando as APUs uma excelente escolha para computadores domésticos, notebooks, escritórios e até mesmo para quem deseja jogar títulos leves sem investir imediatamente em uma placa de vídeo dedicada.</p>
-
-                    <h2>Como funciona uma APU?</h2>
-                    <p>Em uma APU, a CPU e a GPU compartilham o mesmo encapsulamento e trabalham em conjunto utilizando a memória RAM do sistema. Enquanto a CPU executa cálculos, programas e processos do sistema operacional, a GPU integrada é responsável pela geração de imagens, reprodução de vídeos e acionamento gráfico.</p>
-                    <p>Como ambas fazem parte do mesmo chip, a comunicação entre elas é extremamente rápida, reduzindo latências e aumentando a eficiência energética. Além disso, essa integração simplifica o projeto do computador e elimina a necessidade de instalar uma placa de vídeo dedicada para as tarefas do dia a dia.</p>
-
-                    <h2>Vantagens das APUs</h2>
-                    <ul>
-                        <li>Menor custo para montar um computador de entrada.</li>
-                        <li>Não exige uma placa de vídeo dedicada para o uso diário.</li>
-                        <li>Excelente eficiência energética com menor consumo de energia e geração de calor.</li>
-                        <li>Reprodução de vídeos em alta resolução com aceleração por hardware.</li>
-                        <li>Capacidade de executar diversos jogos competitivos e títulos leves utilizando apenas a GPU integrada.</li>
-                        <li>Facilidade para futuras atualizações, permitindo adicionar uma placa de vídeo dedicada quando necessário.</li>
-                    </ul>
-
-                    <h2>Desvantagens das APUs</h2>
-                    <ul>
-                        <li>O desempenho gráfico é inferior ao de placas de vídeo dedicadas de gama média/alta.</li>
-                        <li>Utilizam parte da memória RAM do computador como memória de vídeo (VRAM compartilhada).</li>
-                        <li>O desempenho gráfico depende bastante da velocidade e da configuração em dois canais (Dual Channel) das memórias RAM.</li>
-                        <li>Em jogos muito pesados ou aplicações profissionais complexas, uma GPU dedicada continua sendo indispensável.</li>
-                    </ul>
-
-                    <h2>APU ou processador comum: qual a diferença?</h2>
-                    <p>A principal diferença está na presença da GPU integrada. Um processador convencional pode não possuir vídeo integrado, exigindo obrigatoriamente uma placa de vídeo para gerar imagem no monitor. Já uma APU combina CPU e GPU no mesmo chip, permitindo utilizar o computador normalmente sem hardware gráfico adicional.</p>
-                    
-                    <div class="alert-box">
-                        <strong>Fique atento aos sufixos:</strong> Nem todo processador Ryzen possui gráficos integrados focados em jogos. Modelos terminados em <strong>"G"</strong>, como o Ryzen 5 5600G e o Ryzen 7 8700G, são as APUs verdadeiras. Já modelos antigos terminados em "X" ou sem sufixo podem não ter vídeo integrado ou trazer apenas chips básicos de vídeo para dar vídeo no sistema.
-                    </div>
-
-                    <h2>Uma APU consegue rodar jogos?</h2>
-                    <p>Sim. As APUs atuais evoluíram significativamente e conseguem executar muitos jogos populares, especialmente quando combinadas com memórias DDR4 ou DDR5 de alta frequência em configuração de dois canais (Dual Channel).</p>
-                    <p>Jogos como <em>Counter-Strike 2, Valorant, League of Legends, Dota 2, Rocket League, Minecraft, EA Sports FC e Fortnite</em> podem ser jogados com boa fluidez utilizando apenas a GPU integrada, desde que as configurações gráficas sejam ajustadas de acordo com o desempenho do processador.</p>
-                    <p>Já os modelos da Série 8000G entregam desempenho gráfico superior aos da Série 5000G, permitindo rodar uma quantidade ainda maior de jogos em resolução Full HD com qualidade gráfica reduzida ou média, dependendo do título. Para jogos AAA recentes em qualidade alta ou ultra, entretanto, uma placa de vídeo dedicada continua oferecendo desempenho muito superior.</p>
-
-                    <h2>Vale a pena comprar uma APU?</h2>
-                    <p>Para quem está montando um computador de entrada ou intermediário, uma APU oferece um excelente custo-benefício. Ela permite utilizar o computador imediatamente, economizando na compra de uma placa de vídeo dedicada, e ainda oferece a possibilidade de instalar uma GPU mais potente futuramente, caso seja necessário aumentar o desempenho em jogos ou aplicações profissionais.</p>
-                    <p>Atualmente, modelos como o Ryzen 5 5600GT continuam sendo excelentes opções para quem busca economia máxima, enquanto processadores como o Ryzen 5 8600G e o Ryzen 7 8700G representam algumas das APUs mais avançadas da AMD, entregando desempenho gráfico integrado que supera com folga gerações anteriores.</p>
-                `
-            }
-        };
-
-        // Execução da renderização e SEO
-        if (guiasGerais[idArtigo]) {
-            const artigo = guiasGerais[idArtigo];
-            configurarSEO(artigo.titulo, artigo.descricao);
-            renderizarHtml(artigo.titulo, artigo.categoria, artigo.texto);
-        } else {
-            // Busca dinâmica no arquivo externo dados.js
-            const cpu = typeof listaDeCpus !== 'undefined' ? listaDeCpus.find(item => item.id === idArtigo) : null;
+        document.addEventListener("DOMContentLoaded", () => {
+            const supabaseUrl = 'https://sterozqxsblanvjyzjmi.supabase.co';
+            const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN0ZXJvenF4c2JsYW52anl6am1pIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4Mzc5Nzc5MCwiZXhwIjoyMDk5MzczNzkwfQ.LnU1u7jpLt69Ia8UEsrF5_RBlQbS2f5GL386OansCEs';
             
-            if (cpu && cpu.analiseCompleta) {
-                const marcaTexto = cpu.marca === 'amd' ? 'Review AMD' : 'Review Intel';
-                const tituloReview = `Análise Completa: O ${cpu.nome} ainda vale a pena em 2026?`;
-                const descReview = `Confira a análise técnica completa do processador ${cpu.nome}. Testes de desempenho, especificações, benchmarks em jogos e veredito editorial para 2026.`;
+            let supabase = null;
+            try {
+                if (window.supabase) {
+                    supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+                } else {
+                    console.warn("Aviso: O SDK do Supabase não foi carregado.");
+                }
+            } catch (e) {
+                console.error("Erro ao iniciar Supabase:", e);
+            }
+
+            let usuarioAtual = null;
+            let idArtigoAtualGlobal = null;
+
+            const mainContainer = document.getElementById('conteudo-artigo-dinamico');
+            
+            const parametrosUrl = new URLSearchParams(window.location.search);
+            let idArtigoUrl = parametrosUrl.get('id');
+
+            if (!idArtigoUrl) {
+                const pathSegments = window.location.pathname.split('/').filter(Boolean);
+                if (pathSegments.length > 0) {
+                    idArtigoUrl = pathSegments[pathSegments.length - 1];
+                }
+            }
+
+            fetch('artigos.json')
+                .then(response => {
+                    if (!response.ok) throw new Error('Não foi possível carregar o arquivo artigos.json.');
+                    return response.json();
+                })
+                .then(todosArtigos => {
+                    let artigoSelecionado = null;
+                    let chaveEncontrada = null;
+
+                    if (idArtigoUrl && todosArtigos[idArtigoUrl]) {
+                        artigoSelecionado = todosArtigos[idArtigoUrl];
+                        chaveEncontrada = idArtigoUrl;
+                    } else if (idArtigoUrl) {
+                        for (const chave in todosArtigos) {
+                            const art = todosArtigos[chave];
+                            if (art.urlLimpa && art.urlLimpa.includes(idArtigoUrl)) {
+                                artigoSelecionado = art;
+                                chaveEncontrada = chave;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (artigoSelecionado && chaveEncontrada) {
+                        idArtigoAtualGlobal = chaveEncontrada;
+                        
+                        configurarSEO(artigoSelecionado.titulo, artigoSelecionado.descricao);
+                        renderizarHtml(artigoSelecionado);
+
+                        try {
+                            if (artigoSelecionado.urlLimpa && !window.location.pathname.includes(artigoSelecionado.urlLimpa)) {
+                                window.history.replaceState(null, '', artigoSelecionado.urlLimpa);
+                            }
+                        } catch (err) {
+                            console.warn("Não foi possível substituir a URL via history API.");
+                        }
+                    } else {
+                        exibirErro("O artigo solicitado não foi encontrado no banco de dados.");
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro ao buscar dados:', error);
+                    exibirErro("Erro ao carregar o conteúdo. Verifique o arquivo artigos.json.");
+                });
+
+            function renderizarHtml(artigo) {
+                if (!mainContainer) return;
+                let htmlCapa = artigo.imagemCapa 
+                    ? `<img src="${artigo.imagemCapa}" class="cover-img" alt="${artigo.titulo}">` 
+                    : '';
+
+                mainContainer.innerHTML = `
+                    <article>
+                        <header class="article-header">
+                            <span class="meta-category">${artigo.categoria}</span>
+                            <h1 class="article-title">${artigo.titulo}</h1>
+                            <div class="article-meta-info">
+                                <div class="author-avatar">QP</div>
+                                <div>
+                                    Publicado por <strong>${artigo.autor}</strong> • ⏱️ Leitura: ${artigo.tempoLeitura} • 💬 <a href="#secao-comentarios" class="link-comentarios-topo"><span id="topo-contador-comentarios">0</span> Comentários</a>
+                                </div>
+                            </div>
+                        </header>
+
+                        <div class="article-container">
+                            ${htmlCapa}
+                            <div class="article-body">
+                                ${artigo.texto}
+                            </div>
+                        </div>
+                    </article>
+                `;
+
+                const secaoComentarios = document.getElementById('secao-comentarios');
+                if (secaoComentarios) secaoComentarios.style.display = 'block';
                 
-                configurarSEO(tituloReview, descReview);
-                renderizarHtml(tituloReview, `${marcaTexto} • Análise Técnica`, cpu.analiseCompleta);
-            } else {
-                configurarSEO("Artigo Não Encontrado - QualProcessador", "O artigo solicitado não foi localizado.");
+                verificarSessao();
+                window.carregarComentarios();
+            }
+
+            function exibirErro(mensagem) {
+                if (!mainContainer) return;
                 mainContainer.innerHTML = `
                     <div class="article-container" style="text-align: center; margin-top: 100px;">
                         <h2>Artigo Não Encontrado</h2>
-                        <p></p>
-                        <a href="analises.html" style="color: #38bdf8; font-weight: bold;">Voltar ao Hub de Análises</a>
+                        <p style="color: #ef4444; font-weight: 600;">${mensagem}</p>
+                        <a href="analises.html" style="color: #0284c7; font-weight: bold; text-decoration: underline;">Voltar ao Hub de Análises</a>
                     </div>
                 `;
             }
-        }
 
-        // Função para injetar conteúdo semântico
-        function renderizarHtml(titulo, categoria, corpoTexto) {
-            mainContainer.innerHTML = `
-                <article>
-                    <header class="article-header">
-                        <span class="meta-category">${categoria}</span>
-                        <h1 class="article-title">${titulo}</h1>
-                        <div class="article-meta-info">
-                            <div class="author-avatar">QP</div>
+            function configurarSEO(titulo, descricao) {
+                document.title = `${titulo} - QualProcessador`;
+                if(descricao) {
+                    let metaDesc = document.querySelector('meta[name="description"]');
+                    if(metaDesc) metaDesc.setAttribute('content', descricao);
+                }
+            }
+
+            // --- AUTENTICAÇÃO ---
+            function verificarSessao() {
+                if (!supabase) return;
+                const sessaoSalva = JSON.parse(localStorage.getItem('qp_user_session'));
+                atualizarInterfaceSessao(sessaoSalva);
+            }
+
+            function atualizarInterfaceSessao(user) {
+                usuarioAtual = user;
+                const authContainer = document.getElementById('auth-container');
+                const areaEscrever = document.getElementById('area-escrever-comentario');
+                
+                if (!authContainer || !areaEscrever) return;
+
+                if (user) {
+                    authContainer.style.display = 'none';
+                    areaEscrever.style.display = 'block';
+                    const nomeEl = document.getElementById('usuario-logado-nome');
+                    if (nomeEl) nomeEl.innerText = user.username || user.email;
+                } else {
+                    authContainer.style.display = 'block';
+                    areaEscrever.style.display = 'none';
+                }
+            }
+
+            window.alternarFormulario = function(tela) {
+                const reg = document.getElementById('form-registro');
+                const log = document.getElementById('form-login');
+                if(reg && log) {
+                    reg.style.display = tela === 'registro' ? 'block' : 'none';
+                    log.style.display = tela === 'login' ? 'block' : 'none';
+                }
+            }
+
+            window.criarContaSupabase = async function() {
+                if (!supabase) return alert("Banco de dados indisponível.");
+                const email = document.getElementById('reg-email')?.value.trim();
+                const username = document.getElementById('reg-username')?.value.trim();
+                const password = document.getElementById('reg-senha')?.value;
+
+                if(!email || !username || !password) return alert("Preencha todos os campos!");
+
+                let { data: existente } = await supabase.from('usuarios').select('id').eq('email', email).maybeSingle();
+                if (existente) return alert('Este endereço de e-mail já está em uso.');
+
+                const novoUser = { username, email, password: password, role: 'user', avatar: '' };
+                const { error } = await supabase.from('usuarios').insert([novoUser]);
+
+                if (error) {
+                    alert("Erro ao criar conta: " + error.message);
+                } else {
+                    alert("Conta criada com sucesso! Faça login para prosseguir.");
+                    const senhaEl = document.getElementById('reg-senha');
+                    if(senhaEl) senhaEl.value = '';
+                    alternarFormulario('login');
+                }
+            }
+
+            window.logarSupabase = async function() {
+                if (!supabase) return alert("Banco de dados indisponível.");
+                const email = document.getElementById('log-email')?.value.trim();
+                const password = document.getElementById('log-senha')?.value;
+
+                if(!email || !password) return alert("Preencha e-mail e senha!");
+
+                let { data: usuarioValido, error } = await supabase
+                    .from('usuarios')
+                    .select('*')
+                    .eq('email', email)
+                    .eq('password', password)
+                    .maybeSingle();
+
+                if (error || !usuarioValido) {
+                    return alert('Credenciais incorretas.');
+                }
+
+                localStorage.setItem('qp_user_session', JSON.stringify(usuarioValido));
+                const senhaEl = document.getElementById('log-senha');
+                if(senhaEl) senhaEl.value = '';
+                verificarSessao();
+                window.carregarComentarios();
+            }
+
+            window.deslogarSupabase = function() {
+                localStorage.removeItem('qp_user_session');
+                verificarSessao();
+                window.carregarComentarios();
+            }
+
+            // --- SISTEMA DE COMENTÁRIOS E THREADS ---
+            window.carregarComentarios = async function() {
+                if (!supabase || !idArtigoAtualGlobal) return;
+                const container = document.getElementById('comentarios-render');
+                if (!container) return;
+
+                container.innerHTML = '<p class="no-comments">Carregando discussões...</p>';
+
+                let { data: comentariosSalvos, error } = await supabase
+                    .from('comentarios_produto')
+                    .select('*')
+                    .eq('id_post', String(idArtigoAtualGlobal))
+                    .order('id', { ascending: true });
+
+                if (error) {
+                    container.innerHTML = '<p class="no-comments" style="color:#ef4444;">Erro ao carregar comentários.</p>';
+                    return;
+                }
+                
+                // ATUALIZA OS CONTADORES DE COMENTÁRIOS
+                const totalComentarios = comentariosSalvos ? comentariosSalvos.length : 0;
+                const topoContador = document.getElementById('topo-contador-comentarios');
+                const secaoContador = document.getElementById('secao-contador-comentarios');
+                if(topoContador) topoContador.innerText = totalComentarios;
+                if(secaoContador) secaoContador.innerText = totalComentarios;
+
+                container.innerHTML = '';
+                if (!comentariosSalvos || comentariosSalvos.length === 0) {
+                    container.innerHTML = '<p class="no-comments">Nenhum comentário registrado ainda. Seja o primeiro a comentar!</p>';
+                    return;
+                }
+
+                const logado = JSON.parse(localStorage.getItem('qp_user_session'));
+
+                const principais = comentariosSalvos.filter(c => !c.parent_id);
+                const respostas = comentariosSalvos.filter(c => c.parent_id);
+
+                principais.reverse().forEach(c => {
+                    renderizarItemComentario(c, false, logado, c.id);
+                    const filhas = respostas.filter(r => r.parent_id === c.id);
+                    filhas.forEach(f => renderizarItemComentario(f, true, logado, c.id));
+                });
+            }
+
+            function renderizarItemComentario(c, ehResposta, logado, idPrincipal) {
+                const container = document.getElementById('comentarios-render');
+                
+                const ehDono = logado && logado.username.toLowerCase() === c.autor.toLowerCase();
+                const ehAdmin = logado && logado.role === 'admin';
+                const temPermissao = ehDono || ehAdmin;
+
+                const badgeAdmin = c.autor_role === 'admin' ? '<span style="color:#0ea5e9; font-size:0.75em; font-weight:bold; margin-left:4px; background:#e0f2fe; padding:2px 6px; border-radius:4px;">[ADM]</span>' : '';
+                const badgeEditado = c.editado ? '<span style="color:#94a3b8; font-size:0.8em; font-style:italic; margin-left:6px;">(editado)</span>' : '';
+                const dataFormatada = c.data && c.data.includes('/') ? c.data : new Date(c.data || Date.now()).toLocaleDateString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+
+                const div = document.createElement('div');
+                div.className = `comment-item ${ehResposta ? 'reply' : ''}`;
+                
+                div.innerHTML = `
+                    <div class="comment-header">
+                        <div class="comment-author-info">
+                            <div class="author-avatar">${c.autor_avatar || c.autor.substring(0,2).toUpperCase()}</div>
                             <div>
-                                Publicado por <strong>Equipe QualProcessador</strong> • Atualizado em Julho de 2026
+                                <span class="comment-author">${c.autor} ${badgeAdmin}</span>
+                                <div class="comment-date">${dataFormatada} ${badgeEditado}</div>
                             </div>
                         </div>
-                    </header>
+                    </div>
+                    <p class="comment-body" id="texto-comentario-${c.id}">${c.conteudo}</p>
+                    <div class="comment-actions">
+                        ${logado ? `<button onclick="abrirFormResposta(${c.id}, ${idPrincipal})">Responder</button>` : ''}
+                        ${temPermissao ? `<button onclick="editarComentario(${c.id})">Editar</button>` : ''}
+                        ${temPermissao ? `<button class="btn-delete" onclick="excluirComentario(${c.id})">Apagar</button>` : ''}
+                    </div>
+                    <div id="reply-box-${c.id}" style="margin-top:10px;"></div>
+                    <div id="edit-box-${c.id}" style="margin-top:10px;"></div>
+                `;
+                container.appendChild(div);
+            }
 
-                    <div class="article-container">
-                        <div class="article-body">
-                            ${corpoTexto}
+            window.enviarComentario = async function() {
+                if (!supabase) return alert("Banco de dados indisponível.");
+                const textarea = document.getElementById('texto-novo-comentario');
+                const conteudo = textarea ? textarea.value.trim() : '';
+                if (!conteudo) return alert("Escreva algo antes de publicar.");
+
+                const novoComentario = {
+                    id_post: String(idArtigoAtualGlobal),
+                    autor: usuarioAtual?.username || "Leitor",
+                    autor_avatar: usuarioAtual?.avatar || '',
+                    autor_role: usuarioAtual?.role || 'user',
+                    conteudo: conteudo,
+                    data: new Date().toLocaleDateString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+                };
+
+                const { error } = await supabase.from('comentarios_produto').insert([novoComentario]);
+
+                if (error) {
+                    alert("Erro ao enviar: " + error.message);
+                } else {
+                    if(textarea) textarea.value = '';
+                    window.carregarComentarios();
+                }
+            }
+
+            window.abrirFormResposta = function(idAlvo, idPrincipal) {
+                const box = document.getElementById(`reply-box-${idAlvo}`);
+                box.innerHTML = `
+                    <div style="display:flex; gap:8px; flex-direction:column;">
+                        <textarea id="reply-text-${idAlvo}" rows="2" placeholder="Escreva sua resposta..." style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; font-family:inherit; font-size:0.9rem; outline:none;"></textarea>
+                        <div style="display:flex; gap:8px;">
+                            <button onclick="enviarResposta(${idAlvo}, ${idPrincipal})" style="background:#10b981; color:white; border:none; padding:6px 12px; border-radius:4px; cursor:pointer; font-weight:bold; font-size:0.8rem;">Enviar Resposta</button>
+                            <button onclick="carregarComentarios()" style="background:#e2e8f0; color:#0f172a; border:none; padding:6px 12px; border-radius:4px; cursor:pointer; font-weight:bold; font-size:0.8rem;">Cancelar</button>
                         </div>
                     </div>
-                </article>
-            `;
-        }
-
-        // Sistema dinâmico de otimização de SEO e metadados
-        function configurarSEO(titulo, descricao) {
-            // 1. Título do documento
-            document.title = `${titulo} - QualProcessador`;
-            
-            // 2. Atualização das Meta Tags nativas e Open Graph
-            definirMetaTag('name', 'description', descricao);
-            definirMetaTag('property', 'og:title', `${titulo} - QualProcessador`);
-            definirMetaTag('property', 'og:description', descricao);
-            definirMetaTag('property', 'og:url', window.location.href);
-            definirMetaTag('name', 'twitter:title', `${titulo} - QualProcessador`);
-            definirMetaTag('name', 'twitter:description', descricao);
-
-            // 3. Injeção de link Canonical limpo
-            let canonicalLink = document.querySelector('link[rel="canonical"]');
-            if (!canonicalLink) {
-                canonicalLink = document.createElement('link');
-                canonicalLink.setAttribute('rel', 'canonical');
-                document.head.appendChild(canonicalLink);
+                `;
             }
-            canonicalLink.setAttribute('href', `${window.location.origin}${window.location.pathname}?id=${idArtigo}`);
 
-            // 4. Geração e injeção do Rich Snippet (Schema.org JSON-LD)
-            injetarDadosEstruturados(titulo, descricao);
-        }
+            window.enviarResposta = async function(idAlvo, idPrincipal) {
+                const texto = document.getElementById(`reply-text-${idAlvo}`).value.trim();
+                if (!texto || !usuarioAtual) return;
 
-        // Auxiliar para manipular meta tags de forma segura
-        function definirMetaTag(atributo, valor, conteudo) {
-            let elemento = document.querySelector(`meta[${atributo}="${valor}"]`);
-            if (!elemento) {
-                elemento = document.createElement('meta');
-                elemento.setAttribute(atributo, valor);
-                document.head.appendChild(elemento);
-            }
-            elemento.setAttribute('content', conteudo);
-        }
+                const resposta = {
+                    id_post: String(idArtigoAtualGlobal),
+                    parent_id: idPrincipal,
+                    autor: usuarioAtual.username,
+                    autor_avatar: usuarioAtual.avatar || '',
+                    autor_role: usuarioAtual.role || 'user',
+                    conteudo: texto,
+                    data: new Date().toLocaleDateString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+                };
 
-        // Auxiliar para construir o JSON-LD que o Google lê para o selo de artigo técnico
-        function injetarDadosEstruturados(titulo, descricao) {
-            const idAntigo = document.getElementById('seo-schema-dinamico');
-            if (idAntigo) idAntigo.remove();
-
-            const jsonLd = {
-                "@context": "https://schema.org",
-                "@type": "TechArticle",
-                "headline": titulo,
-                "description": descricao,
-                "image": [
-                    `${window.location.origin}/assets/og-image-default.jpg` // Substitua pelo link real da imagem padrão do seu portal
-                ],
-                "datePublished": "2026-01-15T08:00:00+03:00",
-                "dateModified": "2026-07-19T13:00:00+03:00", 
-                "author": {
-                    "@type": "Organization",
-                    "name": "Equipe QualProcessador",
-                    "url": window.location.origin
-                },
-                "publisher": {
-                    "@type": "Organization",
-                    "name": "QualProcessador",
-                    "logo": {
-                        "@type": "ImageObject",
-                        "url": `${window.location.origin}/assets/logo-schema.png`
-                    }
-                },
-                "mainEntityOfPage": {
-                    "@type": "WebPage",
-                    "@id": `${window.location.origin}${window.location.pathname}?id=${idArtigo}`
+                const { error } = await supabase.from('comentarios_produto').insert([resposta]);
+                if (error) {
+                    alert("Erro ao enviar resposta: " + error.message);
+                    return;
                 }
-            };
+                window.carregarComentarios();
+            }
 
-            const script = document.createElement('script');
-            script.id = 'seo-schema-dinamico';
-            script.type = 'application/ld+json';
-            script.text = JSON.stringify(jsonLd);
-            document.head.appendChild(script);
-        }
+            window.excluirComentario = async function(idComentario) {
+                if (confirm("Deseja apagar este comentário permanentemente?")) {
+                    await supabase.from('comentarios_produto').delete().eq('id', idComentario);
+                    window.carregarComentarios();
+                }
+            }
+
+            window.editarComentario = function(idComentario) {
+                const pTexto = document.getElementById(`texto-comentario-${idComentario}`);
+                const original = pTexto.innerText;
+                const editBox = document.getElementById(`edit-box-${idComentario}`);
+
+                editBox.innerHTML = `
+                    <textarea id="edit-input-${idComentario}" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; font-family:inherit; font-size:0.9rem; outline:none;" rows="3">${original}</textarea>
+                    <div style="display:flex; gap:8px; margin-top:6px;">
+                        <button onclick="salvarEdicao(${idComentario})" style="background:#3b82f6; color:white; border:none; border-radius:4px; padding:6px 12px; font-weight:bold; font-size:0.8rem; cursor:pointer;">Salvar Edição</button>
+                        <button onclick="carregarComentarios()" style="background:#e2e8f0; color:#0f172a; border:none; border-radius:4px; padding:6px 12px; font-weight:bold; font-size:0.8rem; cursor:pointer;">Cancelar</button>
+                    </div>
+                `;
+                pTexto.style.display = 'none';
+            }
+
+            window.salvarEdicao = async function(idComentario) {
+                const novoTexto = document.getElementById(`edit-input-${idComentario}`).value.trim();
+                if (!novoTexto) return;
+
+                const { error } = await supabase.from('comentarios_produto').update({ 
+                    conteudo: novoTexto,
+                    editado: true 
+                }).eq('id', idComentario);
+                
+                if (error) {
+                    alert("Erro ao salvar edição: " + error.message);
+                    return;
+                }
+                
+                window.carregarComentarios();
+            }
+        });
     </script>
 </body>
 </html>

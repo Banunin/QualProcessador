@@ -10,121 +10,141 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; }
-        body { font-family: 'Poppins', sans-serif; background-color: #f1f5f9; color: #0f172a; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Poppins', sans-serif; background-color: #f4f7fa; color: #0f172a; margin: 0; padding: 0; }
 
-        /* Menu de Navegação */
-        .portal-nav { background-color: white; border-bottom: 1px solid #e2e8f0; position: sticky; top: 0; z-index: 100; }
-        .nav-container { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; gap: 5px; justify-content: space-between; align-items: center; }
-        .nav-links-box { display: flex; gap: 5px; }
-        .nav-link { padding: 20px 25px; color: #475569; text-decoration: none; font-weight: 700; font-size: 0.95rem; border-bottom: 3px solid transparent; display: inline-block; }
-        .nav-link:hover, .nav-link.active { color: #38bdf8; border-bottom-color: #38bdf8; background-color: #f8fafc; }
+        /* Menu de Navegação Moderno */
+        .portal-nav { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); padding: 0; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .nav-container { max-width: 1400px; margin: 0 auto; padding: 0 40px; display: flex; justify-content: space-between; align-items: center; }
+        .nav-links-box { display: flex; }
+        .nav-link { padding: 22px 25px; color: #94a3b8; text-decoration: none; font-weight: 700; font-size: 0.95rem; border-bottom: 3px solid transparent; transition: all 0.2s; }
+        .nav-link:hover, .nav-link.active { color: #38bdf8; border-bottom-color: #38bdf8; background-color: rgba(255,255,255,0.05); }
 
         /* Widget de Usuário Logado */
-        .nav-user-status { font-size: 0.85rem; font-weight: 600; color: #475569; display: flex; align-items: center; gap: 12px; }
-        .nav-btn { background: #e2e8f0; color: #1e293b; border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.8rem; cursor: pointer; font-weight: 700; text-decoration: none; }
-        .nav-btn.logout { background: #ef4444; color: white; }
-        .nav-btn.login-btn { background: #38bdf8; color: white; }
+        .nav-user-status { font-size: 0.85rem; font-weight: 600; color: #f8fafc; display: flex; align-items: center; gap: 12px; }
+        .nav-btn { background: rgba(255,255,255,0.1); color: #f8fafc; border: 1px solid rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 8px; font-size: 0.8rem; cursor: pointer; font-weight: 700; text-decoration: none; transition: all 0.2s; }
+        .nav-btn:hover { background: rgba(255,255,255,0.2); }
+        .nav-btn.logout { background: rgba(239, 68, 68, 0.2); color: #fca5a5; border-color: rgba(239, 68, 68, 0.3); }
+        .nav-btn.logout:hover { background: #ef4444; color: white; }
+        .nav-btn.login-btn { background: #38bdf8; color: #0f172a; border: none; }
+        .nav-btn.login-btn:hover { background: #0ea5e9; color: white; }
 
         .container { max-width: 1400px; margin: 30px auto; padding: 0 40px; }
-        .breadcrumbs { font-size: 0.85rem; color: #64748b; margin-bottom: 20px; }
-        .breadcrumbs a { color: #64748b; text-decoration: none; }
-        .breadcrumbs a:hover { color: #38bdf8; text-decoration: underline; }
+        .breadcrumbs { font-size: 0.85rem; color: #64748b; margin-bottom: 25px; font-weight: 500; }
+        .breadcrumbs a { color: #3b82f6; text-decoration: none; font-weight: 600; }
+        .breadcrumbs a:hover { text-decoration: underline; }
 
         /* Grade do Layout */
-        .forum-grid { display: grid; grid-template-columns: 1fr 350px; gap: 30px; align-items: start; }
-        .main-forum-area { display: flex; flex-direction: column; gap: 20px; }
+        .forum-grid { display: grid; grid-template-columns: 1fr 350px; gap: 35px; align-items: start; }
+        .main-forum-area { display: flex; flex-direction: column; gap: 25px; }
 
-        /* Cabeçalho da listagem */
-        .forum-action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-        .forum-action-header h2 { margin: 0; font-size: 1.6rem; font-weight: 800; }
-        .btn-main { background: #0f172a; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 700; font-size: 0.9rem; cursor: pointer; text-decoration: none; transition: background 0.2s; display: inline-block; text-align: center;}
-        .btn-main:hover { background: #38bdf8; }
+        /* Cabeçalho e Botões Gerais */
+        .forum-action-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; background: white; padding: 20px 30px; border-radius: 12px; border: 1px solid #e2e8f0; box-shadow: 0 4px 20px rgba(0,0,0,0.02); }
+        .forum-action-header h2 { margin: 0; font-size: 1.6rem; font-weight: 800; color: #0f172a; }
+        .btn-main { background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 700; font-size: 0.95rem; cursor: pointer; text-decoration: none; transition: transform 0.2s, box-shadow 0.2s; display: inline-flex; align-items: center; justify-content: center; gap: 8px; font-family: 'Poppins', sans-serif; box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3); }
+        .btn-main:hover { transform: translateY(-2px); box-shadow: 0 6px 15px rgba(59, 130, 246, 0.4); }
+        .btn-secondary { background: #e2e8f0; color: #0f172a; border: none; padding: 10px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; font-family: inherit; transition: background 0.2s; }
+        .btn-secondary:hover { background: #cbd5e1; }
 
         /* Linhas da lista de tópicos */
-        .topic-row-card { background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 20px 25px; display: flex; justify-content: space-between; align-items: center; text-decoration: none; color: inherit; transition: transform 0.2s, border-color 0.2s; }
-        .topic-row-card:hover { transform: translateY(-2px); border-color: #cbd5e1; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
-        .topic-info h3 { margin: 0 0 6px 0; font-size: 1.1rem; font-weight: 700; color: #0f172a; line-height: 1.4; }
-        .topic-info h3:hover { color: #38bdf8; }
-        .topic-details { font-size: 0.8rem; color: #64748b; }
-        .topic-replies-badge { background: #f1f5f9; color: #475569; font-weight: 700; font-size: 0.85rem; padding: 6px 14px; border-radius: 20px; border: 1px solid #e2e8f0; }
+        .topic-row-card { background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 25px; display: flex; justify-content: space-between; align-items: center; text-decoration: none; color: inherit; transition: all 0.3s; position: relative; overflow: hidden; }
+        .topic-row-card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: #e2e8f0; transition: background 0.3s; }
+        .topic-row-card:hover { transform: translateY(-3px); border-color: #cbd5e1; box-shadow: 0 10px 25px rgba(15, 23, 42, 0.05); }
+        .topic-row-card:hover::before { background: #38bdf8; }
+        .topic-info h3 { margin: 0 0 8px 0; font-size: 1.25rem; font-weight: 700; color: #0f172a; line-height: 1.4; transition: color 0.2s; }
+        .topic-row-card:hover .topic-info h3 { color: #3b82f6; }
+        .topic-details { font-size: 0.85rem; color: #64748b; display: flex; align-items: center; gap: 10px; }
+        .topic-replies-badge { background: #f8fafc; color: #0f172a; font-weight: 800; font-size: 0.9rem; padding: 8px 16px; border-radius: 20px; border: 1px solid #e2e8f0; display: flex; align-items: center; gap: 6px; }
 
         /* Detalhes do Tópico Aberto */
-        .topic-header-panel { background: white; padding: 25px 30px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 20px; }
-        .topic-header-panel h1 { margin: 0 0 8px 0; font-size: 1.7rem; font-weight: 800; }
+        .topic-header-panel { background: white; padding: 30px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.02); display: flex; justify-content: space-between; align-items: center; }
+        .topic-header-panel h1 { margin: 0; font-size: 1.8rem; font-weight: 800; color: #0f172a; line-height: 1.3; }
         
-        .post-card { display: flex; background: white; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; margin-bottom: 20px; }
-        .post-user { width: 180px; background: #f8fafc; padding: 25px 15px; border-right: 1px solid #e2e8f0; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 8px; flex-shrink: 0; }
-        .user-avatar { width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; color: white; font-size: 1.6rem; background: #64748b; text-shadow: 0 1px 2px rgba(0,0,0,0.2); object-fit: cover; }
-        .user-avatar.admin-style { background: #ef4444; }
-        .user-name { font-weight: 700; font-size: 0.9rem; margin: 0; color: #0f172a; word-break: break-word; }
-        .user-name a { color: inherit; text-decoration: none; }
-        .user-name a:hover { color: #38bdf8; text-decoration: underline; }
-        .user-badge { font-size: 0.7rem; padding: 2px 8px; border-radius: 20px; font-weight: 700; text-transform: uppercase; }
+        .post-card { display: flex; background: white; border-radius: 12px; border: 1px solid #e2e8f0; overflow: hidden; margin-bottom: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
+        .post-user { width: 200px; background: #f8fafc; padding: 30px 20px; border-right: 1px solid #e2e8f0; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 10px; flex-shrink: 0; }
+        .user-avatar { width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; color: white; font-size: 1.8rem; background: linear-gradient(135deg, #64748b, #475569); box-shadow: 0 4px 10px rgba(0,0,0,0.1); object-fit: cover; }
+        .user-avatar.admin-style { background: linear-gradient(135deg, #ef4444, #991b1b); }
+        .user-name { font-weight: 800; font-size: 1rem; margin: 0; color: #0f172a; word-break: break-word; }
+        .user-name a { color: inherit; text-decoration: none; transition: color 0.2s; }
+        .user-name a:hover { color: #3b82f6; }
+        .user-badge { font-size: 0.75rem; padding: 4px 10px; border-radius: 20px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
         .badge-user { background: #e2e8f0; color: #475569; }
-        .badge-admin { background: #ef4444; color: white; }
-        .user-bio-incard { font-size: 0.72rem; color: #64748b; font-style: italic; margin-top: 5px; display: -webkit-box; -webkit-line-clamp: 2; line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-align: center; width: 100%; word-break: break-word; }
+        .badge-admin { background: #fee2e2; color: #ef4444; border: 1px solid #fca5a5; }
+        .user-bio-incard { font-size: 0.75rem; color: #64748b; font-style: italic; margin-top: 5px; display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; text-align: center; width: 100%; word-break: break-word; }
         
-        .post-body { flex: 1; padding: 25px 30px; display: flex; flex-direction: column; justify-content: space-between; }
+        .post-body { flex: 1; padding: 30px; display: flex; flex-direction: column; justify-content: space-between; }
         
-        /* Novos estilos para header e footer da postagem */
-        .post-header { margin-bottom: 15px; color: #64748b; font-size: 0.8rem; }
-        .flag-editado { font-style: italic; margin-left: 5px; color: #94a3b8; }
-        .post-text { font-size: 0.95rem; line-height: 1.7; color: #334155; margin: 0; white-space: pre-line; }
-        
-        .post-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f1f5f9; padding-top: 15px; margin-top: 20px; }
-        
-        /* SISTEMA DE REAÇÕES ESTILO CLUBE DO HARDWARE */
-        .reacoes-container { display: flex; align-items: center; gap: 8px; position: relative; flex-wrap: wrap; }
-        .btn-reagir-trigger { background: #f1f5f9; border: 1px dashed #cbd5e1; border-radius: 20px; padding: 6px 14px; cursor: pointer; font-size: 0.8rem; font-weight: 700; color: #475569; display: flex; align-items: center; gap: 6px; transition: all 0.2s; user-select: none; }
-        .btn-reagir-trigger:hover { background: #cbd5e1; color: #0f172a; border-color: #94a3b8; }
-        .reacao-badge { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 20px; padding: 4px 12px; font-size: 0.8rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: all 0.2s; color: #475569; }
-        .reacao-badge:hover { background: #f1f5f9; border-color: #cbd5e1; transform: scale(1.05); }
-        .reacao-badge.votado { background: #e0f2fe; border-color: #7dd3fc; color: #0369a1; }
-        .reacoes-popover { display: none; position: absolute; bottom: 38px; left: 0; background: white; border: 1px solid #cbd5e1; border-radius: 30px; padding: 6px 12px; box-shadow: 0 4px 15px rgba(15, 23, 42, 0.1); gap: 8px; z-index: 50; }
-        .reacoes-popover.show { display: flex; }
-        .popover-emoji { background: none; border: none; font-size: 1.25rem; cursor: pointer; padding: 4px; border-radius: 50%; transition: all 0.15s; display: flex; align-items: center; justify-content: center; }
-        .popover-emoji:hover { transform: scale(1.3); background: #f1f5f9; }
+        /* SISTEMA DE THREADS (Comentários Aninhados) */
+        .post-card.reply-nested { margin-left: 50px; border-left: 4px solid #cbd5e1; flex-direction: column; }
+        .post-card.reply-nested .post-user { width: 100%; border-right: none; border-bottom: 1px solid #e2e8f0; padding: 15px 25px; flex-direction: row; text-align: left; background: #ffffff; }
+        .post-card.reply-nested .user-avatar { width: 40px; height: 40px; font-size: 1.2rem; }
+        .post-card.reply-nested .user-bio-incard { display: none; }
+        .post-card.reply-nested .post-body { padding: 20px 25px; background: #f8fafc; }
 
-        .post-actions { display: flex; gap: 15px; }
-        .action-link { font-size: 0.8rem; font-weight: 600; color: #64748b; cursor: pointer; border: none; background: none; padding: 0; font-family: inherit; }
-        .action-link:hover { color: #38bdf8; text-decoration: underline; }
+        .post-header { margin-bottom: 15px; color: #94a3b8; font-size: 0.85rem; font-weight: 500; }
+        .flag-editado { font-style: italic; margin-left: 8px; color: #cbd5e1; }
+        .post-text { font-size: 1rem; line-height: 1.8; color: #334155; margin: 0; white-space: pre-line; }
+        
+        .post-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px dashed #e2e8f0; padding-top: 15px; margin-top: 25px; flex-wrap: wrap; gap: 15px; }
+        
+        /* SISTEMA DE REAÇÕES */
+        .reacoes-container { display: flex; align-items: center; gap: 8px; position: relative; flex-wrap: wrap; }
+        .btn-reagir-trigger { background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 20px; padding: 6px 14px; cursor: pointer; font-size: 0.85rem; font-weight: 700; color: #475569; display: flex; align-items: center; gap: 6px; transition: all 0.2s; }
+        .btn-reagir-trigger:hover { background: #e2e8f0; color: #0f172a; }
+        .reacao-badge { background: white; border: 1px solid #e2e8f0; border-radius: 20px; padding: 4px 12px; font-size: 0.85rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 6px; transition: all 0.2s; color: #475569; box-shadow: 0 2px 5px rgba(0,0,0,0.02); }
+        .reacao-badge:hover { background: #f1f5f9; border-color: #cbd5e1; transform: translateY(-2px); }
+        .reacao-badge.votado { background: #eff6ff; border-color: #bfdbfe; color: #1d4ed8; }
+        .reacoes-popover { display: none; position: absolute; bottom: 40px; left: 0; background: white; border: 1px solid #cbd5e1; border-radius: 30px; padding: 8px 15px; box-shadow: 0 10px 25px rgba(15, 23, 42, 0.15); gap: 10px; z-index: 50; }
+        .reacoes-popover.show { display: flex; animation: popUp 0.2s ease-out; }
+        @keyframes popUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .popover-emoji { background: none; border: none; font-size: 1.4rem; cursor: pointer; padding: 4px; border-radius: 50%; transition: all 0.2s; display: flex; align-items: center; justify-content: center; }
+        .popover-emoji:hover { transform: scale(1.4); background: #f8fafc; }
+
+        .post-actions { display: flex; gap: 15px; align-items: center; }
+        .action-link { font-size: 0.85rem; font-weight: 700; color: #64748b; cursor: pointer; border: none; background: none; padding: 0; font-family: inherit; transition: color 0.2s; display: flex; align-items: center; gap: 5px; }
+        .action-link:hover { color: #3b82f6; }
         .action-link.delete:hover { color: #ef4444; }
 
         /* Formulários e Autenticação */
-        .form-card { background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 30px; box-shadow: 0 4px 20px rgba(0,0,0,0.02); }
-        .form-card h2 { margin: 0 0 20px 0; font-size: 1.4rem; font-weight: 800; }
-        .form-group { margin-bottom: 15px; display: flex; flex-direction: column; gap: 6px; }
-        .form-group label { font-size: 0.85rem; font-weight: 700; color: #334155; }
-        .form-group input, .form-group textarea, .form-group select { font-family: 'Poppins', sans-serif; padding: 12px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 0.95rem; outline: none; }
-        .form-group input:focus, .form-group textarea:focus { border-color: #38bdf8; }
-        .auth-tabs { display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px; }
-        .auth-tab-btn { background: none; border: none; font-weight: 700; font-size: 1rem; color: #94a3b8; cursor: pointer; padding: 5px 10px; }
-        .auth-tab-btn.active { color: #0f172a; border-bottom: 3px solid #0f172a; }
+        .form-card { background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 35px; box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04); }
+        .form-card h2 { margin: 0 0 25px 0; font-size: 1.6rem; font-weight: 800; color: #0f172a; }
+        .form-group { margin-bottom: 20px; display: flex; flex-direction: column; gap: 8px; }
+        .form-group label { font-size: 0.9rem; font-weight: 700; color: #1e293b; }
+        .form-group input, .form-group textarea, .form-group select { font-family: 'Poppins', sans-serif; padding: 14px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 1rem; outline: none; transition: border-color 0.2s, box-shadow 0.2s; background: #f8fafc; }
+        .form-group input:focus, .form-group textarea:focus { border-color: #3b82f6; background: white; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1); }
+        .auth-tabs { display: flex; gap: 15px; margin-bottom: 25px; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; }
+        .auth-tab-btn { background: none; border: none; font-weight: 800; font-size: 1.1rem; color: #94a3b8; cursor: pointer; padding: 8px 15px; transition: color 0.2s; }
+        .auth-tab-btn.active { color: #0f172a; border-bottom: 3px solid #3b82f6; margin-bottom: -12px; }
 
         /* ESTILOS DA TELA DE PERFIL */
-        .profile-card { display: grid; grid-template-columns: 300px 1fr; gap: 30px; background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 35px; margin-bottom: 25px; }
-        @media(max-width: 768px) { .profile-card { grid-template-columns: 1fr; } }
-        .profile-sidebar { display: flex; flex-direction: column; align-items: center; text-align: center; border-right: 1px solid #e2e8f0; padding-right: 30px; }
-        @media(max-width: 768px) { .profile-sidebar { border-right: none; padding-right: 0; border-bottom: 1px solid #e2e8f0; padding-bottom: 30px; } }
-        .profile-stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 25px; }
-        .stat-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 15px; text-align: center; }
-        .stat-num { font-size: 1.6rem; font-weight: 800; color: #0f172a; }
-        .stat-label { font-size: 0.75rem; color: #64748b; font-weight: 600; text-transform: uppercase; }
+        .profile-header { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); height: 180px; border-radius: 12px 12px 0 0; position: relative; margin-bottom: -80px; }
+        .profile-card { display: grid; grid-template-columns: 320px 1fr; gap: 40px; background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 0 40px 40px 40px; margin-bottom: 25px; box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04); position: relative; z-index: 10; }
+        @media(max-width: 900px) { .profile-card { grid-template-columns: 1fr; padding: 0 25px 25px 25px; } }
+        .profile-sidebar { display: flex; flex-direction: column; align-items: center; text-align: center; border-right: 1px solid #e2e8f0; padding-right: 40px; margin-top: -60px; }
+        @media(max-width: 900px) { .profile-sidebar { border-right: none; padding-right: 0; border-bottom: 1px solid #e2e8f0; padding-bottom: 30px; margin-top: -50px; } }
+        
+        .profile-stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 30px; margin-bottom: 35px; }
+        .stat-box { background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.02); transition: transform 0.2s; }
+        .stat-box:hover { transform: translateY(-3px); border-color: #cbd5e1; }
+        .stat-num { font-size: 2rem; font-weight: 800; color: #0f172a; line-height: 1; margin-bottom: 5px; }
+        .stat-label { font-size: 0.8rem; color: #64748b; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
 
         /* Barra Lateral */
-        .forum-sidebar { display: flex; flex-direction: column; gap: 25px; }
-        .widget-panel { background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 25px; }
-        .widget-panel h3 { margin: 0 0 15px 0; font-size: 1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
-        .sidebar-list { display: flex; flex-direction: column; gap: 12px; }
-        .sidebar-item { display: flex; flex-direction: column; text-decoration: none; color: inherit; padding-bottom: 10px; border-bottom: 1px solid #f1f5f9; }
+        .forum-sidebar { display: flex; flex-direction: column; gap: 30px; }
+        .widget-panel { background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); }
+        .widget-panel h3 { margin: 0 0 20px 0; font-size: 1.1rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; color: #0f172a; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; }
+        .sidebar-list { display: flex; flex-direction: column; gap: 15px; }
+        .sidebar-item { display: flex; flex-direction: column; text-decoration: none; color: inherit; padding-bottom: 12px; border-bottom: 1px dashed #e2e8f0; transition: transform 0.2s; }
         .sidebar-item:last-child { border-bottom: none; padding-bottom: 0; }
-        .sidebar-item h4 { margin: 0; font-size: 0.85rem; font-weight: 600; color: #1e293b; }
-        .sidebar-item h4:hover { color: #38bdf8; }
-        .sidebar-item span { font-size: 0.75rem; color: #94a3b8; margin-top: 2px; }
+        .sidebar-item:hover { transform: translateX(5px); }
+        .sidebar-item h4 { margin: 0; font-size: 0.95rem; font-weight: 700; color: #1e293b; line-height: 1.4; transition: color 0.2s; }
+        .sidebar-item:hover h4 { color: #3b82f6; }
+        .sidebar-item span { font-size: 0.75rem; color: #64748b; margin-top: 4px; font-weight: 500; }
 
-        .auth-gate-box { text-align: center; padding: 20px; border: 1px dashed #cbd5e1; border-radius: 8px; background: #f8fafc; }
+        .auth-gate-box { text-align: center; padding: 40px 20px; border: 2px dashed #cbd5e1; border-radius: 12px; background: white; margin-top: 20px; }
+        .auth-gate-box p { font-size: 1.1rem; color: #475569; font-weight: 600; margin-bottom: 20px; }
 
-        footer { text-align: center; padding: 40px; color: #64748b; border-top: 1px solid #e2e8f0; font-size: 0.85rem; margin-top: 60px; }
+        footer { text-align: center; padding: 40px; color: #64748b; border-top: 1px solid #e2e8f0; font-size: 0.9rem; margin-top: 60px; font-weight: 500; }
         @media (max-width: 1024px) { .forum-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
@@ -174,17 +194,15 @@
         const acao = params.get('action');
         let currentTab = 'login';
 
-        // Função auxiliar para gerar SLUGS amigáveis para a URL melhorar o SEO
         function slugify(text) {
             if (!text) return "";
             return text.toString().toLowerCase().trim()
-                .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // Remove acentos
-                .replace(/[^a-z0-9 -]/g, '') // Remove caracteres especiais
-                .replace(/\s+/g, '-') // Troca espaços por hífens
-                .replace(/-+/g, '-'); // Remove hífens duplicados
+                .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+                .replace(/[^a-z0-9 -]/g, '')
+                .replace(/\s+/g, '-')
+                .replace(/-+/g, '-');
         }
 
-        // Fecha todos os popovers se clicar fora deles
         document.addEventListener('click', () => {
             document.querySelectorAll('.reacoes-popover').forEach(p => p.classList.remove('show'));
         });
@@ -201,7 +219,7 @@
                     username: "Banunin",
                     password: "Banunin344",
                     role: "admin",
-                    bio: "Criador",
+                    bio: "Criador da plataforma QualProcessador.",
                     avatar: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
                     privado: false
                 }]);
@@ -213,7 +231,7 @@
             if (avatarUrl && avatarUrl.trim() !== "") {
                 return `<img src="${avatarUrl}" class="user-avatar ${isAdm ? 'admin-style' : ''} ${classesAdicionais}" alt="Avatar">`;
             }
-            return `<div class="user-avatar ${isAdm ? 'admin-style' : ''} ${classesAdicionais}">${username.charAt(0).toUpperCase()}</div>`;
+            return `<div class="user-avatar ${isAdm ? 'admin-style' : ''} ${classesAdicionais}">${(username || 'U').charAt(0).toUpperCase()}</div>`;
         }
 
         async function atualizarNavbarUser() {
@@ -222,18 +240,18 @@
             if(user) {
                 const isAdm = user.role === 'admin';
                 let avatarNav = gerarAvatarHTML(user.username, user.avatar, user.role, "");
-                avatarNav = avatarNav.replace('class="user-avatar', 'class="user-avatar" style="width:32px; height:32px; font-size:0.85rem; display:inline-flex; align-items:center; justify-content:center;"');
+                avatarNav = avatarNav.replace('class="user-avatar', 'class="user-avatar" style="width:36px; height:36px; font-size:1rem; display:inline-flex; align-items:center; justify-content:center; border:2px solid #38bdf8;"');
 
                 box.innerHTML = `
                     ${avatarNav}
-                    <span>Olá, <strong>${user.username}</strong> ${isAdm ? '<b style="color:#ef4444;">[ADM]</b>' : ''}</span>
+                    <span>Olá, <strong>${user.username}</strong> ${isAdm ? '<b style="color:#ef4444; margin-left:4px;">[ADM]</b>' : ''}</span>
                     <a href="forum.html?action=perfil&user=${user.username}" class="nav-btn">Meu Perfil</a>
                     <button class="nav-btn logout" onclick="deslogarUsuario()">Sair</button>
                 `;
             } else {
                 box.innerHTML = `
-                    <span style="color:#94a3b8; font-size:0.8rem;">Modo Visitante</span>
-                    <a href="forum.html?action=auth" class="nav-btn login-btn">Entrar / Cadastrar</a>
+                    <span style="color:#94a3b8; font-size:0.85rem;">Modo Visitante</span>
+                    <a href="forum.html?action=auth" class="nav-btn login-btn">Acessar / Criar Conta</a>
                 `;
             }
         }
@@ -245,13 +263,13 @@
 
         async function carregarSidebar() {
             try {
-                let { data: topicos } = await dbClient.from('topicos').select('id, titulo, autor, respostas').order('id', { ascending: false }).limit(5);
+                let { data: topicos } = await dbClient.from('topicos').select('id, titulo, autor, respostas').order('id', { ascending: false }).limit(6);
                 const sidebar = document.getElementById('sidebar-recent-topics');
                 sidebar.innerHTML = '';
                 if(topicos) {
                     topicos.forEach(t => {
                         let totalResp = Array.isArray(t.respostas) ? t.respostas.length : 0;
-                        sidebar.innerHTML += `<a href="forum.html?id=${t.id}&topico=${slugify(t.titulo)}" class="sidebar-item"><h4>${t.titulo}</h4><span>Por ${t.autor} • ${totalResp} resp.</span></a>`;
+                        sidebar.innerHTML += `<a href="forum.html?id=${t.id}&topico=${slugify(t.titulo)}" class="sidebar-item"><h4>${t.titulo}</h4><span>Por <strong>${t.autor}</strong> • ${totalResp} interações</span></a>`;
                     });
                 }
             } catch(e){}
@@ -266,11 +284,11 @@
             const password = document.getElementById('auth-password').value;
 
             let { data: checkUser } = await dbClient.from('usuarios').select('username').eq('username', username).maybeSingle();
-            if(checkUser) return alert("Erro: Usuário em uso.");
+            if(checkUser) return alert("Erro: Este nome de usuário já está em uso.");
 
-            const novoUsuario = { email, username, password, role: "user", bio: "Novo membro.", avatar: "", privado: false };
+            const novoUsuario = { email, username, password, role: "user", bio: "Novo membro explorando o mundo do hardware.", avatar: "", privado: false };
             let { error } = await dbClient.from('usuarios').insert([novoUsuario]);
-            if(error) return alert("Erro ao salvar.");
+            if(error) return alert("Erro ao criar conta. Tente novamente.");
 
             localStorage.setItem('qp_user_session', JSON.stringify(novoUsuario));
             window.location.href = 'forum.html';
@@ -281,7 +299,7 @@
             const loginId = document.getElementById('auth-loginid').value.trim();
             const pass = document.getElementById('auth-password').value;
 
-            let { data: conta } = await dbClient.from('usuarios').select('*').eq('email', loginId).maybeSingle();
+            let { data: conta, error } = await dbClient.from('usuarios').select('*').eq('email', loginId).maybeSingle();
             if(!conta) {
                 let { data: contaPorUser } = await dbClient.from('usuarios').select('*').eq('username', loginId).maybeSingle();
                 conta = contaPorUser;
@@ -290,7 +308,9 @@
             if(conta && conta.password === pass) {
                 localStorage.setItem('qp_user_session', JSON.stringify(conta));
                 window.location.href = 'forum.html';
-            } else { alert("Credenciais incorretas."); }
+            } else { 
+                alert("Credenciais incorretas ou usuário não encontrado."); 
+            }
         }
 
         function renderizarTelaAuth() {
@@ -298,22 +318,22 @@
             if (currentTab === 'login') {
                 target.innerHTML = `
                     <div class="form-card">
-                        <div class="auth-tabs"><button class="auth-tab-btn active" onclick="alternarAbaAuth('login')">Entrar</button><button class="auth-tab-btn" onclick="alternarAbaAuth('cadastro')">Cadastrar</button></div>
+                        <div class="auth-tabs"><button class="auth-tab-btn active" onclick="alternarAbaAuth('login')">Acessar Conta</button><button class="auth-tab-btn" onclick="alternarAbaAuth('cadastro')">Criar Nova Conta</button></div>
                         <form onsubmit="executarLogin(event)">
-                            <div class="form-group"><label>E-mail ou Usuário:</label><input type="text" id="auth-loginid" required></div>
-                            <div class="form-group"><label>Senha:</label><input type="password" id="auth-password" required></div>
-                            <button type="submit" class="btn-main" style="width:100%;">Entrar</button>
+                            <div class="form-group"><label>E-mail ou Nome de Usuário</label><input type="text" id="auth-loginid" placeholder="Digite seu e-mail ou username" required></div>
+                            <div class="form-group"><label>Senha de Acesso</label><input type="password" id="auth-password" placeholder="Sua senha secreta" required></div>
+                            <button type="submit" class="btn-main" style="width:100%; margin-top:10px; padding: 14px; font-size: 1.05rem;">Entrar na Plataforma</button>
                         </form>
                     </div>`;
             } else {
                 target.innerHTML = `
                     <div class="form-card">
-                        <div class="auth-tabs"><button class="auth-tab-btn" onclick="alternarAbaAuth('login')">Entrar</button><button class="auth-tab-btn active" onclick="alternarAbaAuth('cadastro')">Cadastrar</button></div>
+                        <div class="auth-tabs"><button class="auth-tab-btn" onclick="alternarAbaAuth('login')">Acessar Conta</button><button class="auth-tab-btn active" onclick="alternarAbaAuth('cadastro')">Criar Nova Conta</button></div>
                         <form onsubmit="executarCadastro(event)">
-                            <div class="form-group"><label>E-mail:</label><input type="email" id="auth-email" required></div>
-                            <div class="form-group"><label>Usuário:</label><input type="text" id="auth-username" required></div>
-                            <div class="form-group"><label>Senha:</label><input type="password" id="auth-password" required></div>
-                            <button type="submit" class="btn-main" style="width:100%;">Cadastrar</button>
+                            <div class="form-group"><label>Endereço de E-mail</label><input type="email" id="auth-email" placeholder="seu@email.com" required></div>
+                            <div class="form-group"><label>Nome de Usuário (Nickname)</label><input type="text" id="auth-username" placeholder="Como você quer ser chamado?" required></div>
+                            <div class="form-group"><label>Senha Segura</label><input type="password" id="auth-password" placeholder="Mínimo de 6 caracteres" required></div>
+                            <button type="submit" class="btn-main" style="width:100%; margin-top:10px; padding: 14px; font-size: 1.05rem; background: linear-gradient(135deg, #10b981 0%, #047857 100%);">Finalizar Cadastro</button>
                         </form>
                     </div>`;
             }
@@ -326,33 +346,19 @@
             return logado.username.toLowerCase() === autorPost.toLowerCase();
         }
 
-        /* --- SISTEMA DE REAÇÕES (LIMITADO A 1 POR PESSOA) --- */
-
+        /* --- REAÇÕES --- */
         function processarReacaoObjeto(reacoes, username, tipo) {
             let r = reacoes;
-            // Se o dado for nulo, inválido ou legado (numérico), reinicia estruturado
-            if (!r || typeof r !== 'object' || Array.isArray(r)) {
-                r = { like: [], smile: [], neutral: [], dislike: [], angry: [] };
-            }
+            if (!r || typeof r !== 'object' || Array.isArray(r)) r = { like: [], smile: [], neutral: [], dislike: [], angry: [] };
             const keys = ['like', 'smile', 'neutral', 'dislike', 'angry'];
-            keys.forEach(k => {
-                if (!Array.isArray(r[k])) r[k] = [];
-            });
+            keys.forEach(k => { if (!Array.isArray(r[k])) r[k] = []; });
 
-            // Localiza se o usuário já tem uma reação ativa neste post
             let reacaoAtual = null;
-            keys.forEach(k => {
-                if (r[k].includes(username)) reacaoAtual = k;
-            });
+            keys.forEach(k => { if (r[k].includes(username)) reacaoAtual = k; });
 
-            if (reacaoAtual === tipo) {
-                // Remove voto caso clique no mesmo emoji
-                r[tipo] = r[tipo].filter(u => u !== username);
-            } else {
-                // Remove o voto antigo e insere no novo emoji escolhido
-                if (reacaoAtual) {
-                    r[reacaoAtual] = r[reacaoAtual].filter(u => u !== username);
-                }
+            if (reacaoAtual === tipo) { r[tipo] = r[tipo].filter(u => u !== username); } 
+            else {
+                if (reacaoAtual) r[reacaoAtual] = r[reacaoAtual].filter(u => u !== username);
                 r[tipo].push(username);
             }
             return r;
@@ -360,10 +366,7 @@
 
         function togglePopover(event, idPopover) {
             event.stopPropagation();
-            // Fecha outros menus abertos antes de abrir este
-            document.querySelectorAll('.reacoes-popover').forEach(p => {
-                if(p.id !== idPopover) p.classList.remove('show');
-            });
+            document.querySelectorAll('.reacoes-popover').forEach(p => { if(p.id !== idPopover) p.classList.remove('show'); });
             document.getElementById(idPopover).classList.toggle('show');
         }
 
@@ -374,22 +377,14 @@
             const keys = ['like', 'smile', 'neutral', 'dislike', 'angry'];
             
             let badgesHTML = '';
-            
             keys.forEach(k => {
                 let list = Array.isArray(r[k]) ? r[k] : [];
-                let totalVotos = list.length;
-                
-                // Trata reações legadas antigas de tipo número
-                if (typeof r[k] === 'number') totalVotos = r[k];
+                let totalVotos = typeof r[k] === 'number' ? r[k] : list.length;
                 
                 if (totalVotos > 0) {
                     const votou = logado && list.includes(logado.username);
                     const acaoReagir = isTopico ? `reagirTopico(event, '${k}')` : `reagirResposta(event, ${idResposta}, '${k}')`;
-                    badgesHTML += `
-                        <button type="button" class="reacao-badge ${votou ? 'votado' : ''}" onclick="${acaoReagir}">
-                            ${emojiMap[k]} <span>${totalVotos}</span>
-                        </button>
-                    `;
+                    badgesHTML += `<button type="button" class="reacao-badge ${votou ? 'votado' : ''}" onclick="${acaoReagir}">${emojiMap[k]} <span>${totalVotos}</span></button>`;
                 }
             });
 
@@ -397,20 +392,14 @@
             let popoverEmojisHTML = '';
             keys.forEach(k => {
                 const acaoReagir = isTopico ? `reagirTopico(event, '${k}')` : `reagirResposta(event, ${idResposta}, '${k}')`;
-                popoverEmojisHTML += `
-                    <button type="button" class="popover-emoji" onclick="${acaoReagir}" title="${k}">${emojiMap[k]}</button>
-                `;
+                popoverEmojisHTML += `<button type="button" class="popover-emoji" onclick="${acaoReagir}" title="${k}">${emojiMap[k]}</button>`;
             });
 
             return `
                 <div class="reacoes-container">
                     ${badgesHTML}
-                    <button type="button" class="btn-reagir-trigger" onclick="togglePopover(event, '${popoverId}')">
-                        😊 Reagir
-                    </button>
-                    <div class="reacoes-popover" id="${popoverId}" onclick="event.stopPropagation()">
-                        ${popoverEmojisHTML}
-                    </div>
+                    <button type="button" class="btn-reagir-trigger" onclick="togglePopover(event, '${popoverId}')">😊 Reagir</button>
+                    <div class="reacoes-popover" id="${popoverId}" onclick="event.stopPropagation()">${popoverEmojisHTML}</div>
                 </div>
             `;
         }
@@ -418,17 +407,16 @@
         async function reagirTopico(event, tipo) {
             if (event) { event.preventDefault(); event.stopPropagation(); }
             const logado = obterUsuarioLogado();
-            if(!logado) return alert("Faça login para reagir!");
+            if(!logado) return alert("Faça login para interagir!");
             let { data: t } = await dbClient.from('topicos').select('reacoes').eq('id', idTopico).single();
-            let reacoes = processarReacaoObjeto(t.reacoes, logado.username, tipo);
-            await dbClient.from('topicos').update({ reacoes: reacoes }).eq('id', idTopico);
+            await dbClient.from('topicos').update({ reacoes: processarReacaoObjeto(t.reacoes, logado.username, tipo) }).eq('id', idTopico);
             window.location.reload();
         }
 
         async function reagirResposta(event, idResposta, tipo) {
             if (event) { event.preventDefault(); event.stopPropagation(); }
             const logado = obterUsuarioLogado();
-            if(!logado) return alert("Faça login para reagir!");
+            if(!logado) return alert("Faça login para interagir!");
             let { data: t } = await dbClient.from('topicos').select('respostas').eq('id', idTopico).single();
             let lista = t.respostas;
             let respIndex = lista.findIndex(r => r.id === idResposta);
@@ -439,18 +427,17 @@
             }
         }
 
-        /* --- SESSÃO DE EDIÇÃO INLINE --- */
-
+        /* --- EDIÇÃO INLINE --- */
         function abrirEdicao(idDOM, isTopico, idResposta = null) {
             const container = document.getElementById(idDOM);
             const currentText = container.innerText;
             const actionSave = isTopico ? `salvarEdicaoTopico()` : `salvarEdicaoResposta(${idResposta})`;
             
             container.innerHTML = `
-                <textarea id="input-${idDOM}" rows="5" style="width:100%; padding:15px; border:1px solid #cbd5e1; border-radius:8px; font-family:inherit; font-size:0.95rem; line-height:1.6; outline:none; resize:vertical; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">${currentText}</textarea>
-                <div style="margin-top:10px; display:flex; gap:10px;">
-                    <button onclick="${actionSave}" class="btn-main" style="padding:8px 16px;">Salvar Alterações</button>
-                    <button onclick="window.location.reload()" class="action-link">Cancelar</button>
+                <textarea id="input-${idDOM}" rows="4" style="width:100%; padding:15px; border:1px solid #3b82f6; border-radius:8px; font-family:inherit; font-size:1rem; outline:none; box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1); margin-bottom: 10px;">${currentText}</textarea>
+                <div style="display:flex; gap:10px;">
+                    <button onclick="${actionSave}" class="btn-main" style="padding:10px 20px; font-size: 0.85rem; background: linear-gradient(135deg, #10b981 0%, #047857 100%);">Salvar Alterações</button>
+                    <button onclick="window.location.reload()" class="btn-secondary" style="padding:10px 20px; font-size: 0.85rem;">Cancelar</button>
                 </div>
             `;
         }
@@ -477,25 +464,122 @@
         }
 
         async function excluirTopicoCompleto(id) {
-            if(confirm("Deletar permanentemente este tópico?")){
+            if(confirm("Deseja apagar este tópico de forma irreversível?")){
                 await dbClient.from('topicos').delete().eq('id', id);
                 window.location.href = "forum.html";
             }
         }
 
         async function excluirRespostaIndividual(idTopico, idResposta) {
-            if(confirm("Remover comentário?")){
+            if(confirm("Remover este comentário da discussão?")){
                 let { data: t } = await dbClient.from('topicos').select('respostas').eq('id', idTopico).single();
                 if(t && Array.isArray(t.respostas)) {
-                    let novasResp = t.respostas.filter(r => r.id !== idResposta);
+                    // Além de apagar a resposta pai, limpa as filhas pra não deixar orfãs visuais
+                    let novasResp = t.respostas.filter(r => r.id !== idResposta && r.parent_id !== idResposta);
                     await dbClient.from('topicos').update({ respostas: novasResp }).eq('id', idTopico);
                     window.location.reload();
                 }
             }
         }
 
-        /* --- PERFIL DO USUÁRIO (PRIVADO/PÚBLICO, BIO, ESTATÍSTICAS) --- */
+        /* --- RESPOSTAS ANINHADAS (NOVO SISTEMA) --- */
+        window.abrirFormRespostaTopico = function(idAlvo, isTopico) {
+            const containerAlvo = document.getElementById(`reply-box-${idAlvo}`);
+            const logado = obterUsuarioLogado();
+            
+            if(!logado) {
+                alert("Faça login para interagir na discussão.");
+                window.location.href = 'forum.html?action=auth';
+                return;
+            }
 
+            // Remove formulários abertos em outros lugares
+            document.querySelectorAll('.inline-reply-box').forEach(b => b.innerHTML = '');
+
+            containerAlvo.innerHTML = `
+                <div style="background: #f8fafc; border: 1px solid #cbd5e1; padding: 20px; border-radius: 12px; margin-top: 15px; border-left: 4px solid #3b82f6;">
+                    <h4 style="margin: 0 0 10px 0; font-size: 0.95rem; color: #0f172a;">Responder a esta mensagem:</h4>
+                    <textarea id="inline-reply-text-${idAlvo}" rows="3" style="width:100%; padding:12px; border:1px solid #cbd5e1; border-radius:8px; font-family:inherit; font-size:0.95rem; outline:none; resize:vertical; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02); margin-bottom: 15px;" placeholder="Escreva seu comentário..."></textarea>
+                    <div style="display:flex; gap:10px;">
+                        <button onclick="postarRespostaAninhada(event, ${idTopico}, ${isTopico ? 'null' : idAlvo}, ${idAlvo})" class="btn-main" style="padding: 10px 20px; font-size: 0.85rem;">Publicar Resposta</button>
+                        <button onclick="document.getElementById('reply-box-${idAlvo}').innerHTML = ''" class="btn-secondary" style="padding: 10px 20px; font-size: 0.85rem;">Cancelar</button>
+                    </div>
+                </div>
+            `;
+            document.getElementById(`inline-reply-text-${idAlvo}`).focus();
+        }
+
+        window.postarRespostaAninhada = async function(e, idTopicoRef, parentId, idCaixaAlvo) {
+            e.preventDefault();
+            const logado = obterUsuarioLogado();
+            const texto = document.getElementById(`inline-reply-text-${idCaixaAlvo}`).value.trim();
+            if(!texto || !logado) return;
+
+            let { data: t } = await dbClient.from('topicos').select('respostas').eq('id', idTopicoRef).single();
+            let listaRespostas = Array.isArray(t.respostas) ? t.respostas : [];
+            
+            listaRespostas.push({
+                id: Date.now(),
+                parent_id: parentId, // CHAVE DO ANINHAMENTO NO JSON
+                autor: logado.username,
+                autor_avatar: logado.avatar || '',
+                autor_role: logado.role || 'user',
+                autor_bio: logado.bio || 'Membro do fórum',
+                data: new Date().toLocaleString('pt-BR'),
+                conteudo: texto,
+                editado: false,
+                reacoes: { like: [], smile: [], neutral: [], dislike: [], angry: [] }
+            });
+
+            const { error } = await dbClient.from('topicos').update({ respostas: listaRespostas }).eq('id', idTopicoRef);
+            if(error) {
+                alert("Erro ao publicar resposta: " + error.message);
+            } else {
+                window.location.reload();
+            }
+        }
+
+        /* --- RENDERIZAÇÃO DO TÓPICO COM ANINHAMENTO --- */
+        function renderizarBlocoResposta(r, tLogado, tIdTopico, ehRespostaDeResposta = false) {
+            const permissaoResp = checarPermissaoEscrita(r.autor);
+            const rIsAdm = r.autor_role === 'admin';
+            let respostasAvatar = gerarAvatarHTML(r.autor, r.autor_avatar, r.autor_role);
+            let flagEditResp = r.editado ? `<span class="flag-editado">(editado)</span>` : '';
+            
+            // Classe especial se for sub-comentário
+            const classeNested = ehRespostaDeResposta ? 'reply-nested' : '';
+
+            return `
+                <div class="post-card ${classeNested}">
+                    <div class="post-user">
+                        ${respostasAvatar}
+                        <div style="display:flex; flex-direction:column; align-items:${ehRespostaDeResposta ? 'flex-start' : 'center'}; gap: 2px;">
+                            <h4 class="user-name"><a href="forum.html?action=perfil&user=${r.autor}">${r.autor}</a></h4>
+                            <span class="user-badge ${rIsAdm ? 'badge-admin' : 'badge-user'}" style="margin-top:2px;">${rIsAdm ? 'ADM' : 'Membro'}</span>
+                        </div>
+                        <div class="user-bio-incard">${r.autor_bio || ''}</div>
+                    </div>
+                    <div class="post-body">
+                        <div>
+                            <div class="post-header">Respondido em ${r.data || 'Recente'} ${flagEditResp}</div>
+                            <p class="post-text" id="text-resp-${r.id}">${r.conteudo}</p>
+                        </div>
+                        <div class="post-footer">
+                            ${gerarComponenteReacoesHTML(r.reacoes, `text-resp-${r.id}`, false, r.id)}
+                            <div class="post-actions">
+                                ${tLogado ? `<button class="action-link" onclick="abrirFormRespostaTopico(${r.id}, false)">➥ Responder</button>` : ''}
+                                ${permissaoResp ? `<button class="action-link" onclick="abrirEdicao('text-resp-${r.id}', false, ${r.id})">✎ Editar</button>` : ''}
+                                ${permissaoResp ? `<button class="action-link delete" onclick="excluirRespostaIndividual(${tIdTopico}, ${r.id})">✖ Apagar</button>` : ''}
+                            </div>
+                        </div>
+                        <div id="reply-box-${r.id}" class="inline-reply-box"></div>
+                    </div>
+                </div>
+            `;
+        }
+
+
+        /* --- PERFIL DO USUÁRIO --- */
         async function renderizarPerfil() {
             const logado = obterUsuarioLogado();
             const perfilUserTarget = params.get('user') || (logado ? logado.username : null);
@@ -505,12 +589,12 @@
                 return;
             }
 
-            document.getElementById('forum-breadcrumbs').innerHTML = `<a href="index.html">Home</a> &gt; <a href="forum.html">Fórum</a> &gt; Perfil de ${perfilUserTarget}`;
+            document.getElementById('forum-breadcrumbs').innerHTML = `<a href="index.html">Home</a> &gt; <a href="forum.html">Fórum</a> &gt; Painel de <strong>${perfilUserTarget}</strong>`;
 
             let { data: uInfo } = await dbClient.from('usuarios').select('*').eq('username', perfilUserTarget).maybeSingle();
 
             if (!uInfo) {
-                target.innerHTML = `<div class="form-card"><h2>Usuário não encontrado</h2><p>O perfil para o usuário <strong>${perfilUserTarget}</strong> não existe.</p><a href="forum.html" class="btn-main">Voltar ao Fórum</a></div>`;
+                target.innerHTML = `<div class="form-card" style="text-align:center;"><h2>Usuário Fantasma</h2><p style="color:#64748b;">Não encontramos registros para <strong>${perfilUserTarget}</strong> nos nossos servidores.</p><a href="forum.html" class="btn-main" style="margin-top:15px;">Retornar ao Fórum/a></div>`;
                 return;
             }
 
@@ -519,22 +603,23 @@
             const canView = isOwnProfile || !isPrivado || (logado && logado.role === 'admin');
 
             let avatarHTML = gerarAvatarHTML(uInfo.username, uInfo.avatar, uInfo.role);
-            avatarHTML = avatarHTML.replace('class="user-avatar', 'class="user-avatar" style="width:120px; height:120px; font-size:3rem; margin-bottom:15px;"');
+            avatarHTML = avatarHTML.replace('class="user-avatar', 'class="user-avatar" style="width:140px; height:140px; font-size:3.5rem; margin-bottom:15px; border: 4px solid white; box-shadow: 0 4px 15px rgba(0,0,0,0.1);"');
 
             let contentHTML = '';
 
             if (!canView) {
                 contentHTML = `
+                    <div class="profile-header"></div>
                     <div class="profile-card">
                         <div class="profile-sidebar">
                             ${avatarHTML}
                             <h2 style="margin:5px 0;">${uInfo.username}</h2>
-                            <span class="user-badge ${uInfo.role === 'admin' ? 'badge-admin' : 'badge-user'}">${uInfo.role === 'admin' ? 'ADM' : 'Membro'}</span>
-                            <p style="color: #ef4444; font-weight: 700; margin-top: 15px;">🔒 Perfil Privado</p>
+                            <span class="user-badge ${uInfo.role === 'admin' ? 'badge-admin' : 'badge-user'}">${uInfo.role === 'admin' ? 'Administrador' : 'Membro Verificado'}</span>
                         </div>
-                        <div style="display:flex; align-items:center; justify-content:center; flex-direction:column; padding:40px; text-align:center;">
-                            <h3 style="margin:0 0 10px 0; font-size:1.4rem;">Este perfil é privado</h3>
-                            <p style="color:#64748b; margin:0;">Você não tem permissão para visualizar as estatísticas e postagens deste membro.</p>
+                        <div style="display:flex; align-items:center; justify-content:center; flex-direction:column; padding:60px 40px; text-align:center;">
+                            <div style="font-size: 3rem; margin-bottom: 15px;">🔒</div>
+                            <h3 style="margin:0 0 10px 0; font-size:1.6rem; color:#0f172a;">Acesso Restrito</h3>
+                            <p style="color:#64748b; margin:0; font-size: 1.05rem;">O usuário configurou sua conta de Hardware como <strong>Privada</strong>. Você não tem permissão para vasculhar este setup.</p>
                         </div>
                     </div>
                 `;
@@ -548,22 +633,15 @@
                         if (Array.isArray(t.respostas)) {
                             t.respostas.forEach(r => {
                                 if (r.autor.toLowerCase() === uInfo.username.toLowerCase()) {
-                                    comentariosCriados.push({
-                                        topicoId: t.id,
-                                        topicoTitulo: t.titulo,
-                                        data: r.data,
-                                        conteudo: r.conteudo
-                                    });
+                                    comentariosCriados.push({ topicoId: t.id, topicoTitulo: t.titulo, data: r.data, conteudo: r.conteudo });
                                 }
                             });
                         }
                     });
                 }
 
-                // Cálculo do Total de Reações Recebidas pelo Usuário
                 let totalReacoesRecebidas = 0;
                 const keys = ['like', 'smile', 'neutral', 'dislike', 'angry'];
-                
                 topicosCriados.forEach(t => {
                     if (t.reacoes && typeof t.reacoes === 'object') {
                         keys.forEach(k => {
@@ -573,7 +651,6 @@
                         });
                     }
                 });
-
                 todosTopicos.forEach(t => {
                     if (Array.isArray(t.respostas)) {
                         t.respostas.forEach(r => {
@@ -592,88 +669,69 @@
                 if(topicosCriados.length > 0) {
                     topicosCriados.forEach(t => {
                         topicosListHTML += `
-                            <div style="padding:12px; border-bottom:1px solid #f1f5f9;">
-                                <a href="forum.html?id=${t.id}&topico=${slugify(t.titulo)}" style="color:#3b82f6; font-weight:700; text-decoration:none; font-size:0.95rem;">${t.titulo}</a>
-                                <div style="font-size:0.75rem; color:#94a3b8; margin-top:2px;">Postado em ${t.data || 'Recente'}</div>
+                            <div style="padding:15px; border:1px solid #e2e8f0; border-radius: 8px; margin-bottom: 10px; background: #f8fafc; transition: border-color 0.2s;">
+                                <a href="forum.html?id=${t.id}&topico=${slugify(t.titulo)}" style="color:#0f172a; font-weight:700; text-decoration:none; font-size:1.05rem; display:block; margin-bottom: 5px;">${t.titulo}</a>
+                                <div style="font-size:0.8rem; color:#64748b; font-weight: 500;">Publicado em ${t.data || 'Recente'}</div>
                             </div>
                         `;
                     });
                 } else {
-                    topicosListHTML = `<p style="color:#64748b; font-size:0.9rem; padding:10px;">Nenhum tópico criado ainda.</p>`;
-                }
-
-                let comentariosListHTML = '';
-                if(comentariosCriados.length > 0) {
-                    comentariosCriados.slice(0, 5).forEach(c => {
-                        comentariosListHTML += `
-                            <div style="padding:12px; border-bottom:1px solid #f1f5f9;">
-                                <div style="font-size:0.85rem; color:#475569;">Respondeu em <a href="forum.html?id=${c.topicoId}&topico=${slugify(c.topicoTitulo)}" style="color:#0f172a; font-weight:600; text-decoration:none;">"${c.topicoTitulo}"</a></div>
-                                <div style="font-size:0.9rem; font-style:italic; color:#64748b; margin:4px 0;">"${c.conteudo.length > 100 ? c.conteudo.substring(0, 100) + '...' : c.conteudo}"</div>
-                                <div style="font-size:0.75rem; color:#94a3b8;">Em ${c.data || 'Recente'}</div>
-                            </div>
-                        `;
-                    });
-                } else {
-                    comentariosListHTML = `<p style="color:#64748b; font-size:0.9rem; padding:10px;">Nenhum comentário feito ainda.</p>`;
+                    topicosListHTML = `<p style="color:#64748b; font-size:0.95rem; font-style: italic;">Ainda não publicou nenhuma discussão.</p>`;
                 }
 
                 let ownProfileSettingsHTML = '';
                 if(isOwnProfile) {
                     ownProfileSettingsHTML = `
-                        <div style="margin-top:25px; border-top:1px solid #e2e8f0; padding-top:20px; text-align: left;">
-                            <h3 style="font-size:1.1rem; font-weight:800; margin-bottom:15px; text-align: center;">Editar Perfil</h3>
+                        <div style="margin-top:35px; text-align: left; width: 100%;">
+                            <h3 style="font-size:1.05rem; font-weight:800; margin-bottom:15px; color: #0f172a; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px;">Ajustes de Perfil</h3>
                             <div class="form-group">
-                                <label>Minha Bio:</label>
-                                <textarea id="edit-bio" rows="3">${uInfo.bio || ''}</textarea>
+                                <label style="font-size: 0.8rem;">Minha Biografia (Setup, Specs, etc):</label>
+                                <textarea id="edit-bio" rows="3" style="font-size: 0.9rem;">${uInfo.bio || ''}</textarea>
                             </div>
                             <div class="form-group">
-                                <label>URL do Avatar:</label>
-                                <input type="text" id="edit-avatar" value="${uInfo.avatar || ''}">
+                                <label style="font-size: 0.8rem;">Link da Foto de Perfil (Avatar):</label>
+                                <input type="text" id="edit-avatar" value="${uInfo.avatar || ''}" style="font-size: 0.9rem;" placeholder="https://...">
                             </div>
-                            <div class="form-group" style="flex-direction:row; align-items:center; gap:8px; margin: 15px 0;">
-                                <input type="checkbox" id="edit-privado" ${isPrivado ? 'checked' : ''} style="width:18px; height:18px; cursor:pointer;">
-                                <label for="edit-privado" style="cursor:pointer; font-weight:600; font-size: 0.8rem;">Definir como Perfil Privado</label>
+                            <div class="form-group" style="flex-direction:row; align-items:center; gap:10px; margin: 20px 0; background: #f8fafc; padding: 12px; border-radius: 8px; border: 1px solid #e2e8f0;">
+                                <input type="checkbox" id="edit-privado" ${isPrivado ? 'checked' : ''} style="width:20px; height:20px; cursor:pointer;">
+                                <label for="edit-privado" style="cursor:pointer; font-weight:700; font-size: 0.85rem; color: #ef4444; margin: 0;">Ocultar meu perfil (Privado)</label>
                             </div>
-                            <button onclick="salvarAlteracoesPerfil()" class="btn-main" style="width:100%; margin-top:10px;">Salvar Alterações</button>
+                            <button onclick="salvarAlteracoesPerfil()" class="btn-main" style="width:100%; margin-top:5px; background: linear-gradient(135deg, #10b981 0%, #047857 100%);">Atualizar Conta</button>
                         </div>
                     `;
                 }
 
                 contentHTML = `
+                    <div class="profile-header"></div>
                     <div class="profile-card">
                         <div class="profile-sidebar">
                             ${avatarHTML}
-                            <h2 style="margin:5px 0 2px 0; word-break: break-all;">${uInfo.username}</h2>
-                            <span class="user-badge ${uInfo.role === 'admin' ? 'badge-admin' : 'badge-user'}" style="margin-bottom:10px;">${uInfo.role === 'admin' ? 'ADM' : 'Membro'}</span>
-                            <div style="font-size:0.85rem; color:#64748b; font-style:italic; margin-top:5px; word-break: break-word; line-height:1.5;">
-                                ${uInfo.bio || 'Sem biografia definida.'}
+                            <h2 style="margin:5px 0 5px 0; word-break: break-all; font-size: 1.5rem; color: #0f172a;">${uInfo.username}</h2>
+                            <span class="user-badge ${uInfo.role === 'admin' ? 'badge-admin' : 'badge-user'}" style="margin-bottom:15px;">${uInfo.role === 'admin' ? 'Administrador Chefe' : 'Membro Verificado'}</span>
+                            <div style="font-size:0.9rem; color:#475569; margin-top:5px; word-break: break-word; line-height:1.6; background: #f8fafc; padding: 15px; border-radius: 8px; border: 1px dashed #cbd5e1; width: 100%;">
+                                ${uInfo.bio || 'Este membro não adicionou nada ainda.'}
                             </div>
                             ${ownProfileSettingsHTML}
                         </div>
-                        <div>
+                        <div style="padding-top: 20px;">
                             <div class="profile-stats-grid">
                                 <div class="stat-box">
                                     <div class="stat-num">${topicosCriados.length}</div>
-                                    <div class="stat-label">Tópicos</div>
+                                    <div class="stat-label">Tópicos Feitos</div>
                                 </div>
                                 <div class="stat-box">
                                     <div class="stat-num">${comentariosCriados.length}</div>
-                                    <div class="stat-label">Comentários</div>
+                                    <div class="stat-label">Respostas</div>
                                 </div>
-                                <div class="stat-box" style="background: #f0fdf4; border-color: #bbf7d0;">
+                                <div class="stat-box" style="background: linear-gradient(135deg, #f0fdf4, #dcfce7); border-color: #bbf7d0;">
                                     <div class="stat-num" style="color: #16a34a;">${totalReacoesRecebidas}</div>
-                                    <div class="stat-label" style="color: #16a34a;">Reações</div>
+                                    <div class="stat-label" style="color: #15803d;">Reações (Karma)</div>
                                 </div>
                             </div>
 
-                            <div style="margin-bottom:25px;">
-                                <h3 style="font-size:1.1rem; font-weight:800; border-bottom:2px solid #e2e8f0; padding-bottom:8px; margin-bottom:12px; text-align: left;">Tópicos Criados</h3>
+                            <div style="margin-bottom:35px;">
+                                <h3 style="font-size:1.2rem; font-weight:800; border-bottom:2px solid #e2e8f0; padding-bottom:10px; margin-bottom:15px; color: #0f172a;">Últimas Discussões Criadas</h3>
                                 ${topicosListHTML}
-                            </div>
-
-                            <div>
-                                <h3 style="font-size:1.1rem; font-weight:800; border-bottom:2px solid #e2e8f0; padding-bottom:8px; margin-bottom:12px; text-align: left;">Comentários Recentes</h3>
-                                ${comentariosListHTML}
                             </div>
                         </div>
                     </div>
@@ -681,7 +739,7 @@
             }
 
             target.innerHTML = `
-                <div><a href="forum.html" class="btn-main" style="background:#64748b; margin-bottom:20px;">⬅ Voltar ao Fórum</a></div>
+                <div><a href="forum.html" class="btn-secondary" style="margin-bottom:20px; display:inline-block;">⬅ Retornar à Comunidade</a></div>
                 ${contentHTML}
             `;
         }
@@ -700,19 +758,18 @@
             }).eq('username', logado.username);
 
             if(error) {
-                alert("Erro ao salvar alterações.");
+                alert("Erro ao sincronizar com o servidor.");
             } else {
                 logado.bio = novaBio;
                 logado.avatar = novoAvatar;
                 logado.privado = isPrivado;
                 localStorage.setItem('qp_user_session', JSON.stringify(logado));
-                alert("Perfil updated!");
+                alert("Configurações atualizadas com sucesso!");
                 window.location.reload();
             }
         }
 
         /* --- CRIAÇÃO E RENDERIZAÇÃO GERAL --- */
-
         async function criarNovoTopicoPost(e) {
             e.preventDefault();
             const logado = obterUsuarioLogado();
@@ -733,49 +790,33 @@
             window.location.href = `forum.html?id=${novo.id}&topico=${slugify(novo.titulo)}`;
         }
 
-        async function postarRespostaComentario(e, id) {
-            e.preventDefault();
-            const logado = obterUsuarioLogado();
-            let { data: t } = await dbClient.from('topicos').select('respostas').eq('id', id).single();
-            
-            let listaRespostas = Array.isArray(t.respostas) ? t.respostas : [];
-            listaRespostas.push({
-                id: Date.now(),
-                autor: logado.username,
-                autor_avatar: logado.avatar || '',
-                autor_role: logado.role || 'user',
-                autor_bio: logado.bio || 'Membro do fórum',
-                data: new Date().toLocaleString('pt-BR'),
-                conteudo: document.getElementById('resp-text').value.trim(),
-                editado: false,
-                reacoes: { like: [], smile: [], neutral: [], dislike: [], angry: [] }
-            });
-
-            await dbClient.from('topicos').update({ respostas: listaRespostas }).eq('id', id);
-            window.location.reload();
-        }
-
         async function renderizarListaTopicos() {
             let { data: listaTopicos } = await dbClient.from('topicos').select('*').order('id', { ascending: false });
             let listaHTML = '';
             if(listaTopicos && listaTopicos.length > 0) {
                 listaTopicos.forEach(item => {
                     let totalResp = Array.isArray(item.respostas) ? item.respostas.length : 0;
+                    
+                    // Tag Visual para tópicos quentes
+                    let tagHot = totalResp > 5 ? `<span style="background:#ef4444; color:white; font-size:0.7rem; padding:2px 8px; border-radius:12px; margin-left:8px; vertical-align:middle; text-transform:uppercase; font-weight:800;">Em Alta</span>` : '';
+
                     listaHTML += `
-                        <div class="topic-row-card">
+                        <a href="forum.html?id=${item.id}&topico=${slugify(item.titulo)}" class="topic-row-card">
                             <div class="topic-info">
-                                <h3><a href="forum.html?id=${item.id}&topico=${slugify(item.titulo)}" style="color:inherit; text-decoration:none;">${item.titulo}</a></h3>
+                                <h3>${item.titulo} ${tagHot}</h3>
                                 <div class="topic-details">
-                                    Por <strong><a href="forum.html?action=perfil&user=${item.autor}" style="color:inherit; text-decoration:none; font-weight:700;">${item.autor}</a></strong> em ${item.data ? item.data.split(' ')[0] : ''}
+                                    Iniciado por <strong>${item.autor}</strong> • ${item.data ? item.data.split(' ')[0] : ''}
                                 </div>
                             </div>
-                            <div class="topic-replies-badge">${totalResp} respostas</div>
-                        </div>`;
+                            <div class="topic-replies-badge">
+                                💬 ${totalResp}
+                            </div>
+                        </a>`;
                 });
             } else {
-                listaHTML = `<p style="color:#64748b; padding:20px 0;">Nenhum tópico encontrado.</p>`;
+                listaHTML = `<div class="form-card" style="text-align:center;"><p style="color:#64748b; font-size: 1.1rem; margin:0;">Inicie uma discussão!</p></div>`;
             }
-            target.innerHTML = `<div class="forum-action-header"><h2>Discussões do Fórum</h2><a href="forum.html?action=novo" class="btn-main">+ Iniciar Tópico</a></div>${listaHTML}`;
+            target.innerHTML = `<div class="forum-action-header"><h2>Fórum</h2><a href="forum.html?action=novo" class="btn-main">+ Nova Discussão</a></div>${listaHTML}`;
         }
 
         async function inicializarForum() {
@@ -792,89 +833,109 @@
                 else {
                     target.innerHTML = `
                         <div class="form-card">
-                            <h2>Iniciar Nova Discussão</h2>
+                            <h2 style="border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;">Criar Novo Tópico</h2>
                             <form onsubmit="criarNovoTopicoPost(event)">
-                                <div class="form-group"><label>Título:</label><input type="text" id="new-title" required></div>
-                                <div class="form-group"><label>Mensagem:</label><textarea id="new-content" rows="6" required></textarea></div>
-                                <button type="submit" class="btn-main">Publicar Tópico</button>
+                                <div class="form-group">
+                                    <label>Título</label>
+                                    <input type="text" id="new-title" placeholder="Ex: Dúvida sobre compatibilidade AM4 e AM5..." required style="font-size: 1.1rem;">
+                                </div>
+                                <div class="form-group">
+                                    <label>Desenvolva sua ideia ou dúvida:</label>
+                                    <textarea id="new-content" rows="8" placeholder="Escreva os detalhes, especificações da sua máquina, etc..." required></textarea>
+                                </div>
+                                <div style="display:flex; justify-content:space-between; align-items:center; margin-top:20px;">
+                                    <a href="forum.html" class="btn-secondary" style="text-decoration:none;">Cancelar</a>
+                                    <button type="submit" class="btn-main" style="padding: 14px 30px; font-size: 1.1rem;">Publicar na Comunidade</button>
+                                </div>
                             </form>
                         </div>`;
                 }
             } else if (idTopico) {
                 let { data: t } = await dbClient.from('topicos').select('*').eq('id', idTopico).maybeSingle();
                 if(t) {
-                    // Sincroniza e otimiza os breadcrumbs com o nome real do tópico atual
-                    document.getElementById('forum-breadcrumbs').innerHTML = `<a href="index.html">Home</a> &gt; <a href="forum.html">Fórum</a> &gt; ${t.titulo}`;
+                    document.getElementById('forum-breadcrumbs').innerHTML = `<a href="index.html">Home</a> &gt; <a href="forum.html">Fórum</a> &gt; <strong style="color:#0f172a;">${t.titulo}</strong>`;
                     
                     const permissaoTopico = checarPermissaoEscrita(t.autor);
                     const tIsAdm = t.autor_role === 'admin';
+                    const tLogado = obterUsuarioLogado();
                     let avatarTopicoHTML = gerarAvatarHTML(t.autor, t.autor_avatar, t.autor_role);
 
+                    // --- NOVA LÓGICA DE RENDERIZAÇÃO ANINHADA (FILTRANDO O ARRAY) ---
                     let respostasHTML = '';
-                    let listaRespostas = Array.isArray(t.respostas) ? t.respostas : [];
+                    let listaRespostasGeral = Array.isArray(t.respostas) ? t.respostas : [];
                     
-                    listaRespostas.forEach(r => {
-                        const permissaoResp = checarPermissaoEscrita(r.autor);
-                        const rIsAdm = r.autor_role === 'admin';
-                        let respostasAvatar = gerarAvatarHTML(r.autor, r.autor_avatar, r.autor_role);
-                        let flagEditResp = r.editado ? `<span class="flag-editado">(editado)</span>` : '';
+                    // Separa pais e filhas baseados na chave 'parent_id' que existe nos objetos da JSON
+                    const principais = listaRespostasGeral.filter(r => !r.parent_id);
+                    const filhas = listaRespostasGeral.filter(r => r.parent_id);
 
-                        respostasHTML += `
-                            <div class="post-card">
-                                <div class="post-user">
-                                    ${respostasAvatar}
-                                    <h4 class="user-name"><a href="forum.html?action=perfil&user=${r.autor}">${r.autor}</a></h4>
-                                    <span class="user-badge ${rIsAdm ? 'badge-admin' : 'badge-user'}">${rIsAdm ? 'ADM' : 'Membro'}</span>
-                                    <div class="user-bio-incard">${r.autor_bio || 'Membro do fórum'}</div>
-                                </div>
-                                <div class="post-body">
-                                    <div>
-                                        <div class="post-header">Postado em ${r.data || 'Recente'} ${flagEditResp}</div>
-                                        <p class="post-text" id="text-resp-${r.id}">${r.conteudo}</p>
-                                    </div>
-                                    <div class="post-footer">
-                                        ${gerarComponenteReacoesHTML(r.reacoes, `text-resp-${r.id}`, false, r.id)}
-                                        <div class="post-actions">
-                                            ${permissaoResp ? `<button class="action-link" onclick="abrirEdicao('text-resp-${r.id}', false, ${r.id})">Editar</button>` : ''}
-                                            ${permissaoResp ? `<button class="action-link delete" onclick="excluirRespostaIndividual(${t.id}, ${r.id})">Excluir</button>` : ''}
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>`;
+                    // Loop nas respostas principais (nível raiz)
+                    principais.forEach(r => {
+                        respostasHTML += renderizarBlocoResposta(r, tLogado, t.id, false);
+                        
+                        // Busca as filhas atreladas a esse comentário principal
+                        const subRespostas = filhas.filter(sub => sub.parent_id === r.id);
+                        subRespostas.forEach(sub => {
+                            respostasHTML += renderizarBlocoResposta(sub, tLogado, t.id, true);
+                        });
                     });
 
-                    let formRespostaHTML = `<div class="auth-gate-box"><p>Você precisa estar logado para responder.</p><a href="forum.html?action=auth" class="btn-main">Entrar</a></div>`;
-                    if(obterUsuarioLogado()) {
-                        formRespostaHTML = `<div class="form-card"><h3>Deixar uma Resposta</h3><form onsubmit="postarRespostaComentario(event, ${t.id})"><div class="form-group"><textarea id="resp-text" rows="4" required></textarea></div><button type="submit" class="btn-main">Enviar Comentário</button></form></div>`;
+                    let formRespostaHTML = `<div class="auth-gate-box"><p>Participe do QualProcessador para interagir.</p><a href="forum.html?action=auth" class="btn-main">Entrar ou Cadastrar</a></div>`;
+                    if(tLogado) {
+                        formRespostaHTML = `
+                            <div class="form-card" style="border-top: 4px solid #3b82f6; border-radius: 0 0 12px 12px; margin-top: -20px; box-shadow: none;">
+                                <h3 style="margin: 0 0 15px 0; font-size: 1.2rem; color: #0f172a;">Escrever uma Resposta Geral</h3>
+                                <form onsubmit="postarRespostaAninhada(event, ${t.id}, null, 'general')">
+                                    <div class="form-group">
+                                        <textarea id="inline-reply-text-general" rows="5" placeholder="Adicione sua visão técnica ou contribuição..." required></textarea>
+                                    </div>
+                                    <div style="display:flex; justify-content:flex-end;">
+                                        <button type="submit" class="btn-main" style="padding: 12px 25px;">Publicar Comentário</button>
+                                    </div>
+                                </form>
+                            </div>`;
                     }
 
                     let flagEditTopico = t.editado ? `<span class="flag-editado">(editado)</span>` : '';
 
                     target.innerHTML = `
-                        <div><a href="forum.html" class="btn-main" style="background:#64748b; margin-bottom:15px;">⬅ Voltar ao Fórum</a></div>
-                        <div class="topic-header-panel"><h1>${t.titulo}</h1></div>
+                        <div><a href="forum.html" class="btn-secondary" style="margin-bottom:15px; display:inline-flex; align-items:center; gap:5px;">⬅ Voltar aos Tópicos</a></div>
                         
-                        <div class="post-card" style="border-left:5px solid #38bdf8;">
+                        <div class="topic-header-panel">
+                            <h1>${t.titulo}</h1>
+                            <div style="font-size: 0.85rem; color: #64748b; font-weight: 700; background: #f1f5f9; padding: 8px 15px; border-radius: 20px;">
+                                Tópico Oficial
+                            </div>
+                        </div>
+                        
+                        <div class="post-card" style="border-left: 5px solid #38bdf8;">
                             <div class="post-user">
                                 ${avatarTopicoHTML}
                                 <h4 class="user-name"><a href="forum.html?action=perfil&user=${t.autor}">${t.autor}</a></h4>
-                                <span class="user-badge ${tIsAdm ? 'badge-admin' : 'badge-user'}">${tIsAdm ? 'ADM' : 'Membro'}</span>
+                                <span class="user-badge ${tIsAdm ? 'badge-admin' : 'badge-user'}">${tIsAdm ? 'Administrador' : 'Membro'}</span>
                                 <div class="user-bio-incard">${t.autor_bio || ''}</div>
                             </div>
                             <div class="post-body">
                                 <div>
-                                    <div class="post-header">Postado em ${t.data || 'Recente'} ${flagEditTopico}</div>
+                                    <div class="post-header">Publicado na comunidade em ${t.data || 'Recente'} ${flagEditTopico}</div>
                                     <p class="post-text" id="text-topico">${t.conteudo}</p>
                                 </div>
                                 <div class="post-footer">
                                     ${gerarComponenteReacoesHTML(t.reacoes, 'text-topico', true)}
                                     <div class="post-actions">
-                                        ${permissaoTopico ? `<button class="action-link" onclick="abrirEdicao('text-topico', true)">Editar</button>` : ''}
-                                        ${permissaoTopico ? `<button class="action-link delete" onclick="excluirTopicoCompleto(${t.id})">Excluir Tópico</button>` : ''}
+                                        ${tLogado ? `<button class="action-link" onclick="abrirFormRespostaTopico('general', true)">➥ Responder Tópico</button>` : ''}
+                                        ${permissaoTopico ? `<button class="action-link" onclick="abrirEdicao('text-topico', true)">✎ Editar</button>` : ''}
+                                        ${permissaoTopico ? `<button class="action-link delete" onclick="excluirTopicoCompleto(${t.id})">✖ Apagar Tópico Inteiro</button>` : ''}
                                     </div>
                                 </div>
+                                <div id="reply-box-general" class="inline-reply-box"></div>
                             </div>
                         </div>
+                        
+                        <h3 style="margin: 30px 0 20px 0; font-size: 1.3rem; color: #0f172a; display: flex; align-items: center; gap: 10px;">
+                            Respostas da Comunidade
+                            <span style="background: #e2e8f0; color: #475569; padding: 4px 12px; border-radius: 20px; font-size: 0.9rem;">${listaRespostasGeral.length}</span>
+                        </h3>
+                        
                         ${respostasHTML}
                         ${formRespostaHTML}
                     `;
