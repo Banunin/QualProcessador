@@ -7,8 +7,6 @@
     
     <title>QualProcessador | Compare Processadores AMD e Intel para Jogos e Trabalho</title>
     
-    
-    
     <meta name="description" content="Compare especificações técnicas detalhadas, analise benchmarks de hardware em jogos ou produtividade e tire dúvidas na nossa comunidade. Descubra qual processador comprar para o seu setup.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -173,15 +171,28 @@
 
     <script src="dados.js"></script>
     <script>
+        // ---------------------------------------------------------
+        // FUNÇÃO DE SEGURANÇA: Escapar HTML
+        // Transforma caracteres especiais para evitar execução de scripts
+        // ---------------------------------------------------------
+        function escapeHTML(str) {
+            if (str === null || str === undefined) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
         // Função auxiliar para gerar slugs limpos
         function gerarSlug(texto) {
             return (texto || '').toLowerCase()
-                .normalize("NFD").replace(/[\u0300-\u036f]/g, "") // Remove acentos
-                .replace(/[^a-z0-9]+/g, '-')                   // Troca caracteres especiais por '-'
-                .replace(/(^-|-$)/g, '');                       // Remove traço inicial/final
+                .normalize("NFD").replace(/[\u0300-\u036f]/g, "") 
+                .replace(/[^a-z0-9]+/g, '-')                   
+                .replace(/(^-|-$)/g, '');                       
         }
 
-        // Monta a URL direta para detalhes.html (compatível com Live Server sem tentar abrir subpastas)
         function obterUrlSeoCpu(cpu) {
             if (!cpu) return 'detalhes.html';
             const slugNome = gerarSlug(cpu.nome);
@@ -294,22 +305,32 @@
 
                 cpusFiltradas.forEach(cpu => {
                     const card = document.createElement('div');
-                    const classeBtn = cpu.marca === 'amd' ? 'btn-amd' : 'btn-intel';
-                    card.className = `cpu-card brand-${cpu.marca}`;
+                    // Sanitização da marca garantindo que será seguro usar como classe
+                    const marcaSegura = escapeHTML(cpu.marca || 'desconhecida');
+                    const classeBtn = marcaSegura === 'amd' ? 'btn-amd' : 'btn-intel';
                     
-                    // Redirecionamento direto para detalhes.html
+                    card.className = `cpu-card brand-${marcaSegura}`;
+                    
                     const urlDetalhes = obterUrlSeoCpu(cpu);
+
+                    // Aplicando a sanitização antes de jogar no innerHTML
+                    const nomeSeguro = escapeHTML(cpu.nome);
+                    const detalheSeguro = escapeHTML(cpu.detalhe);
+                    const coresSeguro = escapeHTML(cpu.cores);
+                    const threadsSegura = escapeHTML(cpu.threads);
+                    const freqBoostSegura = escapeHTML(cpu.freqBoost);
+                    const tdpSeguro = escapeHTML(cpu.tdp);
 
                     card.innerHTML = `
                         <div>
                             <div class="card-top">
-                                <h2>${cpu.nome}</h2>
+                                <h2>${nomeSeguro}</h2>
                             </div>
-                            <p class="cpu-tagline">${cpu.detalhe}</p>
+                            <p class="cpu-tagline">${detalheSeguro}</p>
                             <div class="card-specs">
-                                <div class="card-spec-item"><strong>${cpu.cores}/${cpu.threads}</strong><span>Cores/Threads</span></div>
-                                <div class="card-spec-item"><strong>${cpu.freqBoost}</strong><span>Boost Clock</span></div>
-                                <div class="card-spec-item"><strong>${cpu.tdp}</strong><span>TDP</span></div>
+                                <div class="card-spec-item"><strong>${coresSeguro}/${threadsSegura}</strong><span>Cores/Threads</span></div>
+                                <div class="card-spec-item"><strong>${freqBoostSegura}</strong><span>Boost Clock</span></div>
+                                <div class="card-spec-item"><strong>${tdpSeguro}</strong><span>TDP</span></div>
                             </div>
                         </div>
                         <a href="${urlDetalhes}" class="btn-read ${classeBtn}">Visualizar Ficha Completa</a>
@@ -331,7 +352,6 @@
         document.getElementById('filtro-preco').addEventListener('change', (e) => { filtroPreco = e.target.value; renderizarCards(); });
         document.getElementById('ordenar-por').addEventListener('change', (e) => { tipoOrdenacao = e.target.value; renderizarCards(); });
 
-        /* BARRA DE BUSCA CORRIGIDA COM SUPORTE A ENTER E URLs DIRETAS SEM PASTAS FANTASMAS */
         const campoBusca = document.getElementById('campo-busca');
         const caixaSugestoes = document.getElementById('caixa-sugestoes');
 
@@ -365,9 +385,13 @@
                             const item = document.createElement('div');
                             item.className = 'suggestion-item';
                             
+                            // Usando escapeHTML na caixa de busca
+                            const nomeSeguro = escapeHTML(cpu.nome);
+                            const soqueteSeguro = escapeHTML((cpu.soquete || cpu.socket || '').toUpperCase());
+
                             item.innerHTML = `
-                                <span>${cpu.nome}</span>
-                                <small style="font-size:0.75rem; color:#64748b; font-weight:600;">${(cpu.soquete || cpu.socket || '').toUpperCase()}</small>
+                                <span>${nomeSeguro}</span>
+                                <small style="font-size:0.75rem; color:#64748b; font-weight:600;">${soqueteSeguro}</small>
                             `;
 
                             item.addEventListener('click', () => { 
@@ -385,7 +409,6 @@
             campoBusca.addEventListener('input', executarBusca);
             campoBusca.addEventListener('focus', executarBusca);
 
-            // Redireciona para o primeiro resultado ao pressionar Enter sem procurar pastas inexistentes
             campoBusca.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter') {
                     e.preventDefault();

@@ -1,0 +1,370 @@
+QUALPROCESSADOR — DOCUMENTAÇÃO DO SITEMAP.XML
+================================================
+
+1. O QUE É O SITEMAP.XML?
+
+O arquivo sitemap.xml funciona como um mapa das páginas públicas e importantes
+do QualProcessador.
+
+Ele informa aos mecanismos de busca, como Google e Bing, quais URLs do site
+queremos que sejam descobertas e rastreadas.
+
+O sitemap não garante que uma página será indexada ou terá uma boa posição
+nos resultados de pesquisa. Ele serve principalmente para facilitar a descoberta
+e o rastreamento das URLs importantes do site.
+
+O arquivo deve permanecer na raiz do projeto.
+
+Exemplo:
+
+/index.html
+/dados.js
+/artigos.json
+/sitemap.xml
+/vercel.json
+
+Quando publicado, deverá ficar acessível por uma URL semelhante a:
+
+https://qualprocessador.vercel.app/sitemap.xml
+
+No futuro, quando o QualProcessador possuir domínio próprio:
+
+https://qualprocessador.com/sitemap.xml
+
+
+2. ESTRUTURA BÁSICA
+
+O sitemap utiliza XML.
+
+Exemplo simplificado:
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <url>
+        <loc>https://qualprocessador.com/</loc>
+    </url>
+
+    <url>
+        <loc>https://qualprocessador.com/ferramentas</loc>
+    </url>
+
+</urlset>
+
+Cada bloco <url> representa uma página.
+
+A tag <loc> contém o endereço completo da página.
+
+
+3. O QUE DEVE SER ADICIONADO?
+
+O sitemap deve acompanhar o crescimento do QualProcessador.
+
+Quando uma nova página pública e relevante for criada, verificar se ela também
+deve ser adicionada ao sitemap.
+
+Exemplos:
+
+- Novos processadores
+- Novos artigos
+- Novas ferramentas
+- Novas páginas institucionais importantes
+- Novas landing pages
+- Novas páginas criadas especificamente para conteúdo útil/SEO
+
+Exemplo:
+
+Se for criada uma página:
+
+https://qualprocessador.com/upscendra/aumentar-resolucao-imagem
+
+Ela poderá receber:
+
+<url>
+    <loc>https://qualprocessador.com/upscendra/aumentar-resolucao-imagem</loc>
+</url>
+
+
+4. PROCESSADORES
+
+As páginas individuais dos processadores são especialmente importantes.
+
+Exemplo:
+
+https://qualprocessador.com/cpu/amd/amd-ryzen-5-5600
+
+Quando novos processadores forem adicionados ao banco/lista do QualProcessador,
+suas URLs públicas também deverão ser adicionadas ao sitemap.
+
+Se forem adicionados 50 processadores novos, o sitemap poderá receber 50 URLs
+novas.
+
+IMPORTANTE:
+
+Deve ser utilizada a URL pública/canônica do processador.
+
+EVITAR adicionar a versão interna com parâmetros, como:
+
+/detalhes.html?id=123
+
+Se a URL pública é:
+
+/cpu/amd/amd-ryzen-5-5600
+
+é essa que deve aparecer no sitemap.
+
+
+5. ARTIGOS
+
+Quando um novo artigo for publicado, adicionar sua URL personalizada.
+
+Exemplo:
+
+https://qualprocessador.com/amd/o-que-e-uma-APU
+
+Não adicionar simultaneamente uma segunda URL interna que mostre exatamente
+o mesmo artigo.
+
+Por exemplo, se:
+
+/ler-artigo.html?id=102
+
+e:
+
+/amd/o-que-e-uma-APU
+
+mostram o mesmo conteúdo, queremos priorizar no sitemap a URL personalizada
+e canônica:
+
+/amd/o-que-e-uma-APU
+
+
+6. FERRAMENTAS
+
+As ferramentas públicas também devem aparecer no sitemap.
+
+Exemplos:
+
+/ferramentas
+/upscendra
+/winformatkit
+
+No futuro, páginas específicas das ferramentas também poderão entrar.
+
+Exemplos:
+
+/upscendra/aumentar-resolucao-imagem
+/upscendra/ai-upscale
+/winformatkit/converter-heic-para-jpg
+/winformatkit/converter-webp-para-png
+
+
+7. O QUE NÃO DEVE SER ADICIONADO?
+
+O sitemap NÃO é uma lista de todos os arquivos existentes no servidor.
+
+Não adicionar automaticamente:
+
+- Painéis administrativos
+- Páginas internas de gerenciamento
+- Arquivos de teste
+- Arquivos "copy", "copia", "backup" etc.
+- CSS
+- JavaScript
+- JSON
+- Imagens comuns
+- Páginas que não queremos indexadas
+- URLs duplicadas
+- URLs temporárias
+- URLs quebradas
+- Páginas inexistentes
+- Versões alternativas desnecessárias da mesma página
+
+Exemplo:
+
+NÃO adicionar:
+
+/painel-postar.html
+/detalhescopia.html
+/dados.js
+/artigos.json
+/style.css
+
+
+8. REGRA IMPORTANTE SOBRE URLs DUPLICADAS
+
+Sempre preferir a URL pública e canônica.
+
+Se o mesmo processador puder ser acessado por:
+
+/detalhes.html?id=55
+
+e:
+
+/cpu/amd/amd-ryzen-5-5600
+
+adicionar somente a URL canônica desejada:
+
+/cpu/amd/amd-ryzen-5-5600
+
+O mesmo princípio deve ser utilizado para artigos e outras páginas.
+
+O sitemap não deve incentivar mecanismos de busca a descobrirem várias URLs
+para exatamente o mesmo conteúdo.
+
+
+9. QUANDO ATUALIZAR O SITEMAP?
+
+Não é necessário modificar o sitemap toda vez que uma linha de código mudar.
+
+Atualizar quando houver mudanças relevantes nas URLs indexáveis.
+
+Exemplos:
+
+- Adicionei novos processadores -> atualizar.
+- Publiquei artigo novo -> atualizar.
+- Criei ferramenta nova -> atualizar.
+- Criei landing page pública -> atualizar.
+- Removi definitivamente uma página -> remover do sitemap.
+- Mudei uma URL pública -> atualizar.
+- Apenas corrigi um botão -> normalmente não precisa.
+- Apenas alterei CSS -> não precisa.
+- Corrigi um texto de uma página existente -> normalmente não precisa adicionar
+  nada, pois a URL já está no sitemap.
+
+
+10. QUANDO O DOMÍNIO MUDAR
+
+Atualmente o projeto pode utilizar:
+
+https://qualprocessador.vercel.app
+
+Quando existir domínio próprio, por exemplo:
+
+https://qualprocessador.com
+
+TODAS as URLs do sitemap deverão utilizar o domínio canônico definitivo.
+
+ANTES:
+
+<loc>https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-5-5600</loc>
+
+DEPOIS:
+
+<loc>https://qualprocessador.com/cpu/amd/amd-ryzen-5-5600</loc>
+
+Não manter uma mistura dos dois domínios no sitemap definitivo.
+
+
+11. GOOGLE SEARCH CONSOLE
+
+Quando o domínio/site estiver configurado no Google Search Console, informar
+ao Google a localização do sitemap.
+
+Exemplo:
+
+https://qualprocessador.com/sitemap.xml
+
+O Search Console poderá mostrar informações sobre leitura do sitemap,
+descoberta de páginas e problemas de indexação.
+
+IMPORTANTE:
+
+Enviar um sitemap não significa que todas as URLs serão automaticamente
+indexadas.
+
+O Google continua decidindo quais páginas serão rastreadas e indexadas.
+
+
+12. ROBOTS.TXT
+
+Quando existir robots.txt, é recomendável informar nele a localização do sitemap.
+
+Exemplo:
+
+User-agent: *
+Allow: /
+
+Sitemap: https://qualprocessador.com/sitemap.xml
+
+
+13. MANUTENÇÃO FUTURA
+
+Enquanto o projeto for relativamente pequeno, o sitemap.xml pode ser atualizado
+manualmente.
+
+Porém, o QualProcessador possui muitas páginas de CPUs e tende a crescer.
+
+Por isso, futuramente é recomendável automatizar sua geração.
+
+O gerador poderá ler:
+
+- dados.js -> CPUs
+- artigos.json -> artigos
+- lista de páginas públicas -> ferramentas e páginas institucionais
+
+E gerar automaticamente:
+
+sitemap.xml
+
+Assim, quando dezenas ou centenas de CPUs forem adicionadas, não será
+necessário escrever manualmente cada <url>.
+
+
+14. REGRA DE OURO
+
+O sitemap deve responder à seguinte pergunta:
+
+"Quais URLs públicas, canônicas e relevantes do QualProcessador eu gostaria
+que um mecanismo de busca descobrisse?"
+
+Se uma URL for importante e indexável, provavelmente deve estar no sitemap.
+
+Se for interna, duplicada, administrativa, temporária ou sem utilidade para
+resultados de pesquisa, provavelmente não deve estar.
+
+
+15. SITUAÇÃO ATUAL
+
+O sitemap inicial do QualProcessador foi criado contendo:
+
+- Página inicial
+- Páginas públicas importantes
+- Ferramentas
+- Upscendra Image Suite
+- WinFormatKit
+- Artigos públicos com URL personalizada
+- Páginas individuais de processadores
+
+As URLs de processadores utilizam o formato público:
+
+/cpu/{marca}/{slug-do-processador}
+
+Arquivos de cópia, páginas administrativas e URLs internas duplicadas não
+devem fazer parte do sitemap.
+
+
+16. CHECKLIST AO PUBLICAR UMA GRANDE ATUALIZAÇÃO
+
+Antes de publicar:
+
+[ ] Adicionei novas páginas públicas?
+[ ] Adicionei novos processadores?
+[ ] Publiquei artigos?
+[ ] Alguma URL mudou?
+[ ] Alguma página foi removida?
+[ ] Existem URLs duplicadas no sitemap?
+[ ] Todas as URLs retornam páginas válidas?
+[ ] Estou utilizando o domínio correto?
+[ ] O sitemap.xml continua acessível pela raiz do site?
+[ ] O Search Console consegue ler o sitemap?
+
+Se o projeto crescer muito, substituir a manutenção manual por geração
+automática.
+
+
+================================================
+QUALPROCESSADOR
+Documentação interna — sitemap.xml
+================================================

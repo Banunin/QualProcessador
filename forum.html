@@ -116,14 +116,27 @@
         .auth-tab-btn { background: none; border: none; font-weight: 800; font-size: 1.1rem; color: #94a3b8; cursor: pointer; padding: 8px 15px; transition: color 0.2s; }
         .auth-tab-btn.active { color: #0f172a; border-bottom: 3px solid #3b82f6; margin-bottom: -12px; }
 
-        /* ESTILOS DA TELA DE PERFIL */
-        .profile-header { background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); height: 180px; border-radius: 12px 12px 0 0; position: relative; margin-bottom: -80px; }
+        /* ESTILOS ATUALIZADOS DA TELA DE PERFIL */
+        .profile-header { background-color: #1e293b; background-size: cover; background-position: center; height: 240px; border-radius: 12px 12px 0 0; position: relative; margin-bottom: -80px; }
         .profile-card { display: grid; grid-template-columns: 320px 1fr; gap: 40px; background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 0 40px 40px 40px; margin-bottom: 25px; box-shadow: 0 10px 30px rgba(15, 23, 42, 0.04); position: relative; z-index: 10; }
         @media(max-width: 900px) { .profile-card { grid-template-columns: 1fr; padding: 0 25px 25px 25px; } }
         .profile-sidebar { display: flex; flex-direction: column; align-items: center; text-align: center; border-right: 1px solid #e2e8f0; padding-right: 40px; margin-top: -60px; }
         @media(max-width: 900px) { .profile-sidebar { border-right: none; padding-right: 0; border-bottom: 1px solid #e2e8f0; padding-bottom: 30px; margin-top: -50px; } }
         
-        .profile-stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-top: 30px; margin-bottom: 35px; }
+        .status-badge { background: #e0f2fe; color: #0284c7; padding: 4px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; display: inline-block; margin-top: 5px; border: 1px solid #bae6fd; }
+        .trophy-gallery { display: flex; gap: 8px; margin-top: 15px; flex-wrap: wrap; justify-content: center; width: 100%; }
+        .trophy { background: #fef9c3; border: 1px solid #fde047; padding: 6px 10px; border-radius: 8px; font-size: 0.8rem; color: #a16207; display: flex; align-items: center; gap: 5px; font-weight: 700; box-shadow: 0 2px 5px rgba(0,0,0,0.02); transition: transform 0.2s; cursor: default; }
+        .trophy:hover { transform: translateY(-2px); }
+
+        .profile-tabs-nav { display: flex; gap: 20px; border-bottom: 2px solid #e2e8f0; margin-bottom: 25px; margin-top: 20px; }
+        .profile-tab-btn { background: none; border: none; font-size: 1rem; font-weight: 700; color: #64748b; cursor: pointer; padding: 10px 5px; border-bottom: 3px solid transparent; transition: all 0.2s; }
+        .profile-tab-btn:hover { color: #0f172a; }
+        .profile-tab-btn.active { color: #3b82f6; border-bottom-color: #3b82f6; margin-bottom: -2px; }
+        .profile-tab-content { display: none; animation: fadeIn 0.3s; }
+        .profile-tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+        .profile-stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 35px; }
         .stat-box { background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.02); transition: transform 0.2s; }
         .stat-box:hover { transform: translateY(-3px); border-color: #cbd5e1; }
         .stat-num { font-size: 2rem; font-weight: 800; color: #0f172a; line-height: 1; margin-bottom: 5px; }
@@ -185,7 +198,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
         const SUPABASE_URL = "https://sterozqxsblanvjyzjmi.supabase.co"; 
-        const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN0ZXJvenF4c2JsYW52anl6am1pIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4Mzc5Nzc5MCwiZXhwIjoyMDk5MzczNzkwfQ.LnU1u7jpLt69Ia8UEsrF5_RBlQbS2f5GL386OansCEs";
+        const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN0ZXJvenF4c2JsYW52anl6am1pIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3OTc3OTAsImV4cCI6MjA5OTM3Mzc5MH0.IBx9tIoVF-RepV_IKjgRFwuQVE0CbEMRo9fLUN066WM";
         const dbClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
         let target = document.getElementById('render-target');
@@ -193,6 +206,10 @@
         const idTopico = parseInt(params.get('id'));
         const acao = params.get('action');
         let currentTab = 'login';
+        
+        let usuarioLogado = null;
+
+        function obterUsuarioLogado() { return usuarioLogado; }
 
         function slugify(text) {
             if (!text) return "";
@@ -207,22 +224,22 @@
             document.querySelectorAll('.reacoes-popover').forEach(p => p.classList.remove('show'));
         });
 
-        function obterUsuarioLogado() {
-            return JSON.parse(localStorage.getItem('qp_user_session'));
-        }
-
-        async function autoConfigurarBanco() {
-            let { data: adminExists } = await dbClient.from('usuarios').select('username').eq('username', 'Banunin').maybeSingle();
-            if (!adminExists) {
-                await dbClient.from('usuarios').insert([{
-                    email: "banunin@qualprocessador.com",
-                    username: "Banunin",
-                    password: "Banunin344",
-                    role: "admin",
-                    bio: "Criador da plataforma QualProcessador.",
-                    avatar: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png",
-                    privado: false
-                }]);
+        async function carregarDadosUsuario(userAuthInfo) {
+            let { data: perfil } = await dbClient.from('usuarios').select('*').eq('email', userAuthInfo.email).maybeSingle();
+            
+            if(perfil) {
+                usuarioLogado = perfil;
+            } else {
+                usuarioLogado = {
+                    email: userAuthInfo.email,
+                    username: userAuthInfo.user_metadata.username || userAuthInfo.email.split('@')[0],
+                    role: userAuthInfo.user_metadata.role || 'user',
+                    bio: userAuthInfo.user_metadata.bio || '',
+                    avatar: userAuthInfo.user_metadata.avatar || '',
+                    capa: userAuthInfo.user_metadata.capa || '',
+                    status_msg: userAuthInfo.user_metadata.status_msg || '',
+                    privado: userAuthInfo.user_metadata.privado === true
+                };
             }
         }
 
@@ -256,8 +273,8 @@
             }
         }
 
-        function deslogarUsuario() {
-            localStorage.removeItem('qp_user_session');
+        async function deslogarUsuario() {
+            await dbClient.auth.signOut();
             window.location.href = 'forum.html';
         }
 
@@ -286,11 +303,27 @@
             let { data: checkUser } = await dbClient.from('usuarios').select('username').eq('username', username).maybeSingle();
             if(checkUser) return alert("Erro: Este nome de usuário já está em uso.");
 
-            const novoUsuario = { email, username, password, role: "user", bio: "Novo membro explorando o mundo do hardware.", avatar: "", privado: false };
-            let { error } = await dbClient.from('usuarios').insert([novoUsuario]);
-            if(error) return alert("Erro ao criar conta. Tente novamente.");
+            const { data: authData, error: authError } = await dbClient.auth.signUp({
+                email: email,
+                password: password,
+                options: { data: { username: username, role: 'user' } }
+            });
 
-            localStorage.setItem('qp_user_session', JSON.stringify(novoUsuario));
+            if (authError) return alert("Erro ao criar conta: " + authError.message);
+
+            const novoUsuarioPerfil = { 
+                email: email, 
+                username: username, 
+                role: "user", 
+                bio: "Novo membro explorando o mundo do hardware.", 
+                avatar: "", 
+                capa: "",
+                status_msg: "Acabou de chegar no fórum!",
+                privado: false 
+            };
+            await dbClient.from('usuarios').insert([novoUsuarioPerfil]);
+
+            alert("Conta criada com sucesso!");
             window.location.href = 'forum.html';
         }
 
@@ -299,18 +332,14 @@
             const loginId = document.getElementById('auth-loginid').value.trim();
             const pass = document.getElementById('auth-password').value;
 
-            let { data: conta, error } = await dbClient.from('usuarios').select('*').eq('email', loginId).maybeSingle();
-            if(!conta) {
-                let { data: contaPorUser } = await dbClient.from('usuarios').select('*').eq('username', loginId).maybeSingle();
-                conta = contaPorUser;
+            let emailLogin = loginId;
+            if(!loginId.includes('@')) {
+                let { data: conta } = await dbClient.from('usuarios').select('email').eq('username', loginId).maybeSingle();
+                if (conta) { emailLogin = conta.email; } else { return alert("Usuário não encontrado."); }
             }
 
-            if(conta && conta.password === pass) {
-                localStorage.setItem('qp_user_session', JSON.stringify(conta));
-                window.location.href = 'forum.html';
-            } else { 
-                alert("Credenciais incorretas ou usuário não encontrado."); 
-            }
+            const { data, error } = await dbClient.auth.signInWithPassword({ email: emailLogin, password: pass });
+            if (error) { alert("Credenciais incorretas."); } else { window.location.href = 'forum.html'; }
         }
 
         function renderizarTelaAuth() {
@@ -352,15 +381,10 @@
             if (!r || typeof r !== 'object' || Array.isArray(r)) r = { like: [], smile: [], neutral: [], dislike: [], angry: [] };
             const keys = ['like', 'smile', 'neutral', 'dislike', 'angry'];
             keys.forEach(k => { if (!Array.isArray(r[k])) r[k] = []; });
-
             let reacaoAtual = null;
             keys.forEach(k => { if (r[k].includes(username)) reacaoAtual = k; });
-
             if (reacaoAtual === tipo) { r[tipo] = r[tipo].filter(u => u !== username); } 
-            else {
-                if (reacaoAtual) r[reacaoAtual] = r[reacaoAtual].filter(u => u !== username);
-                r[tipo].push(username);
-            }
+            else { if (reacaoAtual) r[reacaoAtual] = r[reacaoAtual].filter(u => u !== username); r[tipo].push(username); }
             return r;
         }
 
@@ -380,7 +404,6 @@
             keys.forEach(k => {
                 let list = Array.isArray(r[k]) ? r[k] : [];
                 let totalVotos = typeof r[k] === 'number' ? r[k] : list.length;
-                
                 if (totalVotos > 0) {
                     const votou = logado && list.includes(logado.username);
                     const acaoReagir = isTopico ? `reagirTopico(event, '${k}')` : `reagirResposta(event, ${idResposta}, '${k}')`;
@@ -395,13 +418,7 @@
                 popoverEmojisHTML += `<button type="button" class="popover-emoji" onclick="${acaoReagir}" title="${k}">${emojiMap[k]}</button>`;
             });
 
-            return `
-                <div class="reacoes-container">
-                    ${badgesHTML}
-                    <button type="button" class="btn-reagir-trigger" onclick="togglePopover(event, '${popoverId}')">😊 Reagir</button>
-                    <div class="reacoes-popover" id="${popoverId}" onclick="event.stopPropagation()">${popoverEmojisHTML}</div>
-                </div>
-            `;
+            return `<div class="reacoes-container">${badgesHTML}<button type="button" class="btn-reagir-trigger" onclick="togglePopover(event, '${popoverId}')">😊 Reagir</button><div class="reacoes-popover" id="${popoverId}" onclick="event.stopPropagation()">${popoverEmojisHTML}</div></div>`;
         }
 
         async function reagirTopico(event, tipo) {
@@ -474,7 +491,6 @@
             if(confirm("Remover este comentário da discussão?")){
                 let { data: t } = await dbClient.from('topicos').select('respostas').eq('id', idTopico).single();
                 if(t && Array.isArray(t.respostas)) {
-                    // Além de apagar a resposta pai, limpa as filhas pra não deixar orfãs visuais
                     let novasResp = t.respostas.filter(r => r.id !== idResposta && r.parent_id !== idResposta);
                     await dbClient.from('topicos').update({ respostas: novasResp }).eq('id', idTopico);
                     window.location.reload();
@@ -482,7 +498,7 @@
             }
         }
 
-        /* --- RESPOSTAS ANINHADAS (NOVO SISTEMA) --- */
+        /* --- RESPOSTAS ANINHADAS --- */
         window.abrirFormRespostaTopico = function(idAlvo, isTopico) {
             const containerAlvo = document.getElementById(`reply-box-${idAlvo}`);
             const logado = obterUsuarioLogado();
@@ -493,7 +509,6 @@
                 return;
             }
 
-            // Remove formulários abertos em outros lugares
             document.querySelectorAll('.inline-reply-box').forEach(b => b.innerHTML = '');
 
             containerAlvo.innerHTML = `
@@ -520,7 +535,7 @@
             
             listaRespostas.push({
                 id: Date.now(),
-                parent_id: parentId, // CHAVE DO ANINHAMENTO NO JSON
+                parent_id: parentId,
                 autor: logado.username,
                 autor_avatar: logado.avatar || '',
                 autor_role: logado.role || 'user',
@@ -532,21 +547,14 @@
             });
 
             const { error } = await dbClient.from('topicos').update({ respostas: listaRespostas }).eq('id', idTopicoRef);
-            if(error) {
-                alert("Erro ao publicar resposta: " + error.message);
-            } else {
-                window.location.reload();
-            }
+            if(error) { alert("Erro ao publicar resposta: " + error.message); } else { window.location.reload(); }
         }
 
-        /* --- RENDERIZAÇÃO DO TÓPICO COM ANINHAMENTO --- */
         function renderizarBlocoResposta(r, tLogado, tIdTopico, ehRespostaDeResposta = false) {
             const permissaoResp = checarPermissaoEscrita(r.autor);
             const rIsAdm = r.autor_role === 'admin';
             let respostasAvatar = gerarAvatarHTML(r.autor, r.autor_avatar, r.autor_role);
             let flagEditResp = r.editado ? `<span class="flag-editado">(editado)</span>` : '';
-            
-            // Classe especial se for sub-comentário
             const classeNested = ehRespostaDeResposta ? 'reply-nested' : '';
 
             return `
@@ -578,6 +586,13 @@
             `;
         }
 
+        /* --- TABS NO PERFIL --- */
+        window.mudarAbaPerfil = function(abaId) {
+            document.querySelectorAll('.profile-tab-content').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.profile-tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(`tab-content-${abaId}`).classList.add('active');
+            document.getElementById(`tab-btn-${abaId}`).classList.add('active');
+        }
 
         /* --- PERFIL DO USUÁRIO --- */
         async function renderizarPerfil() {
@@ -590,36 +605,40 @@
             }
 
             document.getElementById('forum-breadcrumbs').innerHTML = `<a href="index.html">Home</a> &gt; <a href="forum.html">Fórum</a> &gt; Painel de <strong>${perfilUserTarget}</strong>`;
-
             let { data: uInfo } = await dbClient.from('usuarios').select('*').eq('username', perfilUserTarget).maybeSingle();
 
             if (!uInfo) {
-                target.innerHTML = `<div class="form-card" style="text-align:center;"><h2>Usuário Fantasma</h2><p style="color:#64748b;">Não encontramos registros para <strong>${perfilUserTarget}</strong> nos nossos servidores.</p><a href="forum.html" class="btn-main" style="margin-top:15px;">Retornar ao Fórum/a></div>`;
+                target.innerHTML = `<div class="form-card" style="text-align:center;"><h2>Usuário Fantasma</h2><p style="color:#64748b;">Não encontramos registros para <strong>${perfilUserTarget}</strong> nos nossos servidores.</p><a href="forum.html" class="btn-main" style="margin-top:15px;">Retornar ao Fórum</a></div>`;
                 return;
             }
 
             const isOwnProfile = logado && logado.username.toLowerCase() === uInfo.username.toLowerCase();
-            const isPrivado = uInfo.privado === true;
-            const canView = isOwnProfile || !isPrivado || (logado && logado.role === 'admin');
+            const isAdmin = logado && logado.role === 'admin';
+            
+            // CONSERTO DE PRIVACIDADE: O boolean real define o bloqueio.
+            const isPrivado = (uInfo.privado === true || uInfo.privado === 'true');
+            const canView = isOwnProfile || isAdmin || !isPrivado;
 
             let avatarHTML = gerarAvatarHTML(uInfo.username, uInfo.avatar, uInfo.role);
-            avatarHTML = avatarHTML.replace('class="user-avatar', 'class="user-avatar" style="width:140px; height:140px; font-size:3.5rem; margin-bottom:15px; border: 4px solid white; box-shadow: 0 4px 15px rgba(0,0,0,0.1);"');
+            avatarHTML = avatarHTML.replace('class="user-avatar', 'class="user-avatar" style="width:140px; height:140px; font-size:3.5rem; margin-bottom:5px; border: 4px solid white; box-shadow: 0 4px 15px rgba(0,0,0,0.1);"');
+
+            let coverStyle = uInfo.capa ? `background-image: url('${uInfo.capa}');` : `background-color: #1e293b;`;
 
             let contentHTML = '';
 
             if (!canView) {
                 contentHTML = `
-                    <div class="profile-header"></div>
+                    <div class="profile-header" style="${coverStyle} filter: blur(5px);"></div>
                     <div class="profile-card">
                         <div class="profile-sidebar">
                             ${avatarHTML}
-                            <h2 style="margin:5px 0;">${uInfo.username}</h2>
-                            <span class="user-badge ${uInfo.role === 'admin' ? 'badge-admin' : 'badge-user'}">${uInfo.role === 'admin' ? 'Administrador' : 'Membro Verificado'}</span>
+                            <h2 style="margin:10px 0 5px 0;">${uInfo.username}</h2>
+                            <span class="user-badge ${uInfo.role === 'admin' ? 'badge-admin' : 'badge-user'}">${uInfo.role === 'admin' ? 'Administrador' : 'Membro'}</span>
                         </div>
                         <div style="display:flex; align-items:center; justify-content:center; flex-direction:column; padding:60px 40px; text-align:center;">
-                            <div style="font-size: 3rem; margin-bottom: 15px;">🔒</div>
-                            <h3 style="margin:0 0 10px 0; font-size:1.6rem; color:#0f172a;">Acesso Restrito</h3>
-                            <p style="color:#64748b; margin:0; font-size: 1.05rem;">O usuário configurou sua conta de Hardware como <strong>Privada</strong>. Você não tem permissão para vasculhar este setup.</p>
+                            <div style="font-size: 4rem; margin-bottom: 15px;">🔒</div>
+                            <h3 style="margin:0 0 10px 0; font-size:1.8rem; color:#0f172a;">Acesso Restrito</h3>
+                            <p style="color:#64748b; margin:0; font-size: 1.1rem; max-width: 400px;">Este usuário configurou seu setup como <strong>Privado</strong>. Você não tem permissão de segurança para acessar estes dados.</p>
                         </div>
                     </div>
                 `;
@@ -644,27 +663,30 @@
                 const keys = ['like', 'smile', 'neutral', 'dislike', 'angry'];
                 topicosCriados.forEach(t => {
                     if (t.reacoes && typeof t.reacoes === 'object') {
-                        keys.forEach(k => {
-                            let votes = t.reacoes[k];
-                            if (Array.isArray(votes)) totalReacoesRecebidas += votes.length;
-                            else if (typeof votes === 'number') totalReacoesRecebidas += votes;
-                        });
+                        keys.forEach(k => { let v = t.reacoes[k]; if(Array.isArray(v)) totalReacoesRecebidas += v.length; else if(typeof v === 'number') totalReacoesRecebidas += v; });
                     }
                 });
                 todosTopicos.forEach(t => {
                     if (Array.isArray(t.respostas)) {
                         t.respostas.forEach(r => {
                             if (r.autor.toLowerCase() === uInfo.username.toLowerCase() && r.reacoes && typeof r.reacoes === 'object') {
-                                keys.forEach(k => {
-                                    let votes = r.reacoes[k];
-                                    if (Array.isArray(votes)) totalReacoesRecebidas += votes.length;
-                                    else if (typeof votes === 'number') totalReacoesRecebidas += votes;
-                                });
+                                keys.forEach(k => { let v = r.reacoes[k]; if(Array.isArray(v)) totalReacoesRecebidas += v.length; else if(typeof v === 'number') totalReacoesRecebidas += v; });
                             }
                         });
                     }
                 });
 
+                // --- GERADOR DE TROFÉUS (ACHIEVEMENTS) ---
+                let trophiesHTML = '';
+                if (uInfo.role === 'admin') trophiesHTML += `<div class="trophy" style="background:#fee2e2; border-color:#fca5a5; color:#991b1b;">👑 Staff QP</div>`;
+                if (topicosCriados.length >= 1) trophiesHTML += `<div class="trophy">📝 Criador</div>`;
+                if (topicosCriados.length >= 10) trophiesHTML += `<div class="trophy">🔥 Heavy Poster</div>`;
+                if (comentariosCriados.length >= 5) trophiesHTML += `<div class="trophy">💬 Ajudante</div>`;
+                if (totalReacoesRecebidas >= 10) trophiesHTML += `<div class="trophy">🌟 Popular</div>`;
+                if (totalReacoesRecebidas >= 50) trophiesHTML += `<div class="trophy" style="background:#f3e8ff; border-color:#d8b4fe; color:#6b21a8;">🔮 Lenda</div>`;
+                if (trophiesHTML === '') trophiesHTML = `<span style="font-size:0.8rem; color:#94a3b8; font-style:italic;">Sem conquistas ainda.</span>`;
+
+                // --- HTML DE TÓPICOS ---
                 let topicosListHTML = '';
                 if(topicosCriados.length > 0) {
                     topicosCriados.forEach(t => {
@@ -672,76 +694,98 @@
                             <div style="padding:15px; border:1px solid #e2e8f0; border-radius: 8px; margin-bottom: 10px; background: #f8fafc; transition: border-color 0.2s;">
                                 <a href="forum.html?id=${t.id}&topico=${slugify(t.titulo)}" style="color:#0f172a; font-weight:700; text-decoration:none; font-size:1.05rem; display:block; margin-bottom: 5px;">${t.titulo}</a>
                                 <div style="font-size:0.8rem; color:#64748b; font-weight: 500;">Publicado em ${t.data || 'Recente'}</div>
-                            </div>
-                        `;
+                            </div>`;
                     });
-                } else {
-                    topicosListHTML = `<p style="color:#64748b; font-size:0.95rem; font-style: italic;">Ainda não publicou nenhuma discussão.</p>`;
-                }
+                } else { topicosListHTML = `<p style="color:#64748b; font-size:0.95rem; font-style: italic;">Nenhuma discussão criada.</p>`; }
+
+                // --- HTML DE RESPOSTAS ---
+                let resposasListHTML = '';
+                if(comentariosCriados.length > 0) {
+                    comentariosCriados.forEach(r => {
+                        resposasListHTML += `
+                            <div style="padding:15px; border:1px solid #e2e8f0; border-radius: 8px; margin-bottom: 10px; background: white; transition: border-color 0.2s;">
+                                <div style="font-size:0.8rem; color:#64748b; font-weight: 500; margin-bottom:5px;">Respondeu no tópico: <a href="forum.html?id=${r.topicoId}" style="color:#3b82f6; text-decoration:none;">${r.topicoTitulo}</a></div>
+                                <div style="font-size:0.95rem; color:#334155; font-style:italic; border-left:3px solid #cbd5e1; padding-left:10px; line-height: 1.5; max-height: 60px; overflow:hidden; text-overflow:ellipsis;">"${r.conteudo}"</div>
+                                <div style="font-size:0.75rem; color:#94a3b8; margin-top:8px;">${r.data || ''}</div>
+                            </div>`;
+                    });
+                } else { resposasListHTML = `<p style="color:#64748b; font-size:0.95rem; font-style: italic;">Nenhum comentário publicado.</p>`; }
 
                 let ownProfileSettingsHTML = '';
                 if(isOwnProfile) {
                     ownProfileSettingsHTML = `
                         <div style="margin-top:35px; text-align: left; width: 100%;">
                             <h3 style="font-size:1.05rem; font-weight:800; margin-bottom:15px; color: #0f172a; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px;">Ajustes de Perfil</h3>
-                            <div class="form-group">
-                                <label style="font-size: 0.8rem;">Minha Biografia (Setup, Specs, etc):</label>
-                                <textarea id="edit-bio" rows="3" style="font-size: 0.9rem;">${uInfo.bio || ''}</textarea>
-                            </div>
-                            <div class="form-group">
-                                <label style="font-size: 0.8rem;">Link da Foto de Perfil (Avatar):</label>
-                                <input type="text" id="edit-avatar" value="${uInfo.avatar || ''}" style="font-size: 0.9rem;" placeholder="https://...">
-                            </div>
+                            
+                            <div class="form-group"><label style="font-size: 0.8rem;">Status Rápido:</label>
+                            <input type="text" id="edit-status" value="${uInfo.status_msg || ''}" style="font-size: 0.9rem;" placeholder="Ex: Montando PC novo..."></div>
+                            
+                            <div class="form-group"><label style="font-size: 0.8rem;">Minha Biografia:</label>
+                            <textarea id="edit-bio" rows="3" style="font-size: 0.9rem;" placeholder="Fale sobre seu setup...">${uInfo.bio || ''}</textarea></div>
+                            
+                            <div class="form-group"><label style="font-size: 0.8rem;">Capa do Perfil (URL da Imagem):</label>
+                            <input type="text" id="edit-capa" value="${uInfo.capa || ''}" style="font-size: 0.9rem;" placeholder="https://..."></div>
+                            
+                            <div class="form-group"><label style="font-size: 0.8rem;">Foto de Perfil (URL do Avatar):</label>
+                            <input type="text" id="edit-avatar" value="${uInfo.avatar || ''}" style="font-size: 0.9rem;" placeholder="https://..."></div>
+                            
                             <div class="form-group" style="flex-direction:row; align-items:center; gap:10px; margin: 20px 0; background: #f8fafc; padding: 12px; border-radius: 8px; border: 1px solid #e2e8f0;">
                                 <input type="checkbox" id="edit-privado" ${isPrivado ? 'checked' : ''} style="width:20px; height:20px; cursor:pointer;">
-                                <label for="edit-privado" style="cursor:pointer; font-weight:700; font-size: 0.85rem; color: #ef4444; margin: 0;">Ocultar meu perfil (Privado)</label>
+                                <label for="edit-privado" style="cursor:pointer; font-weight:700; font-size: 0.85rem; color: #ef4444; margin: 0;">Ocultar meu perfil (Conta Privada)</label>
                             </div>
+                            
                             <button onclick="salvarAlteracoesPerfil()" class="btn-main" style="width:100%; margin-top:5px; background: linear-gradient(135deg, #10b981 0%, #047857 100%);">Atualizar Conta</button>
                         </div>
                     `;
                 }
 
                 contentHTML = `
-                    <div class="profile-header"></div>
+                    <div class="profile-header" style="${coverStyle}"></div>
                     <div class="profile-card">
                         <div class="profile-sidebar">
                             ${avatarHTML}
                             <h2 style="margin:5px 0 5px 0; word-break: break-all; font-size: 1.5rem; color: #0f172a;">${uInfo.username}</h2>
-                            <span class="user-badge ${uInfo.role === 'admin' ? 'badge-admin' : 'badge-user'}" style="margin-bottom:15px;">${uInfo.role === 'admin' ? 'Administrador Chefe' : 'Membro Verificado'}</span>
-                            <div style="font-size:0.9rem; color:#475569; margin-top:5px; word-break: break-word; line-height:1.6; background: #f8fafc; padding: 15px; border-radius: 8px; border: 1px dashed #cbd5e1; width: 100%;">
-                                ${uInfo.bio || 'Este membro não adicionou nada ainda.'}
+                            <span class="user-badge ${uInfo.role === 'admin' ? 'badge-admin' : 'badge-user'}">${uInfo.role === 'admin' ? 'Administrador Chefe' : 'Membro Verificado'}</span>
+                            
+                            ${uInfo.status_msg ? `<div class="status-badge">💭 ${uInfo.status_msg}</div>` : ''}
+                            
+                            <div style="font-size:0.9rem; color:#475569; margin-top:15px; word-break: break-word; line-height:1.6; background: #f8fafc; padding: 15px; border-radius: 8px; border: 1px dashed #cbd5e1; width: 100%;">
+                                ${uInfo.bio || 'Nenhuma biografia informada.'}
                             </div>
+                            
+                            <h4 style="margin: 20px 0 5px 0; font-size:0.85rem; text-transform:uppercase; color:#94a3b8;">Conquistas</h4>
+                            <div class="trophy-gallery">${trophiesHTML}</div>
+
                             ${ownProfileSettingsHTML}
                         </div>
+                        
                         <div style="padding-top: 20px;">
                             <div class="profile-stats-grid">
-                                <div class="stat-box">
-                                    <div class="stat-num">${topicosCriados.length}</div>
-                                    <div class="stat-label">Tópicos Feitos</div>
-                                </div>
-                                <div class="stat-box">
-                                    <div class="stat-num">${comentariosCriados.length}</div>
-                                    <div class="stat-label">Respostas</div>
-                                </div>
+                                <div class="stat-box"><div class="stat-num">${topicosCriados.length}</div><div class="stat-label">Tópicos</div></div>
+                                <div class="stat-box"><div class="stat-num">${comentariosCriados.length}</div><div class="stat-label">Respostas</div></div>
                                 <div class="stat-box" style="background: linear-gradient(135deg, #f0fdf4, #dcfce7); border-color: #bbf7d0;">
-                                    <div class="stat-num" style="color: #16a34a;">${totalReacoesRecebidas}</div>
-                                    <div class="stat-label" style="color: #15803d;">Reações (Karma)</div>
+                                    <div class="stat-num" style="color: #16a34a;">${totalReacoesRecebidas}</div><div class="stat-label" style="color: #15803d;">Karma ⭐</div>
                                 </div>
                             </div>
 
-                            <div style="margin-bottom:35px;">
-                                <h3 style="font-size:1.2rem; font-weight:800; border-bottom:2px solid #e2e8f0; padding-bottom:10px; margin-bottom:15px; color: #0f172a;">Últimas Discussões Criadas</h3>
+                            <div class="profile-tabs-nav">
+                                <button class="profile-tab-btn active" id="tab-btn-topics" onclick="mudarAbaPerfil('topics')">Discussões Criadas</button>
+                                <button class="profile-tab-btn" id="tab-btn-replies" onclick="mudarAbaPerfil('replies')">Histórico de Respostas</button>
+                            </div>
+
+                            <div class="profile-tab-content active" id="tab-content-topics">
                                 ${topicosListHTML}
+                            </div>
+
+                            <div class="profile-tab-content" id="tab-content-replies">
+                                ${resposasListHTML}
                             </div>
                         </div>
                     </div>
                 `;
             }
 
-            target.innerHTML = `
-                <div><a href="forum.html" class="btn-secondary" style="margin-bottom:20px; display:inline-block;">⬅ Retornar à Comunidade</a></div>
-                ${contentHTML}
-            `;
+            target.innerHTML = `<div><a href="forum.html" class="btn-secondary" style="margin-bottom:20px; display:inline-block;">⬅ Retornar à Comunidade</a></div>${contentHTML}`;
         }
 
         async function salvarAlteracoesPerfil() {
@@ -749,21 +793,21 @@
             if(!logado) return;
             const novaBio = document.getElementById('edit-bio').value.trim();
             const novoAvatar = document.getElementById('edit-avatar').value.trim();
+            const novaCapa = document.getElementById('edit-capa').value.trim();
+            const novoStatus = document.getElementById('edit-status').value.trim();
             const isPrivado = document.getElementById('edit-privado').checked;
 
             let { error } = await dbClient.from('usuarios').update({
                 bio: novaBio,
                 avatar: novoAvatar,
+                capa: novaCapa,
+                status_msg: novoStatus,
                 privado: isPrivado
             }).eq('username', logado.username);
 
             if(error) {
-                alert("Erro ao sincronizar com o servidor.");
+                alert("Erro ao sincronizar com o servidor: " + error.message);
             } else {
-                logado.bio = novaBio;
-                logado.avatar = novoAvatar;
-                logado.privado = isPrivado;
-                localStorage.setItem('qp_user_session', JSON.stringify(logado));
                 alert("Configurações atualizadas com sucesso!");
                 window.location.reload();
             }
@@ -796,31 +840,22 @@
             if(listaTopicos && listaTopicos.length > 0) {
                 listaTopicos.forEach(item => {
                     let totalResp = Array.isArray(item.respostas) ? item.respostas.length : 0;
-                    
-                    // Tag Visual para tópicos quentes
                     let tagHot = totalResp > 5 ? `<span style="background:#ef4444; color:white; font-size:0.7rem; padding:2px 8px; border-radius:12px; margin-left:8px; vertical-align:middle; text-transform:uppercase; font-weight:800;">Em Alta</span>` : '';
 
                     listaHTML += `
                         <a href="forum.html?id=${item.id}&topico=${slugify(item.titulo)}" class="topic-row-card">
                             <div class="topic-info">
                                 <h3>${item.titulo} ${tagHot}</h3>
-                                <div class="topic-details">
-                                    Iniciado por <strong>${item.autor}</strong> • ${item.data ? item.data.split(' ')[0] : ''}
-                                </div>
+                                <div class="topic-details">Iniciado por <strong>${item.autor}</strong> • ${item.data ? item.data.split(' ')[0] : ''}</div>
                             </div>
-                            <div class="topic-replies-badge">
-                                💬 ${totalResp}
-                            </div>
+                            <div class="topic-replies-badge">💬 ${totalResp}</div>
                         </a>`;
                 });
-            } else {
-                listaHTML = `<div class="form-card" style="text-align:center;"><p style="color:#64748b; font-size: 1.1rem; margin:0;">Inicie uma discussão!</p></div>`;
-            }
+            } else { listaHTML = `<div class="form-card" style="text-align:center;"><p style="color:#64748b; font-size: 1.1rem; margin:0;">Inicie uma discussão!</p></div>`; }
             target.innerHTML = `<div class="forum-action-header"><h2>Fórum</h2><a href="forum.html?action=novo" class="btn-main">+ Nova Discussão</a></div>${listaHTML}`;
         }
 
         async function inicializarForum() {
-            await autoConfigurarBanco();
             atualizarNavbarUser();
             carregarSidebar();
 
@@ -835,14 +870,8 @@
                         <div class="form-card">
                             <h2 style="border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;">Criar Novo Tópico</h2>
                             <form onsubmit="criarNovoTopicoPost(event)">
-                                <div class="form-group">
-                                    <label>Título</label>
-                                    <input type="text" id="new-title" placeholder="Ex: Dúvida sobre compatibilidade AM4 e AM5..." required style="font-size: 1.1rem;">
-                                </div>
-                                <div class="form-group">
-                                    <label>Desenvolva sua ideia ou dúvida:</label>
-                                    <textarea id="new-content" rows="8" placeholder="Escreva os detalhes, especificações da sua máquina, etc..." required></textarea>
-                                </div>
+                                <div class="form-group"><label>Título</label><input type="text" id="new-title" placeholder="Ex: Dúvida sobre compatibilidade AM4 e AM5..." required style="font-size: 1.1rem;"></div>
+                                <div class="form-group"><label>Desenvolva sua ideia ou dúvida:</label><textarea id="new-content" rows="8" placeholder="Escreva os detalhes, especificações da sua máquina, etc..." required></textarea></div>
                                 <div style="display:flex; justify-content:space-between; align-items:center; margin-top:20px;">
                                     <a href="forum.html" class="btn-secondary" style="text-decoration:none;">Cancelar</a>
                                     <button type="submit" class="btn-main" style="padding: 14px 30px; font-size: 1.1rem;">Publicar na Comunidade</button>
@@ -860,23 +889,15 @@
                     const tLogado = obterUsuarioLogado();
                     let avatarTopicoHTML = gerarAvatarHTML(t.autor, t.autor_avatar, t.autor_role);
 
-                    // --- NOVA LÓGICA DE RENDERIZAÇÃO ANINHADA (FILTRANDO O ARRAY) ---
                     let respostasHTML = '';
                     let listaRespostasGeral = Array.isArray(t.respostas) ? t.respostas : [];
-                    
-                    // Separa pais e filhas baseados na chave 'parent_id' que existe nos objetos da JSON
                     const principais = listaRespostasGeral.filter(r => !r.parent_id);
                     const filhas = listaRespostasGeral.filter(r => r.parent_id);
 
-                    // Loop nas respostas principais (nível raiz)
                     principais.forEach(r => {
                         respostasHTML += renderizarBlocoResposta(r, tLogado, t.id, false);
-                        
-                        // Busca as filhas atreladas a esse comentário principal
                         const subRespostas = filhas.filter(sub => sub.parent_id === r.id);
-                        subRespostas.forEach(sub => {
-                            respostasHTML += renderizarBlocoResposta(sub, tLogado, t.id, true);
-                        });
+                        subRespostas.forEach(sub => { respostasHTML += renderizarBlocoResposta(sub, tLogado, t.id, true); });
                     });
 
                     let formRespostaHTML = `<div class="auth-gate-box"><p>Participe do QualProcessador para interagir.</p><a href="forum.html?action=auth" class="btn-main">Entrar ou Cadastrar</a></div>`;
@@ -885,12 +906,8 @@
                             <div class="form-card" style="border-top: 4px solid #3b82f6; border-radius: 0 0 12px 12px; margin-top: -20px; box-shadow: none;">
                                 <h3 style="margin: 0 0 15px 0; font-size: 1.2rem; color: #0f172a;">Escrever uma Resposta Geral</h3>
                                 <form onsubmit="postarRespostaAninhada(event, ${t.id}, null, 'general')">
-                                    <div class="form-group">
-                                        <textarea id="inline-reply-text-general" rows="5" placeholder="Adicione sua visão técnica ou contribuição..." required></textarea>
-                                    </div>
-                                    <div style="display:flex; justify-content:flex-end;">
-                                        <button type="submit" class="btn-main" style="padding: 12px 25px;">Publicar Comentário</button>
-                                    </div>
+                                    <div class="form-group"><textarea id="inline-reply-text-general" rows="5" placeholder="Adicione sua visão técnica ou contribuição..." required></textarea></div>
+                                    <div style="display:flex; justify-content:flex-end;"><button type="submit" class="btn-main" style="padding: 12px 25px;">Publicar Comentário</button></div>
                                 </form>
                             </div>`;
                     }
@@ -899,14 +916,9 @@
 
                     target.innerHTML = `
                         <div><a href="forum.html" class="btn-secondary" style="margin-bottom:15px; display:inline-flex; align-items:center; gap:5px;">⬅ Voltar aos Tópicos</a></div>
-                        
                         <div class="topic-header-panel">
-                            <h1>${t.titulo}</h1>
-                            <div style="font-size: 0.85rem; color: #64748b; font-weight: 700; background: #f1f5f9; padding: 8px 15px; border-radius: 20px;">
-                                Tópico Oficial
-                            </div>
+                            <h1>${t.titulo}</h1><div style="font-size: 0.85rem; color: #64748b; font-weight: 700; background: #f1f5f9; padding: 8px 15px; border-radius: 20px;">Tópico Oficial</div>
                         </div>
-                        
                         <div class="post-card" style="border-left: 5px solid #38bdf8;">
                             <div class="post-user">
                                 ${avatarTopicoHTML}
@@ -930,22 +942,30 @@
                                 <div id="reply-box-general" class="inline-reply-box"></div>
                             </div>
                         </div>
-                        
                         <h3 style="margin: 30px 0 20px 0; font-size: 1.3rem; color: #0f172a; display: flex; align-items: center; gap: 10px;">
-                            Respostas da Comunidade
-                            <span style="background: #e2e8f0; color: #475569; padding: 4px 12px; border-radius: 20px; font-size: 0.9rem;">${listaRespostasGeral.length}</span>
+                            Respostas da Comunidade <span style="background: #e2e8f0; color: #475569; padding: 4px 12px; border-radius: 20px; font-size: 0.9rem;">${listaRespostasGeral.length}</span>
                         </h3>
-                        
                         ${respostasHTML}
                         ${formRespostaHTML}
                     `;
                 }
-            } else {
-                await renderizarListaTopicos();
-            }
+            } else { await renderizarListaTopicos(); }
         }
 
-        inicializarForum();
+        async function inicializarApp() {
+            const { data: { session } } = await dbClient.auth.getSession();
+            if (session) { await carregarDadosUsuario(session.user); }
+
+            dbClient.auth.onAuthStateChange(async (event, currentSession) => {
+                if (currentSession) { await carregarDadosUsuario(currentSession.user); } 
+                else { usuarioLogado = null; }
+                atualizarNavbarUser();
+            });
+
+            inicializarForum();
+        }
+
+        inicializarApp();
     </script>
 </body>
 </html>
