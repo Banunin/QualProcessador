@@ -1,0 +1,23 @@
+SISTEMA DE ARTIGOS — QualProcessador
+
+1. artigos.json é o banco/índice. A CHAVE do objeto é o ID oficial do artigo.
+2. ler-artigo.html procura primeiro por ?id=ID. Se não houver ID na URL, procura a URL personalizada por correspondência EXATA de urlLimpa/urlPath.
+3. /artigo/ID é uma rota estável de emergência/diagnóstico e também lê pelo mesmo ID.
+4. A URL personalizada precisa ter uma rewrite no vercel.json apontando para /ler-artigo?id=ID.
+5. analises.html lê /artigos.json e cria os cards automaticamente.
+6. painel-postar.html gera o bloco do artigos.json e a regra de rewrite do vercel.json.
+
+Exemplo:
+"71": {
+  "id": "71",
+  "urlPath": "amd/meu-artigo",
+  "urlLimpa": "/amd/meu-artigo",
+  "linkLeitura": "/ler-artigo?id=71",
+  "texto": "<p>Conteúdo...</p>"
+}
+
+Rewrite correspondente:
+{
+  "source": "/amd/meu-artigo",
+  "destination": "/ler-artigo?id=71"
+}

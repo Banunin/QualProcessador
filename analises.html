@@ -80,44 +80,72 @@
             <a href="index.html" class="nav-link">Home</a>
             <a href="analises.html" class="nav-link active">Artigos</a>
             <a href="forum.html" class="nav-link">Fórum</a>
-            <a href="Comunidade.html" class="nav-link">Comunidade</a>
+            <a href="comunidade.html" class="nav-link">Comunidade</a>
             <a href="ferramentas.html" class="nav-link">Ferramentas</a>
         </div>
     </nav>
 
     <div class="container">
-        <div class="articles-list">
-            
-            <a href="ler-artigo.html?id=101" class="article-card-horizontal">
-                <div class="article-image" style="background-image: url('https://images.unsplash.com/photo-1591488320449-011701bb6704?q=80&w=600&auto=format&fit=crop');"></div>
-                <div class="article-content">
-                    <span class="article-tag" style="color: #10b981;">Guia de Hardware</span>
-                    <h2>ARTIGO TESTE-O que é uma APU? Entenda como funciona um processador com vídeo integrado-</h2>
-                    <p>Descubra como funcionam os processadores que reúnem CPU e GPU no mesmo chip. Entenda as vantagens, desvantagens e se vale a pena comprar uma APU para rodar jogos sem placa de vídeo dedicada.</p>
-                    <div class="article-meta">
-                        <span>🗓️ Julho de 2026</span>
-                        <span>⏱️ Leitura: 5 min</span>
-                    </div>
-                </div>
-            </a>
-
-            <a href="ler-artigo.html?id=102" class="article-card-horizontal">
-                <div class="article-image" style="background-image: url('https://github.com/Banunin/QualProcessador/blob/main/img/photo_5_2026-08-04_16-58-55.webp?raw=true');"></div>
-                <div class="article-content">
-                    <span class="article-tag" style="color: #ef4444;">Análise</span>
-                    <h2>Análise: PowerBank Elg PB200BK 20.000mAh</h2>
-                    <p>Vale a pena comprar a Power Bank ELG de R$ 130? Eu testei o modelo e mostro os resultados reais de autonomia, velocidade de carregamento, qualidade de construção e custo-benefício.</p>
-                    <div class="article-meta">
-                        <span>🗓️ 04/08/2026</span>
-                        <span>⏱️ Leitura: 2 min</span>
-                    </div>
-                </div>
-            </a>
-
+        <div class="articles-list" id="articles-list">
+            <div style="background:white; border:1px solid #e2e8f0; border-radius:12px; padding:30px; text-align:center; color:#64748b;">Carregando artigos...</div>
         </div>
     </div>
 
     <footer>&copy; 2026 QualProcessador</footer>
+
+    <script>
+        function escapeHTML(str) {
+            return String(str ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
+        }
+
+        let artigosCache = [];
+        const listaEl = document.getElementById('articles-list');
+        const buscaEl = document.querySelector('.search-magazine input');
+        const buscaBtn = document.querySelector('.search-magazine button');
+
+        function renderizarArtigos(filtro = '') {
+            const termo = filtro.trim().toLowerCase();
+            const filtrados = artigosCache.filter(a => [a.titulo, a.descricao, a.categoria, a.autor].join(' ').toLowerCase().includes(termo));
+
+            if (!filtrados.length) {
+                listaEl.innerHTML = '<div style="background:white;border:1px solid #e2e8f0;border-radius:12px;padding:30px;text-align:center;color:#64748b;">Nenhum artigo encontrado.</div>';
+                return;
+            }
+
+            listaEl.innerHTML = filtrados.map(a => {
+                const url = a.urlLimpa || a.linkLeitura || `/artigo/${encodeURIComponent(a.id)}`;
+                const imagem = a.imagemCapa ? `background-image:url('${String(a.imagemCapa).replace(/'/g, '%27')}')` : "background-image:url('/img/placeholder.webp')";
+                return `
+                    <a href="${escapeHTML(url)}" class="article-card-horizontal">
+                        <div class="article-image" style="${imagem};"></div>
+                        <div class="article-content">
+                            <span class="article-tag">${escapeHTML(a.categoria || 'Artigo')}</span>
+                            <h2>${escapeHTML(a.titulo || 'Sem título')}</h2>
+                            <p>${escapeHTML(a.descricao || '')}</p>
+                            <div class="article-meta">
+                                <span>${escapeHTML(a.autor || 'Equipe QualProcessador')}</span>
+                                <span>Leitura: ${escapeHTML(a.tempoLeitura || '—')}</span>
+                            </div>
+                        </div>
+                    </a>`;
+            }).join('');
+        }
+
+        fetch('/artigos.json', { cache: 'no-store' })
+            .then(r => { if (!r.ok) throw new Error(`HTTP ${r.status}`); return r.json(); })
+            .then(obj => {
+                artigosCache = Object.values(obj).sort((a,b) => Number(b.id || 0) - Number(a.id || 0));
+                renderizarArtigos();
+            })
+            .catch(err => {
+                console.error('Erro ao carregar artigos:', err);
+                listaEl.innerHTML = '<div style="background:#fff1f2;border:1px solid #fecdd3;border-radius:12px;padding:30px;text-align:center;color:#be123c;">Não foi possível carregar os artigos.</div>';
+            });
+
+        buscaEl.addEventListener('input', () => renderizarArtigos(buscaEl.value));
+        buscaEl.addEventListener('keydown', e => { if (e.key === 'Enter') renderizarArtigos(buscaEl.value); });
+        buscaBtn.addEventListener('click', () => renderizarArtigos(buscaEl.value));
+    </script>
 
 </body>
 </html>
