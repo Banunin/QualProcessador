@@ -326,54 +326,20 @@
         // ---------------------------------------------------------
         // RENDERIZAÇÃO DA PÁGINA DE DETALHES
         // ---------------------------------------------------------
-        function gerarSlugCpu(texto) {
-            return (texto || '').toLowerCase()
-                .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-                .replace(/[^a-z0-9]+/g, '-')
-                .replace(/(^-|-$)/g, '');
-        }
-
-        function montarSlugCpu(item) {
-            const marcaItem = (item?.marca || '').toLowerCase();
-            const slugNome = gerarSlugCpu(item?.nome || '');
-            return slugNome.startsWith(marcaItem + '-') ? slugNome : `${marcaItem}-${slugNome}`;
-        }
-
         const parametrosUrl = new URLSearchParams(window.location.search);
-        let idParam = parametrosUrl.get('id');
-        let marcaParam = parametrosUrl.get('marca');
-        let cpuSlugParam = parametrosUrl.get('cpu');
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
+        const marca = urlParams.get('marca');
+        const cpuSlug = urlParams.get('cpu');
 
-        // Permite abrir /cpu/amd/amd-ryzen-5-5600 diretamente, inclusive após F5.
-        const pathCpuMatch = window.location.pathname.match(/^\/cpu\/([^/]+)\/([^/]+)\/?$/i);
-        if (pathCpuMatch) {
-            marcaParam = marcaParam || decodeURIComponent(pathCpuMatch[1]);
-            cpuSlugParam = cpuSlugParam || decodeURIComponent(pathCpuMatch[2]);
+        if (marca && cpuSlug) {
+            const urlAmigavel = `/cpu/${marca.toLowerCase()}/${cpuSlug}`;
+            window.history.replaceState({ id: id }, '', urlAmigavel);
         }
 
-        let cpu = null;
-        if (Array.isArray(listaDeCpus)) {
-            const idNumerico = idParam !== null && idParam !== '' ? Number(idParam) : NaN;
-            if (Number.isFinite(idNumerico)) {
-                cpu = listaDeCpus.find(item => Number(item.id) === idNumerico) || null;
-            }
-            if (!cpu && marcaParam && cpuSlugParam) {
-                const marcaNormalizada = String(marcaParam).toLowerCase();
-                const slugNormalizado = String(cpuSlugParam).toLowerCase();
-                cpu = listaDeCpus.find(item =>
-                    String(item.marca || '').toLowerCase() === marcaNormalizada &&
-                    montarSlugCpu(item) === slugNormalizado
-                ) || null;
-            }
-        }
-
-        const idCpu = cpu ? Number(cpu.id) : null;
+        const idCpu = parseInt(parametrosUrl.get('id')) || 0; 
+        const cpu = listaDeCpus ? listaDeCpus.find(item => item.id === idCpu) : null;
         const container = document.getElementById('conteudo-dinamico');
-
-        if (cpu && !pathCpuMatch) {
-            const urlAmigavel = `/cpu/${String(cpu.marca).toLowerCase()}/${montarSlugCpu(cpu)}`;
-            window.history.replaceState({ id: cpu.id }, '', urlAmigavel);
-        }
 
         if (cpu) {
             document.title = `${cpu.nome} - QualProcessador`;
@@ -387,8 +353,8 @@
             if (cpu.fotos && Array.isArray(cpu.fotos) && cpu.fotos.length > 0) {
                 htmlMiniaturas = `
                     <div class="gallery-thumbnails">
-                        <img src="img/${cpu.foto}" class="thumb-item active" data-target="${cpu.foto}" onerror="this.onerror=null;this.src='img/placeholder.webp'">
-                        ${cpu.fotos.map(fotoExtra => `<img src="img/${fotoExtra}" class="thumb-item" data-target="${fotoExtra}" onerror="this.onerror=null;this.src='img/placeholder.webp'">`).join('')}
+                        <img src="img/${cpu.foto}" class="thumb-item active" data-target="${cpu.foto}">
+                        ${cpu.fotos.map(fotoExtra => `<img src="img/${fotoExtra}" class="thumb-item" data-target="${fotoExtra}">`).join('')}
                     </div>
                 `;
             }
@@ -411,7 +377,7 @@
                 <div class="layout-grid">
                     <div class="sidebar">
                         <div class="product-photo" id="container-foto-principal" style="border-color: ${corBordaFoto}; border-style: solid;">
-                            <img src="img/${cpu.foto}" alt="${cpu.nome}" id="img-target-principal" onerror="this.onerror=null;this.src='img/placeholder.webp'">
+                            <img src="img/${cpu.foto}" alt="${cpu.nome}" id="img-target-principal">
                         </div>
                         <span class="photo-hint" id="txt-ampliar-foto">🔍 Clique para ver mais / ampliar</span>
                         
@@ -847,24 +813,12 @@ function atualizarEstadoAutenticacao() {
                 };
 
                 const { error } = await dbClient.from('comentarios_produto').insert([resposta]);
-                if (error) {
-                    alert("Erro ao publicar resposta: " + error.message);
-                    return;
-                }
-                carregarComentarios();
+                if (!error) carregarComentarios();
             }
 
             window.excluirComentario = async function(idComentario) {
                 if (confirm("Deseja apagar este comentário permanentemente?")) {
-                    const { data, error } = await dbClient.from('comentarios_produto').delete().eq('id', idComentario).select('id');
-                    if (error) {
-                        alert("Erro ao apagar comentário: " + error.message);
-                        return;
-                    }
-                    if (!data || data.length === 0) {
-                        alert("O comentário não foi apagado. Sua conta pode não ter permissão de DELETE no Supabase (RLS).");
-                        return;
-                    }
+                    await dbClient.from('comentarios_produto').delete().eq('id', idComentario);
                     carregarComentarios();
                 }
             }
@@ -875,7 +829,7 @@ function atualizarEstadoAutenticacao() {
                 const editBox = document.getElementById(`edit-box-${idComentario}`);
 
                 editBox.innerHTML = `
-                    <textarea id="edit-input-${idComentario}" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; font-family:inherit; font-size:0.9rem; outline:none;" rows="3">${escapeHTML(original)}</textarea>
+                    <textarea id="edit-input-${idComentario}" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; font-family:inherit; font-size:0.9rem; outline:none;" rows="3">${original}</textarea>
                     <div style="display:flex; gap:8px; margin-top:6px;">
                         <button onclick="salvarEdicao(${idComentario})" style="background:#3b82f6; color:white; border:none; border-radius:4px; padding:6px 12px; font-weight:bold; font-size:0.8rem; cursor:pointer;">Salvar Edição</button>
                         <button onclick="carregarComentarios()" style="background:#e2e8f0; color:#0f172a; border:none; border-radius:4px; padding:6px 12px; font-weight:bold; font-size:0.8rem; cursor:pointer;">Cancelar</button>
@@ -888,20 +842,7 @@ function atualizarEstadoAutenticacao() {
                 const novoTexto = document.getElementById(`edit-input-${idComentario}`).value.trim();
                 if (!novoTexto) return;
 
-                const { data, error } = await dbClient
-                    .from('comentarios_produto')
-                    .update({ conteudo: novoTexto, editado: true })
-                    .eq('id', idComentario)
-                    .select('id');
-
-                if (error) {
-                    alert("Erro ao editar comentário: " + error.message);
-                    return;
-                }
-                if (!data || data.length === 0) {
-                    alert("A edição não foi gravada. Sua conta pode não ter permissão de UPDATE no Supabase (RLS). Aplique o arquivo SUPABASE_PATCH_COMENTARIOS.sql.");
-                    return;
-                }
+                await dbClient.from('comentarios_produto').update({ conteudo: novoTexto, editado: true }).eq('id', idComentario);
                 carregarComentarios();
             }
 

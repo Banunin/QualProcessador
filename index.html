@@ -91,7 +91,7 @@
             <a id="aba-cpus" class="nav-link">CPUs</a>
             <a href="analises.html" class="nav-link">Artigos</a>
             <a href="forum.html" class="nav-link">Fórum</a>
-            <a href="comunidade.html" class="nav-link">Comunidade</a>
+            <a href="Comunidade.html" class="nav-link">Comunidade</a>
             <a href="ferramentas.html" class="nav-link">Ferramentas</a>
         </div>
     </nav>
@@ -101,7 +101,7 @@
             <h2 class="section-title">Artigos em Destaque</h2>
             <div class="editorial-grid">
             
-                <a href="/elg/2026/08/review-powerbank-elg-PB200BK-20.000mAh" class="editorial-card">
+                <a href="/ler-artigo.html?id=102" class="editorial-card">
                     <div class="editorial-bg" style="background-color: #1e293b; background-image: url('https://github.com/Banunin/QualProcessador/blob/main/img/photo_5_2026-08-04_16-58-55.webp?raw=true');"></div>
                     <div class="editorial-overlay"></div>
                     <div class="editorial-content">
@@ -198,7 +198,7 @@
             const slugNome = gerarSlug(cpu.nome);
             const marca = (cpu.marca || '').toLowerCase();
             const cpuSlug = slugNome.startsWith(marca) ? slugNome : `${marca}-${slugNome}`;
-            return `/cpu/${encodeURIComponent(marca)}/${encodeURIComponent(cpuSlug)}`;
+            return `detalhes.html?id=${cpu.id}&marca=${encodeURIComponent(marca)}&cpu=${encodeURIComponent(cpuSlug)}`;
         }
 
         function normalizarTexto(texto) {

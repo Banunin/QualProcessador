@@ -323,9 +323,9 @@
             <pre id="codigo-json-resultado"></pre>
             <button class="btn-action btn-primary" style="margin-top: 5px; padding: 10px;" onclick="copiarJson()">📋 Copiar Estrutura JSON</button>
 
-            <div class="modal-section-title" style="margin-top: 20px;">2. Rewrite para o vercel.json (URL limpa):</div>
+            <div class="modal-section-title" style="margin-top: 20px;">2. Regra de Servidor (Para URLs 100% limpas sem .html):</div>
             <pre id="codigo-redirect-resultado"></pre>
-            <button class="btn-action" style="background: #10b981; color: white; margin-top: 5px; padding: 10px;" onclick="copiarRedirect()">📋 Copiar Rewrite Vercel</button>
+            <button class="btn-action" style="background: #10b981; color: white; margin-top: 5px; padding: 10px;" onclick="copiarRedirect()">📋 Copiar Regra de Redirecionamento</button>
 
             <button class="btn-action" style="background:#64748b; color:white; margin-top: 20px;" onclick="fecharModal()">Fechar Janela</button>
         </div>
@@ -423,27 +423,18 @@
         function gerarCodigoJSON() {
             const id = document.getElementById('artigo-id').value.trim();
             let urlPath = document.getElementById('artigo-url-path').value.trim();
-
-            if (!/^\d+$/.test(id)) {
-                alert('O ID do artigo deve ser numérico e único. Ex.: 71, 72, 101.');
-                return;
-            }
-
-            urlPath = urlPath.replace(/^\/+|\/+$/g, '');
-            if (!urlPath) {
-                alert('Defina uma URL personalizada para o artigo.');
-                return;
-            }
-
+            if (urlPath.startsWith('/')) urlPath = urlPath.substring(1);
+            
             const urlLimpa = '/' + urlPath;
-            const linkLeitura = `/ler-artigo?id=${encodeURIComponent(id)}`;
+            const linkLeitura = `/ler-artigo.html?id=${id}`;
 
+            // Objeto do artigo com os links incluídos dentro dele
             const artigoObj = {
-                id,
+                id: id,
                 titulo: document.getElementById('artigo-titulo').value,
-                urlPath,
-                urlLimpa,
-                linkLeitura,
+                urlPath: urlPath,
+                urlLimpa: urlLimpa,
+                linkLeitura: linkLeitura,
                 descricao: document.getElementById('artigo-descricao').value,
                 categoria: document.getElementById('artigo-categoria').value,
                 autor: document.getElementById('artigo-autor').value,
@@ -452,18 +443,18 @@
                 texto: editor.value
             };
 
-            // Cole ESTE BLOCO dentro do objeto principal do artigos.json.
-            // O ID é a chave oficial que o leitor e os comentários usam.
-            const jsonCompleto = { [id]: artigoObj };
-
-            // Regra que faz a URL personalizada carregar o mesmo ID no ler-artigo.
-            const rewriteRule = {
-                source: urlLimpa,
-                destination: linkLeitura
+            // Estrutura completa: Abre { no início e fecha com }} no final
+            const jsonCompleto = {
+                [id]: artigoObj
             };
 
-            document.getElementById('codigo-json-resultado').innerText = JSON.stringify(jsonCompleto, null, 4);
-            document.getElementById('codigo-redirect-resultado').innerText = JSON.stringify(rewriteRule, null, 4);
+            const jsonStringFormatted = JSON.stringify(jsonCompleto, null, 4);
+
+            // Regra limpa de servidor
+            const redirectRule = `# Rota para URL limpa (SEO Friendly sem .html)\n${urlLimpa}    ${linkLeitura}    200`;
+
+            document.getElementById('codigo-json-resultado').innerText = jsonStringFormatted;
+            document.getElementById('codigo-redirect-resultado').innerText = redirectRule;
             document.getElementById('modal-codigo').style.display = 'flex';
         }
 
@@ -480,7 +471,7 @@
         function copiarRedirect() {
             const codigo = document.getElementById('codigo-redirect-resultado').innerText;
             navigator.clipboard.writeText(codigo);
-            alert("Rewrite do Vercel copiado com sucesso!");
+            alert("Regra de redirecionamento copiada com sucesso!");
         }
 
         // Listeners

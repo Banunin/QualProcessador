@@ -169,7 +169,7 @@
                 <a href="index.html" class="nav-link">Home</a>
                 <a href="analises.html" class="nav-link">Artigos</a>
                 <a href="forum.html" class="nav-link active">Fórum</a>
-                <a href="comunidade.html" class="nav-link">Comunidade</a>
+                <a href="Comunidade.html" class="nav-link">Comunidade</a>
                 <a href="ferramentas.html" class="nav-link">Ferramentas</a>
             </div>
             <div id="navbar-user-box" class="nav-user-status"></div>
@@ -200,10 +200,6 @@
         const SUPABASE_URL = "https://sterozqxsblanvjyzjmi.supabase.co"; 
         const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN0ZXJvenF4c2JsYW52anl6am1pIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3OTc3OTAsImV4cCI6MjA5OTM3Mzc5MH0.IBx9tIoVF-RepV_IKjgRFwuQVE0CbEMRo9fLUN066WM";
         const dbClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-        function escapeHTML(str) {
-            return String(str ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;').replace(/'/g, '&#039;');
-        }
 
         let target = document.getElementById('render-target');
         const params = new URLSearchParams(window.location.search);
@@ -443,9 +439,7 @@
             let respIndex = lista.findIndex(r => r.id === idResposta);
             if(respIndex > -1) {
                 lista[respIndex].reacoes = processarReacaoObjeto(lista[respIndex].reacoes, logado.username, tipo);
-                const { data, error } = await dbClient.from('topicos').update({ respostas: lista }).eq('id', idTopico).select('id');
-                if (error) return alert("Erro ao editar resposta: " + error.message);
-                if (!data || data.length === 0) return alert("A edição não foi gravada. Verifique as políticas RLS da tabela topicos.");
+                await dbClient.from('topicos').update({ respostas: lista }).eq('id', idTopico);
                 window.location.reload();
             }
         }
@@ -457,7 +451,7 @@
             const actionSave = isTopico ? `salvarEdicaoTopico()` : `salvarEdicaoResposta(${idResposta})`;
             
             container.innerHTML = `
-                <textarea id="input-${idDOM}" rows="4" style="width:100%; padding:15px; border:1px solid #3b82f6; border-radius:8px; font-family:inherit; font-size:1rem; outline:none; box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1); margin-bottom: 10px;">${escapeHTML(currentText)}</textarea>
+                <textarea id="input-${idDOM}" rows="4" style="width:100%; padding:15px; border:1px solid #3b82f6; border-radius:8px; font-family:inherit; font-size:1rem; outline:none; box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1); margin-bottom: 10px;">${currentText}</textarea>
                 <div style="display:flex; gap:10px;">
                     <button onclick="${actionSave}" class="btn-main" style="padding:10px 20px; font-size: 0.85rem; background: linear-gradient(135deg, #10b981 0%, #047857 100%);">Salvar Alterações</button>
                     <button onclick="window.location.reload()" class="btn-secondary" style="padding:10px 20px; font-size: 0.85rem;">Cancelar</button>
@@ -468,9 +462,7 @@
         async function salvarEdicaoTopico() {
             const novoTexto = document.getElementById('input-text-topico').value.trim();
             if(!novoTexto) return;
-            const { data, error } = await dbClient.from('topicos').update({ conteudo: novoTexto, editado: true }).eq('id', idTopico).select('id');
-            if (error) return alert("Erro ao editar tópico: " + error.message);
-            if (!data || data.length === 0) return alert("A edição não foi gravada. Verifique as políticas RLS da tabela topicos.");
+            await dbClient.from('topicos').update({ conteudo: novoTexto, editado: true }).eq('id', idTopico);
             window.location.reload();
         }
 

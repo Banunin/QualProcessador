@@ -9,7 +9,6 @@
     
     <meta name="description" content="Leia nossas análises e descubra se o produto vale a pena.">
     <meta name="robots" content="index, follow">
-    <link id="canonical-artigo" rel="canonical" href="https://qualprocessador.vercel.app/analises">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -116,8 +115,8 @@
 
     <nav class="article-nav">
         <div class="nav-links-left">
-            <a href="/" class="nav-link-base">Página Inicial</a>
-            <a href="/analises" class="nav-link-base">Artigos & Análises</a>
+            <a href="index.html" class="nav-link-base">Página Inicial</a>
+            <a href="analises.html" class="nav-link-base">Artigos & Análises</a>
         </div>
         <div id="user-nav-container" class="user-nav-area">
             </div>
@@ -355,7 +354,7 @@
                 
                 // Link redirecionando certinho para o fórum
                 navContainer.innerHTML = `
-                    <a href="/forum?action=perfil&user=${encodeURIComponent(userSeguro)}" class="user-profile-link">
+                    <a href="forum.html?action=perfil&user=${encodeURIComponent(userSeguro)}" class="user-profile-link">
                         <img src="${avatarSeguro}" class="user-avatar-nav" alt="Avatar">
                         <span>${userSeguro}</span>
                     </a>
@@ -374,117 +373,57 @@
         // ---------------------------------------------------------
         // CARREGAMENTO DO ARTIGO JSON
         // ---------------------------------------------------------
-        function normalizarCaminhoArtigo(valor) {
-            if (!valor) return '/';
-            try { valor = decodeURIComponent(valor); } catch (_) {}
-            valor = String(valor).trim();
-            if (!valor.startsWith('/')) valor = '/' + valor;
-            valor = valor.replace(/\/{2,}/g, '/');
-            if (valor.length > 1) valor = valor.replace(/\/+$/, '');
-            return valor;
-        }
-
-        function localizarArtigo(todosArtigos) {
+        function iniciarRenderizacaoArtigo() {
             const parametrosUrl = new URLSearchParams(window.location.search);
-            const idInformado = parametrosUrl.get('id');
+            let idArtigoUrl = parametrosUrl.get('id');
 
-            // 1) A chave principal sempre é o ID.
-            if (idInformado && todosArtigos[String(idInformado)]) {
-                const chave = String(idInformado);
-                return { chave, artigo: todosArtigos[chave], origem: 'id' };
-            }
-
-            const caminhoAtual = normalizarCaminhoArtigo(window.location.pathname);
-
-            // 2) Rota estável opcional: /artigo/101, /artigo/102, etc.
-            const rotaId = caminhoAtual.match(/^\/artigo\/([^/]+)$/i);
-            if (rotaId) {
-                const chave = String(rotaId[1]);
-                if (todosArtigos[chave]) {
-                    return { chave, artigo: todosArtigos[chave], origem: 'rota-id' };
+            if (!idArtigoUrl) {
+                const pathSegments = window.location.pathname.split('/').filter(Boolean);
+                if (pathSegments.length > 0) {
+                    idArtigoUrl = pathSegments[pathSegments.length - 1];
                 }
             }
 
-            // 3) URL personalizada: comparação EXATA com urlLimpa/urlPath.
-            // Nada de procurar apenas um pedaço do slug, pois isso pode abrir o artigo errado.
-            for (const [chave, artigo] of Object.entries(todosArtigos)) {
-                const caminhoConfigurado = normalizarCaminhoArtigo(artigo.urlLimpa || artigo.urlPath || '');
-                if (caminhoConfigurado !== '/' && caminhoConfigurado === caminhoAtual) {
-                    return { chave: String(chave), artigo, origem: 'url-personalizada' };
-                }
-            }
+            fetch('artigos.json')
+                .then(response => response.json())
+                .then(todosArtigos => {
+                    let artigoSelecionado = null;
+                    let chaveEncontrada = null;
 
-            return null;
-        }
+                    if (idArtigoUrl && todosArtigos[idArtigoUrl]) {
+                        artigoSelecionado = todosArtigos[idArtigoUrl];
+                        chaveEncontrada = idArtigoUrl;
+                    } else if (idArtigoUrl) {
+                        for (const chave in todosArtigos) {
+                            if (todosArtigos[chave].urlLimpa && todosArtigos[chave].urlLimpa.includes(idArtigoUrl)) {
+                                artigoSelecionado = todosArtigos[chave];
+                                chaveEncontrada = chave;
+                                break;
+                            }
+                        }
+                    }
 
-        function atualizarSeoArtigo(artigo) {
-            const titulo = artigo.titulo || 'Artigo';
-            const descricao = artigo.descricao || 'Leia este artigo no QualProcessador.';
-            const caminhoCanonico = normalizarCaminhoArtigo(artigo.urlLimpa || artigo.urlPath || `/artigo/${encodeURIComponent(artigo.id)}`);
-            const urlCanonica = `${window.location.origin}${caminhoCanonico}`;
-
-            document.title = `${titulo} - QualProcessador`;
-
-            const metaDescricao = document.querySelector('meta[name="description"]');
-            if (metaDescricao) metaDescricao.setAttribute('content', descricao);
-
-            const canonical = document.getElementById('canonical-artigo');
-            if (canonical) canonical.setAttribute('href', urlCanonica);
-        }
-
-        async function iniciarRenderizacaoArtigo() {
-            try {
-                // Caminho absoluto: funciona tanto em /ler-artigo?id=101 quanto em /amd/meu-artigo.
-                const response = await fetch('/artigos.json', { cache: 'no-store' });
-                if (!response.ok) throw new Error(`artigos.json respondeu HTTP ${response.status}`);
-
-                const todosArtigos = await response.json();
-                if (!todosArtigos || typeof todosArtigos !== 'object' || Array.isArray(todosArtigos)) {
-                    throw new Error('artigos.json possui formato inválido');
-                }
-
-                const encontrado = localizarArtigo(todosArtigos);
-
-                if (!encontrado) {
-                    document.getElementById('conteudo-artigo-dinamico').innerHTML = `
-                        <div class="article-container" style="text-align:center; margin-top:100px;">
-                            <h2>Artigo não encontrado</h2>
-                            <p style="color:#ef4444; font-weight:600;">Nenhum artigo do artigos.json corresponde ao ID ou à URL solicitada.</p>
-                            <a href="/analises" style="color:#0284c7; font-weight:bold; text-decoration:underline;">Voltar para Artigos</a>
-                        </div>`;
-                    return;
-                }
-
-                const { chave, artigo } = encontrado;
-
-                // Garante que o ID usado pelos comentários é exatamente a chave do artigos.json.
-                idArtigoAtualGlobal = String(chave);
-                artigo.id = String(artigo.id || chave);
-
-                // Se alguém escreveu { "101": { "id": "999" } }, não permitimos misturar IDs.
-                if (artigo.id !== String(chave)) {
-                    console.warn(`ID divergente no artigos.json: chave ${chave}, campo id ${artigo.id}. Usando a chave como ID oficial.`);
-                    artigo.id = String(chave);
-                }
-
-                atualizarSeoArtigo(artigo);
-                renderizarArtigo(artigo);
-                window.carregarComentarios();
-
-                // Acesso por ?id= ou /artigo/:id termina mostrando a URL personalizada no navegador.
-                const urlLimpa = normalizarCaminhoArtigo(artigo.urlLimpa || artigo.urlPath || '');
-                if (urlLimpa !== '/' && normalizarCaminhoArtigo(window.location.pathname) !== urlLimpa) {
-                    window.history.replaceState({ artigoId: chave }, '', urlLimpa);
-                }
-            } catch (err) {
-                console.error('Erro ao carregar artigo:', err);
-                document.getElementById('conteudo-artigo-dinamico').innerHTML = `
-                    <div class="article-container" style="text-align:center; margin-top:100px;">
-                        <h2>Não foi possível carregar o artigo</h2>
-                        <p style="color:#ef4444; font-weight:600;">O arquivo artigos.json não pôde ser lido. Confirme que ele está na raiz do site.</p>
-                        <a href="/analises" style="color:#0284c7; font-weight:bold;">Voltar para Artigos</a>
-                    </div>`;
-            }
+                    if (artigoSelecionado && chaveEncontrada) {
+                        idArtigoAtualGlobal = chaveEncontrada;
+                        document.title = `${escapeHTML(artigoSelecionado.titulo)} - QualProcessador`;
+                        renderizarArtigo(artigoSelecionado);
+                        window.carregarComentarios();
+                        
+                        try {
+                            if (artigoSelecionado.urlLimpa && !window.location.pathname.includes(artigoSelecionado.urlLimpa)) {
+                                window.history.replaceState(null, '', artigoSelecionado.urlLimpa);
+                            }
+                        } catch (err) {}
+                    } else {
+                        document.getElementById('conteudo-artigo-dinamico').innerHTML = `
+                            <div class="article-container" style="text-align: center; margin-top: 100px;">
+                                <h2>Artigo Não Encontrado</h2>
+                                <p style="color: #ef4444; font-weight: 600;">O artigo solicitado não foi encontrado no banco de dados.</p>
+                                <a href="analises.html" style="color: #0284c7; font-weight: bold; text-decoration: underline;">Voltar ao Hub de Análises</a>
+                            </div>
+                        `;
+                    }
+                }).catch(err => console.error("Erro ao ler JSON:", err));
         }
 
         function renderizarArtigo(artigo) {
@@ -655,24 +594,12 @@
             };
 
             const { error } = await dbClient.from('comentarios_produto').insert([resposta]);
-            if (error) {
-                alert("Erro ao publicar resposta: " + error.message);
-                return;
-            }
-            window.carregarComentarios();
+            if (!error) window.carregarComentarios();
         }
 
         window.excluirComentario = async function(idComentario) {
             if (confirm("Deseja apagar este comentário permanentemente?")) {
-                const { data, error } = await dbClient.from('comentarios_produto').delete().eq('id', idComentario).select('id');
-                if (error) {
-                    alert("Erro ao apagar comentário: " + error.message);
-                    return;
-                }
-                if (!data || data.length === 0) {
-                    alert("O comentário não foi apagado. Sua conta pode não ter permissão de DELETE no Supabase (RLS).");
-                    return;
-                }
+                await dbClient.from('comentarios_produto').delete().eq('id', idComentario);
                 window.carregarComentarios();
             }
         }
@@ -683,7 +610,7 @@
             const editBox = document.getElementById(`edit-box-${idComentario}`);
 
             editBox.innerHTML = `
-                <textarea id="edit-input-${idComentario}" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; font-family:inherit; font-size:0.9rem; outline:none; resize:vertical;" rows="3">${escapeHTML(original)}</textarea>
+                <textarea id="edit-input-${idComentario}" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; font-family:inherit; font-size:0.9rem; outline:none; resize:vertical;" rows="3">${original}</textarea>
                 <div style="display:flex; gap:8px; margin-top:6px;">
                     <button onclick="salvarEdicao(${idComentario})" style="background:#3b82f6; color:white; border:none; border-radius:4px; padding:6px 12px; font-weight:bold; font-size:0.8rem; cursor:pointer;">Salvar Edição</button>
                     <button onclick="carregarComentarios()" style="background:#e2e8f0; color:#0f172a; border:none; border-radius:4px; padding:6px 12px; font-weight:bold; font-size:0.8rem; cursor:pointer;">Cancelar</button>
@@ -696,20 +623,7 @@
             const novoTexto = document.getElementById(`edit-input-${idComentario}`).value.trim();
             if (!novoTexto) return;
 
-            const { data, error } = await dbClient
-                .from('comentarios_produto')
-                .update({ conteudo: novoTexto, editado: true })
-                .eq('id', idComentario)
-                .select('id');
-
-            if (error) {
-                alert("Erro ao editar comentário: " + error.message);
-                return;
-            }
-            if (!data || data.length === 0) {
-                alert("A edição não foi gravada. Sua conta pode não ter permissão de UPDATE no Supabase (RLS). Aplique o arquivo SUPABASE_PATCH_COMENTARIOS.sql.");
-                return;
-            }
+            await dbClient.from('comentarios_produto').update({ conteudo: novoTexto, editado: true }).eq('id', idComentario);
             window.carregarComentarios();
         }
 
