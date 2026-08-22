@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="img/icon.ico" type="image/x-icon">
+    <base href="/">
+    <title>Carregando Artigo... - QualProcessador</title>
+    
+    <meta name="description" content="Leia nossas análises e descubra se o produto vale a pena.">
+    <meta name="robots" content="index, follow">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <style>
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Poppins', sans-serif; background-color: #f8fafc; color: #0f172a; margin: 0; padding: 0; }
+        
+        /* Navbar Unificada (Igual ao detalhes.html) */
+        .article-nav { background-color: #0f172a; padding: 18px 40px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .nav-links-left { display: flex; gap: 20px; }
+        .article-nav a.nav-link-base { color: #94a3b8; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: color 0.2s; }
+        .article-nav a.nav-link-base:hover { color: #38bdf8; }
+        
+        /* Área do Usuário Navbar */
+        .user-nav-area { display: flex; align-items: center; gap: 12px; }
+        .user-profile-link { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #f8fafc; font-weight: 600; font-size: 0.9rem; padding: 6px 14px; border-radius: 20px; background: rgba(255,255,255,0.08); transition: all 0.2s; }
+        .user-profile-link:hover { background: rgba(255,255,255,0.15); color: #38bdf8; }
+        .user-avatar-nav { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 2px solid #38bdf8; }
+        .btn-nav-auth { background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%); color: white; border: none; padding: 9px 20px; border-radius: 8px; font-weight: 700; font-size: 0.85rem; cursor: pointer; transition: all 0.2s; box-shadow: 0 2px 8px rgba(56, 189, 248, 0.3); }
+        .btn-nav-auth:hover { opacity: 0.9; transform: translateY(-1px); }
+
+        /* Estilos do Artigo */
+        .article-header { max-width: 850px; margin: 50px auto 30px auto; padding: 0 20px; text-align: left; }
+        .meta-category { color: #ef4444; font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 12px; }
+        .article-title { font-size: 2.6rem; font-weight: 800; line-height: 1.25; color: #0f172a; letter-spacing: -1.5px; margin: 0 0 20px 0; }
+        .article-meta-info { display: flex; align-items: center; gap: 15px; font-size: 0.88rem; color: #64748b; border-bottom: 1px solid #e2e8f0; padding-bottom: 25px; font-weight: 500; }
+        .author-avatar { width: 35px; height: 35px; background-color: #cbd5e1; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #475569; font-size: 0.8rem; }
+        .cover-img { width: 100%; max-height: 420px; object-fit: cover; border-radius: 12px; margin-bottom: 30px; }
+        .article-container { max-width: 850px; margin: 0 auto; padding: 0 20px 80px 20px; }
+        .article-body { font-family: 'Lora', serif; font-size: 1.15rem; line-height: 1.85; color: #334155; }
+        .article-body h2 { font-family: 'Poppins', sans-serif; font-size: 1.6rem; font-weight: 800; color: #0f172a; margin-top: 45px; margin-bottom: 15px; }
+        .article-body p { margin-bottom: 25px; }
+        .article-body ul, .article-body ol { margin-bottom: 25px; padding-left: 20px; }
+        .article-body li { margin-bottom: 10px; }
+        .article-body a { color: #0284c7; text-decoration: underline; font-weight: 600; }
+        
+        .link-comentarios-topo { color: #64748b; text-decoration: none; border-bottom: 1px dashed #cbd5e1; transition: all 0.2s; cursor: pointer; }
+        .link-comentarios-topo:hover { color: #0f172a; border-color: #0f172a; }
+
+        /* SEÇÃO DE COMENTÁRIOS */
+        .comments-section { max-width: 850px; margin: 0 auto 40px auto; padding: 30px 20px; border-top: 2px solid #e2e8f0; }
+        .comments-section h3 { font-size: 1.5rem; font-weight: 800; color: #0f172a; margin-bottom: 20px; }
+        .badge-contador { background-color: #e2e8f0; color: #475569; padding: 4px 12px; border-radius: 20px; font-size: 0.9rem; font-weight: 700; }
+        
+        .auth-prompt-container { background: #f8fafc; padding: 25px; border-radius: 12px; text-align: center; color: #475569; font-weight: 600; border: 1px dashed #cbd5e1; margin-bottom: 30px; }
+        
+        .comment-form-box { background-color: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 25px; box-shadow: 0 4px 12px rgba(15, 23, 42, 0.02); margin-bottom: 30px; display: none; }
+        .form-input { width: 100%; padding: 14px; margin-bottom: 15px; border: 1px solid #cbd5e1; border-radius: 8px; font-family: 'Poppins', sans-serif; font-size: 0.95rem; outline: none; transition: border-color 0.2s; resize: vertical; }
+        .form-input:focus { border-color: #38bdf8; }
+        .btn-primary { background-color: #0f172a; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: background-color 0.2s; display: inline-block; }
+        .btn-primary:hover { background-color: #38bdf8; color: #0f172a; }
+        
+        /* THREADS (COMENTÁRIOS E RESPOSTAS) */
+        .comment-item { background: #ffffff; padding: 18px; border-radius: 10px; border: 1px solid #e2e8f0; margin-bottom: 15px; }
+        .comment-item.reply { margin-left: 40px; border-left: 3px solid #cbd5e1; background: #f8fafc; }
+        .comment-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .comment-author-info { display: flex; gap: 10px; align-items: center; }
+        .comment-author { font-weight: 700; color: #1e293b; font-size: 0.95rem; }
+        .comment-date { font-size: 0.75rem; color: #94a3b8; }
+        .comment-body { color: #334155; line-height: 1.6; font-size: 0.95rem; margin: 8px 0; white-space: pre-wrap; }
+        .comment-actions { display: flex; gap: 12px; font-size: 0.8rem; margin-top: 8px; }
+        .comment-actions button { background: none; border: none; cursor: pointer; color: #64748b; font-weight: bold; font-family: 'Poppins', sans-serif; padding: 0; transition: color 0.2s; }
+        .comment-actions button:hover { color: #0f172a; }
+        .comment-actions button.btn-delete { color: #ef4444; }
+        .no-comments { color: #64748b; text-align: center; font-style: italic; margin-top: 10px; }
+
+        /* Avatares dos comentários integrados com perfil */
+        .user-avatar-link { text-decoration: none; display: inline-block; flex-shrink: 0; }
+        .user-avatar-link .user-avatar { transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease; border: 2px solid transparent; width: 36px; height: 36px; border-radius: 50%; object-fit: cover; }
+        .user-avatar-link:hover .user-avatar { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(56, 189, 248, 0.4); border-color: #38bdf8; }
+
+        /* MODAL DE AUTENTICAÇÃO */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.75); backdrop-filter: blur(4px); display: none; justify-content: center; align-items: center; z-index: 1000; animation: fadeIn 0.2s ease-out; }
+        .modal-overlay.active { display: flex; }
+        .modal-card { background: white; border-radius: 16px; width: 100%; max-width: 440px; padding: 35px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); position: relative; border: 1px solid #e2e8f0; }
+        .modal-close { position: absolute; top: 20px; right: 25px; background: none; border: none; font-size: 1.8rem; color: #64748b; cursor: pointer; line-height: 1; transition: color 0.2s; }
+        .modal-close:hover { color: #0f172a; }
+        
+        .auth-tabs { display: flex; border-bottom: 2px solid #f1f5f9; margin-bottom: 25px; gap: 10px; }
+        .auth-tab-btn { flex: 1; padding: 12px; background: none; border: none; font-family: inherit; font-weight: 700; font-size: 1rem; color: #64748b; cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; transition: all 0.2s; }
+        .auth-tab-btn.active { color: #3b82f6; border-bottom-color: #3b82f6; }
+
+        .auth-form { display: flex; flex-direction: column; gap: 16px; }
+        .auth-form.hidden { display: none; }
+        .form-group { display: flex; flex-direction: column; gap: 6px; }
+        .form-group label { font-size: 0.8rem; font-weight: 700; color: #475569; text-transform: uppercase; letter-spacing: 0.5px; }
+        .auth-input { padding: 12px 14px; border: 1px solid #cbd5e1; border-radius: 8px; font-family: inherit; font-size: 0.95rem; outline: none; transition: border-color 0.2s; }
+        .auth-input:focus { border-color: #3b82f6; box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15); }
+        .btn-auth-submit { background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); color: white; border: none; padding: 14px; border-radius: 8px; font-weight: 700; font-size: 1rem; cursor: pointer; transition: opacity 0.2s, transform 0.2s; margin-top: 10px; }
+        .btn-auth-submit:hover { opacity: 0.9; transform: translateY(-2px); }
+        .auth-error { color: #ef4444; font-size: 0.85rem; font-weight: 600; display: none; margin-top: 4px; background: #fee2e2; padding: 10px; border-radius: 6px; border: 1px solid #fca5a5; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+
+        footer { text-align: center; padding: 40px; color: #64748b; border-top: 1px solid #e2e8f0; font-size: 0.85rem; font-weight: 600; background: white; }
+    </style>
+</head>
+<body>
+
+    <nav class="article-nav">
+        <div class="nav-links-left">
+            <a href="index.html" class="nav-link-base">Página Inicial</a>
+            <a href="analises.html" class="nav-link-base">Artigos & Análises</a>
+        </div>
+        <div id="user-nav-container" class="user-nav-area">
+            </div>
+    </nav>
+
+    <main id="conteudo-artigo-dinamico">
+        <div class="article-container" style="text-align: center; margin-top: 100px;">
+            <h2>Carregando conteúdo...</h2>
+        </div>
+    </main>
+
+    <section id="secao-comentarios" class="comments-section" style="display: none;">
+        
+        <div id="auth-prompt-container" class="auth-prompt-container">
+            <p style="margin-top: 0; margin-bottom: 15px; font-size: 1.05rem;">Gostou da análise? Faça login para participar da discussão.</p>
+            <button onclick="abrirModalAuth('login')" class="btn-primary" style="background-color: #3b82f6;">Entrar / Criar Conta</button>
+        </div>
+
+        <div id="comment-form-container" class="comment-form-box">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <span style="font-size: 0.95rem; color: #334155;">Conectado como: <strong id="usuario-logado-nome">...</strong></span>
+                <button type="button" onclick="deslogarSupabase()" style="background: none; border: none; color: #ef4444; font-weight: 700; cursor: pointer; font-family: inherit;">Sair da conta</button>
+            </div>
+            <textarea id="texto-novo-comentario" class="form-input" rows="4" placeholder="Deixe sua opinião sobre o artigo..."></textarea>
+            <div style="text-align: right;">
+                <button class="btn-primary" onclick="enviarComentario()">Publicar Comentário</button>
+            </div>
+        </div>
+
+        <div id="lista-comentarios">
+            <h4 style="color: #0f172a; margin-bottom: 20px; display: flex; align-items: center; justify-content: space-between; font-size: 1.3rem;">
+                Comentários da Comunidade
+                <span id="secao-contador-comentarios" class="badge-contador">0</span>
+            </h4>
+            <div id="comentarios-render">
+                <p style="color: #64748b; font-size: 0.9rem;">Carregando comentários...</p>
+            </div>
+        </div>
+    </section>
+
+    <div id="modal-auth" class="modal-overlay">
+        <div class="modal-card">
+            <button class="modal-close" onclick="fecharModalAuth()">&times;</button>
+            
+            <div class="auth-tabs">
+                <button id="tab-login-btn" class="auth-tab-btn active" onclick="alternarAbaModal('login')">Entrar</button>
+                <button id="tab-cad-btn" class="auth-tab-btn" onclick="alternarAbaModal('cadastro')">Criar Conta</button>
+            </div>
+
+            <form id="form-login-modal" class="auth-form" onsubmit="executarLoginModal(event)">
+                <div class="form-group">
+                    <label>E-mail ou Nome de Usuário</label>
+                    <input type="text" id="modal-login-id" class="auth-input" placeholder="seu@email.com ou usuario" required>
+                </div>
+                <div class="form-group">
+                    <label>Senha</label>
+                    <input type="password" id="modal-login-senha" class="auth-input" placeholder="••••••••" required>
+                </div>
+                <div id="modal-login-erro" class="auth-error"></div>
+                <button type="submit" class="btn-auth-submit">Entrar na Plataforma</button>
+            </form>
+
+            <form id="form-cadastro-modal" class="auth-form hidden" onsubmit="executarCadastroModal(event)">
+                <div class="form-group">
+                    <label>Nome de Usuário (Nickname)</label>
+                    <input type="text" id="modal-cad-username" class="auth-input" placeholder="seu_usuario" required maxlength="30">
+                </div>
+                <div class="form-group">
+                    <label>Endereço de E-mail</label>
+                    <input type="email" id="modal-cad-email" class="auth-input" placeholder="seu@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Senha Segura</label>
+                    <input type="password" id="modal-cad-senha" class="auth-input" placeholder="Mínimo 6 caracteres" minlength="6" required>
+                </div>
+                <div id="modal-cad-erro" class="auth-error"></div>
+                <button type="submit" class="btn-auth-submit" style="background: linear-gradient(135deg, #10b981 0%, #047857 100%);">Finalizar Cadastro</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>&copy; 2026 QualProcessador - Editoriais de Alta Performance.</footer>
+
+    <script>
+        // ---------------------------------------------------------
+        // FUNÇÃO DE SEGURANÇA: Escapar HTML (Prevenção XSS)
+        // ---------------------------------------------------------
+        function escapeHTML(str) {
+            if (str === null || str === undefined) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        // ---------------------------------------------------------
+        // CONFIGURAÇÃO SUPABASE
+        // ---------------------------------------------------------
+        const SUPABASE_URL = "https://sterozqxsblanvjyzjmi.supabase.co"; 
+        const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN0ZXJvenF4c2JsYW52anl6am1pIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3OTc3OTAsImV4cCI6MjA5OTM3Mzc5MH0.IBx9tIoVF-RepV_IKjgRFwuQVE0CbEMRo9fLUN066WM";
+        const dbClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        let usuarioLogado = null;
+        let idArtigoAtualGlobal = null;
+
+        // ---------------------------------------------------------
+        // GERENCIAMENTO DO MODAL DE AUTENTICAÇÃO
+        // ---------------------------------------------------------
+        window.abrirModalAuth = function(aba = 'login') {
+            document.getElementById('modal-auth').classList.add('active');
+            alternarAbaModal(aba);
+        }
+
+        window.fecharModalAuth = function() {
+            document.getElementById('modal-auth').classList.remove('active');
+            document.getElementById('modal-login-erro').style.display = 'none';
+            document.getElementById('modal-cad-erro').style.display = 'none';
+        }
+
+        window.alternarAbaModal = function(aba) {
+            const formLogin = document.getElementById('form-login-modal');
+            const formCad = document.getElementById('form-cadastro-modal');
+            const tabLoginBtn = document.getElementById('tab-login-btn');
+            const tabCadBtn = document.getElementById('tab-cad-btn');
+
+            if (aba === 'login') {
+                formLogin.classList.remove('hidden');
+                formCad.classList.add('hidden');
+                tabLoginBtn.classList.add('active');
+                tabCadBtn.classList.remove('active');
+            } else {
+                formLogin.classList.add('hidden');
+                formCad.classList.remove('hidden');
+                tabCadBtn.classList.add('active');
+                tabLoginBtn.classList.remove('active');
+            }
+        }
+
+        window.executarLoginModal = async function(e) {
+            e.preventDefault();
+            const loginId = document.getElementById('modal-login-id').value.trim();
+            const senha = document.getElementById('modal-login-senha').value;
+            const erroDiv = document.getElementById('modal-login-erro');
+            erroDiv.style.display = 'none';
+
+            let emailFinal = loginId;
+
+            // Busca e-mail por username se aplicável (Igual ao detalhes.html)
+            if (!loginId.includes('@')) {
+                const { data: usuario } = await dbClient.from('usuarios').select('email').eq('username', loginId).maybeSingle();
+                if (!usuario) {
+                    erroDiv.innerText = "Nome de usuário não encontrado.";
+                    erroDiv.style.display = 'block';
+                    return;
+                }
+                emailFinal = usuario.email;
+            }
+
+            const { error } = await dbClient.auth.signInWithPassword({ email: emailFinal, password: senha });
+            if (error) {
+                erroDiv.innerText = "Credenciais incorretas.";
+                erroDiv.style.display = 'block';
+            } else {
+                fecharModalAuth();
+            }
+        }
+
+        window.executarCadastroModal = async function(e) {
+            e.preventDefault();
+            const username = document.getElementById('modal-cad-username').value.trim();
+            const email = document.getElementById('modal-cad-email').value.trim();
+            const senha = document.getElementById('modal-cad-senha').value;
+            const erroDiv = document.getElementById('modal-cad-erro');
+            erroDiv.style.display = 'none';
+
+            const { data: existente } = await dbClient.from('usuarios').select('id').eq('username', username).maybeSingle();
+            if (existente) {
+                erroDiv.innerText = "Este nome de usuário já está em uso.";
+                erroDiv.style.display = 'block';
+                return;
+            }
+
+            const { data, error } = await dbClient.auth.signUp({ email, password: senha, options: { data: { username, role: 'user' } } });
+            if (error) {
+                erroDiv.innerText = error.message;
+                erroDiv.style.display = 'block';
+                return;
+            }
+
+            if (data?.user) {
+                await dbClient.from('usuarios').insert([{ email: email, username: username, role: 'user', bio: '', avatar: '', privado: false }]);
+                fecharModalAuth();
+            }
+        }
+
+        window.deslogarSupabase = async function() {
+            await dbClient.auth.signOut();
+        }
+
+        // ---------------------------------------------------------
+        // SINCRONIZAÇÃO DA SESSÃO DO USUÁRIO E NAVBAR
+        // ---------------------------------------------------------
+        async function carregarDadosUsuario(userAuthInfo) {
+            if (!userAuthInfo) {
+                usuarioLogado = null;
+                return;
+            }
+            try {
+                // AQUI FOI CORRIGIDO O PROBLEMA DO NOME: Buscando pelo 'email' do usuário autenticado assim como no detalhes.html
+                let { data: perfil } = await dbClient.from('usuarios').select('*').eq('email', userAuthInfo.email).maybeSingle();
+                
+                usuarioLogado = perfil || {
+                    email: userAuthInfo.email,
+                    username: userAuthInfo.user_metadata?.username || userAuthInfo.email.split('@')[0],
+                    role: userAuthInfo.user_metadata?.role || 'user',
+                    avatar: userAuthInfo.user_metadata?.avatar || 'https://github.com/Banunin/QualProcessador/blob/main/img/icon.ico?raw=true'
+                };
+                atualizarInterfaceUsuario();
+            } catch (err) {
+                console.error("Falha ao carregar usuário:", err);
+            }
+        }
+
+        function atualizarInterfaceUsuario() {
+            const navContainer = document.getElementById('user-nav-container');
+            const authPrompt = document.getElementById('auth-prompt-container');
+            const commentForm = document.getElementById('comment-form-container');
+            const nomeLogado = document.getElementById('usuario-logado-nome');
+
+            if (usuarioLogado) {
+                const userSeguro = escapeHTML(usuarioLogado.username);
+                const avatarSeguro = escapeHTML(usuarioLogado.avatar) || 'https://github.com/Banunin/QualProcessador/blob/main/img/icon.ico?raw=true';
+                
+                // Link redirecionando certinho para o fórum
+                navContainer.innerHTML = `
+                    <a href="forum.html?action=perfil&user=${encodeURIComponent(userSeguro)}" class="user-profile-link">
+                        <img src="${avatarSeguro}" class="user-avatar-nav" alt="Avatar">
+                        <span>${userSeguro}</span>
+                    </a>
+                `;
+
+                authPrompt.style.display = 'none';
+                commentForm.style.display = 'block';
+                if(nomeLogado) nomeLogado.innerText = userSeguro;
+            } else {
+                navContainer.innerHTML = `<button class="btn-nav-auth" onclick="abrirModalAuth('login')">Entrar / Cadastrar</button>`;
+                authPrompt.style.display = 'block';
+                commentForm.style.display = 'none';
+            }
+        }
+
+        // ---------------------------------------------------------
+        // CARREGAMENTO DO ARTIGO JSON
+        // ---------------------------------------------------------
+        function iniciarRenderizacaoArtigo() {
+            const parametrosUrl = new URLSearchParams(window.location.search);
+            let idArtigoUrl = parametrosUrl.get('id');
+
+            if (!idArtigoUrl) {
+                const pathSegments = window.location.pathname.split('/').filter(Boolean);
+                if (pathSegments.length > 0) {
+                    idArtigoUrl = pathSegments[pathSegments.length - 1];
+                }
+            }
+
+            fetch('artigos.json')
+                .then(response => response.json())
+                .then(todosArtigos => {
+                    let artigoSelecionado = null;
+                    let chaveEncontrada = null;
+
+                    if (idArtigoUrl && todosArtigos[idArtigoUrl]) {
+                        artigoSelecionado = todosArtigos[idArtigoUrl];
+                        chaveEncontrada = idArtigoUrl;
+                    } else if (idArtigoUrl) {
+                        for (const chave in todosArtigos) {
+                            if (todosArtigos[chave].urlLimpa && todosArtigos[chave].urlLimpa.includes(idArtigoUrl)) {
+                                artigoSelecionado = todosArtigos[chave];
+                                chaveEncontrada = chave;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (artigoSelecionado && chaveEncontrada) {
+                        idArtigoAtualGlobal = chaveEncontrada;
+                        document.title = `${escapeHTML(artigoSelecionado.titulo)} - QualProcessador`;
+                        renderizarArtigo(artigoSelecionado);
+                        window.carregarComentarios();
+                        
+                        try {
+                            if (artigoSelecionado.urlLimpa && !window.location.pathname.includes(artigoSelecionado.urlLimpa)) {
+                                window.history.replaceState(null, '', artigoSelecionado.urlLimpa);
+                            }
+                        } catch (err) {}
+                    } else {
+                        document.getElementById('conteudo-artigo-dinamico').innerHTML = `
+                            <div class="article-container" style="text-align: center; margin-top: 100px;">
+                                <h2>Artigo Não Encontrado</h2>
+                                <p style="color: #ef4444; font-weight: 600;">O artigo solicitado não foi encontrado no banco de dados.</p>
+                                <a href="analises.html" style="color: #0284c7; font-weight: bold; text-decoration: underline;">Voltar ao Hub de Análises</a>
+                            </div>
+                        `;
+                    }
+                }).catch(err => console.error("Erro ao ler JSON:", err));
+        }
+
+        function renderizarArtigo(artigo) {
+            const container = document.getElementById('conteudo-artigo-dinamico');
+            let htmlCapa = artigo.imagemCapa ? `<img src="${escapeHTML(artigo.imagemCapa)}" class="cover-img" alt="${escapeHTML(artigo.titulo)}">` : '';
+
+            container.innerHTML = `
+                <article>
+                    <header class="article-header">
+                        <span class="meta-category">${escapeHTML(artigo.categoria)}</span>
+                        <h1 class="article-title">${escapeHTML(artigo.titulo)}</h1>
+                        <div class="article-meta-info">
+                            <div class="author-avatar">QP</div>
+                            <div>
+                                Publicado por <strong>${escapeHTML(artigo.autor)}</strong> • ⏱️ Leitura: ${escapeHTML(artigo.tempoLeitura)} • 💬 <a href="#secao-comentarios" class="link-comentarios-topo"><span id="topo-contador-comentarios">0</span> Comentários</a>
+                            </div>
+                        </div>
+                    </header>
+
+                    <div class="article-container">
+                        ${htmlCapa}
+                        <div class="article-body">
+                            ${artigo.texto}
+                        </div>
+                    </div>
+                </article>
+            `;
+            document.getElementById('secao-comentarios').style.display = 'block';
+        }
+
+        // ---------------------------------------------------------
+        // SISTEMA DE COMENTÁRIOS E THREADS (XSS BLINDADO)
+        // ---------------------------------------------------------
+        window.carregarComentarios = async function() {
+            if (!idArtigoAtualGlobal) return;
+            const container = document.getElementById('comentarios-render');
+            
+            container.innerHTML = '<p class="no-comments">Carregando discussões...</p>';
+
+            let { data: comentariosSalvos, error } = await dbClient
+                .from('comentarios_produto')
+                .select('*')
+                .eq('id_post', String(idArtigoAtualGlobal))
+                .order('id', { ascending: true });
+
+            if (error) {
+                container.innerHTML = '<p class="no-comments" style="color:#ef4444;">Erro ao carregar comentários.</p>';
+                return;
+            }
+            
+            const totalComentarios = comentariosSalvos ? comentariosSalvos.length : 0;
+            const topoContador = document.getElementById('topo-contador-comentarios');
+            const secaoContador = document.getElementById('secao-contador-comentarios');
+            if(topoContador) topoContador.innerText = totalComentarios;
+            if(secaoContador) secaoContador.innerText = totalComentarios;
+
+            container.innerHTML = '';
+            if (!comentariosSalvos || comentariosSalvos.length === 0) {
+                container.innerHTML = '<p class="no-comments">Nenhum comentário registrado ainda. Seja o primeiro a comentar!</p>';
+                return;
+            }
+
+            const principais = comentariosSalvos.filter(c => !c.parent_id);
+            const respostas = comentariosSalvos.filter(c => c.parent_id);
+
+            principais.reverse().forEach(c => {
+                renderizarItemComentario(c, false, c.id);
+                const filhas = respostas.filter(r => r.parent_id === c.id);
+                filhas.forEach(f => renderizarItemComentario(f, true, c.id));
+            });
+        }
+
+        function renderizarItemComentario(c, ehResposta, idPrincipal) {
+            const container = document.getElementById('comentarios-render');
+            
+            const logado = usuarioLogado;
+            const ehDono = logado && logado.username.toLowerCase() === c.autor.toLowerCase();
+            const ehAdmin = logado && logado.role === 'admin';
+            const temPermissao = ehDono || ehAdmin;
+
+            const badgeAdmin = c.autor_role === 'admin' ? '<span style="color:#0ea5e9; font-size:0.75em; font-weight:bold; margin-left:4px; background:#e0f2fe; padding:2px 6px; border-radius:4px;">[ADM]</span>' : '';
+            const badgeEditado = c.editado ? '<span style="color:#94a3b8; font-size:0.8em; font-style:italic; margin-left:6px;">(editado)</span>' : '';
+            
+            // Sanitização Anti-XSS rigorosa
+            const autorSeguro = escapeHTML(c.autor);
+            const conteudoSeguro = escapeHTML(c.conteudo);
+            const avatarSeguro = escapeHTML(c.autor_avatar);
+            const dataSegura = escapeHTML(c.data || new Date().toLocaleDateString('pt-BR'));
+            
+            // CORREÇÃO: URL do perfil padronizada
+            const perfilLink = `forum.html?action=perfil&user=${encodeURIComponent(autorSeguro)}`;
+
+            const avatarHTML = avatarSeguro 
+                ? `<img src="${avatarSeguro}" class="user-avatar" alt="${autorSeguro}">` 
+                : `<div class="user-avatar" style="background:#64748b; color:white; display:flex; align-items:center; justify-content:center; font-weight:bold;">${autorSeguro.charAt(0).toUpperCase()}</div>`;
+
+            const div = document.createElement('div');
+            div.className = `comment-item ${ehResposta ? 'reply' : ''}`;
+            
+            div.innerHTML = `
+                <div class="comment-header">
+                    <div class="comment-author-info">
+                        <a href="${perfilLink}" title="Ver perfil" class="user-avatar-link">${avatarHTML}</a>
+                        <div>
+                            <a href="${perfilLink}" style="text-decoration: none; color: inherit;"><span class="comment-author">${autorSeguro} ${badgeAdmin}</span></a>
+                            <div class="comment-date">${dataSegura} ${badgeEditado}</div>
+                        </div>
+                    </div>
+                </div>
+                <p class="comment-body" id="texto-comentario-${c.id}">${conteudoSeguro}</p>
+                <div class="comment-actions">
+                    ${logado ? `<button onclick="abrirFormResposta(${c.id}, ${idPrincipal})">Responder</button>` : ''}
+                    ${temPermissao ? `<button onclick="editarComentario(${c.id})">Editar</button>` : ''}
+                    ${temPermissao ? `<button class="btn-delete" onclick="excluirComentario(${c.id})">Apagar</button>` : ''}
+                </div>
+                <div id="reply-box-${c.id}" style="margin-top:10px;"></div>
+                <div id="edit-box-${c.id}" style="margin-top:10px;"></div>
+            `;
+            container.appendChild(div);
+        }
+
+        window.enviarComentario = async function() {
+            const textarea = document.getElementById('texto-novo-comentario');
+            const conteudo = textarea ? textarea.value.trim() : '';
+            if (!conteudo || !usuarioLogado) return;
+
+            const novoComentario = {
+                id_post: String(idArtigoAtualGlobal),
+                autor: usuarioLogado.username,
+                autor_avatar: usuarioLogado.avatar || '',
+                autor_role: usuarioLogado.role || 'user',
+                conteudo: conteudo,
+                data: new Date().toLocaleDateString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+            };
+
+            const { error } = await dbClient.from('comentarios_produto').insert([novoComentario]);
+            if (!error) {
+                if(textarea) textarea.value = '';
+                window.carregarComentarios();
+            }
+        }
+
+        window.abrirFormResposta = function(idAlvo, idPrincipal) {
+            const box = document.getElementById(`reply-box-${idAlvo}`);
+            box.innerHTML = `
+                <div style="display:flex; gap:8px; flex-direction:column;">
+                    <textarea id="reply-text-${idAlvo}" rows="2" placeholder="Escreva sua resposta..." style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; font-family:inherit; font-size:0.9rem; outline:none; resize:vertical;"></textarea>
+                    <div style="display:flex; gap:8px;">
+                        <button onclick="enviarResposta(${idAlvo}, ${idPrincipal})" style="background:#10b981; color:white; border:none; padding:6px 12px; border-radius:4px; cursor:pointer; font-weight:bold; font-size:0.85rem;">Enviar Resposta</button>
+                        <button onclick="carregarComentarios()" style="background:#e2e8f0; color:#0f172a; border:none; padding:6px 12px; border-radius:4px; cursor:pointer; font-weight:bold; font-size:0.85rem;">Cancelar</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        window.enviarResposta = async function(idAlvo, idPrincipal) {
+            const texto = document.getElementById(`reply-text-${idAlvo}`).value.trim();
+            if (!texto || !usuarioLogado) return;
+
+            const resposta = {
+                id_post: String(idArtigoAtualGlobal),
+                parent_id: idPrincipal,
+                autor: usuarioLogado.username,
+                autor_avatar: usuarioLogado.avatar || '',
+                autor_role: usuarioLogado.role || 'user',
+                conteudo: texto,
+                data: new Date().toLocaleDateString('pt-BR', { hour: '2-digit', minute: '2-digit' })
+            };
+
+            const { error } = await dbClient.from('comentarios_produto').insert([resposta]);
+            if (!error) window.carregarComentarios();
+        }
+
+        window.excluirComentario = async function(idComentario) {
+            if (confirm("Deseja apagar este comentário permanentemente?")) {
+                await dbClient.from('comentarios_produto').delete().eq('id', idComentario);
+                window.carregarComentarios();
+            }
+        }
+
+        window.editarComentario = function(idComentario) {
+            const pTexto = document.getElementById(`texto-comentario-${idComentario}`);
+            const original = pTexto.innerText;
+            const editBox = document.getElementById(`edit-box-${idComentario}`);
+
+            editBox.innerHTML = `
+                <textarea id="edit-input-${idComentario}" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; font-family:inherit; font-size:0.9rem; outline:none; resize:vertical;" rows="3">${original}</textarea>
+                <div style="display:flex; gap:8px; margin-top:6px;">
+                    <button onclick="salvarEdicao(${idComentario})" style="background:#3b82f6; color:white; border:none; border-radius:4px; padding:6px 12px; font-weight:bold; font-size:0.8rem; cursor:pointer;">Salvar Edição</button>
+                    <button onclick="carregarComentarios()" style="background:#e2e8f0; color:#0f172a; border:none; border-radius:4px; padding:6px 12px; font-weight:bold; font-size:0.8rem; cursor:pointer;">Cancelar</button>
+                </div>
+            `;
+            pTexto.style.display = 'none';
+        }
+
+        window.salvarEdicao = async function(idComentario) {
+            const novoTexto = document.getElementById(`edit-input-${idComentario}`).value.trim();
+            if (!novoTexto) return;
+
+            await dbClient.from('comentarios_produto').update({ conteudo: novoTexto, editado: true }).eq('id', idComentario);
+            window.carregarComentarios();
+        }
+
+        // ---------------------------------------------------------
+        // INICIALIZAÇÃO DA APLICAÇÃO (Sessão & Artigo)
+        // ---------------------------------------------------------
+        document.addEventListener('DOMContentLoaded', () => {
+            // Sincronização e Ouvinte de Sessão em tempo real
+            dbClient.auth.onAuthStateChange(async (event, currentSession) => {
+                if (currentSession && currentSession.user) {
+                    await carregarDadosUsuario(currentSession.user);
+                } else {
+                    usuarioLogado = null;
+                    atualizarInterfaceUsuario();
+                }
+                window.carregarComentarios();
+            });
+
+            dbClient.auth.getSession().then(({ data: { session } }) => {
+                if (session) {
+                    carregarDadosUsuario(session.user).then(() => iniciarRenderizacaoArtigo());
+                } else {
+                    atualizarInterfaceUsuario();
+                    iniciarRenderizacaoArtigo();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
