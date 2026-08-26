@@ -8,12 +8,17 @@ on:
       - 'mobile-port.css'
       - 'scripts/apply_mobile_port.py'
       - '.github/workflows/apply-mobile-port.yml'
+  pull_request:
+    branches:
+      - main
+    types: [opened, synchronize, reopened]
 
 permissions:
   contents: write
 
 jobs:
   apply:
+    if: github.head_ref == 'mobile-port' || github.ref == 'refs/heads/mobile-port'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
