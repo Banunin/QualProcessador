@@ -49,6 +49,14 @@
       "destination": "/ferramentas.html"
     },
     {
+      "source": "/apoiar",
+      "destination": "/apoiar.html"
+    },
+    {
+      "source": "/Apoiar",
+      "destination": "/apoiar.html"
+    },
+    {
       "source": "/artigo/:id",
       "destination": "/ler-artigo?id=:id"
     },
