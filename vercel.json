@@ -34,6 +34,22 @@
       "destination": "/forum.html"
     },
     {
+      "source": "/comunidade",
+      "destination": "/Comunidade.html"
+    },
+    {
+      "source": "/upscendra",
+      "destination": "/Upscendra.html"
+    },
+    {
+      "source": "/winformatkit",
+      "destination": "/WinFormatKit.html"
+    },
+    {
+      "source": "/ferramentas",
+      "destination": "/ferramentas.html"
+    },
+    {
       "source": "/artigo/:id",
       "destination": "/ler-artigo?id=:id"
     },
