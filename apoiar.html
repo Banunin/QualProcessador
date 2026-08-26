@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="img/icon.ico" type="image/x-icon">
+<title>Apoie o QualProcessador | Contribua com o projeto</title>
+<meta name="description" content="Apoie o QualProcessador e o desenvolvimento do Upscendra e WinFormatKit. Faça uma contribuição voluntária ou envie uma mensagem ao desenvolvedor.">
+<meta name="robots" content="index,follow">
+<link rel="canonical" href="https://qualprocessador.com/apoiar">
+<meta property="og:title" content="Apoie o QualProcessador">
+<meta property="og:description" content="Ajude a manter o QualProcessador e suas ferramentas em desenvolvimento.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://qualprocessador.com/apoiar">
+<meta property="og:locale" content="pt_BR">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f8fafc;--surface:#fff;--surface-soft:#f1f5f9;--text:#0f172a;
+  --muted:#64748b;--muted-strong:#475569;--line:#e2e8f0;
+  --blue:#38bdf8;--blue-dark:#0284c7;--blue-soft:#f0f9ff;
+  --navy:#0f172a;--navy-soft:#1e293b;--green:#059669;--green-soft:#ecfdf5;
+  --radius:12px;--max:1120px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:'Poppins',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  line-height:1.65;-webkit-font-smoothing:antialiased;
+}
+button,input,textarea,select{font:inherit}
+a{color:inherit}
+h1,h2,h3,p{margin-top:0}
+h1,h2,h3{letter-spacing:-.025em}
+.wrap{width:min(var(--max),calc(100% - 40px));margin:0 auto}
+.skip-link{position:absolute;left:-999px;top:0}
+.skip-link:focus{left:16px;top:16px;z-index:300;background:#fff;padding:10px 14px;border:1px solid var(--line);border-radius:8px}
+.portal-nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.96);border-bottom:1px solid var(--line)}
+.nav-container{max-width:1200px;margin:0 auto;padding:0 28px;display:flex;align-items:center;gap:2px;overflow-x:auto;scrollbar-width:none}
+.nav-container::-webkit-scrollbar{display:none}
+.nav-link{display:block;padding:18px 18px 16px;border-bottom:3px solid transparent;color:var(--muted-strong);font-size:14px;font-weight:600;text-decoration:none;white-space:nowrap}
+.nav-link:hover{color:var(--navy);background:#f8fafc}
+.nav-link.active{color:var(--blue-dark);border-bottom-color:var(--blue);background:#f8fafc}
+.hero{background:var(--navy);color:#fff;padding:70px 0 62px;border-bottom:1px solid #1e293b}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.65fr);gap:56px;align-items:center}
+.kicker{display:inline-flex;align-items:center;gap:8px;margin-bottom:12px;color:var(--blue);font-size:13px;font-weight:700;letter-spacing:.045em;text-transform:uppercase}
+.kicker::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--blue)}
+.hero h1{margin-bottom:16px;font-size:clamp(36px,5vw,52px);line-height:1.08}
+.hero p{max-width:720px;margin-bottom:0;color:#cbd5e1;font-size:17px}
+.hero-note{padding:22px;border:1px solid #334155;border-radius:var(--radius);background:#111827}
+.hero-note strong{display:block;margin-bottom:8px;font-size:15px}
+.hero-note p{font-size:13px;color:#94a3b8}
+.section{padding:68px 0}
+.section-soft{background:var(--surface-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.section-head{max-width:760px;margin-bottom:30px;position:relative;padding-left:16px}
+.section-head::before{content:'';position:absolute;left:0;top:4px;width:4px;height:30px;border-radius:4px;background:var(--navy)}
+.section-head h2{margin-bottom:9px;font-size:clamp(27px,3.8vw,36px);line-height:1.2}
+.section-head p{margin-bottom:0;color:var(--muted-strong)}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+.card h3{margin-bottom:8px;font-size:20px}
+.card p{color:var(--muted-strong);font-size:14px}
+.support-layout{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(330px,.9fr);gap:22px;align-items:start}
+.amounts{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:20px 0}
+.amount-btn{min-height:48px;border:1px solid #cbd5e1;border-radius:8px;background:#fff;color:var(--text);font-weight:700;cursor:pointer}
+.amount-btn:hover{border-color:#94a3b8;background:#f8fafc}
+.amount-btn.active{border-color:var(--blue-dark);box-shadow:0 0 0 2px var(--blue-soft);color:var(--blue-dark);background:var(--blue-soft)}
+.field{margin-bottom:16px}
+label{display:block;margin-bottom:7px;font-size:13px;font-weight:650}
+input,textarea,select{
+  width:100%;border:1px solid #cbd5e1;border-radius:8px;background:#fff;
+  color:var(--text);padding:11px 12px;outline:none;
+}
+input:focus,textarea:focus,select:focus{border-color:var(--blue-dark);box-shadow:0 0 0 3px var(--blue-soft)}
+textarea{min-height:132px;resize:vertical}
+.inline-fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:10px 18px;
+  border:1px solid transparent;border-radius:8px;font-size:14px;font-weight:700;text-decoration:none;cursor:pointer;
+}
+.btn-primary{background:var(--navy);color:#fff;border-color:var(--navy)}
+.btn-primary:hover{background:var(--navy-soft)}
+.btn-blue{background:var(--blue);color:var(--navy);border-color:var(--blue)}
+.btn-blue:hover{background:#7dd3fc}
+.btn-secondary{background:#fff;color:var(--text);border-color:#cbd5e1}
+.btn-secondary:hover{background:#f8fafc;border-color:#94a3b8}
+.btn-block{width:100%}
+.payment-box{position:sticky;top:86px}
+.payment-summary{padding:18px;border:1px solid var(--line);border-radius:10px;background:var(--surface-soft);margin-bottom:18px}
+.payment-summary-row{display:flex;justify-content:space-between;gap:18px;align-items:center}
+.payment-summary strong{font-size:26px}
+.payment-methods{display:grid;gap:10px;margin:16px 0}
+.method{display:flex;gap:12px;align-items:flex-start;padding:14px;border:1px solid var(--line);border-radius:9px;background:#fff;cursor:pointer}
+.method input{width:auto;margin-top:4px}
+.method strong{display:block;font-size:14px}
+.method span{display:block;color:var(--muted);font-size:12px}
+.secure-note{margin:13px 0 0;color:var(--muted);font-size:11px;line-height:1.55}
+.status-msg{display:none;margin-top:12px;padding:12px 14px;border-radius:8px;font-size:13px}
+.status-msg.show{display:block}
+.status-msg.ok{background:var(--green-soft);color:#065f46;border:1px solid #a7f3d0}
+.status-msg.warn{background:#fff7ed;color:#9a3412;border:1px solid #fed7aa}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.why-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px}
+.why-card .num{display:block;margin-bottom:12px;color:var(--blue-dark);font-size:12px;font-weight:800}
+.why-card h3{font-size:17px;margin-bottom:6px}
+.why-card p{margin:0;color:var(--muted);font-size:13px}
+.freemiun-box{display:grid;grid-template-columns:.9fr 1.1fr;gap:36px;padding:30px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--navy);border-radius:var(--radius)}
+.freemiun-box h2{font-size:28px;margin-bottom:8px}
+.plan-mini{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.plan{padding:18px;border:1px solid var(--line);border-radius:10px;background:#fff}
+.plan strong{display:block;margin-bottom:5px}
+.plan span{color:var(--muted);font-size:12px}
+.contact-grid{display:grid;grid-template-columns:.7fr 1.3fr;gap:28px}
+.contact-aside p{color:var(--muted-strong);font-size:14px}
+.contact-meta{display:grid;gap:10px;margin-top:18px}
+.contact-meta div{padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:#fff}
+.contact-meta strong{display:block;font-size:12px}
+.contact-meta span{font-size:12px;color:var(--muted)}
+.site-footer{background:#fff;border-top:1px solid var(--line);padding:34px 0}
+.footer-row{display:flex;justify-content:space-between;gap:24px;align-items:center;color:var(--muted);font-size:13px}
+.footer-links{display:flex;gap:16px;flex-wrap:wrap}
+.footer-links a{text-decoration:none;color:var(--muted-strong)}
+.footer-links a:hover{color:var(--blue-dark)}
+.plan-price{display:block;margin:10px 0 4px;font-size:28px;font-weight:800;color:var(--navy)}
+.plan-price small{font-size:12px;font-weight:600;color:var(--muted)}
+.plan-feature-list{margin:14px 0 18px;padding:0;list-style:none;display:grid;gap:7px}
+.plan-feature-list li{position:relative;padding-left:18px;color:var(--muted-strong);font-size:13px}
+.plan-feature-list li::before{content:"";position:absolute;left:0;top:.7em;width:6px;height:6px;border-radius:50%;background:var(--blue)}
+.plan.highlight{border-color:#7dd3fc;box-shadow:0 0 0 2px var(--blue-soft)}
+.checkout-note{margin-top:12px;color:var(--muted);font-size:12px;line-height:1.55}
+
+@media(max-width:900px){
+  .hero-grid,.support-layout,.freemiun-box,.contact-grid{grid-template-columns:1fr}
+  .payment-box{position:static}
+  .why-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .wrap{width:min(var(--max),calc(100% - 28px))}
+  .nav-container{padding:0 10px}
+  .nav-link{padding:15px 12px 13px;font-size:13px}
+  .section{padding:52px 0}
+  .amounts,.why-grid,.inline-fields,.plan-mini{grid-template-columns:1fr 1fr}
+  .footer-row{align-items:flex-start;flex-direction:column}
+  .hero{padding:50px 0}
+}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+<nav class="portal-nav" aria-label="Navegação principal">
+  <div class="nav-container">
+    <a href="index.html" class="nav-link">Home</a>
+    <a href="index.html#cpus" class="nav-link">CPUs</a>
+    <a href="analises.html" class="nav-link">Artigos</a>
+    <a href="forum.html" class="nav-link">Fórum</a>
+    <a href="Comunidade.html" class="nav-link">Comunidade</a>
+    <a href="ferramentas.html" class="nav-link">Ferramentas</a>
+    <a href="apoiar.html" class="nav-link active">Apoiar</a>
+  </div>
+</nav>
+
+<main id="conteudo">
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="kicker">Apoie o QualProcessador</span>
+      <h1>Ajude a manter o projeto evoluindo.</h1>
+      <p>O QualProcessador, o Upscendra e o WinFormatKit são desenvolvidos de forma independente. Se alguma dessas ferramentas economizou seu tempo, você pode contribuir com qualquer valor e ajudar a financiar desenvolvimento, testes e infraestrutura.</p>
+    </div>
+    <aside class="hero-note">
+      <strong>Contribuição voluntária</strong>
+      <p>O apoio ao QualProcessador não é obrigatório para acessar o conteúdo gratuito do site. Os programas poderão ter planos Freemium no futuro, com recursos adicionais claramente separados da contribuição voluntária.</p>
+    </aside>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Faça uma contribuição</h2>
+      <p>Escolha um valor sugerido ou informe quanto deseja contribuir. Você também pode indicar qual parte do projeto mais quer apoiar.</p>
+    </div>
+
+    <div class="support-layout">
+      <div class="card">
+        <h3>Quanto você quer enviar?</h3>
+        <p>Uma contribuição pequena já ajuda. Não existe cobrança recorrente nesta página.</p>
+
+        <div class="amounts" role="group" aria-label="Valores sugeridos">
+          <button class="amount-btn" type="button" data-value="5">R$ 5</button>
+          <button class="amount-btn" type="button" data-value="10">R$ 10</button>
+          <button class="amount-btn active" type="button" data-value="15">R$ 15</button>
+          <button class="amount-btn" type="button" data-value="25">R$ 25</button>
+        </div>
+
+        <div class="field">
+          <label for="customAmount">Outro valor</label>
+          <input id="customAmount" inputmode="decimal" placeholder="Ex.: 20,00" aria-describedby="amountHelp">
+          <small id="amountHelp" style="color:var(--muted)">Valor mínimo sugerido: R$ 2,00.</small>
+        </div>
+
+        <div class="inline-fields">
+          <div class="field">
+            <label for="supportName">Seu nome <span style="color:var(--muted);font-weight:400">(opcional)</span></label>
+            <input id="supportName" autocomplete="name" placeholder="Como podemos chamar você?">
+          </div>
+          <div class="field">
+            <label for="supportEmail">Seu e-mail <span style="color:var(--muted);font-weight:400">(opcional)</span></label>
+            <input id="supportEmail" type="email" autocomplete="email" placeholder="voce@exemplo.com">
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="supportTarget">Quero apoiar principalmente</label>
+          <select id="supportTarget">
+            <option value="qualprocessador">QualProcessador</option>
+            <option value="upscendra">Upscendra Image Suite</option>
+            <option value="winformatkit">WinFormatKit</option>
+            <option value="geral">Todo o projeto</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="supportMessage">Deixe uma mensagem <span style="color:var(--muted);font-weight:400">(opcional)</span></label>
+          <textarea id="supportMessage" maxlength="800" placeholder="Conte o que você mais usa, o que gostaria de ver no projeto ou simplesmente deixe um recado."></textarea>
+        </div>
+      </div>
+
+      <aside class="card payment-box" aria-label="Pagamento">
+        <h3>Pagamento</h3>
+        <div class="payment-summary">
+          <div class="payment-summary-row">
+            <span>Contribuição</span>
+            <strong id="summaryAmount">R$ 15,00</strong>
+          </div>
+          <div style="margin-top:5px;color:var(--muted);font-size:12px">Pagamento único</div>
+        </div>
+
+        <div class="payment-methods">
+          <div class="method" style="cursor:default">
+            <span><strong>Checkout seguro Mercado Pago</strong><span>Pix, cartão e outros meios disponíveis aparecem no ambiente protegido do Mercado Pago.</span></span>
+          </div>
+        </div>
+
+        <button id="payButton" class="btn btn-blue btn-block" type="button">Ir para pagamento seguro</button>
+        <div id="paymentStatus" class="status-msg" role="status"></div>
+        <p class="secure-note">Nenhuma chave privada e nenhum dado de cartão ficam nesta página. A cobrança é criada no servidor e o pagamento é concluído no checkout hospedado do Mercado Pago.</p>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<section class="section section-soft">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Para onde vai o apoio?</h2>
+      <p>O objetivo é deixar claro o que uma contribuição ajuda a financiar.</p>
+    </div>
+    <div class="why-grid">
+      <article class="why-card"><span class="num">01</span><h3>Infraestrutura</h3><p>Domínio, hospedagem, distribuição dos programas e serviços necessários para manter o projeto disponível.</p></article>
+      <article class="why-card"><span class="num">02</span><h3>Desenvolvimento</h3><p>Tempo dedicado a corrigir problemas, desenvolver novos recursos e manter compatibilidade com novas versões do Windows.</p></article>
+      <article class="why-card"><span class="num">03</span><h3>Testes e qualidade</h3><p>Validação de versões, documentação, melhorias de interface e trabalho necessário antes de cada atualização.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="winformatkit-planos">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker" style="color:var(--blue-dark)">WinFormatKit</span>
+      <h2>Escolha a versão que combina com seu uso</h2>
+      <p>A versão gratuita continua útil. Plus e Pro ampliam conversões, idiomas, temas e recursos para quem usa o programa com mais frequência.</p>
+    </div>
+    <div class="plan-mini">
+      <div class="plan">
+        <strong>Plus</strong>
+        <span class="plan-price">R$ 15,99 <small>pagamento único</small></span>
+        <span>Quase toda a experiência avançada do Pro, por um valor mais acessível.</span>
+        <ul class="plan-feature-list">
+          <li>Mais formatos e rotas de conversão</li>
+          <li>Biblioteca ampliada de temas e modelos de interface</li>
+          <li>Mais idiomas além de Português e Inglês</li>
+          <li>Conversões avançadas e ferramentas de produtividade</li>
+        </ul>
+        <button class="btn btn-blue btn-block buy-plan" type="button" data-product="winformatkit_plus">Comprar Plus</button>
+      </div>
+      <div class="plan highlight">
+        <strong>Pro</strong>
+        <span class="plan-price">R$ 30,99 <small>pagamento único</small></span>
+        <span>A edição mais completa, com o maior conjunto de conversões, personalização e recursos avançados.</span>
+        <ul class="plan-feature-list">
+          <li>Todo o conteúdo do Plus</li>
+          <li>Maior catálogo de conversões e formatos</li>
+          <li>Pacote completo de temas, modelos e idiomas</li>
+          <li>Recursos premium e novas funções avançadas</li>
+        </ul>
+        <button class="btn btn-primary btn-block buy-plan" type="button" data-product="winformatkit_pro">Comprar Pro</button>
+      </div>
+    </div>
+    <p class="checkout-note">A compra é processada pelo Mercado Pago. A liberação/licença pode ser automatizada depois usando o mesmo webhook de confirmação.</p>
+    <div id="planStatus" class="status-msg" role="status"></div>
+  </div>
+</section>
+
+<section class="section section-soft" id="mensagem">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Fale com o desenvolvedor</h2>
+      <p>Não quer contribuir agora? Você também pode enviar uma mensagem, sugestão ou relato sobre alguma das ferramentas.</p>
+    </div>
+    <div class="contact-grid">
+      <aside class="contact-aside">
+        <h3>Contato direto</h3>
+        <p>Este formulário envia sua mensagem pelo backend do QualProcessador. O endereço interno de recebimento não precisa aparecer no HTML.</p>
+        <div class="contact-meta">
+          <div><strong>Assunto</strong><span>Suporte, sugestão, parceria ou feedback</span></div>
+          <div><strong>Privacidade</strong><span>Peça apenas os dados necessários para responder à mensagem</span></div>
+        </div>
+      </aside>
+
+      <form id="contactForm" class="card">
+        <div class="inline-fields">
+          <div class="field">
+            <label for="contactName">Nome</label>
+            <input id="contactName" name="nome" autocomplete="name" required>
+          </div>
+          <div class="field">
+            <label for="contactEmail">E-mail</label>
+            <input id="contactEmail" name="email" type="email" autocomplete="email" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="contactSubject">Assunto</label>
+          <select id="contactSubject" name="assunto">
+            <option>Feedback sobre o QualProcessador</option>
+            <option>Upscendra Image Suite</option>
+            <option>WinFormatKit</option>
+            <option>Pagamento ou apoio</option>
+            <option>Parceria</option>
+            <option>Outro</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="contactMessage">Mensagem</label>
+          <textarea id="contactMessage" name="mensagem" maxlength="1500" required></textarea>
+        </div>
+        <button class="btn btn-primary" type="submit">Enviar mensagem</button>
+        <div id="contactStatus" class="status-msg" role="status"></div>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-row">
+    <span>© 2026 QualProcessador</span>
+    <div class="footer-links">
+      <a href="ferramentas.html">Ferramentas</a>
+      <a href="Upscendra.html">Upscendra</a>
+      <a href="WinFormatKit.html">WinFormatKit</a>
+      <a href="#mensagem">Contato</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+let selectedAmount = 15;
+const money = new Intl.NumberFormat('pt-BR', { style:'currency', currency:'BRL' });
+const amountButtons = document.querySelectorAll('.amount-btn');
+const customAmount = document.getElementById('customAmount');
+const summaryAmount = document.getElementById('summaryAmount');
+const payButton = document.getElementById('payButton');
+const paymentStatus = document.getElementById('paymentStatus');
+
+function updateAmount(value){
+  const n = Number(value);
+  if(!Number.isFinite(n) || n <= 0) return;
+  selectedAmount = n;
+  summaryAmount.textContent = money.format(selectedAmount);
+}
+
+amountButtons.forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    amountButtons.forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    customAmount.value='';
+    updateAmount(btn.dataset.value);
+  });
+});
+
+customAmount.addEventListener('input', ()=>{
+  const value = Number(customAmount.value.replace(/\./g,'').replace(',','.'));
+  if(Number.isFinite(value) && value > 0){
+    amountButtons.forEach(b=>b.classList.remove('active'));
+    updateAmount(value);
+  }
+});
+
+async function startCheckout(payload, statusEl){
+  statusEl.className='status-msg show warn';
+  statusEl.textContent='Preparando checkout seguro...';
+  try{
+    const response = await fetch('/api/create-checkout',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(payload)
+    });
+    const data = await response.json();
+    if(!response.ok || !data.checkoutUrl) throw new Error(data.error || 'Falha ao criar checkout');
+    location.href=data.checkoutUrl;
+  }catch(error){
+    statusEl.className='status-msg show warn';
+    statusEl.textContent='Pagamento ainda não configurado ou indisponível. Verifique a integração do Mercado Pago.';
+  }
+}
+
+payButton.addEventListener('click', ()=>{
+  startCheckout({
+    product:'support',
+    amount:selectedAmount,
+    target:document.getElementById('supportTarget').value,
+    name:document.getElementById('supportName').value.trim(),
+    email:document.getElementById('supportEmail').value.trim(),
+    message:document.getElementById('supportMessage').value.trim()
+  }, paymentStatus);
+});
+
+document.querySelectorAll('.buy-plan').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const planStatus=document.getElementById('planStatus');
+    startCheckout({product:btn.dataset.product}, planStatus);
+  });
+});
+
+const query = new URLSearchParams(location.search);
+const origin = query.get('origem');
+if(origin && ['upscendra','winformatkit','qualprocessador','geral'].includes(origin)){
+  document.getElementById('supportTarget').value = origin;
+}
+const paymentResult=query.get('payment');
+if(paymentResult){
+  const map={approved:'Pagamento aprovado. Obrigado!',pending:'Pagamento pendente. Assim que for confirmado você receberá a confirmação do provedor.',failure:'O pagamento não foi concluído.'};
+  paymentStatus.className='status-msg show '+(paymentResult==='approved'?'ok':'warn');
+  paymentStatus.textContent=map[paymentResult]||'Status de pagamento recebido.';
+}
+
+document.getElementById('contactForm').addEventListener('submit', async (event)=>{
+  event.preventDefault();
+  const status = document.getElementById('contactStatus');
+  const payload = {
+    nome:document.getElementById('contactName').value.trim(),
+    email:document.getElementById('contactEmail').value.trim(),
+    assunto:document.getElementById('contactSubject').value,
+    mensagem:document.getElementById('contactMessage').value.trim()
+  };
+  try{
+    const response = await fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    if(!response.ok) throw new Error('Falha ao enviar');
+    status.className='status-msg show ok';
+    status.textContent='Mensagem enviada. Obrigado pelo contato.';
+    event.target.reset();
+  }catch(error){
+    status.className='status-msg show warn';
+    status.textContent='Não foi possível enviar a mensagem agora. Tente novamente.';
+  }
+});
+</script>
+</body>
+</html>
