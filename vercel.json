@@ -4,11 +4,6 @@
   "trailingSlash": false,
   "redirects": [
     {
-      "source": "/Comunidade",
-      "destination": "/comunidade",
-      "permanent": true
-    },
-    {
       "source": "/Ferramentas",
       "destination": "/ferramentas",
       "permanent": true
@@ -32,6 +27,10 @@
     {
       "source": "/forum",
       "destination": "/forum.html"
+    },
+    {
+      "source": "/Comunidade",
+      "destination": "/Comunidade.html"
     },
     {
       "source": "/comunidade",
