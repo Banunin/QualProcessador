@@ -1,3 +1,64 @@
 {
-  "cleanUrls": true
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/Comunidade",
+      "destination": "/comunidade",
+      "permanent": true
+    },
+    {
+      "source": "/Ferramentas",
+      "destination": "/ferramentas",
+      "permanent": true
+    },
+    {
+      "source": "/Upscendra",
+      "destination": "/upscendra",
+      "permanent": true
+    },
+    {
+      "source": "/WinFormatKit",
+      "destination": "/winformatkit",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/cpu/:marca/:cpu",
+      "destination": "/detalhes?marca=:marca&cpu=:cpu"
+    },
+    {
+      "source": "/forum",
+      "destination": "/forum.html"
+    },
+    {
+      "source": "/artigo/:id",
+      "destination": "/ler-artigo?id=:id"
+    },
+    {
+      "source": "/elg/2026/08/review-powerbank-elg-PB200BK-20.000mAh",
+      "destination": "/ler-artigo?id=102"
+    },
+    {
+      "source": "/amd/o-que-e-uma-APU",
+      "destination": "/ler-artigo?id=101"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    }
+  ]
 }
