@@ -1,7 +1,4 @@
 {
   "name": "qualprocessador",
-  "private": true,
-  "dependencies": {
-    "mercadopago": "^2.0.0"
-  }
+  "private": true
 }
