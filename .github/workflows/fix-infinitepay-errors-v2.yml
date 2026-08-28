@@ -1,0 +1,22 @@
+name: Fix InfinitePay feedback
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fix-infinitepay-errors-v2.yml'
+permissions:
+  contents: write
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch message
+        run: python3 -c "from pathlib import Path; p=Path('apoiar.html'); s=p.read_text(encoding='utf-8'); old=\"statusEl.textContent='Pagamento ainda não configurado ou indisponível. Verifique sua InfiniteTag da InfinitePay.';\"; new=\"statusEl.textContent=error.message || 'Não foi possível abrir o checkout da InfinitePay.';\"; assert old in s; p.write_text(s.replace(old,new),encoding='utf-8')"
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add apoiar.html
+          git commit -m "Show InfinitePay checkout error details"
+          git push
