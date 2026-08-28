@@ -413,7 +413,7 @@ async function startCheckout(payload, statusEl){
     location.href=data.checkoutUrl;
   }catch(error){
     statusEl.className='status-msg show warn';
-    statusEl.textContent='Pagamento ainda não configurado ou indisponível. Verifique sua InfiniteTag da InfinitePay.';
+    statusEl.textContent=error.message || 'Não foi possível abrir o checkout da InfinitePay.';
   }
 }
 
