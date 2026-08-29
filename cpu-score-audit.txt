@@ -1,0 +1,16 @@
+CPU SCORE HISTORY AUDIT
+Current file: dados.js
+Current CPUs: 223
+Human historical snapshots inspected: 9
+
+SUSPICIOUS LOW/OLD-SCALE FIELDS: 6
+15 | AMD Ryzen 3 3100 | notaJogos=0 | history: NO CPU-Z-LIKE HUMAN VALUE FOUND
+15 | AMD Ryzen 3 3100 | notaTrabalho=0 | history: NO CPU-Z-LIKE HUMAN VALUE FOUND
+32 | AMD Ryzen 7 4700G | notaJogos=0 | history: NO CPU-Z-LIKE HUMAN VALUE FOUND
+32 | AMD Ryzen 7 4700G | notaTrabalho=0 | history: NO CPU-Z-LIKE HUMAN VALUE FOUND
+42 | AMD Ryzen 7 5700X | notaJogos=7.0 | history: NO CPU-Z-LIKE HUMAN VALUE FOUND
+42 | AMD Ryzen 7 5700X | notaTrabalho=7.2 | history: NO CPU-Z-LIKE HUMAN VALUE FOUND
+
+DUPLICATE COMPLETE CPU-Z-LIKE PAIRS: 0
+
+NOTE: This audit does not modify dados.js.
