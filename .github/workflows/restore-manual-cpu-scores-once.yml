@@ -1,4 +1,4 @@
-name: Deep audit CPU score history once
+name: Fix legacy CPU score scale once
 on:
   push:
     branches: [main]
@@ -7,117 +7,92 @@ on:
 permissions:
   contents: write
 jobs:
-  audit:
+  fix:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Compare all current scores with human-edited history
+      - name: Fix only verified legacy score fields and add guards
         run: |
           python3 - <<'PY'
-          import json, subprocess
-          from collections import defaultdict
+          import json,re
           from pathlib import Path
 
-          def parse(text):
-              a,b=text.find('['),text.rfind(']')
-              return json.loads(text[a:b+1])
-          def missing(v):
-              return v is None or str(v).strip()=='' or str(v).strip().upper()=='N/A'
-          def num(v):
-              try:return float(v)
-              except:return None
-          def cpuz_like(v):
-              n=num(v)
-              return n is not None and n >= 100
-          def same(a,b):
-              na,nb=num(a),num(b)
-              if na is not None and nb is not None:return abs(na-nb)<1e-9
-              return str(a)==str(b)
+          fixes={
+            15:{'nome':'AMD Ryzen 3 3100','notaJogos':457,'notaTrabalho':2562},
+            32:{'nome':'AMD Ryzen 7 4700G','notaJogos':527,'notaTrabalho':5656},
+            42:{'nome':'AMD Ryzen 7 5700X','notaJogos':625,'notaTrabalho':5885},
+          }
 
-          current=parse(Path('dados.js').read_text(encoding='utf-8'))
-          log=subprocess.check_output(['git','log','--format=%H|%an|%ae|%ad','--date=iso-strict','--','dados.js'],text=True,encoding='utf-8').splitlines()
-          history=[]
-          for row in log:
-              sha,author,email,date=row.split('|',3)
-              if 'github-actions' in email.lower() or '[bot]' in author.lower():continue
-              try:
-                  text=subprocess.check_output(['git','show',f'{sha}:dados.js'],text=True,encoding='utf-8',stderr=subprocess.DEVNULL)
-                  data=parse(text)
-              except Exception:continue
-              history.append((sha,author,date,{str(c.get('id')):c for c in data}))
+          p=Path('dados.js'); text=p.read_text(encoding='utf-8')
+          a,b=text.find('['),text.rfind(']'); data=json.loads(text[a:b+1])
+          byid={int(c['id']):c for c in data}
+          for cid,want in fixes.items():
+              c=byid.get(cid)
+              if not c or c.get('nome')!=want['nome']:
+                  raise RuntimeError(f'Unexpected CPU at id {cid}: {c and c.get("nome")}')
 
-          def latest_human(cid,name,field):
-              for sha,author,date,index in history:
-                  old=index.get(cid)
-                  if not old or old.get('nome')!=name:continue
-                  v=old.get(field)
-                  if cpuz_like(v):return v,sha[:10],date,author
-              return None
+          out=text
+          for cid,want in fixes.items():
+              m=re.search(r'\n    \{\n        "id":\s*'+str(cid)+r',',out)
+              if not m: raise RuntimeError(f'Block {cid} not found')
+              nxt=re.search(r'\n    \{\n        "id":\s*\d+,',out[m.end():])
+              end=m.end()+nxt.start() if nxt else out.rfind('\n];')
+              block=out[m.start():end]
+              for field in ('notaJogos','notaTrabalho'):
+                  pat=re.compile(r'("'+field+r'"\s*:\s*)("[^"]*"|-?\d+(?:\.\d+)?|null)')
+                  block,n=pat.subn(lambda mm:mm.group(1)+str(want[field]),block,count=1)
+                  if n!=1: raise RuntimeError(f'{field} missing for {cid}')
+              out=out[:m.start()]+block+out[end:]
+          p.write_text(out,encoding='utf-8')
+          # Validate data payload after patch.
+          a,b=out.find('['),out.rfind(']'); final=json.loads(out[a:b+1])
+          fby={int(c['id']):c for c in final}
+          for cid,want in fixes.items():
+              c=fby[cid]
+              assert c['notaJogos']==want['notaJogos'] and c['notaTrabalho']==want['notaTrabalho']
 
-          lines=['CPU SCORE DEEP HISTORY AUDIT',f'Current CPUs: {len(current)}',f'Human snapshots: {len(history)}','']
+          # Shared CPU-Z renderer: reject legacy 0-10/zero values.
+          p=Path('seo-tools.js'); s=p.read_text(encoding='utf-8')
+          old="return Number.isFinite(n) && n > 0 ? n : null;"
+          new="return Number.isFinite(n) && n >= 100 ? n : null;"
+          if old in s:s=s.replace(old,new,1)
+          elif new not in s:raise RuntimeError('seo-tools CPU-Z guard pattern not found')
+          p.write_text(s,encoding='utf-8')
 
-          low=[]
-          for c in current:
-              for f in ('notaJogos','notaTrabalho'):
-                  v=c.get(f);n=num(v)
-                  if not missing(v) and (n is None or n<100):low.append((c,f,v))
-          lines.append(f'LOW / OLD-SCALE CURRENT FIELDS: {len(low)}')
-          for c,f,v in low:
-              h=latest_human(str(c.get('id')),c.get('nome'),f)
-              lines.append(f'{c.get("id")} | {c.get("nome")} | {f}={v} | latest human CPU-Z-like: {h or "NONE"}')
-          lines.append('')
+          # Standalone comparator guard.
+          p=Path('comparar.html'); s=p.read_text(encoding='utf-8')
+          old="const n=Number.parseInt(v,10);return Number.isFinite(n)?n.toLocaleString('pt-BR')+' pts':'N/A';"
+          new="const n=Number.parseInt(v,10);return Number.isFinite(n)&&n>=100?n.toLocaleString('pt-BR')+' pts':'N/A';"
+          if old in s:s=s.replace(old,new,1)
+          elif new not in s:raise RuntimeError('comparar CPU-Z guard pattern not found')
+          p.write_text(s,encoding='utf-8')
 
-          changed=[]
-          for c in current:
-              cid=str(c.get('id'));name=c.get('nome')
-              for f in ('notaJogos','notaTrabalho'):
-                  cur=c.get(f);h=latest_human(cid,name,f)
-                  if h and cpuz_like(cur) and not same(cur,h[0]):changed.append((c,f,cur,h))
-          lines.append(f'CURRENT CPU-Z-LIKE VALUES DIFFERING FROM LATEST HUMAN CPU-Z-LIKE VALUE: {len(changed)}')
-          for c,f,cur,h in changed:
-              lines.append(f'{c.get("id")} | {c.get("nome")} | {f}: current={cur} | human={h[0]} @ {h[1]} {h[2]} ({h[3]})')
-          lines.append('')
+          # Legacy details renderer and inline comparator use the same guard.
+          p=Path('detalhes.html'); s=p.read_text(encoding='utf-8')
+          old="""            let ptsSingle = parseInt(cpu.notaJogos || 0);\n            let ptsMulti = parseInt(cpu.notaTrabalho || 0);"""
+          new="""            const scoreCpuZ = (valor) => { const n = Number(valor); return Number.isFinite(n) && n >= 100 ? Math.round(n) : 0; };\n            let ptsSingle = scoreCpuZ(cpu.notaJogos);\n            let ptsMulti = scoreCpuZ(cpu.notaTrabalho);"""
+          if old in s:s=s.replace(old,new,1)
+          elif 'const scoreCpuZ = (valor)' not in s:raise RuntimeError('details primary CPU-Z pattern not found')
+          replacements={
+            "let cpuPtsSingle = parseInt(cpu.notaJogos || 0);":"let cpuPtsSingle = scoreCpuZ(cpu.notaJogos);",
+            "let outroPtsSingle = parseInt(outro.notaJogos || 0);":"let outroPtsSingle = scoreCpuZ(outro.notaJogos);",
+            "let cpuPtsMulti = parseInt(cpu.notaTrabalho || 0);":"let cpuPtsMulti = scoreCpuZ(cpu.notaTrabalho);",
+            "let outroPtsMulti = parseInt(outro.notaTrabalho || 0);":"let outroPtsMulti = scoreCpuZ(outro.notaTrabalho);",
+          }
+          for old,new in replacements.items():
+              if old in s:s=s.replace(old,new,1)
+              elif new not in s:raise RuntimeError(f'details comparison pattern missing: {old}')
+          p.write_text(s,encoding='utf-8')
 
-          for brand in ('amd','intel'):
-              subset=[c for c in current if str(c.get('marca','')).lower()==brand]
-              lines.append(f'{brand.upper()} DUPLICATE INDIVIDUAL SCORE VALUES')
-              for f in ('notaJogos','notaTrabalho'):
-                  groups=defaultdict(list)
-                  for c in subset:
-                      v=c.get(f)
-                      if cpuz_like(v):groups[str(v)].append(c)
-                  dup=[(v,cs) for v,cs in groups.items() if len(cs)>1]
-                  lines.append(f'  {f}: {len(dup)} duplicate-value groups')
-                  for v,cs in sorted(dup,key=lambda x:(-len(x[1]),float(x[0]))):
-                      lines.append(f'    VALUE {v}: '+ '; '.join(f'{c.get("id")} {c.get("nome")}' for c in cs))
-                      hist=[]
-                      for c in cs:
-                          h=latest_human(str(c.get('id')),c.get('nome'),f)
-                          if h:hist.append(f'{c.get("nome")} human={h[0]}@{h[1]}')
-                      if hist:lines.append('      HISTORY: '+'; '.join(hist))
-              lines.append('')
-
-          pairs=defaultdict(list)
-          for c in current:
-              s,m=c.get('notaJogos'),c.get('notaTrabalho')
-              if cpuz_like(s) and cpuz_like(m):pairs[(str(s),str(m))].append(c)
-          dup_pairs=[(p,cs) for p,cs in pairs.items() if len(cs)>1]
-          lines.append(f'DUPLICATE COMPLETE CPU-Z-LIKE PAIRS: {len(dup_pairs)}')
-          for (s,m),cs in dup_pairs:
-              lines.append(f'{s}/{m}: '+'; '.join(f'{c.get("id")} {c.get("nome")}' for c in cs))
-          lines.append('')
-          lines.append('NOTE: audit only; dados.js was not modified.')
-          Path('cpu-score-audit.txt').write_text('\n'.join(lines)+'\n',encoding='utf-8')
-          print('\n'.join(lines[:240]))
+          print('Fixed:')
+          for cid,w in fixes.items():print(cid,w)
           PY
-      - name: Commit audit report only
+      - name: Commit targeted corrections
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add cpu-score-audit.txt
+          git add dados.js seo-tools.js comparar.html detalhes.html
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m "Deep-audit CPU scores against human history"
+          git commit -m "Fix legacy CPU-Z score scale without touching manual scores"
           git pull --rebase origin main
           git push origin main
