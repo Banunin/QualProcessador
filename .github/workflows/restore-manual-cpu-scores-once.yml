@@ -1,4 +1,4 @@
-name: Restore manual CPU scores once
+name: Audit CPU score history once
 on:
   push:
     branches: [main]
@@ -7,95 +7,100 @@ on:
 permissions:
   contents: write
 jobs:
-  restore:
+  audit:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Restore scores that existed before automated CPU-Z imports
+      - name: Compare current scores with human-edited history
         run: |
           python3 - <<'PY'
-          import json, re, subprocess
+          import json, subprocess
+          from collections import defaultdict
           from pathlib import Path
-
-          BASE='661d35da64f37e6fcad830262346e364887cfb90'
-          path=Path('dados.js')
-          current_text=path.read_text(encoding='utf-8')
-          base_text=subprocess.check_output(['git','show',f'{BASE}:dados.js'], text=True, encoding='utf-8')
 
           def parse(text):
               a,b=text.find('['),text.rfind(']')
               return json.loads(text[a:b+1])
           def missing(v):
               return v is None or str(v).strip()=='' or str(v).strip().upper()=='N/A'
+          def num(v):
+              try:return float(v)
+              except:return None
+          def cpuz_like(v):
+              n=num(v)
+              return n is not None and n >= 100
 
-          current=parse(current_text)
-          base=parse(base_text)
-          base_by_id={str(c.get('id')):c for c in base}
-          changes=[]
-
-          for cpu in current:
-              cid=str(cpu.get('id'))
-              old=base_by_id.get(cid)
-              if not old or old.get('nome') != cpu.get('nome'):
+          current=parse(Path('dados.js').read_text(encoding='utf-8'))
+          log=subprocess.check_output(['git','log','--format=%H|%an|%ae|%ad','--date=iso-strict','--','dados.js'],text=True,encoding='utf-8').splitlines()
+          history=[]
+          for row in log:
+              sha,author,email,date=row.split('|',3)
+              if 'github-actions' in email.lower() or '[bot]' in author.lower():
                   continue
+              try:
+                  text=subprocess.check_output(['git','show',f'{sha}:dados.js'],text=True,encoding='utf-8',stderr=subprocess.DEVNULL)
+                  data=parse(text)
+              except Exception:
+                  continue
+              history.append((sha,author,date,{str(c.get('id')):c for c in data}))
+
+          lines=[]
+          lines.append('CPU SCORE HISTORY AUDIT')
+          lines.append('Current file: dados.js')
+          lines.append(f'Current CPUs: {len(current)}')
+          lines.append(f'Human historical snapshots inspected: {len(history)}')
+          lines.append('')
+
+          suspicious=[]
+          for c in current:
               for field in ('notaJogos','notaTrabalho'):
-                  oldv=old.get(field)
-                  curv=cpu.get(field)
-                  if not missing(oldv) and oldv != curv:
-                      changes.append((cid,cpu.get('nome'),field,curv,oldv))
-                      cpu[field]=oldv
+                  v=c.get(field); n=num(v)
+                  if not missing(v) and (n is None or n < 100):
+                      suspicious.append((c,field,v))
 
-          if not changes:
-              print('NO_RESTORES_NEEDED')
-              raise SystemExit(0)
+          lines.append(f'SUSPICIOUS LOW/OLD-SCALE FIELDS: {len(suspicious)}')
+          for c,field,v in suspicious:
+              cid=str(c.get('id')); candidates=[]; seen=set()
+              for sha,author,date,index in history:
+                  old=index.get(cid)
+                  if not old or old.get('nome')!=c.get('nome'): continue
+                  ov=old.get(field)
+                  if cpuz_like(ov) and str(ov) not in seen:
+                      seen.add(str(ov)); candidates.append((ov,sha[:10],date,author))
+              cand='; '.join(f'{x[0]} @ {x[1]} {x[2]} ({x[3]})' for x in candidates[:8]) or 'NO CPU-Z-LIKE HUMAN VALUE FOUND'
+              lines.append(f'{cid} | {c.get("nome")} | {field}={v} | history: {cand}')
+          lines.append('')
 
-          # Replace only the two score fields inside the matching CPU object;
-          # do not reformat or rewrite the rest of dados.js.
-          output=current_text
-          for cid,name,field,curv,oldv in changes:
-              start_pattern=re.compile(r'\n    \{\n        "id":\s*'+re.escape(cid)+r',')
-              m=start_pattern.search(output)
-              if not m:
-                  raise RuntimeError(f'CPU block not found: {cid} {name}')
-              start=m.start()
-              nxt=re.search(r'\n    \{\n        "id":\s*\d+,', output[m.end():])
-              end=(m.end()+nxt.start()) if nxt else output.rfind('\n];')
-              block=output[start:end]
-              value_json=json.dumps(oldv, ensure_ascii=False)
-              field_re=re.compile(r'("'+field+r'"\s*:\s*)("[^"]*"|-?\d+(?:\.\d+)?|null)')
-              new_block,n=field_re.subn(lambda mm:mm.group(1)+value_json,block,count=1)
-              if n != 1:
-                  raise RuntimeError(f'Field not found: {cid} {name} {field}')
-              output=output[:start]+new_block+output[end:]
-
-          path.write_text(output,encoding='utf-8')
-          print('RESTORED_FIELDS',len(changes))
-          for row in changes:
-              print('RESTORE',*row,sep=' | ')
-
-          # Validate final JS data payload and report exact duplicate score pairs.
-          final=parse(output)
-          from collections import defaultdict
           pairs=defaultdict(list)
-          for c in final:
+          for c in current:
               s,m=c.get('notaJogos'),c.get('notaTrabalho')
-              if not missing(s) and not missing(m):
-                  pairs[(str(s),str(m))].append(c.get('nome'))
-          duplicates=[(k,v) for k,v in pairs.items() if len(v)>1]
-          print('DUPLICATE_COMPLETE_SCORE_PAIRS',len(duplicates))
-          for (s,m),names in sorted(duplicates,key=lambda x:(-len(x[1]),x[0])):
-              print('DUP_PAIR',s,m,'=>','; '.join(names))
+              if cpuz_like(s) and cpuz_like(m): pairs[(str(s),str(m))].append(c)
+          dup=[(p,cs) for p,cs in pairs.items() if len(cs)>1]
+          lines.append(f'DUPLICATE COMPLETE CPU-Z-LIKE PAIRS: {len(dup)}')
+          for (s,m),cs in sorted(dup,key=lambda x:(-len(x[1]),x[0])):
+              lines.append(f'PAIR {s}/{m}: ' + '; '.join(f'{c.get("id")} {c.get("nome")}' for c in cs))
+              for c in cs:
+                  cid=str(c.get('id')); hist=[]; seen=set()
+                  for sha,author,date,index in history:
+                      old=index.get(cid)
+                      if not old or old.get('nome')!=c.get('nome'): continue
+                      os,om=old.get('notaJogos'),old.get('notaTrabalho')
+                      if cpuz_like(os) and cpuz_like(om) and (str(os),str(om)) not in seen:
+                          seen.add((str(os),str(om))); hist.append(f'{os}/{om} @ {sha[:10]}')
+                  lines.append(f'  {c.get("nome")}: ' + ('; '.join(hist[:8]) or 'no complete CPU-Z-like human pair'))
+          lines.append('')
+          lines.append('NOTE: This audit does not modify dados.js.')
+          Path('cpu-score-audit.txt').write_text('\n'.join(lines)+'\n',encoding='utf-8')
+          print('\n'.join(lines[:120]))
           PY
-      - name: Commit restored data
+      - name: Commit audit report only
         run: |
-          if git diff --quiet -- dados.js; then
-            echo "No dados.js changes to commit."
-            exit 0
-          fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add dados.js
-          git commit -m "Restore manual CPU scores from pre-import baseline"
-          git push
+          git add cpu-score-audit.txt
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Audit CPU score history without changing data"
+          git pull --rebase origin main
+          git push origin main
