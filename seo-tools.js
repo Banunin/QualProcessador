@@ -177,22 +177,47 @@
         return m ? Number(m[0]) : 0;
     }
 
+    function anoLancamento(cpu) {
+        const match = String((cpu && cpu.lancamento) || '').match(/(?:19|20)\d{2}/);
+        return match ? Number(match[0]) : 0;
+    }
+
+    function scoreSimilaridadeCpu(base, item) {
+        const singleBase = numero(base.notaJogos);
+        const multiBase = numero(base.notaTrabalho);
+        const coresBase = numero(base.cores);
+        const threadsBase = numero(base.threads);
+        const anoBase = anoLancamento(base);
+
+        const ds = singleBase > 0 && numero(item.notaJogos) > 0 ? Math.abs(numero(item.notaJogos) - singleBase) / Math.max(singleBase, 1) : 0.45;
+        const dm = multiBase > 0 && numero(item.notaTrabalho) > 0 ? Math.abs(numero(item.notaTrabalho) - multiBase) / Math.max(multiBase, 1) : 0.45;
+        const dc = coresBase > 0 ? Math.abs(numero(item.cores) - coresBase) / Math.max(coresBase, 1) : 0.3;
+        const dt = threadsBase > 0 ? Math.abs(numero(item.threads) - threadsBase) / Math.max(threadsBase, 1) : 0.3;
+        const anoItem = anoLancamento(item);
+        const diffAno = anoBase && anoItem ? Math.abs(anoItem - anoBase) : 2;
+        const dy = Math.min(diffAno / 4, 1.5);
+
+        let score = ds * 0.36 + dm * 0.22 + dc * 0.17 + dt * 0.10 + dy * 0.15;
+        if (diffAno > 5) score += 1.2;
+        if (diffAno > 8) score += 1.5;
+
+        const socketBase = normalizar(base.soquete || base.socket);
+        const socketItem = normalizar(item.soquete || item.socket);
+        if (socketBase && socketBase === socketItem) score *= 0.82;
+
+        const marcaBase = normalizar(base.marca);
+        const marcaItem = normalizar(item.marca);
+        if (marcaBase && marcaBase !== marcaItem && diffAno <= 3) score *= 0.94;
+
+        return score;
+    }
+
     function cpusRelacionadas(cpu, cpus, limite) {
         if (!cpu || !Array.isArray(cpus)) return [];
         const max = Number(limite) || 6;
-        const single = numero(cpu.notaJogos);
-        const multi = numero(cpu.notaTrabalho);
-        const socket = normalizar(cpu.soquete || cpu.socket);
-
         return cpus
             .filter(item => item !== cpu && item.id !== cpu.id)
-            .map(item => {
-                const ds = Math.abs(numero(item.notaJogos) - single) / Math.max(single, 1);
-                const dm = Math.abs(numero(item.notaTrabalho) - multi) / Math.max(multi, 1);
-                let score = ds * 0.65 + dm * 0.35;
-                if (socket && normalizar(item.soquete || item.socket) === socket) score *= 0.82;
-                return { cpu: item, score };
-            })
+            .map(item => ({ cpu: item, score: scoreSimilaridadeCpu(cpu, item) }))
             .sort((a, b) => a.score - b.score)
             .slice(0, max)
             .map(item => item.cpu);
@@ -214,6 +239,8 @@
         resolverComparacao,
         extrairConsultaComparacao,
         numero,
+        anoLancamento,
+        scoreSimilaridadeCpu,
         cpusRelacionadas
     };
 })();
