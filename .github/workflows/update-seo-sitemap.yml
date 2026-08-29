@@ -1,0 +1,29 @@
+name: Update SEO sitemap
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'dados.js'
+      - 'artigos.json'
+      - 'gerar_sitemap_seo.py'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate sitemap
+        run: python3 gerar_sitemap_seo.py
+      - name: Commit sitemap when changed
+        run: |
+          if git diff --quiet sitemap.xml; then
+            echo "Sitemap already up to date"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add sitemap.xml
+          git commit -m "Update SEO sitemap from CPU database"
+          git push
