@@ -1,0 +1,36 @@
+name: Check comparator once
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/check-comparator-once.yml'
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check comparison page and absolute assets
+        run: |
+          python3 - <<'PY'
+          import urllib.request
+          base='https://qualprocessador.vercel.app'
+          urls=[
+            base+'/comparar',
+            base+'/comparar/amd-ryzen-5-5600-vs-intel-core-i5-12400f',
+            base+'/dados.js',
+            base+'/seo-tools.js',
+          ]
+          for url in urls:
+            req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 QualProcessador comparator check'})
+            with urllib.request.urlopen(req,timeout=20) as r:
+              body=r.read().decode('utf-8','ignore')
+              print(r.status, url, len(body))
+              assert r.status==200
+              if '/comparar/' in url:
+                assert 'src="/dados.js"' in body
+                assert 'src="/seo-tools.js"' in body
+                assert 'Tabela comparativa' in body
+                assert "renderPar(a,b,'push')" in body
+          print('COMPARATOR_PRODUCTION_OK')
+          PY
