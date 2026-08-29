@@ -207,6 +207,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="dados.js"></script>
+    <script src="seo-tools.js"></script>
     <script>
         // ---------------------------------------------------------
         // FUNÇÃO DE SEGURANÇA: Prevenção XSS
@@ -338,8 +339,13 @@
             window.history.replaceState({ id: id }, '', urlAmigavel);
         }
 
-        const idCpu = parseInt(parametrosUrl.get('id')) || 0; 
-        const cpu = listaDeCpus ? listaDeCpus.find(item => item.id === idCpu) : null;
+        const idParam = parametrosUrl.get('id');
+        let idCpu = idParam !== null && idParam !== '' ? parseInt(idParam, 10) : NaN;
+        let cpu = Number.isFinite(idCpu) && listaDeCpus ? listaDeCpus.find(item => item.id === idCpu) : null;
+        if (!cpu && marca && cpuSlug && window.QPSeo) {
+            cpu = QPSeo.resolverSlug(cpuSlug, listaDeCpus, marca);
+        }
+        if (cpu) idCpu = cpu.id;
         const container = document.getElementById('conteudo-dinamico');
 
         if (cpu) {
@@ -957,5 +963,6 @@ function atualizarEstadoAutenticacao() {
             }
         });
     </script>
+    <script src="details-seo-enhancer.js"></script>
 </body>
 </html>
