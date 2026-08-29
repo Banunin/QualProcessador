@@ -25,6 +25,14 @@
       "destination": "/detalhes?marca=:marca&cpu=:cpu"
     },
     {
+      "source": "/comparar",
+      "destination": "/comparar.html"
+    },
+    {
+      "source": "/comparar/:comparacao",
+      "destination": "/comparar.html?comparacao=:comparacao"
+    },
+    {
       "source": "/forum",
       "destination": "/forum.html"
     },
