@@ -243,4 +243,15 @@
         scoreSimilaridadeCpu,
         cpusRelacionadas
     };
+
+    // Ponte para a página legada de detalhes: a URL pública permanece limpa.
+    // O script principal lê estes parâmetros e imediatamente restaura /cpu/marca/slug.
+    try {
+        const partes = window.location.pathname.split('/').filter(Boolean);
+        if (partes[0] === 'cpu' && partes.length >= 3 && !new URLSearchParams(window.location.search).get('cpu')) {
+            const marca = partes[1];
+            const cpu = partes.slice(2).join('/');
+            window.history.replaceState(window.history.state, '', `/detalhes.html?marca=${encodeURIComponent(marca)}&cpu=${encodeURIComponent(cpu)}`);
+        }
+    } catch (e) {}
 })();
