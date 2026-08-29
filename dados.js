@@ -8632,7 +8632,7 @@ const listaDeCpus = [
         "litografia": "Intel 7 (10 nm)",
         "memoria": "DDR5-4800 / DDR4-3200",
         "analiseCompleta": "<h2>1. Visão Geral e Arquitetura do Intel Core i5-12400F</h2>\n        <p>O <strong>Intel Core i5-12400F</strong> pertence à linha Core i5 da INTEL baseada na arquitetura <strong>Alder Lake</strong>. Projetado para o segmento de Desktops utilizando o encaixe <strong>LGA1700</strong>.</p>\n        <h2>2. Desempenho e Consumo Térmico</h2>\n        <p>Conta com uma frequência base de 2.5 GHz atingindo picos automáticos de até <strong>4.4 GHz</strong> em tarefas exigentes. O seu perfil operacional trabalha sob o limite de TDP estruturado em <strong>65 W</strong>.</p>",
-        "notaJogos": 758,
+        "notaJogos": 644,
         "notaTrabalho": 4772,
         "geracao": "12ª Geração",
         "arquitetura": "Alder Lake",
