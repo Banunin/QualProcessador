@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="img/icon.ico" type="image/x-icon">
+    <link rel="icon" href="/img/icon.ico" type="image/x-icon">
     <title>Comparar Processadores AMD e Intel | QualProcessador</title>
     <meta name="description" content="Compare processadores AMD e Intel lado a lado: núcleos, threads, clocks, TDP, plataforma e benchmarks Single-Core e Multi-Core.">
     <meta name="robots" content="index,follow">
@@ -16,7 +16,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        *{box-sizing:border-box}body{margin:0;background:#f4f7fa;color:#0f172a;font-family:'Poppins',sans-serif}.portal-nav{background:#fff;border-bottom:1px solid #e2e8f0;position:sticky;top:0;z-index:20}.nav-container{max-width:1400px;margin:auto;padding:0 40px;display:flex;gap:5px;overflow-x:auto}.nav-link{padding:18px 22px;color:#475569;text-decoration:none;font-weight:700;font-size:.92rem;border-bottom:3px solid transparent;white-space:nowrap}.nav-link:hover,.nav-link.active{color:#0284c7;border-bottom-color:#38bdf8;background:#f8fafc}.hero{background:linear-gradient(135deg,#0f172a,#1e293b);color:#fff;padding:54px 24px 46px;text-align:center}.hero h1{font-size:clamp(2rem,5vw,3.2rem);margin:0 0 12px;font-weight:800;letter-spacing:-1.5px}.hero p{max-width:790px;margin:0 auto;color:#cbd5e1;line-height:1.7}.container{max-width:1220px;margin:36px auto 70px;padding:0 28px}.compare-picker{background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:26px;box-shadow:0 8px 28px rgba(15,23,42,.04);margin-bottom:30px}.picker-grid{display:grid;grid-template-columns:1fr 1fr auto;gap:14px;align-items:end}.field label{display:block;font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:#64748b;margin-bottom:7px}.field input{width:100%;padding:13px 14px;border:1px solid #cbd5e1;border-radius:9px;font:inherit;outline:none;background:#fff}.field input:focus{border-color:#38bdf8;box-shadow:0 0 0 3px rgba(56,189,248,.13)}.btn{min-height:50px;padding:12px 22px;border:none;border-radius:9px;background:#0f172a;color:#fff;font:inherit;font-weight:800;cursor:pointer}.btn:hover{background:#1e293b}.picker-status{display:none;margin-top:12px;color:#b45309;font-size:.88rem;font-weight:600}.picker-status.show{display:block}.comparison{display:none}.comparison.active{display:block}.breadcrumb{font-size:.8rem;color:#64748b;margin:0 0 18px}.breadcrumb a{color:#0284c7;text-decoration:none}.comparison-title{margin-bottom:24px}.comparison-title h2{font-size:clamp(1.8rem,4vw,2.6rem);margin:0 0 8px;letter-spacing:-1px}.comparison-title p{margin:0;color:#64748b;line-height:1.7}.cpu-heads{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}.cpu-head{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:22px;border-top:4px solid #64748b}.cpu-head.amd{border-top-color:#ef4444}.cpu-head.intel{border-top-color:#3b82f6}.cpu-head .brand{font-size:.72rem;text-transform:uppercase;font-weight:800;letter-spacing:.08em;color:#64748b}.cpu-head h3{margin:6px 0 8px;font-size:1.35rem}.cpu-head a{color:#0284c7;font-size:.82rem;font-weight:700;text-decoration:none}.score-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0}.score-card{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:20px}.score-card h3{margin:0 0 14px;font-size:1rem}.score-row{display:grid;grid-template-columns:1fr auto;gap:12px;padding:11px 0;border-top:1px solid #f1f5f9}.score-row:first-of-type{border-top:0}.score-row span{font-size:.86rem;color:#475569}.score-row strong{font-size:1rem}.table-card{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:8px 20px 18px;overflow-x:auto}.spec-table{width:100%;border-collapse:collapse;min-width:650px}.spec-table th,.spec-table td{padding:15px 12px;border-bottom:1px solid #e2e8f0;text-align:left}.spec-table th{font-size:.78rem;color:#64748b;text-transform:uppercase;letter-spacing:.04em}.spec-table td:first-child{font-weight:700;color:#334155;width:30%}.summary-card{margin-top:18px;background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:24px}.summary-card h2{font-size:1.35rem;margin:0 0 12px}.summary-card p{color:#475569;line-height:1.8;margin:0 0 10px}.related{margin-top:28px}.related h2{font-size:1.35rem;margin-bottom:14px}.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:11px}.related-grid a{display:block;background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:14px;text-decoration:none;color:#0f172a;font-size:.86rem;font-weight:700}.related-grid a:hover{border-color:#38bdf8;transform:translateY(-1px)}.empty-intro{background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:30px}.empty-intro h2{margin-top:0}.empty-intro p{color:#475569;line-height:1.8}.empty-intro code{background:#f1f5f9;padding:2px 6px;border-radius:5px}footer{text-align:center;padding:35px;color:#64748b;border-top:1px solid #e2e8f0;background:#fff;font-size:.84rem}@media(max-width:760px){.nav-container{padding:0 10px}.nav-link{padding:15px 12px}.container{padding:0 16px}.picker-grid{grid-template-columns:1fr}.cpu-heads,.score-grid{grid-template-columns:1fr}.compare-picker{padding:19px}.hero{padding-top:42px}}
+        *{box-sizing:border-box}body{margin:0;background:#f4f7fa;color:#0f172a;font-family:'Poppins',sans-serif}.portal-nav{background:#fff;border-bottom:1px solid #e2e8f0;position:sticky;top:0;z-index:20}.nav-container{max-width:1400px;margin:auto;padding:0 40px;display:flex;gap:5px;overflow-x:auto}.nav-link{padding:18px 22px;color:#475569;text-decoration:none;font-weight:700;font-size:.92rem;border-bottom:3px solid transparent;white-space:nowrap}.nav-link:hover,.nav-link.active{color:#0284c7;border-bottom-color:#38bdf8;background:#f8fafc}.hero{background:linear-gradient(135deg,#0f172a,#1e293b);color:#fff;padding:54px 24px 46px;text-align:center}.hero h1{font-size:clamp(2rem,5vw,3.2rem);margin:0 0 12px;font-weight:800;letter-spacing:-1.5px}.hero p{max-width:790px;margin:0 auto;color:#cbd5e1;line-height:1.7}.container{max-width:1220px;margin:36px auto 70px;padding:0 28px}.compare-picker{background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:26px;box-shadow:0 8px 28px rgba(15,23,42,.04);margin-bottom:30px}.picker-grid{display:grid;grid-template-columns:1fr 1fr auto;gap:14px;align-items:end}.field label{display:block;font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.04em;color:#64748b;margin-bottom:7px}.field input{width:100%;padding:13px 14px;border:1px solid #cbd5e1;border-radius:9px;font:inherit;outline:none;background:#fff}.field input:focus{border-color:#38bdf8;box-shadow:0 0 0 3px rgba(56,189,248,.13)}.btn{min-height:50px;padding:12px 22px;border:none;border-radius:9px;background:#0f172a;color:#fff;font:inherit;font-weight:800;cursor:pointer}.btn:hover{background:#1e293b}.picker-status{display:none;margin-top:12px;color:#b45309;font-size:.88rem;font-weight:600}.picker-status.show{display:block}.comparison{display:none}.comparison.active{display:block}.breadcrumb{font-size:.8rem;color:#64748b;margin:0 0 18px}.breadcrumb a{color:#0284c7;text-decoration:none}.comparison-title{margin-bottom:24px}.comparison-title h2{font-size:clamp(1.8rem,4vw,2.6rem);margin:0 0 8px;letter-spacing:-1px}.comparison-title p{margin:0;color:#64748b;line-height:1.7}.cpu-heads{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:18px}.cpu-head{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:22px;border-top:4px solid #64748b}.cpu-head.amd{border-top-color:#ef4444}.cpu-head.intel{border-top-color:#3b82f6}.cpu-head .brand{font-size:.72rem;text-transform:uppercase;font-weight:800;letter-spacing:.08em;color:#64748b}.cpu-head h3{margin:6px 0 8px;font-size:1.35rem}.cpu-head a{color:#0284c7;font-size:.82rem;font-weight:700;text-decoration:none}.score-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0}.score-card{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:20px}.score-card h3{margin:0 0 14px;font-size:1rem}.score-row{display:grid;grid-template-columns:1fr auto;gap:12px;padding:11px 0;border-top:1px solid #f1f5f9}.score-row:first-of-type{border-top:0}.score-row span{font-size:.86rem;color:#475569}.score-row strong{font-size:1rem}.table-card{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:20px;overflow-x:auto}.table-title{margin:0 0 12px;font-size:1.2rem}.spec-table{width:100%;border-collapse:collapse;min-width:650px}.spec-table th,.spec-table td{padding:15px 12px;border-bottom:1px solid #e2e8f0;text-align:left}.spec-table th{font-size:.78rem;color:#64748b;text-transform:uppercase;letter-spacing:.04em}.spec-table td:first-child{font-weight:700;color:#334155;width:30%}.summary-card{margin-top:18px;background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:24px}.summary-card h2{font-size:1.35rem;margin:0 0 12px}.summary-card p{color:#475569;line-height:1.8;margin:0 0 10px}.related{margin-top:28px}.related h2{font-size:1.35rem;margin-bottom:14px}.related-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:11px}.related-grid a{display:block;background:#fff;border:1px solid #e2e8f0;border-radius:10px;padding:14px;text-decoration:none;color:#0f172a;font-size:.86rem;font-weight:700}.related-grid a:hover{border-color:#38bdf8;transform:translateY(-1px)}.empty-intro{background:#fff;border:1px solid #e2e8f0;border-radius:16px;padding:30px}.empty-intro h2{margin-top:0}.empty-intro p{color:#475569;line-height:1.8}.empty-intro code{background:#f1f5f9;padding:2px 6px;border-radius:5px}footer{text-align:center;padding:35px;color:#64748b;border-top:1px solid #e2e8f0;background:#fff;font-size:.84rem}@media(max-width:760px){.nav-container{padding:0 10px}.nav-link{padding:15px 12px}.container{padding:0 16px}.picker-grid{grid-template-columns:1fr}.cpu-heads,.score-grid{grid-template-columns:1fr}.compare-picker{padding:19px}.hero{padding-top:42px}}
     </style>
 </head>
 <body>
@@ -53,7 +53,10 @@
             <div class="comparison-title"><h2 id="comparison-heading"></h2><p id="comparison-lead"></p></div>
             <div id="cpu-heads" class="cpu-heads"></div>
             <div id="score-grid" class="score-grid"></div>
-            <div class="table-card"><table class="spec-table"><thead id="spec-head"></thead><tbody id="spec-body"></tbody></table></div>
+            <div class="table-card">
+                <h2 class="table-title">Tabela comparativa</h2>
+                <table class="spec-table"><thead id="spec-head"></thead><tbody id="spec-body"></tbody></table>
+            </div>
             <div id="summary-card" class="summary-card"></div>
             <section class="related"><h2>Outras comparações relacionadas</h2><div id="related-grid" class="related-grid"></div></section>
         </section>
@@ -67,26 +70,39 @@
 
     <footer>&copy; 2026 QualProcessador</footer>
 
-    <script src="dados.js"></script>
-    <script src="seo-tools.js"></script>
+    <script src="/dados.js"></script>
+    <script src="/seo-tools.js"></script>
     <script>
         (function(){
             'use strict';
             const BASE='https://qualprocessador.vercel.app';
             const $=id=>document.getElementById(id);
-            const lista=Array.isArray(listaDeCpus)?listaDeCpus:[];
+            const status=$('picker-status');
+
+            if(typeof QPSeo==='undefined'||typeof listaDeCpus==='undefined'||!Array.isArray(listaDeCpus)){
+                status.textContent='Não foi possível carregar o banco de processadores. Atualize a página e tente novamente.';
+                status.classList.add('show');
+                return;
+            }
+
+            const lista=listaDeCpus;
             const datalist=$('lista-cpus');
             const inputA=$('cpu-a');
             const inputB=$('cpu-b');
-            const status=$('picker-status');
 
             function esc(texto){return String(texto==null?'':texto).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;')}
             function valor(v){return v===undefined||v===null||String(v).trim()===''?'—':String(v)}
-            function pontos(v){const n=Number.parseInt(v||0,10)||0;return n.toLocaleString('pt-BR')+' pts'}
+            function pontos(v){
+                if(v===undefined||v===null||String(v).trim()===''||String(v).toUpperCase()==='N/A')return 'N/A';
+                const n=Number.parseInt(v,10);return Number.isFinite(n)?n.toLocaleString('pt-BR')+' pts':'N/A';
+            }
             function resolverEntrada(valorEntrada){
-                const exato=lista.find(cpu=>QPSeo.normalizar(cpu.nome)===QPSeo.normalizar(valorEntrada));
+                const texto=String(valorEntrada||'').trim();
+                if(!texto)return null;
+                const exato=lista.find(cpu=>QPSeo.normalizar(cpu.nome)===QPSeo.normalizar(texto));
                 if(exato)return exato;
-                const r=QPSeo.buscarCpus(valorEntrada,lista,1);return r.length?r[0].cpu:null;
+                const r=QPSeo.buscarCpus(texto,lista,1);
+                return r.length?r[0].cpu:null;
             }
             function meta(name,content,property){let el=document.querySelector(property?`meta[property="${name}"]`:`meta[name="${name}"]`);if(!el){el=document.createElement('meta');property?el.setAttribute('property',name):el.setAttribute('name',name);document.head.appendChild(el)}el.content=content}
             function canonical(url){let el=document.querySelector('link[rel="canonical"]');if(!el){el=document.createElement('link');el.rel='canonical';document.head.appendChild(el)}el.href=url}
@@ -95,18 +111,29 @@
             lista.forEach(cpu=>{const op=document.createElement('option');op.value=cpu.nome;datalist.appendChild(op)});
 
             function obterParDaUrl(){
-                const params=new URLSearchParams(location.search);let chave=params.get('comparacao');
-                if(!chave){const partes=location.pathname.split('/').filter(Boolean);if(partes[0]==='comparar'&&partes.length>1)chave=partes.slice(1).join('/')}
+                const params=new URLSearchParams(location.search);
+                let chave=params.get('comparacao');
+                if(!chave){
+                    const partes=location.pathname.split('/').filter(Boolean);
+                    if(partes[0]==='comparar'&&partes.length>1)chave=partes.slice(1).join('/');
+                }
                 return chave?QPSeo.resolverComparacao(chave,lista):null;
             }
 
             function cabeca(cpu){return `<article class="cpu-head ${esc(cpu.marca)}"><span class="brand">${esc(String(cpu.marca||cpu.fabricante||'').toUpperCase())}</span><h3>${esc(cpu.nome)}</h3><div>${esc(valor(cpu.cores))} núcleos • ${esc(valor(cpu.threads))} threads • ${esc(valor(cpu.soquete))}</div><a href="${esc(QPSeo.urlCpu(cpu))}">Abrir ficha técnica →</a></article>`}
             function scoreCard(titulo,a,b,campo){return `<article class="score-card"><h3>${esc(titulo)}</h3><div class="score-row"><span>${esc(a.nome)}</span><strong>${esc(pontos(a[campo]))}</strong></div><div class="score-row"><span>${esc(b.nome)}</span><strong>${esc(pontos(b[campo]))}</strong></div></article>`}
 
-            function renderPar(a,b){
-                [a,b]=QPSeo.ordenarPar(a,b);const path=QPSeo.urlComparacao(a,b);const url=BASE+path;
-                inputA.value=a.nome;inputB.value=b.nome;
-                $('comparison').classList.add('active');$('empty-intro').style.display='none';
+            function renderPar(a,b,modoHistorico){
+                if(!a||!b||a.id===b.id)return;
+                [a,b]=QPSeo.ordenarPar(a,b);
+                const path=QPSeo.urlComparacao(a,b);
+                const url=BASE+path;
+
+                inputA.value=a.nome;
+                inputB.value=b.nome;
+                status.classList.remove('show');
+                $('comparison').classList.add('active');
+                $('empty-intro').style.display='none';
                 $('hero-title').textContent=`${a.nome} vs ${b.nome}`;
                 $('hero-desc').textContent='Comparação direta de especificações, plataforma e benchmarks cadastrados no QualProcessador.';
                 $('breadcrumb').innerHTML=`<a href="/">Home</a> › <a href="/comparar">Comparar</a> › ${esc(a.nome)} vs ${esc(b.nome)}`;
@@ -115,29 +142,97 @@
                 $('cpu-heads').innerHTML=cabeca(a)+cabeca(b);
                 $('score-grid').innerHTML=scoreCard('Single-Core (Jogos)',a,b,'notaJogos')+scoreCard('Multi-Core (Trabalho)',a,b,'notaTrabalho');
                 $('spec-head').innerHTML=`<tr><th>Especificação</th><th>${esc(a.nome)}</th><th>${esc(b.nome)}</th></tr>`;
-                const linhas=[['Núcleos','cores'],['Threads','threads'],['Clock base','freqBase'],['Clock boost','freqBoost'],['TDP','tdp'],['Soquete','soquete'],['Arquitetura','arquitetura'],['Litografia','litografia'],['Cache L3','cacheL3'],['Memória','memoria'],['PCI Express','pcie'],['Vídeo integrado','video'],['Lançamento','lancamento']];
+
+                const linhas=[
+                    ['Núcleos','cores'],['Threads','threads'],['Clock base','freqBase'],['Clock boost','freqBoost'],
+                    ['TDP','tdp'],['Soquete','soquete'],['Arquitetura','arquitetura'],['Codinome','codinome'],
+                    ['Litografia','litografia'],['Cache L1','cacheL1'],['Cache L2','cacheL2'],['Cache L3','cacheL3'],
+                    ['Memória','memoria'],['Frequência máx. da memória','freqMaxMemoria'],['Canais de memória','canaisMemoria'],
+                    ['PCI Express','pcie'],['Vídeo integrado','video'],['Frequência iGPU','igpuFreq'],['Temperatura máxima','tempMax'],
+                    ['Lançamento','lancamento'],['Segmento','segmento']
+                ];
                 $('spec-body').innerHTML=linhas.map(([rotulo,campo])=>`<tr><td>${esc(rotulo)}</td><td>${esc(valor(a[campo]))}</td><td>${esc(valor(b[campo]))}</td></tr>`).join('');
+
                 $('summary-card').innerHTML=`<h2>Resumo da comparação</h2><p><strong>${esc(a.nome)}</strong> possui ${esc(valor(a.cores))} núcleos e ${esc(valor(a.threads))} threads, enquanto o <strong>${esc(b.nome)}</strong> possui ${esc(valor(b.cores))} núcleos e ${esc(valor(b.threads))} threads.</p><p>No banco do QualProcessador, as pontuações cadastradas são <strong>${esc(pontos(a.notaJogos))}</strong> contra <strong>${esc(pontos(b.notaJogos))}</strong> em Single-Core e <strong>${esc(pontos(a.notaTrabalho))}</strong> contra <strong>${esc(pontos(b.notaTrabalho))}</strong> em Multi-Core. Consulte as fichas individuais para contexto técnico completo.</p>`;
 
-                const rel=[];const seen=new Set();
-                [...QPSeo.cpusRelacionadas(a,lista,3),...QPSeo.cpusRelacionadas(b,lista,3)].forEach(cpu=>{const u1=QPSeo.urlComparacao(a,cpu);const u2=QPSeo.urlComparacao(b,cpu);for(const [baseCpu,u] of [[a,u1],[b,u2]]){if(cpu.id===baseCpu.id||seen.has(u)||u===path)continue;seen.add(u);rel.push({baseCpu,cpu,url:u})}});
-                $('related-grid').innerHTML=rel.slice(0,6).map(x=>`<a href="${esc(x.url)}">${esc(x.baseCpu.nome)} vs ${esc(x.cpu.nome)}</a>`).join('');
+                const rel=[];
+                const seen=new Set();
+                [...QPSeo.cpusRelacionadas(a,lista,3),...QPSeo.cpusRelacionadas(b,lista,3)].forEach(cpu=>{
+                    for(const baseCpu of [a,b]){
+                        if(cpu.id===baseCpu.id)continue;
+                        const u=QPSeo.urlComparacao(baseCpu,cpu);
+                        if(seen.has(u)||u===path)continue;
+                        seen.add(u);
+                        rel.push({baseCpu,cpu,url:u});
+                    }
+                });
+                $('related-grid').innerHTML=rel.slice(0,6).map(x=>`<a href="${esc(x.url)}" data-compare-a="${esc(x.baseCpu.id)}" data-compare-b="${esc(x.cpu.id)}">${esc(x.baseCpu.nome)} vs ${esc(x.cpu.nome)}</a>`).join('');
 
                 document.title=`${a.nome} vs ${b.nome}: comparação de processadores | QualProcessador`;
                 const desc=`Compare ${a.nome} vs ${b.nome}: núcleos, threads, clocks, TDP, soquete, plataforma e benchmarks Single-Core e Multi-Core.`;
-                meta('description',desc,false);meta('og:title',`${a.nome} vs ${b.nome} | QualProcessador`,true);meta('og:description',desc,true);meta('og:url',url,true);canonical(url);jsonLd(a,b,url);
-                if(location.pathname!==path)history.replaceState(null,'',path);
+                meta('description',desc,false);
+                meta('og:title',`${a.nome} vs ${b.nome} | QualProcessador`,true);
+                meta('og:description',desc,true);
+                meta('og:url',url,true);
+                canonical(url);
+                jsonLd(a,b,url);
+
+                if(modoHistorico==='push'&&location.pathname!==path)history.pushState({comparacao:path},'',path);
+                else if(modoHistorico==='replace'&&location.pathname!==path)history.replaceState({comparacao:path},'',path);
+            }
+
+            function limparComparacao(){
+                $('comparison').classList.remove('active');
+                $('empty-intro').style.display='block';
+                $('hero-title').textContent='Comparar Processadores';
+                $('hero-desc').textContent='Escolha dois processadores para comparar ficha técnica, plataforma e as pontuações Single-Core e Multi-Core cadastradas no QualProcessador.';
+                document.title='Comparar Processadores AMD e Intel | QualProcessador';
+                canonical(BASE+'/comparar');
             }
 
             $('btn-comparar').addEventListener('click',()=>{
-                const a=resolverEntrada(inputA.value),b=resolverEntrada(inputB.value);
-                if(!a||!b){status.textContent='Não encontrei um dos processadores. Tente digitar apenas o modelo ou escolha uma sugestão.';status.classList.add('show');return}
-                if(a.id===b.id){status.textContent='Escolha dois processadores diferentes.';status.classList.add('show');return}
-                status.classList.remove('show');location.href=QPSeo.urlComparacao(a,b);
+                const a=resolverEntrada(inputA.value);
+                const b=resolverEntrada(inputB.value);
+                if(!a||!b){
+                    status.textContent='Não encontrei um dos processadores. Tente digitar apenas o modelo ou escolha uma sugestão.';
+                    status.classList.add('show');
+                    return;
+                }
+                if(a.id===b.id){
+                    status.textContent='Escolha dois processadores diferentes.';
+                    status.classList.add('show');
+                    return;
+                }
+                renderPar(a,b,'push');
+                $('comparison').scrollIntoView({behavior:'smooth',block:'start'});
             });
-            [inputA,inputB].forEach(input=>input.addEventListener('keydown',e=>{if(e.key==='Enter')$('btn-comparar').click()}));
 
-            const par=obterParDaUrl();if(par)renderPar(par[0],par[1]);
+            [inputA,inputB].forEach(input=>input.addEventListener('keydown',e=>{
+                if(e.key==='Enter'){
+                    e.preventDefault();
+                    $('btn-comparar').click();
+                }
+            }));
+
+            $('related-grid').addEventListener('click',e=>{
+                const link=e.target.closest('a[data-compare-a][data-compare-b]');
+                if(!link)return;
+                const a=lista.find(cpu=>String(cpu.id)===link.dataset.compareA);
+                const b=lista.find(cpu=>String(cpu.id)===link.dataset.compareB);
+                if(!a||!b)return;
+                e.preventDefault();
+                renderPar(a,b,'push');
+                window.scrollTo({top:document.querySelector('.compare-picker').offsetTop-80,behavior:'smooth'});
+            });
+
+            window.addEventListener('popstate',()=>{
+                const par=obterParDaUrl();
+                if(par)renderPar(par[0],par[1],null);
+                else limparComparacao();
+            });
+
+            const par=obterParDaUrl();
+            if(par)renderPar(par[0],par[1],'replace');
         })();
     </script>
 </body>
