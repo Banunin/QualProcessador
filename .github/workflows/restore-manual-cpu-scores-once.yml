@@ -1,0 +1,101 @@
+name: Restore manual CPU scores once
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/restore-manual-cpu-scores-once.yml'
+permissions:
+  contents: write
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Restore scores that existed before automated CPU-Z imports
+        run: |
+          python3 - <<'PY'
+          import json, re, subprocess
+          from pathlib import Path
+
+          BASE='661d35da64f37e6fcad830262346e364887cfb90'
+          path=Path('dados.js')
+          current_text=path.read_text(encoding='utf-8')
+          base_text=subprocess.check_output(['git','show',f'{BASE}:dados.js'], text=True, encoding='utf-8')
+
+          def parse(text):
+              a,b=text.find('['),text.rfind(']')
+              return json.loads(text[a:b+1])
+          def missing(v):
+              return v is None or str(v).strip()=='' or str(v).strip().upper()=='N/A'
+
+          current=parse(current_text)
+          base=parse(base_text)
+          base_by_id={str(c.get('id')):c for c in base}
+          changes=[]
+
+          for cpu in current:
+              cid=str(cpu.get('id'))
+              old=base_by_id.get(cid)
+              if not old or old.get('nome') != cpu.get('nome'):
+                  continue
+              for field in ('notaJogos','notaTrabalho'):
+                  oldv=old.get(field)
+                  curv=cpu.get(field)
+                  if not missing(oldv) and oldv != curv:
+                      changes.append((cid,cpu.get('nome'),field,curv,oldv))
+                      cpu[field]=oldv
+
+          if not changes:
+              print('NO_RESTORES_NEEDED')
+              raise SystemExit(0)
+
+          # Replace only the two score fields inside the matching CPU object;
+          # do not reformat or rewrite the rest of dados.js.
+          output=current_text
+          for cid,name,field,curv,oldv in changes:
+              start_pattern=re.compile(r'\n    \{\n        "id":\s*'+re.escape(cid)+r',')
+              m=start_pattern.search(output)
+              if not m:
+                  raise RuntimeError(f'CPU block not found: {cid} {name}')
+              start=m.start()
+              nxt=re.search(r'\n    \{\n        "id":\s*\d+,', output[m.end():])
+              end=(m.end()+nxt.start()) if nxt else output.rfind('\n];')
+              block=output[start:end]
+              value_json=json.dumps(oldv, ensure_ascii=False)
+              field_re=re.compile(r'("'+field+r'"\s*:\s*)("[^"]*"|-?\d+(?:\.\d+)?|null)')
+              new_block,n=field_re.subn(lambda mm:mm.group(1)+value_json,block,count=1)
+              if n != 1:
+                  raise RuntimeError(f'Field not found: {cid} {name} {field}')
+              output=output[:start]+new_block+output[end:]
+
+          path.write_text(output,encoding='utf-8')
+          print('RESTORED_FIELDS',len(changes))
+          for row in changes:
+              print('RESTORE',*row,sep=' | ')
+
+          # Validate final JS data payload and report exact duplicate score pairs.
+          final=parse(output)
+          from collections import defaultdict
+          pairs=defaultdict(list)
+          for c in final:
+              s,m=c.get('notaJogos'),c.get('notaTrabalho')
+              if not missing(s) and not missing(m):
+                  pairs[(str(s),str(m))].append(c.get('nome'))
+          duplicates=[(k,v) for k,v in pairs.items() if len(v)>1]
+          print('DUPLICATE_COMPLETE_SCORE_PAIRS',len(duplicates))
+          for (s,m),names in sorted(duplicates,key=lambda x:(-len(x[1]),x[0])):
+              print('DUP_PAIR',s,m,'=>','; '.join(names))
+          PY
+      - name: Commit restored data
+        run: |
+          if git diff --quiet -- dados.js; then
+            echo "No dados.js changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dados.js
+          git commit -m "Restore manual CPU scores from pre-import baseline"
+          git push
