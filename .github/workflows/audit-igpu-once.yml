@@ -1,0 +1,48 @@
+name: Audit iGPU fields once
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/audit-igpu-once.yml'
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Audit iGPU fields
+        run: |
+          python3 - <<'PY'
+          import json,re
+          from pathlib import Path
+          t=Path('dados.js').read_text(encoding='utf-8')
+          a,b=t.find('['),t.rfind(']')
+          cpus=json.loads(t[a:b+1])
+          vals={}
+          with_igpu=[]
+          bad=[]
+          for c in cpus:
+              video=str(c.get('video','')).strip()
+              freq=str(c.get('igpuFreq','')).strip()
+              vals[freq]=vals.get(freq,0)+1
+              has=video and video.lower() not in ('não possui','nao possui','n/a','—','-')
+              if has:
+                  with_igpu.append((c.get('id'),c.get('nome'),video,freq))
+                  f=freq.lower()
+                  numeric=bool(re.search(r'\d',freq))
+                  if (not numeric) or any(x in f for x in ['dinâmica','dinamica','integrada','dynamic','máxima','maxima']):
+                      bad.append((c.get('id'),c.get('nome'),video,freq))
+          print('TOTAL_CPUS',len(cpus))
+          print('WITH_IGPU',len(with_igpu))
+          print('BAD_IGPU_FREQ',len(bad))
+          print('--- DISTINCT igpuFreq VALUES ---')
+          for k,v in sorted(vals.items(), key=lambda x:(-x[1],x[0])):
+              print(v,repr(k))
+          print('--- BAD RECORDS ---')
+          for row in bad:
+              print(' | '.join(map(str,row)))
+          print('--- ALL iGPU RECORDS ---')
+          for row in with_igpu:
+              print(' | '.join(map(str,row)))
+          PY
