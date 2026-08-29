@@ -1,0 +1,25 @@
+name: Test exact CPU-Z parser once
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/test-cpuz-parser-once.yml'
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Inspect CPU-Monkey HTML
+        run: |
+          python3 - <<'PY'
+          import urllib.request
+          url='https://www.cpu-monkey.com/en/benchmark-intel_core_i7_14700k-cpu_z_benchmark_17_single_core'
+          req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 (compatible; QualProcessador benchmark verifier)'})
+          raw=urllib.request.urlopen(req,timeout=20).read().decode('utf-8','ignore')
+          print('STATUS_BYTES',len(raw))
+          needle='Intel Core i7-14700K'
+          pos=raw.lower().rfind(needle.lower())
+          print('LAST_POS',pos)
+          print(raw[max(0,pos-800):pos+1200].replace('\n',' ')[:2000])
+          PY
