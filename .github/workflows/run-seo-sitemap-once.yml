@@ -1,0 +1,23 @@
+name: Generate initial SEO sitemap
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/run-seo-sitemap-once.yml'
+permissions:
+  contents: write
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate sitemap from current database
+        run: python3 gerar_sitemap_seo.py
+      - name: Commit sitemap
+        run: |
+          if git diff --quiet sitemap.xml; then exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add sitemap.xml
+          git commit -m "Generate CPU comparison sitemap"
+          git push
