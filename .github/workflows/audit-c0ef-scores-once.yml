@@ -1,4 +1,4 @@
-name: Audit post-c0ef CPU scores once
+name: Restore c0ef CPU score baseline once
 on:
   push:
     branches: [main]
@@ -7,16 +7,16 @@ on:
 permissions:
   contents: write
 jobs:
-  audit:
+  restore:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Find score fields added after c0ef verified snapshot
+      - name: Restore only notaJogos and notaTrabalho from c0ef baseline
         run: |
           python3 - <<'PY'
-          import json, subprocess
+          import json,re,subprocess
           from pathlib import Path
 
           BASE='c0efea3d03f33e005b1baf6eb7f2a781bbdc324e'
@@ -29,32 +29,61 @@ jobs:
           def valid(v):
               n=num(v)
               return n is not None and n >= 100
+          def normalized(v):
+              return v if valid(v) else 'N/A'
 
-          current=parse(Path('dados.js').read_text(encoding='utf-8'))
+          p=Path('dados.js')
+          current_text=p.read_text(encoding='utf-8')
+          current=parse(current_text)
           base=parse(subprocess.check_output(['git','show',f'{BASE}:dados.js'],text=True,encoding='utf-8'))
-          cur_by={(str(c.get('id')),c.get('nome')):c for c in current}
-          extras=[]
-          for b in base:
-              c=cur_by.get((str(b.get('id')),b.get('nome')))
-              if not c:continue
-              for f in ('notaJogos','notaTrabalho'):
-                  bv,cv=b.get(f),c.get(f)
-                  if not valid(bv) and valid(cv):
-                      extras.append((b.get('id'),b.get('nome'),f,bv,cv))
+          base_by={(str(c.get('id')),c.get('nome')):c for c in base}
 
-          lines=['POST-C0EF SCORE ADDITIONS AUDIT',f'BASE={BASE}',f'EXTRA VALID SCORE FIELDS NOW={len(extras)}','']
-          for r in extras:
-              lines.append(f'{r[0]} | {r[1]} | {r[2]} | c0ef={r[3]} | current={r[4]}')
-          lines.append('')
-          lines.append('AUDIT ONLY: dados.js not modified.')
-          Path('cpu-score-c0ef-audit.txt').write_text('\n'.join(lines)+'\n',encoding='utf-8')
-          print('\n'.join(lines))
+          changes=[]
+          output=current_text
+          # Work by current CPU order/ID and replace only the two score literals.
+          for c in current:
+              cid=str(c.get('id')); name=c.get('nome')
+              b=base_by.get((cid,name))
+              if not b: continue
+              wanted={f:normalized(b.get(f)) for f in ('notaJogos','notaTrabalho')}
+              for f in ('notaJogos','notaTrabalho'):
+                  if c.get(f)!=wanted[f]:
+                      changes.append((cid,name,f,c.get(f),wanted[f]))
+              if not any(x[0]==cid and x[1]==name for x in changes):
+                  continue
+              m=re.search(r'\n    \{\n        "id":\s*'+re.escape(cid)+r',',output)
+              if not m: raise RuntimeError(f'CPU block not found {cid} {name}')
+              nxt=re.search(r'\n    \{\n        "id":\s*\d+,',output[m.end():])
+              end=m.end()+nxt.start() if nxt else output.rfind('\n];')
+              block=output[m.start():end]
+              for f in ('notaJogos','notaTrabalho'):
+                  val=json.dumps(wanted[f],ensure_ascii=False)
+                  pat=re.compile(r'("'+f+r'"\s*:\s*)("[^"]*"|-?\d+(?:\.\d+)?|null)')
+                  block,n=pat.subn(lambda mm:mm.group(1)+val,block,count=1)
+                  if n!=1: raise RuntimeError(f'{f} missing for {cid} {name}')
+              output=output[:m.start()]+block+output[end:]
+
+          p.write_text(output,encoding='utf-8')
+          final=parse(output)
+          final_by={(str(c.get('id')),c.get('nome')):c for c in final}
+          mismatches=[]
+          for key,b in base_by.items():
+              c=final_by.get(key)
+              if not c: continue
+              for f in ('notaJogos','notaTrabalho'):
+                  if c.get(f)!=normalized(b.get(f)):
+                      mismatches.append((key,f,c.get(f),normalized(b.get(f))))
+          if mismatches: raise RuntimeError('Post-restore mismatch: '+repr(mismatches[:10]))
+
+          print('RESTORED_SCORE_FIELDS',len(changes))
+          for row in changes: print('RESTORE',*row,sep=' | ')
           PY
-      - name: Commit audit report
+      - name: Commit restored score layer
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add cpu-score-c0ef-audit.txt
-          git commit -m "Report score fields added after c0ef" || exit 0
+          git add dados.js
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Restore CPU scores from c0ef verified baseline"
           git pull --rebase origin main
           git push origin main
