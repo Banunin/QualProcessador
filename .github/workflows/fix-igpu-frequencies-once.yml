@@ -1,0 +1,158 @@
+name: Fix verified iGPU frequencies once
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fix-igpu-frequencies-once.yml'
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Replace iGPU frequencies with exact per-CPU source values
+        run: |
+          python3 - <<'PY'
+          import json,re,time,urllib.request,urllib.error
+          from html.parser import HTMLParser
+          from pathlib import Path
+
+          PATH=Path('dados.js')
+          raw=PATH.read_text(encoding='utf-8')
+          a,b=raw.find('['),raw.rfind(']')
+          cpus=json.loads(raw[a:b+1])
+
+          class TextParser(HTMLParser):
+              def __init__(self):
+                  super().__init__(); self.parts=[]
+              def handle_data(self,data):
+                  s=' '.join(data.split())
+                  if s:self.parts.append(s)
+
+          def slug(name):
+              return re.sub(r'[^a-z0-9]+','_',name.lower()).strip('_')
+
+          def has_igpu(cpu):
+              video=str(cpu.get('video','')).strip().lower()
+              return bool(video) and video not in ('não possui','nao possui','n/a','—','-')
+
+          def fetch(url):
+              for attempt in range(4):
+                  req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 (compatible; QualProcessador iGPU verifier; +https://qualprocessador.vercel.app)'})
+                  try:
+                      with urllib.request.urlopen(req,timeout=25) as r:
+                          return r.read().decode('utf-8','ignore'),r.status
+                  except urllib.error.HTTPError as e:
+                      if e.code in (404,410): return None,e.code
+                      if e.code in (429,500,502,503,504) and attempt<3:
+                          time.sleep(2*(attempt+1)); continue
+                      return None,e.code
+                  except Exception:
+                      if attempt<3:
+                          time.sleep(1.5*(attempt+1)); continue
+                      return None,0
+              return None,0
+
+          def gpu_freq(cpu):
+              name=cpu['nome']
+              url=f'https://www.cpu-monkey.com/en/cpu-{slug(name)}'
+              html,status=fetch(url)
+              if not html:return None,url,f'http {status}'
+              p=TextParser(); p.feed(html); parts=p.parts
+              # Require the exact processor model to appear on the page.
+              if not any(x.strip().casefold()==name.strip().casefold() for x in parts[:80]):
+                  return None,url,'exact CPU title not found'
+              start=None
+              for i,x in enumerate(parts):
+                  if 'Integrated graphics (iGPU)' in x:
+                      start=i;break
+              if start is None:return None,url,'iGPU section not found'
+              stop=min(len(parts),start+80)
+              for i in range(start,stop):
+                  if parts[i].strip().casefold()=='gpu frequency':
+                      for x in parts[i+1:min(stop,i+8)]:
+                          m=re.search(r'(\d+(?:\.\d+)?)\s*-\s*(\d+(?:\.\d+)?)\s*GHz',x,re.I)
+                          if m:
+                              lo=round(float(m.group(1))*1000); hi=round(float(m.group(2))*1000)
+                              if lo>0 and hi>0:
+                                  return f'{lo} MHz - {hi} MHz',url,'verified'
+                          m=re.search(r'(\d+(?:\.\d+)?)\s*GHz',x,re.I)
+                          if m:
+                              mhz=round(float(m.group(1))*1000)
+                              if mhz>0:return f'{mhz} MHz',url,'verified'
+                          m=re.search(r'(\d+)\s*-\s*(\d+)\s*MHz',x,re.I)
+                          if m:return f'{int(m.group(1))} MHz - {int(m.group(2))} MHz',url,'verified'
+                          m=re.search(r'(\d+)\s*MHz',x,re.I)
+                          if m:return f'{int(m.group(1))} MHz',url,'verified'
+              return None,url,'GPU frequency missing'
+
+          def object_span(text,cpu_name):
+              needle='"nome": '+json.dumps(cpu_name,ensure_ascii=False)
+              pos=text.find(needle)
+              if pos<0:return None
+              start=text.rfind('\n    {',0,pos)
+              if start<0:start=text.rfind('{',0,pos)
+              end=text.find('\n    },',pos)
+              if end<0:
+                  end=text.find('\n    }',pos)
+                  if end<0:return None
+                  end+=len('\n    }')
+              else:end+=len('\n    }')
+              return start,end
+
+          original=raw
+          verified=0; unavailable=0; changed=0
+          for cpu in cpus:
+              if not has_igpu(cpu):continue
+              value,url,reason=gpu_freq(cpu)
+              time.sleep(.10)
+              span=object_span(raw,cpu['nome'])
+              if not span:
+                  print('SKIP OBJECT',cpu['nome']);continue
+              start,end=span; block=raw[start:end]
+              old=str(cpu.get('igpuFreq','')).strip()
+              if value:
+                  verified+=1
+                  replacement=json.dumps(value,ensure_ascii=False)
+                  new_block,n=re.subn(r'("igpuFreq"\s*:\s*)("(?:[^"\\]|\\.)*"|[^,\n]+)',lambda m:m.group(1)+replacement,block,count=1)
+                  if n and old!=value:
+                      block=new_block; raw=raw[:start]+block+raw[end:]; changed+=1
+                  print(f'VERIFIED | {cpu["nome"]} | {old} -> {value} | {url}')
+              else:
+                  unavailable+=1
+                  # Existing iGPU frequency data is known to contain replicated placeholders.
+                  # If this exact model cannot be verified, remove the suspect value rather than guessing.
+                  replacement='"N/A"'
+                  new_block,n=re.subn(r'("igpuFreq"\s*:\s*)("(?:[^"\\]|\\.)*"|[^,\n]+)',lambda m:m.group(1)+replacement,block,count=1)
+                  if n and old!='N/A':
+                      block=new_block; raw=raw[:start]+block+raw[end:]; changed+=1
+                  print(f'N/A | {cpu["nome"]} | {old} | {reason} | {url}')
+
+          if raw!=original:PATH.write_text(raw,encoding='utf-8')
+          print('SUMMARY VERIFIED=',verified,'UNAVAILABLE=',unavailable,'CHANGED=',changed)
+          PY
+      - name: Validate no generic iGPU placeholders remain
+        run: |
+          node --check dados.js
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          t=Path('dados.js').read_text(encoding='utf-8'); a,b=t.find('['),t.rfind(']'); cpus=json.loads(t[a:b+1])
+          bad=[]
+          for c in cpus:
+              f=str(c.get('igpuFreq',''))
+              if 'dinâmica integrada' in f.lower() or 'dinamica integrada' in f.lower() or f.strip()=='-': bad.append((c.get('nome'),f))
+          print('GENERIC_PLACEHOLDERS_LEFT=',len(bad))
+          assert not bad,bad
+          PY
+      - name: Commit verified iGPU frequencies
+        run: |
+          if git diff --quiet dados.js; then echo "No changes"; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dados.js
+          git commit -m "Fix verified integrated GPU frequencies"
+          git pull --rebase origin main
+          git push origin main
