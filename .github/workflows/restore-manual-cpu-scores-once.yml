@@ -1,4 +1,4 @@
-name: Audit CPU score history once
+name: Deep audit CPU score history once
 on:
   push:
     branches: [main]
@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Compare current scores with human-edited history
+      - name: Compare all current scores with human-edited history
         run: |
           python3 - <<'PY'
           import json, subprocess
@@ -31,69 +31,86 @@ jobs:
           def cpuz_like(v):
               n=num(v)
               return n is not None and n >= 100
+          def same(a,b):
+              na,nb=num(a),num(b)
+              if na is not None and nb is not None:return abs(na-nb)<1e-9
+              return str(a)==str(b)
 
           current=parse(Path('dados.js').read_text(encoding='utf-8'))
           log=subprocess.check_output(['git','log','--format=%H|%an|%ae|%ad','--date=iso-strict','--','dados.js'],text=True,encoding='utf-8').splitlines()
           history=[]
           for row in log:
               sha,author,email,date=row.split('|',3)
-              if 'github-actions' in email.lower() or '[bot]' in author.lower():
-                  continue
+              if 'github-actions' in email.lower() or '[bot]' in author.lower():continue
               try:
                   text=subprocess.check_output(['git','show',f'{sha}:dados.js'],text=True,encoding='utf-8',stderr=subprocess.DEVNULL)
                   data=parse(text)
-              except Exception:
-                  continue
+              except Exception:continue
               history.append((sha,author,date,{str(c.get('id')):c for c in data}))
 
-          lines=[]
-          lines.append('CPU SCORE HISTORY AUDIT')
-          lines.append('Current file: dados.js')
-          lines.append(f'Current CPUs: {len(current)}')
-          lines.append(f'Human historical snapshots inspected: {len(history)}')
-          lines.append('')
-
-          suspicious=[]
-          for c in current:
-              for field in ('notaJogos','notaTrabalho'):
-                  v=c.get(field); n=num(v)
-                  if not missing(v) and (n is None or n < 100):
-                      suspicious.append((c,field,v))
-
-          lines.append(f'SUSPICIOUS LOW/OLD-SCALE FIELDS: {len(suspicious)}')
-          for c,field,v in suspicious:
-              cid=str(c.get('id')); candidates=[]; seen=set()
+          def latest_human(cid,name,field):
               for sha,author,date,index in history:
                   old=index.get(cid)
-                  if not old or old.get('nome')!=c.get('nome'): continue
-                  ov=old.get(field)
-                  if cpuz_like(ov) and str(ov) not in seen:
-                      seen.add(str(ov)); candidates.append((ov,sha[:10],date,author))
-              cand='; '.join(f'{x[0]} @ {x[1]} {x[2]} ({x[3]})' for x in candidates[:8]) or 'NO CPU-Z-LIKE HUMAN VALUE FOUND'
-              lines.append(f'{cid} | {c.get("nome")} | {field}={v} | history: {cand}')
+                  if not old or old.get('nome')!=name:continue
+                  v=old.get(field)
+                  if cpuz_like(v):return v,sha[:10],date,author
+              return None
+
+          lines=['CPU SCORE DEEP HISTORY AUDIT',f'Current CPUs: {len(current)}',f'Human snapshots: {len(history)}','']
+
+          low=[]
+          for c in current:
+              for f in ('notaJogos','notaTrabalho'):
+                  v=c.get(f);n=num(v)
+                  if not missing(v) and (n is None or n<100):low.append((c,f,v))
+          lines.append(f'LOW / OLD-SCALE CURRENT FIELDS: {len(low)}')
+          for c,f,v in low:
+              h=latest_human(str(c.get('id')),c.get('nome'),f)
+              lines.append(f'{c.get("id")} | {c.get("nome")} | {f}={v} | latest human CPU-Z-like: {h or "NONE"}')
           lines.append('')
+
+          changed=[]
+          for c in current:
+              cid=str(c.get('id'));name=c.get('nome')
+              for f in ('notaJogos','notaTrabalho'):
+                  cur=c.get(f);h=latest_human(cid,name,f)
+                  if h and cpuz_like(cur) and not same(cur,h[0]):changed.append((c,f,cur,h))
+          lines.append(f'CURRENT CPU-Z-LIKE VALUES DIFFERING FROM LATEST HUMAN CPU-Z-LIKE VALUE: {len(changed)}')
+          for c,f,cur,h in changed:
+              lines.append(f'{c.get("id")} | {c.get("nome")} | {f}: current={cur} | human={h[0]} @ {h[1]} {h[2]} ({h[3]})')
+          lines.append('')
+
+          for brand in ('amd','intel'):
+              subset=[c for c in current if str(c.get('marca','')).lower()==brand]
+              lines.append(f'{brand.upper()} DUPLICATE INDIVIDUAL SCORE VALUES')
+              for f in ('notaJogos','notaTrabalho'):
+                  groups=defaultdict(list)
+                  for c in subset:
+                      v=c.get(f)
+                      if cpuz_like(v):groups[str(v)].append(c)
+                  dup=[(v,cs) for v,cs in groups.items() if len(cs)>1]
+                  lines.append(f'  {f}: {len(dup)} duplicate-value groups')
+                  for v,cs in sorted(dup,key=lambda x:(-len(x[1]),float(x[0]))):
+                      lines.append(f'    VALUE {v}: '+ '; '.join(f'{c.get("id")} {c.get("nome")}' for c in cs))
+                      hist=[]
+                      for c in cs:
+                          h=latest_human(str(c.get('id')),c.get('nome'),f)
+                          if h:hist.append(f'{c.get("nome")} human={h[0]}@{h[1]}')
+                      if hist:lines.append('      HISTORY: '+'; '.join(hist))
+              lines.append('')
 
           pairs=defaultdict(list)
           for c in current:
               s,m=c.get('notaJogos'),c.get('notaTrabalho')
-              if cpuz_like(s) and cpuz_like(m): pairs[(str(s),str(m))].append(c)
-          dup=[(p,cs) for p,cs in pairs.items() if len(cs)>1]
-          lines.append(f'DUPLICATE COMPLETE CPU-Z-LIKE PAIRS: {len(dup)}')
-          for (s,m),cs in sorted(dup,key=lambda x:(-len(x[1]),x[0])):
-              lines.append(f'PAIR {s}/{m}: ' + '; '.join(f'{c.get("id")} {c.get("nome")}' for c in cs))
-              for c in cs:
-                  cid=str(c.get('id')); hist=[]; seen=set()
-                  for sha,author,date,index in history:
-                      old=index.get(cid)
-                      if not old or old.get('nome')!=c.get('nome'): continue
-                      os,om=old.get('notaJogos'),old.get('notaTrabalho')
-                      if cpuz_like(os) and cpuz_like(om) and (str(os),str(om)) not in seen:
-                          seen.add((str(os),str(om))); hist.append(f'{os}/{om} @ {sha[:10]}')
-                  lines.append(f'  {c.get("nome")}: ' + ('; '.join(hist[:8]) or 'no complete CPU-Z-like human pair'))
+              if cpuz_like(s) and cpuz_like(m):pairs[(str(s),str(m))].append(c)
+          dup_pairs=[(p,cs) for p,cs in pairs.items() if len(cs)>1]
+          lines.append(f'DUPLICATE COMPLETE CPU-Z-LIKE PAIRS: {len(dup_pairs)}')
+          for (s,m),cs in dup_pairs:
+              lines.append(f'{s}/{m}: '+'; '.join(f'{c.get("id")} {c.get("nome")}' for c in cs))
           lines.append('')
-          lines.append('NOTE: This audit does not modify dados.js.')
+          lines.append('NOTE: audit only; dados.js was not modified.')
           Path('cpu-score-audit.txt').write_text('\n'.join(lines)+'\n',encoding='utf-8')
-          print('\n'.join(lines[:120]))
+          print('\n'.join(lines[:240]))
           PY
       - name: Commit audit report only
         run: |
@@ -101,6 +118,6 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add cpu-score-audit.txt
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m "Audit CPU score history without changing data"
+          git commit -m "Deep-audit CPU scores against human history"
           git pull --rebase origin main
           git push origin main
