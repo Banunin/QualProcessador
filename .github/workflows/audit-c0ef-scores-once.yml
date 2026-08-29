@@ -1,0 +1,71 @@
+name: Audit c0ef CPU scores once
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/audit-c0ef-scores-once.yml'
+permissions:
+  contents: write
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Compare current score fields with c0ef verified snapshot
+        run: |
+          python3 - <<'PY'
+          import json, subprocess
+          from pathlib import Path
+
+          BASE='c0efea3d03f33e005b1baf6eb7f2a781bbdc324e'
+          def parse(text):
+              a,b=text.find('['),text.rfind(']')
+              return json.loads(text[a:b+1])
+          def num(v):
+              try:return float(v)
+              except:return None
+          def valid(v):
+              n=num(v)
+              return n is not None and n >= 100
+          def same(a,b):
+              na,nb=num(a),num(b)
+              if na is not None and nb is not None:return abs(na-nb)<1e-9
+              return str(a)==str(b)
+
+          current=parse(Path('dados.js').read_text(encoding='utf-8'))
+          old=parse(subprocess.check_output(['git','show',f'{BASE}:dados.js'],text=True,encoding='utf-8'))
+          cur_by={(str(c.get('id')),c.get('nome')):c for c in current}
+          rows=[]
+          for b in old:
+              key=(str(b.get('id')),b.get('nome'))
+              c=cur_by.get(key)
+              if not c:continue
+              for f in ('notaJogos','notaTrabalho'):
+                  bv,cv=b.get(f),c.get(f)
+                  if valid(bv) and not same(bv,cv):
+                      rows.append((b.get('id'),b.get('nome'),f,cv,bv,'CURRENT_VALID' if valid(cv) else 'CURRENT_MISSING_OR_OLD_SCALE'))
+
+          lines=[
+            'C0EF SCORE RESTORE AUDIT',
+            f'BASE={BASE}',
+            f'Current CPUs={len(current)}',
+            f'Base CPUs={len(old)}',
+            f'VALID BASE SCORE FIELDS DIFFERING NOW={len(rows)}',''
+          ]
+          for r in rows:
+              lines.append(f'{r[0]} | {r[1]} | {r[2]} | current={r[3]} | c0ef={r[4]} | {r[5]}')
+          lines.append('')
+          lines.append('AUDIT ONLY: dados.js not modified.')
+          Path('cpu-score-c0ef-audit.txt').write_text('\n'.join(lines)+'\n',encoding='utf-8')
+          print('\n'.join(lines))
+          PY
+      - name: Commit audit report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add cpu-score-c0ef-audit.txt
+          git commit -m "Report score differences from c0ef verified snapshot" || exit 0
+          git pull --rebase origin main
+          git push origin main
