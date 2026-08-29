@@ -1,8 +1,44 @@
-C0EF SCORE RESTORE AUDIT
+POST-C0EF SCORE ADDITIONS AUDIT
 BASE=c0efea3d03f33e005b1baf6eb7f2a781bbdc324e
-Current CPUs=223
-Base CPUs=223
-VALID BASE SCORE FIELDS DIFFERING NOW=0
+EXTRA VALID SCORE FIELDS NOW=38
 
+15 | AMD Ryzen 3 3100 | notaJogos | c0ef=0 | current=457
+15 | AMD Ryzen 3 3100 | notaTrabalho | c0ef=0 | current=2562
+32 | AMD Ryzen 7 4700G | notaJogos | c0ef=0 | current=527
+32 | AMD Ryzen 7 4700G | notaTrabalho | c0ef=0 | current=5656
+39 | AMD Ryzen 7 5700 | notaJogos | c0ef=N/A | current=588
+39 | AMD Ryzen 7 5700 | notaTrabalho | c0ef=N/A | current=6018
+42 | AMD Ryzen 7 5700X | notaJogos | c0ef=7.0 | current=625
+42 | AMD Ryzen 7 5700X | notaTrabalho | c0ef=7.2 | current=5885
+43 | AMD Ryzen 7 5700X3D | notaJogos | c0ef=N/A | current=526
+43 | AMD Ryzen 7 5700X3D | notaTrabalho | c0ef=N/A | current=5695
+46 | AMD Ryzen 7 5800XT | notaJogos | c0ef=N/A | current=632
+46 | AMD Ryzen 7 5800XT | notaTrabalho | c0ef=N/A | current=6508
+47 | AMD Ryzen 7 5800X3D | notaJogos | c0ef=N/A | current=591
+47 | AMD Ryzen 7 5800X3D | notaTrabalho | c0ef=N/A | current=6201
+56 | Intel Xeon X3470 | notaTrabalho | c0ef=N/A | current=1360
+78 | Intel Xeon E3-1230 | notaTrabalho | c0ef=N/A | current=1497
+82 | Intel Xeon E3-1270 | notaTrabalho | c0ef=N/A | current=1625
+101 | Intel Pentium G620 | notaTrabalho | c0ef=N/A | current=440
+102 | Intel Pentium G630 | notaTrabalho | c0ef=N/A | current=453
+104 | Intel Pentium G645 | notaTrabalho | c0ef=N/A | current=482
+114 | Intel Xeon E3-1220 V2 | notaTrabalho | c0ef=N/A | current=1232
+116 | Intel Xeon E3-1230 V2 | notaTrabalho | c0ef=N/A | current=1671
+118 | Intel Xeon E3-1240 V2 | notaTrabalho | c0ef=N/A | current=1741
+119 | Intel Xeon E3-1245 V2 | notaTrabalho | c0ef=N/A | current=1712
+120 | Intel Xeon E3-1270 V2 | notaTrabalho | c0ef=N/A | current=1783
+121 | Intel Xeon E3-1275 V2 | notaTrabalho | c0ef=N/A | current=1810
+130 | Intel Core i5-3340 | notaTrabalho | c0ef=N/A | current=1151
+151 | Intel Xeon E3-1241 V3 | notaTrabalho | c0ef=N/A | current=1991
+157 | Intel Xeon E3-1281 V3 | notaTrabalho | c0ef=N/A | current=2086
+184 | Intel Pentium G3260 | notaTrabalho | c0ef=N/A | current=632
+213 | Intel Core i3-12100F | notaJogos | c0ef=N/A | current=643
+214 | Intel Core i5-12400F | notaJogos | c0ef=N/A | current=644
+217 | Intel Core i7-13700K | notaJogos | c0ef=N/A | current=859
+217 | Intel Core i7-13700K | notaTrabalho | c0ef=N/A | current=11910
+220 | Intel Core i5-14600K | notaJogos | c0ef=N/A | current=845
+220 | Intel Core i5-14600K | notaTrabalho | c0ef=N/A | current=9855
+222 | Intel Core i9-14900K | notaJogos | c0ef=N/A | current=917
+222 | Intel Core i9-14900K | notaTrabalho | c0ef=N/A | current=15972
 
 AUDIT ONLY: dados.js not modified.
