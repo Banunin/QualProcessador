@@ -1,0 +1,40 @@
+name: Audit CPU-Z scores once
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/audit-cpuz-once.yml'
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: List CPUs with missing CPU-Z scores
+        run: |
+          python3 - <<'PY'
+          import json, re
+          from pathlib import Path
+          text = Path('dados.js').read_text(encoding='utf-8')
+          start, end = text.find('['), text.rfind(']')
+          cpus = json.loads(text[start:end+1])
+          missing = []
+          partial = []
+          for cpu in cpus:
+              sc = cpu.get('notaJogos')
+              mc = cpu.get('notaTrabalho')
+              sc_missing = sc in (None, '', 'N/A')
+              mc_missing = mc in (None, '', 'N/A')
+              if sc_missing or mc_missing:
+                  missing.append(cpu)
+              if sc_missing != mc_missing:
+                  partial.append(cpu)
+          print(f'TOTAL_CPUS={len(cpus)}')
+          print(f'MISSING_ANY={len(missing)}')
+          print(f'PARTIAL_ONLY={len(partial)}')
+          print('--- MISSING ---')
+          for cpu in missing:
+              print(f"{cpu.get('id')} | {cpu.get('nome')} | SC={cpu.get('notaJogos')} | MC={cpu.get('notaTrabalho')}")
+          PY
