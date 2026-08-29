@@ -10,16 +10,59 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Inspect CPU-Monkey HTML
+      - name: Validate exact CPU-Monkey parser
         run: |
           python3 - <<'PY'
-          import urllib.request
-          url='https://www.cpu-monkey.com/en/benchmark-intel_core_i7_14700k-cpu_z_benchmark_17_single_core'
-          req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 (compatible; QualProcessador benchmark verifier)'})
-          raw=urllib.request.urlopen(req,timeout=20).read().decode('utf-8','ignore')
-          print('STATUS_BYTES',len(raw))
-          needle='Intel Core i7-14700K'
-          pos=raw.lower().rfind(needle.lower())
-          print('LAST_POS',pos)
-          print(raw[max(0,pos-800):pos+1200].replace('\n',' ')[:2000])
+          import re, time, urllib.request
+          from html.parser import HTMLParser
+
+          class TextParser(HTMLParser):
+              def __init__(self):
+                  super().__init__(); self.parts=[]
+              def handle_data(self, data):
+                  text=' '.join(data.split())
+                  if text: self.parts.append(text)
+
+          def slug(name):
+              return re.sub(r'[^a-z0-9]+','_',name.lower()).strip('_')
+
+          def fetch_score(name, kind):
+              suffix='single_core' if kind=='SC' else 'multi_core'
+              url=f'https://www.cpu-monkey.com/en/benchmark-{slug(name)}-cpu_z_benchmark_17_{suffix}'
+              req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 (compatible; QualProcessador benchmark verifier)'})
+              try:
+                  raw=urllib.request.urlopen(req,timeout=20).read().decode('utf-8','ignore')
+              except Exception as e:
+                  return None, f'HTTP {type(e).__name__}'
+              p=TextParser(); p.feed(raw); parts=p.parts
+              heading=f'CPU-Z Benchmark 17 {"Single-Core" if kind=="SC" else "Multi-Core"} - Benchmark results'
+              try: start=next(i for i,x in enumerate(parts) if heading in x)
+              except StopIteration: return None, 'heading missing'
+              for i in range(start+1,min(len(parts),start+120)):
+                  if parts[i].strip().casefold()==name.strip().casefold():
+                      for x in parts[i+1:i+8]:
+                          compact=x.replace(',','').strip()
+                          if re.fullmatch(r'\d+',compact):
+                              n=int(compact)
+                              return (n if n>0 else None), ('ok' if n>0 else 'zero/unavailable')
+              return None, 'target row missing'
+
+          tests={
+              'AMD Ryzen 3 1200':(375,1372),
+              'Intel Core i5-4460':(373,1453),
+              'Intel Core i7-14700K':(908,14988),
+              'Intel Core i5-12400F':(None,4772),
+              'Intel Core i7-13700K':(None,None),
+          }
+          failed=False
+          for name, expected in tests.items():
+              got=[]
+              for kind in ('SC','MC'):
+                  val,why=fetch_score(name,kind); got.append(val)
+                  print(name,kind,val,why)
+                  time.sleep(.25)
+              if tuple(got)!=expected:
+                  failed=True; print('MISMATCH expected',expected,'got',tuple(got))
+          if failed: raise SystemExit(1)
+          print('PARSER_OK')
           PY
