@@ -1,0 +1,37 @@
+name: Verify comparison routes once
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/check-comparison-route-once.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check public comparison URLs
+        run: |
+          python3 - <<'PY'
+          import urllib.error, urllib.request
+          urls=[
+            'https://qualprocessador.vercel.app/comparar',
+            'https://qualprocessador.vercel.app/comparar/amd-ryzen-5-5600-vs-amd-ryzen-5-5600x',
+            'https://qualprocessador.vercel.app/comparar/amd-ryzen-5-5600-vs-intel-core-i5-12400f',
+          ]
+          failed=False
+          for url in urls:
+              req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0 QualProcessador route check'})
+              try:
+                  with urllib.request.urlopen(req,timeout=20) as r:
+                      body=r.read(100000).decode('utf-8','ignore')
+                      ok=r.status==200 and 'Comparar Processadores' in body and 'seo-tools.js' in body
+                      print(r.status, 'OK' if ok else 'UNEXPECTED', url, 'final=',r.geturl())
+                      if not ok: failed=True
+              except urllib.error.HTTPError as e:
+                  print(e.code,'HTTP_ERROR',url,'final=',e.geturl()); failed=True
+              except Exception as e:
+                  print(type(e).__name__,'ERROR',url,str(e)); failed=True
+          if failed: raise SystemExit(1)
+          PY
