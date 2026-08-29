@@ -208,7 +208,7 @@
     function pontosCpu(valor) {
         if (!valorInformado(valor)) return null;
         const n = Number.parseInt(valor, 10);
-        return Number.isFinite(n) && n > 0 ? n : null;
+        return Number.isFinite(n) && n >= 100 ? n : null;
     }
 
     function textoGrafico(cpu) {

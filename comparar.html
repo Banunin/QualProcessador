@@ -94,7 +94,7 @@
             function valor(v){return v===undefined||v===null||String(v).trim()===''?'—':String(v)}
             function pontos(v){
                 if(v===undefined||v===null||String(v).trim()===''||String(v).toUpperCase()==='N/A')return 'N/A';
-                const n=Number.parseInt(v,10);return Number.isFinite(n)?n.toLocaleString('pt-BR')+' pts':'N/A';
+                const n=Number.parseInt(v,10);return Number.isFinite(n)&&n>=100?n.toLocaleString('pt-BR')+' pts':'N/A';
             }
             function resolverEntrada(valorEntrada){
                 const texto=String(valorEntrada||'').trim();

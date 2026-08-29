@@ -353,8 +353,9 @@
             const classeMarca = cpu.marca === 'amd' ? 'brand-gradient-amd' : 'brand-gradient-intel';
             const corBordaFoto = cpu.marca === 'amd' ? '#ef4444' : '#3b82f6';
 
-            let ptsSingle = parseInt(cpu.notaJogos || 0);
-            let ptsMulti = parseInt(cpu.notaTrabalho || 0);
+            const scoreCpuZ = (valor) => { const n = Number(valor); return Number.isFinite(n) && n >= 100 ? Math.round(n) : 0; };
+            let ptsSingle = scoreCpuZ(cpu.notaJogos);
+            let ptsMulti = scoreCpuZ(cpu.notaTrabalho);
 
             let htmlMiniaturas = '';
             if (cpu.fotos && Array.isArray(cpu.fotos) && cpu.fotos.length > 0) {
@@ -912,10 +913,10 @@ function atualizarEstadoAutenticacao() {
                 const corLitografia = melhor(false, cpu.litografia, outro.litografia);
                 const corCache = melhor(true, parseInt(cpu.cacheL3), parseInt(outro.cacheL3));
 
-                let cpuPtsSingle = parseInt(cpu.notaJogos || 0);
-                let outroPtsSingle = parseInt(outro.notaJogos || 0);
-                let cpuPtsMulti = parseInt(cpu.notaTrabalho || 0);
-                let outroPtsMulti = parseInt(outro.notaTrabalho || 0);
+                let cpuPtsSingle = scoreCpuZ(cpu.notaJogos);
+                let outroPtsSingle = scoreCpuZ(outro.notaJogos);
+                let cpuPtsMulti = scoreCpuZ(cpu.notaTrabalho);
+                let outroPtsMulti = scoreCpuZ(outro.notaTrabalho);
 
                 const corPtsSingle = melhor(true, cpuPtsSingle, outroPtsSingle);
                 const corPtsMulti = melhor(true, cpuPtsMulti, outroPtsMulti);
