@@ -29,8 +29,8 @@
       "destination": "/comparar.html"
     },
     {
-      "source": "/comparar/:comparacao*",
-      "destination": "/comparar.html?comparacao=:comparacao*"
+      "source": "/comparar/(.*)",
+      "destination": "/comparar.html"
     },
     {
       "source": "/forum",
