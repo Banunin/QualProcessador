@@ -55,6 +55,98 @@ def ano(cpu):
     return int(m.group(0)) if m else 0
 
 
+def nome_norm(cpu):
+    return normalizar(cpu.get("nome") or "")
+
+
+def marca_norm(cpu):
+    return normalizar(cpu.get("marca") or cpu.get("fabricante") or "")
+
+
+def socket_norm(cpu):
+    return normalizar(cpu.get("soquete") or cpu.get("socket") or "")
+
+
+def familia_norm(cpu):
+    return normalizar(cpu.get("familia") or "")
+
+
+def geracao_norm(cpu):
+    return normalizar(cpu.get("geracao") or "")
+
+
+def arquitetura_norm(cpu):
+    return normalizar(cpu.get("arquitetura") or cpu.get("codinome") or "")
+
+
+def linha_produto(cpu):
+    nome = str(cpu.get("nome") or "").lower()
+    marca = marca_norm(cpu)
+
+    m = re.search(r"ryzen\s+([3579])", nome)
+    if m:
+        return f"amd-ryzen-{m.group(1)}"
+
+    m = re.search(r"core\s+i([3579])", nome)
+    if m:
+        return f"intel-core-i{m.group(1)}"
+
+    if "xeon" in nome:
+        m = re.search(r"xeon\s+([ew])\s*[- ]?\s*(\d)", nome)
+        if m:
+            return f"intel-xeon-{m.group(1)}{m.group(2)}"
+        m = re.search(r"xeon\s+([ew]\d)", nome)
+        return f"intel-xeon-{m.group(1)}" if m else "intel-xeon"
+
+    for familia in ("celeron", "pentium", "atom", "athlon", "threadripper"):
+        if familia in nome:
+            return f"{marca}-{familia}"
+
+    return familia_norm(cpu) or marca
+
+
+def faixa_produto(cpu):
+    nome = str(cpu.get("nome") or "").lower()
+    m = re.search(r"ryzen\s+([3579])", nome)
+    if m:
+        return int(m.group(1))
+    m = re.search(r"core\s+i([3579])", nome)
+    if m:
+        return int(m.group(1))
+    if "celeron" in nome or "atom" in nome:
+        return 1
+    if "pentium" in nome or "athlon" in nome:
+        return 2
+    if "xeon" in nome:
+        return 6
+    if "threadripper" in nome:
+        return 10
+    return 0
+
+
+def modelo_numero(cpu):
+    nome = str(cpu.get("nome") or "").lower()
+
+    # Xeon E5-2680 v4, E3-1230 etc.: usa o número principal do modelo.
+    m = re.search(r"xeon.*?\b(?:e|w)?\d?[- ]?(\d{4})\b", nome)
+    if m:
+        return int(m.group(1))
+
+    # Ryzen/Core e demais famílias desktop: último bloco numérico de 3 a 5 dígitos.
+    nums = re.findall(r"\b(\d{3,5})\b", nome)
+    if nums:
+        return int(nums[-1])
+    return 0
+
+
+def raiz_modelo(cpu):
+    nome = str(cpu.get("nome") or "").lower()
+    numero_modelo = modelo_numero(cpu)
+    if not numero_modelo:
+        return ""
+    return f"{linha_produto(cpu)}-{numero_modelo}"
+
+
 def chave_par(a, b):
     aid = int(a.get("id", 0))
     bid = int(b.get("id", 0))
@@ -87,50 +179,52 @@ def score_similaridade(base, item):
     ano_base = ano(base)
     ano_item = ano(item)
     diff_ano = abs(ano_item - ano_base) if ano_base and ano_item else 2
-    dy = min(diff_ano / 4, 1.5)
+    dy = min(diff_ano / 5, 1.4)
 
     score = ds * 0.36 + dm * 0.22 + dc * 0.17 + dt * 0.10 + dy * 0.15
-    if diff_ano > 5:
-        score += 1.2
-    if diff_ano > 8:
-        score += 1.5
 
-    socket_base = str(base.get("soquete") or base.get("socket") or "").strip().lower()
-    socket_item = str(item.get("soquete") or item.get("socket") or "").strip().lower()
-    if socket_base and socket_base == socket_item:
+    if socket_norm(base) and socket_norm(base) == socket_norm(item):
         score *= 0.82
-
-    marca_base = str(base.get("marca") or "").strip().lower()
-    marca_item = str(item.get("marca") or "").strip().lower()
-    if marca_base and marca_item and marca_base != marca_item and diff_ano <= 3:
-        score *= 0.94
+    if linha_produto(base) == linha_produto(item):
+        score *= 0.78
+    if familia_norm(base) and familia_norm(base) == familia_norm(item):
+        score *= 0.72
+    if faixa_produto(base) and faixa_produto(base) == faixa_produto(item) and marca_norm(base) != marca_norm(item):
+        score *= 0.86
 
     return score
 
 
-def comparacao_plausivel(a, b):
+def comparacao_plausivel(a, b, relaxada=False):
     ano_a, ano_b = ano(a), ano(b)
-    if ano_a and ano_b and abs(ano_a - ano_b) > 4:
+    limite_anos = 7 if relaxada else 5
+    if ano_a and ano_b and abs(ano_a - ano_b) > limite_anos:
         return False
 
     cores_a, cores_b = numero(a.get("cores")), numero(b.get("cores"))
     threads_a, threads_b = numero(a.get("threads")), numero(b.get("threads"))
-    if cores_a and cores_b and abs(cores_a - cores_b) > max(4, max(cores_a, cores_b) * 0.55):
+    fator_cores = 0.75 if relaxada else 0.60
+    fator_threads = 0.80 if relaxada else 0.68
+    if cores_a and cores_b and abs(cores_a - cores_b) > max(6 if relaxada else 4, max(cores_a, cores_b) * fator_cores):
         return False
-    if threads_a and threads_b and abs(threads_a - threads_b) > max(8, max(threads_a, threads_b) * 0.60):
+    if threads_a and threads_b and abs(threads_a - threads_b) > max(12 if relaxada else 8, max(threads_a, threads_b) * fator_threads):
         return False
 
     single_a, single_b = numero(a.get("notaJogos")), numero(b.get("notaJogos"))
     if single_a and single_b:
         proporcao = max(single_a, single_b) / max(min(single_a, single_b), 1)
-        if proporcao > 1.85:
+        limite = 2.35 if relaxada else 2.0
+        if proporcao > limite:
             return False
 
     return True
 
 
-def melhores(base, candidatos, quantidade=1):
-    validos = [c for c in candidatos if c.get("id") != base.get("id") and comparacao_plausivel(base, c)]
+def melhores(base, candidatos, quantidade=1, relaxada=False):
+    validos = [
+        c for c in candidatos
+        if c.get("id") != base.get("id") and comparacao_plausivel(base, c, relaxada=relaxada)
+    ]
     return sorted(validos, key=lambda c: score_similaridade(base, c))[:quantidade]
 
 
@@ -139,39 +233,97 @@ def por_nome(cpus, nome):
     return next((c for c in cpus if normalizar(c.get("nome")) == alvo), None)
 
 
+def adicionar_par(pares, a, b):
+    if not a or not b or a.get("id") == b.get("id"):
+        return
+    pares[chave_par(a, b)] = (a, b)
+
+
 def gerar_comparacoes(cpus):
     pares = {}
 
+    # 1) Variantes do mesmo número/modelo: 5600/5600X, 12400/12400F,
+    #    5700G/5700GE/5700X/5700X3D etc. São buscas muito naturais.
+    grupos_raiz = {}
+    for cpu in cpus:
+        raiz = raiz_modelo(cpu)
+        if raiz:
+            grupos_raiz.setdefault(raiz, []).append(cpu)
+    for grupo in grupos_raiz.values():
+        for i, a in enumerate(grupo):
+            for b in grupo[i + 1:]:
+                adicionar_par(pares, a, b)
+
+    # 2) Todas as combinações dentro de uma família/série específica quando
+    #    a família está bem definida no banco, com filtro de plausibilidade.
+    grupos_familia = {}
+    for cpu in cpus:
+        familia = familia_norm(cpu)
+        if familia:
+            grupos_familia.setdefault((marca_norm(cpu), familia), []).append(cpu)
+    for grupo in grupos_familia.values():
+        for i, a in enumerate(grupo):
+            for b in grupo[i + 1:]:
+                if comparacao_plausivel(a, b, relaxada=True):
+                    adicionar_par(pares, a, b)
+
+    # 3) Para cada CPU, cobre as intenções mais úteis: mesmo socket/linha,
+    #    gerações próximas, concorrente direto da outra marca e vizinhos de desempenho.
     for cpu in cpus:
         outros = [c for c in cpus if c.get("id") != cpu.get("id")]
-        socket = str(cpu.get("soquete") or cpu.get("socket") or "").strip().lower()
-        marca = str(cpu.get("marca") or "").strip().lower()
-        familia = normalizar(cpu.get("familia") or "")
+        socket = socket_norm(cpu)
+        marca = marca_norm(cpu)
+        linha = linha_produto(cpu)
+        faixa = faixa_produto(cpu)
+        geracao = geracao_norm(cpu)
+        arquitetura = arquitetura_norm(cpu)
+        ano_cpu = ano(cpu)
 
-        mesmo_socket = [c for c in outros if socket and str(c.get("soquete") or c.get("socket") or "").strip().lower() == socket]
-        outra_marca = [c for c in outros if marca and str(c.get("marca") or "").strip().lower() != marca]
-        mesma_familia = [c for c in outros if familia and normalizar(c.get("familia") or "") == familia]
+        mesmo_socket = [c for c in outros if socket and socket_norm(c) == socket]
+        mesma_linha = [c for c in outros if linha and linha_produto(c) == linha]
+        mesma_geracao = [c for c in outros if geracao and geracao_norm(c) == geracao and marca_norm(c) == marca]
+        mesma_arquitetura = [c for c in outros if arquitetura and arquitetura_norm(c) == arquitetura and marca_norm(c) == marca]
+        concorrentes = [
+            c for c in outros
+            if marca_norm(c) != marca
+            and faixa and faixa_produto(c) == faixa
+            and (not ano_cpu or not ano(c) or abs(ano(c) - ano_cpu) <= 4)
+        ]
+        mesma_faixa_marca = [
+            c for c in outros
+            if marca_norm(c) == marca
+            and faixa and faixa_produto(c) == faixa
+            and (not ano_cpu or not ano(c) or abs(ano(c) - ano_cpu) <= 4)
+        ]
 
         selecionados = []
-        selecionados += melhores(cpu, mesmo_socket, 1)
-        selecionados += melhores(cpu, outra_marca, 1)
-        selecionados += melhores(cpu, mesma_familia, 1)
+        selecionados += melhores(cpu, mesma_linha, 6, relaxada=True)
+        selecionados += melhores(cpu, mesmo_socket, 5)
+        selecionados += melhores(cpu, mesma_geracao, 5, relaxada=True)
+        selecionados += melhores(cpu, mesma_arquitetura, 4, relaxada=True)
+        selecionados += melhores(cpu, mesma_faixa_marca, 5, relaxada=True)
+        selecionados += melhores(cpu, concorrentes, 6, relaxada=True)
+        selecionados += melhores(cpu, outros, 4)
 
         for outro in selecionados:
-            pares[chave_par(cpu, outro)] = (cpu, outro)
+            adicionar_par(pares, cpu, outro)
 
-    # Pares editoriais/populares: só entram se ambos estiverem realmente cadastrados.
+    # 4) Pares editoriais/populares. Permanecem explícitos para garantir cobertura
+    #    de pesquisas clássicas, mas só entram se ambos estiverem cadastrados.
     pares_populares = [
         ("AMD Ryzen 5 5600", "Intel Core i5-12400F"),
         ("AMD Ryzen 5 5600", "AMD Ryzen 5 5600X"),
         ("AMD Ryzen 5 3600", "AMD Ryzen 5 5600"),
+        ("AMD Ryzen 5 5500", "AMD Ryzen 5 5600"),
+        ("AMD Ryzen 5 5600G", "AMD Ryzen 5 5600"),
         ("AMD Ryzen 7 5700X", "AMD Ryzen 7 5800X"),
         ("AMD Ryzen 7 5700X3D", "AMD Ryzen 7 5800X3D"),
+        ("Intel Core i5-10400F", "AMD Ryzen 5 5600"),
+        ("Intel Core i5-11400F", "AMD Ryzen 5 5600"),
+        ("Intel Core i5-12400F", "AMD Ryzen 5 5600X"),
     ]
     for nome_a, nome_b in pares_populares:
-        a, b = por_nome(cpus, nome_a), por_nome(cpus, nome_b)
-        if a and b:
-            pares[chave_par(a, b)] = (a, b)
+        adicionar_par(pares, por_nome(cpus, nome_a), por_nome(cpus, nome_b))
 
     return list(pares.values())
 
