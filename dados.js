@@ -405,7 +405,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR4-2933",
         "suporteEcc": "Suportado (Depende da Motherboard)",
-        "igpuFreq": "1100 MHz - 2000 MHz",
+        "igpuFreq": "1100 MHz",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
     },
@@ -446,7 +446,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR4-2933",
         "suporteEcc": "Suportado (Depende da Motherboard)",
-        "igpuFreq": "1100 MHz - 2000 MHz",
+        "igpuFreq": "1250 MHz",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
     },
@@ -733,7 +733,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR4-3200",
         "suporteEcc": "Suportado (Depende da Motherboard)",
-        "igpuFreq": "1100 MHz - 2000 MHz",
+        "igpuFreq": "1400 MHz",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
     },
@@ -1307,7 +1307,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR4-3200",
         "suporteEcc": "Não suportado oficialmente",
-        "igpuFreq": "1100 MHz - 2000 MHz",
+        "igpuFreq": "400 MHz - 1900 MHz",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
     },
@@ -1348,7 +1348,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR4-3200",
         "suporteEcc": "Não suportado oficialmente",
-        "igpuFreq": "1100 MHz - 2000 MHz",
+        "igpuFreq": "400 MHz - 2100 MHz",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
     },
@@ -1389,7 +1389,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR4-3200",
         "suporteEcc": "Suportado (Depende da Motherboard)",
-        "igpuFreq": "1100 MHz - 2000 MHz",
+        "igpuFreq": "400 MHz - 1700 MHz",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
     },
@@ -1512,7 +1512,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR4-3200",
         "suporteEcc": "Suportado (Depende da Motherboard)",
-        "igpuFreq": "1900 Mhz",
+        "igpuFreq": "400 MHz - 1900 MHz",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
     },
@@ -1552,7 +1552,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR4-3200",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "400 MHz - 1900 MHz",
         "tempMax": "95°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
     },
@@ -1675,7 +1675,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR4-3200",
         "suporteEcc": "Suportado (Depende da Motherboard)",
-        "igpuFreq": "1100 MHz - 2000 MHz",
+        "igpuFreq": "400 MHz - 2000 MHz",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
     },
@@ -1716,7 +1716,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR4-3200",
         "suporteEcc": "Suportado (Depende da Motherboard)",
-        "igpuFreq": "1100 MHz - 2000 MHz",
+        "igpuFreq": "400 MHz - 2000 MHz",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
     },
@@ -2406,7 +2406,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1066/1333",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "500 MHz - 730 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
     },
@@ -2446,7 +2446,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1066/1333",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "500 MHz - 730 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
     },
@@ -2486,7 +2486,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1066/1333",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "500 MHz - 730 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
     },
@@ -2526,7 +2526,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1066/1333",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "733 MHz",
+        "igpuFreq": "500 MHz - 730 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
     },
@@ -2566,7 +2566,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1066/1333",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "500 MHz - 730 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
     },
@@ -2606,7 +2606,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1066/1333",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "500 MHz - 730 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
     },
@@ -2646,7 +2646,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1066/1333",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "500 MHz - 730 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
     },
@@ -2686,7 +2686,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1066/1333",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "500 MHz - 900 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
     },
@@ -2726,7 +2726,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1066/1333",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "500 MHz - 730 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
     },
@@ -2766,7 +2766,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1066/1333",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "500 MHz - 730 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
     },
@@ -3046,7 +3046,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1066/1333",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "N/A",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
     },
@@ -3086,7 +3086,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1066/1333",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "N/A",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
     },
@@ -3166,7 +3166,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1333",
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "N/A",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
     },
@@ -3246,7 +3246,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1333",
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "N/A",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
     },
@@ -3326,7 +3326,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1333",
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "N/A",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
     },
@@ -3406,7 +3406,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1333",
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "N/A",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
     },
@@ -3526,7 +3526,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1333",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "850 MHz - 1100 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
     },
@@ -3566,7 +3566,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1333",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "850 MHz - 1100 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
     },
@@ -3846,7 +3846,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1333",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "850 MHz - 1100 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
     },
@@ -3966,7 +3966,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1333",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "850 MHz - 1100 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
     },
@@ -4006,7 +4006,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1333",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "850 MHz - 1100 MHz",
+        "igpuFreq": "850 MHz - 1350 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX"
     },
@@ -4046,7 +4046,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1333",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "850 MHz - 1350 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
     },
@@ -4126,7 +4126,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1333",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "850 MHz - 1100 MHz",
+        "igpuFreq": "N/A",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
     },
@@ -4166,7 +4166,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1333",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "850 MHz - 1100 MHz",
+        "igpuFreq": "N/A",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
     },
@@ -4206,7 +4206,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1333",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "850 MHz - 1100 MHz",
+        "igpuFreq": "N/A",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
     },
@@ -4246,7 +4246,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1333",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "850 MHz - 1100 MHz",
+        "igpuFreq": "N/A",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
     },
@@ -4286,7 +4286,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1333",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "850 MHz - 1100 MHz",
+        "igpuFreq": "N/A",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
     },
@@ -4326,7 +4326,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1333",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "850 MHz - 1100 MHz",
+        "igpuFreq": "N/A",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
     },
@@ -4406,7 +4406,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1333",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "850 MHz - 1100 MHz",
+        "igpuFreq": "N/A",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
     },
@@ -4446,7 +4446,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1333",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "650 MHz - 1000 MHz",
+        "igpuFreq": "N/A",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
     },
@@ -4486,7 +4486,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1333",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "850 MHz - 1000 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
     },
@@ -4526,7 +4526,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1333",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "650 MHz - 1000 MHz",
+        "igpuFreq": "N/A",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
     },
@@ -4566,7 +4566,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1333",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "650 MHz - 1000 MHz",
+        "igpuFreq": "N/A",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
     },
@@ -4606,7 +4606,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1333",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "650 MHz - 1000 MHz",
+        "igpuFreq": "N/A",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
     },
@@ -4686,7 +4686,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1600",
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
-        "igpuFreq": "650 MHz - 1150 MHz",
+        "igpuFreq": "N/A",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX"
     },
@@ -4766,7 +4766,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1600",
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
-        "igpuFreq": "650 MHz - 1150 MHz",
+        "igpuFreq": "N/A",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX"
     },
@@ -4846,7 +4846,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1600",
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
-        "igpuFreq": "650 MHz - 1150 MHz",
+        "igpuFreq": "N/A",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX"
     },
@@ -4926,7 +4926,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1600",
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
-        "igpuFreq": "650 MHz - 1150 MHz",
+        "igpuFreq": "N/A",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX"
     },
@@ -5046,7 +5046,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1600",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "650 MHz - 1050 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
     },
@@ -5086,7 +5086,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1600",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "650 MHz - 1150 MHz",
+        "igpuFreq": "650 MHz - 1050 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX"
     },
@@ -5166,7 +5166,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1600",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "650 MHz - 1150 MHz",
+        "igpuFreq": "650 MHz - 1050 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX"
     },
@@ -5326,7 +5326,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1600",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "650 MHz - 1050 MHz",
+        "igpuFreq": "650 MHz - 1100 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX"
     },
@@ -5366,7 +5366,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1600",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "-",
+        "igpuFreq": "650 MHz - 1100 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
     },
@@ -5406,7 +5406,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1600",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "650 MHz - 1050 MHz",
+        "igpuFreq": "650 MHz - 1150 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX"
     },
@@ -5446,7 +5446,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1600",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "650 MHz - 1050 MHz",
+        "igpuFreq": "650 MHz - 1150 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX"
     },
@@ -5486,7 +5486,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1600",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "-",
+        "igpuFreq": "650 MHz - 1150 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
     },
@@ -5566,7 +5566,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1600",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "-",
+        "igpuFreq": "650 MHz - 1150 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
     },
@@ -5686,7 +5686,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1600",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "650 MHz - 1050 MHz",
+        "igpuFreq": "650 MHz - 1000 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
     },
@@ -5726,7 +5726,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1600",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "650 MHz - 1050 MHz",
+        "igpuFreq": "N/A",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
     },
@@ -5766,7 +5766,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3-1600",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "650 MHz - 1050 MHz",
+        "igpuFreq": "N/A",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
     },
@@ -5966,7 +5966,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3/DDR3L-1600",
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
-        "igpuFreq": "350 MHz - 1150 MHz",
+        "igpuFreq": "350 MHz - 1200 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
     },
@@ -6166,7 +6166,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3/DDR3L-1600",
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
-        "igpuFreq": "350 MHz - 1150 MHz",
+        "igpuFreq": "350 MHz - 1200 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
     },
@@ -6286,7 +6286,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3/DDR3L-1600",
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
-        "igpuFreq": "350 MHz - 1200 MHz",
+        "igpuFreq": "350 MHz - 1250 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
     },
@@ -6406,7 +6406,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3/DDR3L-1600",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "-",
+        "igpuFreq": "350 MHz - 1150 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
     },
@@ -6766,7 +6766,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3/DDR3L-1600",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "350 MHz - 1150 MHz",
+        "igpuFreq": "350 MHz - 1100 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
     },
@@ -6806,7 +6806,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3/DDR3L-1600",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "350 MHz - 1150 MHz",
+        "igpuFreq": "350 MHz - 1100 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
     },
@@ -6846,7 +6846,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3/DDR3L-1600",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "-",
+        "igpuFreq": "350 MHz - 1100 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
     },
@@ -6966,7 +6966,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3/DDR3L-1600",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "350 MHz - 1150 MHz",
+        "igpuFreq": "350 MHz - 1200 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
     },
@@ -7006,7 +7006,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3/DDR3L-1600",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "350 MHz - 1150 MHz",
+        "igpuFreq": "350 MHz - 1200 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
     },
@@ -7046,7 +7046,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3/DDR3L-1600",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "350 MHz - 1150 MHz",
+        "igpuFreq": "350 MHz - 1200 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
     },
@@ -7086,7 +7086,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3/DDR3L-1600",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "350 MHz - 1150 MHz",
+        "igpuFreq": "350 MHz - 1200 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
     },
@@ -7166,7 +7166,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3/DDR3L-1600",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "350 MHz - 1200 MHz",
+        "igpuFreq": "350 MHz - 1250 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
     },
@@ -7246,7 +7246,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3/DDR3L-1600",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "350 MHz - 1250 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
     },
@@ -7406,7 +7406,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3/DDR3L-1600",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "350 MHz - 1100 MHz",
+        "igpuFreq": "350 MHz - 1150 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
     },
@@ -7446,7 +7446,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3/DDR3L-1600",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "350 MHz - 1100 MHz",
+        "igpuFreq": "N/A",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
     },
@@ -7486,7 +7486,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3/DDR3L-1600",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "350 MHz - 1100 MHz",
+        "igpuFreq": "350 MHz - 1150 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
     },
@@ -7526,7 +7526,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3/DDR3L-1600",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "350 MHz - 1100 MHz",
+        "igpuFreq": "350 MHz - 1150 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
     },
@@ -7806,7 +7806,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR3L-1600",
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "N/A",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
     },
@@ -7846,7 +7846,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR4-2133",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "350 MHz - 1050 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
     },
@@ -7886,7 +7886,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR4-2133",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "350 MHz - 1050 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
     },
@@ -7926,7 +7926,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR4-2133",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "350 MHz - 1150 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
     },
@@ -7966,7 +7966,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR4-2400",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "350 MHz - 1100 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
     },
@@ -8006,7 +8006,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR4-2400",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "350 MHz - 1000 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
     },
@@ -8046,7 +8046,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR4-2400",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "350 MHz - 1150 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
     },
@@ -8086,7 +8086,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR4-2400",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "350 MHz - 1050 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
     },
@@ -8126,7 +8126,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR4-2666",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "350 MHz - 1100 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
     },
@@ -8166,7 +8166,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR4-2666",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "350 MHz - 1150 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
     },
@@ -8206,7 +8206,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR4-2666",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "350 MHz - 1200 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
     },
@@ -8286,7 +8286,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR4-2666",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "350 MHz - 1200 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
     },
@@ -8326,7 +8326,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR4-2666",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "350 MHz - 1200 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
     },
@@ -8446,7 +8446,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR4-2933",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "350 MHz - 1200 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
     },
@@ -8526,7 +8526,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR4-3200",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "350 MHz - 1300 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
     },
@@ -8566,7 +8566,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR4-3200",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "350 MHz - 1300 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
     },
@@ -8686,7 +8686,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR5-4800 / DDR4-3200",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "300 MHz - 1500 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
     },
@@ -8726,7 +8726,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR5-5600 / DDR4-3200",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "300 MHz - 1500 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
     },
@@ -8766,7 +8766,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR5-5600 / DDR4-3200",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "300 MHz - 1600 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
     },
@@ -8806,7 +8806,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR5-5600 / DDR4-3200",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "300 MHz - 1650 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
     },
@@ -8886,7 +8886,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR5-5600 / DDR4-3200",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "300 MHz - 1550 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
     },
@@ -8926,7 +8926,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR5-5600 / DDR4-3200",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "300 MHz - 1600 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
     },
@@ -8966,7 +8966,7 @@ const listaDeCpus = [
         "canaisMemoria": "Dual Channel",
         "freqMaxMemoria": "DDR5-5600 / DDR4-3200",
         "suporteEcc": "Não suportado",
-        "igpuFreq": "Frequência dinâmica integrada",
+        "igpuFreq": "300 MHz - 1650 MHz",
         "tempMax": "100°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
     }
