@@ -1,0 +1,37 @@
+name: SEO smoke test
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/seo-smoke-test-once.yml'
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check JavaScript syntax
+        run: |
+          node --check seo-tools.js
+          node --check search-enhancer.js
+          node --check article-cpu-links.js
+          node --check details-seo-enhancer.js
+      - name: Check comparison inline JavaScript
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+          html = Path('comparar.html').read_text(encoding='utf-8')
+          blocks = re.findall(r'<script(?:\s[^>]*)?>(.*?)</script>', html, flags=re.S|re.I)
+          inline = [b for b in blocks if b.strip()]
+          if not inline:
+              raise SystemExit('Nenhum script inline encontrado em comparar.html')
+          Path('/tmp/comparar-inline.js').write_text('\n'.join(inline), encoding='utf-8')
+          PY
+          node --check /tmp/comparar-inline.js
+      - name: Check sitemap generator
+        run: |
+          python3 -m py_compile gerar_sitemap_seo.py
+          python3 gerar_sitemap_seo.py >/tmp/sitemap-test.log
+          cat /tmp/sitemap-test.log
