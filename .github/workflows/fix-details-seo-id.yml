@@ -1,0 +1,44 @@
+name: Fix CPU detail benchmark routing once
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/fix-details-seo-id.yml'
+permissions:
+  contents: write
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fix missing id handling in details SEO enhancer
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p=Path('details-seo-enhancer.js')
+          s=p.read_text(encoding='utf-8')
+          old="""        const params = new URLSearchParams(location.search);\n        const id = Number(params.get('id'));\n        if (Number.isFinite(id)) {\n            const porId = listaDeCpus.find(item => Number(item.id) === id);\n            if (porId) return porId;\n        }"""
+          new="""        const params = new URLSearchParams(location.search);\n        const idParam = params.get('id');\n        if (idParam !== null && idParam.trim() !== '') {\n            const id = Number(idParam);\n            if (Number.isFinite(id)) {\n                const porId = listaDeCpus.find(item => Number(item.id) === id);\n                if (porId) return porId;\n            }\n        }"""
+          if old not in s:
+              raise RuntimeError('Expected details SEO id block not found')
+          s=s.replace(old,new,1)
+          p.write_text(s,encoding='utf-8')
+
+          # Cache-bust the enhancer reference so deployed clients do not keep the buggy JS.
+          p=Path('detalhes.html')
+          h=p.read_text(encoding='utf-8')
+          old_src='<script src="details-seo-enhancer.js"></script>'
+          new_src='<script src="details-seo-enhancer.js?v=20260829-2"></script>'
+          if old_src in h:
+              h=h.replace(old_src,new_src,1)
+          elif new_src not in h:
+              raise RuntimeError('details-seo-enhancer script tag not found')
+          p.write_text(h,encoding='utf-8')
+          PY
+      - name: Commit fix
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add details-seo-enhancer.js detalhes.html
+          git commit -m "Fix CPU detail pages showing Ryzen 3 1200 benchmark" || exit 0
+          git push
