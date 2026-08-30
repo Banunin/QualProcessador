@@ -4,10 +4,13 @@
     function encontrarCpuAtual() {
         if (!window.QPSeo || typeof listaDeCpus === 'undefined' || !Array.isArray(listaDeCpus)) return null;
         const params = new URLSearchParams(location.search);
-        const id = Number(params.get('id'));
-        if (Number.isFinite(id)) {
-            const porId = listaDeCpus.find(item => Number(item.id) === id);
-            if (porId) return porId;
+        const idParam = params.get('id');
+        if (idParam !== null && idParam.trim() !== '') {
+            const id = Number(idParam);
+            if (Number.isFinite(id)) {
+                const porId = listaDeCpus.find(item => Number(item.id) === id);
+                if (porId) return porId;
+            }
         }
         const partes = location.pathname.split('/').filter(Boolean);
         if (partes[0] === 'cpu' && partes.length >= 3) return QPSeo.resolverSlug(partes.slice(2).join('/'), listaDeCpus, partes[1]);
