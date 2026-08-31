@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="mobile-port.css">
     <link rel="icon" href="img/icon.ico" type="image/x-icon">
-    <title>Fórum de Hardware - QualProcessador</title>
+    <title>Fórum de Hardware: dúvidas, upgrades e PCs | QualProcessador</title>
+    <meta name="description" content="Fórum de hardware para tirar dúvidas sobre processadores, placas-mãe, upgrades, compatibilidade e montagem de PCs. Pergunte, responda e compartilhe o que funcionou.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin crossOrigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -1027,7 +1028,7 @@ footer{
 
             <aside class="forum-sidebar">
                 <div class="widget-panel">
-                    <h3>Discussões Ativas</h3>
+                    <h3>Tópicos recentes</h3>
                     <div class="sidebar-list" id="sidebar-recent-topics"></div>
                 </div>
             </aside>
@@ -1108,8 +1109,8 @@ footer{
                 `;
             } else {
                 box.innerHTML = `
-                    <span style="color:#94a3b8; font-size:0.85rem;">Modo Visitante</span>
-                    <a href="forum.html?action=auth" class="nav-btn login-btn">Acessar / Criar Conta</a>
+                    <span style="color:#94a3b8; font-size:0.85rem;">Visitante</span>
+                    <a href="forum.html?action=auth" class="nav-btn login-btn">Entrar / Criar conta</a>
                 `;
             }
         }
@@ -1127,7 +1128,7 @@ footer{
                 if(topicos) {
                     topicos.forEach(t => {
                         let totalResp = Array.isArray(t.respostas) ? t.respostas.length : 0;
-                        sidebar.innerHTML += `<a href="forum.html?id=${t.id}&topico=${slugify(t.titulo)}" class="sidebar-item"><h4>${t.titulo}</h4><span>Por <strong>${t.autor}</strong> • ${totalResp} interações</span></a>`;
+                        sidebar.innerHTML += `<a href="forum.html?id=${t.id}&topico=${slugify(t.titulo)}" class="sidebar-item"><h4>${t.titulo}</h4><span>Por <strong>${t.autor}</strong> • ${totalResp} respostas</span></a>`;
                     });
                 }
             } catch(e){}
@@ -1156,15 +1157,15 @@ footer{
                 email: email, 
                 username: username, 
                 role: "user", 
-                bio: "Novo membro explorando o mundo do hardware.", 
+                bio: "", 
                 avatar: "", 
                 capa: "",
-                status_msg: "Acabou de chegar no fórum!",
+                status_msg: "",
                 privado: false 
             };
             await dbClient.from('usuarios').insert([novoUsuarioPerfil]);
 
-            alert("Conta criada com sucesso!");
+            alert("Conta criada.");
             window.location.href = 'forum.html';
         }
 
@@ -1180,7 +1181,7 @@ footer{
             }
 
             const { data, error } = await dbClient.auth.signInWithPassword({ email: emailLogin, password: pass });
-            if (error) { alert("Credenciais incorretas."); } else { window.location.href = 'forum.html'; }
+            if (error) { alert("E-mail, usuário ou senha incorretos."); } else { window.location.href = 'forum.html'; }
         }
 
         function renderizarTelaAuth() {
@@ -1188,22 +1189,22 @@ footer{
             if (currentTab === 'login') {
                 target.innerHTML = `
                     <div class="form-card">
-                        <div class="auth-tabs"><button class="auth-tab-btn active" onclick="alternarAbaAuth('login')">Acessar Conta</button><button class="auth-tab-btn" onclick="alternarAbaAuth('cadastro')">Criar Nova Conta</button></div>
+                        <div class="auth-tabs"><button class="auth-tab-btn active" onclick="alternarAbaAuth('login')">Entrar</button><button class="auth-tab-btn" onclick="alternarAbaAuth('cadastro')">Criar conta</button></div>
                         <form onsubmit="executarLogin(event)">
-                            <div class="form-group"><label>E-mail ou Nome de Usuário</label><input type="text" id="auth-loginid" placeholder="Digite seu e-mail ou username" required></div>
-                            <div class="form-group"><label>Senha de Acesso</label><input type="password" id="auth-password" placeholder="Sua senha secreta" required></div>
-                            <button type="submit" class="btn-main" style="width:100%; margin-top:10px; padding: 14px; font-size: 1.05rem;">Entrar na Plataforma</button>
+                            <div class="form-group"><label>E-mail ou nome de usuário</label><input type="text" id="auth-loginid" placeholder="Digite seu e-mail ou nome de usuário" required></div>
+                            <div class="form-group"><label>Senha</label><input type="password" id="auth-password" placeholder="Digite sua senha" required></div>
+                            <button type="submit" class="btn-main" style="width:100%; margin-top:10px; padding: 14px; font-size: 1.05rem;">Entrar</button>
                         </form>
                     </div>`;
             } else {
                 target.innerHTML = `
                     <div class="form-card">
-                        <div class="auth-tabs"><button class="auth-tab-btn" onclick="alternarAbaAuth('login')">Acessar Conta</button><button class="auth-tab-btn active" onclick="alternarAbaAuth('cadastro')">Criar Nova Conta</button></div>
+                        <div class="auth-tabs"><button class="auth-tab-btn" onclick="alternarAbaAuth('login')">Entrar</button><button class="auth-tab-btn active" onclick="alternarAbaAuth('cadastro')">Criar conta</button></div>
                         <form onsubmit="executarCadastro(event)">
-                            <div class="form-group"><label>Endereço de E-mail</label><input type="email" id="auth-email" placeholder="seu@email.com" required></div>
-                            <div class="form-group"><label>Nome de Usuário (Nickname)</label><input type="text" id="auth-username" placeholder="Como você quer ser chamado?" required></div>
-                            <div class="form-group"><label>Senha Segura</label><input type="password" id="auth-password" placeholder="Mínimo de 6 caracteres" required></div>
-                            <button type="submit" class="btn-main" style="width:100%; margin-top:10px; padding: 14px; font-size: 1.05rem; background: #0f172a;">Finalizar Cadastro</button>
+                            <div class="form-group"><label>E-mail</label><input type="email" id="auth-email" placeholder="seu@email.com" required></div>
+                            <div class="form-group"><label>Nome de usuário</label><input type="text" id="auth-username" placeholder="Como você quer ser chamado?" required></div>
+                            <div class="form-group"><label>Senha</label><input type="password" id="auth-password" placeholder="Mínimo de 6 caracteres" required></div>
+                            <button type="submit" class="btn-main" style="width:100%; margin-top:10px; padding: 14px; font-size: 1.05rem; background: #0f172a;">Criar conta</button>
                         </form>
                     </div>`;
             }
@@ -1362,7 +1363,7 @@ footer{
                     <h4 style="margin: 0 0 10px 0; font-size: 0.95rem; color: #0f172a;">Responder a esta mensagem:</h4>
                     <textarea id="inline-reply-text-${idAlvo}" rows="3" style="width:100%; padding:12px; border:1px solid #cbd5e1; border-radius:8px; font-family:inherit; font-size:0.95rem; outline:none; resize:vertical; box-shadow: inset 0 2px 4px rgba(0,0,0,0.02); margin-bottom: 15px;" placeholder="Escreva seu comentário..."></textarea>
                     <div style="display:flex; gap:10px;">
-                        <button onclick='postarRespostaAninhada(event, ${idTopico}, ${isTopico ? 'null' : JSON.stringify(idAlvo)}, ${JSON.stringify(idAlvo)})' class="btn-main" style="padding: 10px 20px; font-size: 0.85rem;">Publicar Resposta</button>
+                        <button onclick='postarRespostaAninhada(event, ${idTopico}, ${isTopico ? 'null' : JSON.stringify(idAlvo)}, ${JSON.stringify(idAlvo)})' class="btn-main" style="padding: 10px 20px; font-size: 0.85rem;">Publicar resposta</button>
                         <button onclick="document.getElementById('reply-box-${idAlvo}').innerHTML = ''" class="btn-secondary" style="padding: 10px 20px; font-size: 0.85rem;">Cancelar</button>
                     </div>
                 </div>
@@ -1839,7 +1840,7 @@ footer{
                         <div class="profile-sidebar">
                             ${avatarHTML}
                             <h2 style="margin:5px 0 5px 0; word-break: break-all; font-size: 1.5rem; color: #0f172a;">${uInfo.username}</h2>
-                            <span class="user-badge ${uInfo.role === 'admin' ? 'badge-admin' : 'badge-user'}">${uInfo.role === 'admin' ? 'Administrador Chefe' : 'Membro Verificado'}</span>
+                            <span class="user-badge ${uInfo.role === 'admin' ? 'badge-admin' : 'badge-user'}">${uInfo.role === 'admin' ? 'Administrador' : 'Membro'}</span>
 
                             ${uInfo.status_msg ? `<div class="status-badge">💭 ${uInfo.status_msg}</div>` : ''}
                             <button id="share-profile-btn" type="button" class="profile-share-btn" onclick="compartilharPerfil()">Compartilhar perfil</button>
@@ -1859,13 +1860,13 @@ footer{
                                 <div class="stat-box"><div class="stat-num">${topicosCriados.length}</div><div class="stat-label">Tópicos</div></div>
                                 <div class="stat-box"><div class="stat-num">${comentariosCriados.length}</div><div class="stat-label">Respostas</div></div>
                                 <div class="stat-box" style="background: #f8fafc; border-color: #e2e8f0;">
-                                    <div class="stat-num" style="color: #0f172a;">${totalReacoesRecebidas}</div><div class="stat-label" style="color: #64748b;">Reaçõesdiv>
+                                    <div class="stat-num" style="color: #0f172a;">${totalReacoesRecebidas}</div><div class="stat-label" style="color: #64748b;">Reações</div>
                                 </div>
                             </div>
 
                             <div class="profile-tabs-nav">
-                                <button class="profile-tab-btn active" id="tab-btn-topics" onclick="mudarAbaPerfil('topics')">Discussões Criadas</button>
-                                <button class="profile-tab-btn" id="tab-btn-replies" onclick="mudarAbaPerfil('replies')">Histórico de Respostas</button>
+                                <button class="profile-tab-btn active" id="tab-btn-topics" onclick="mudarAbaPerfil('topics')">Tópicos criados</button>
+                                <button class="profile-tab-btn" id="tab-btn-replies" onclick="mudarAbaPerfil('replies')">Respostas</button>
                             </div>
 
                             <div class="profile-tab-content active" id="tab-content-topics">
@@ -1880,7 +1881,7 @@ footer{
                 `;
             }
 
-            target.innerHTML = `<div><a href="forum.html" class="btn-secondary" style="margin-bottom:20px; display:inline-block;">⬅ Retornar à Comunidade</a></div>${contentHTML}`;
+            target.innerHTML = `<div><a href="forum.html" class="btn-secondary" style="margin-bottom:20px; display:inline-block;">⬅ Voltar ao fórum</a></div>${contentHTML}`;
         }
 
         async function salvarAlteracoesPerfil() {
@@ -1999,8 +2000,8 @@ footer{
                             <div class="topic-replies-badge">💬 ${totalResp}</div>
                         </a>`;
                 });
-            } else { listaHTML = `<div class="form-card" style="text-align:center;"><p style="color:#64748b; font-size: 1.1rem; margin:0;">Inicie uma discussão!</p></div>`; }
-            target.innerHTML = `<div class="forum-action-header"><h2>Fórum</h2><a href="forum.html?action=novo" class="btn-main">+ Nova Discussão</a></div>${listaHTML}`;
+            } else { listaHTML = `<div class="form-card" style="text-align:center;"><p style="color:#64748b; font-size: 1.1rem; margin:0;">Ainda não há tópicos.</p></div>`; }
+            target.innerHTML = `<div class="forum-action-header"><div><h2>Fórum</h2><p style="margin:5px 0 0;color:#64748b;font-size:.88rem;line-height:1.5;">Dúvidas, upgrades, compatibilidade e montagem. Pergunte do jeito que souber.</p></div><a href="forum.html?action=novo" class="btn-main">+ Novo tópico</a></div>${listaHTML}`;
         }
 
         async function inicializarForum() {
@@ -2016,13 +2017,13 @@ footer{
                 else {
                     target.innerHTML = `
                         <div class="form-card">
-                            <h2 style="border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;">Criar Novo Tópico</h2>
+                            <h2 style="border-bottom: 2px solid #e2e8f0; padding-bottom: 15px;">Novo tópico</h2>
                             <form onsubmit="criarNovoTopicoPost(event)">
-                                <div class="form-group"><label>Título</label><input type="text" id="new-title" placeholder="Ex: Dúvida sobre compatibilidade AM4 e AM5..." required style="font-size: 1.1rem;"></div>
-                                <div class="form-group"><label>Desenvolva sua ideia ou dúvida:</label><textarea id="new-content" rows="8" placeholder="Escreva os detalhes, especificações da sua máquina, etc..." required></textarea></div>
+                                <div class="form-group"><label>Título</label><input type="text" id="new-title" placeholder="Ex.: Ryzen 5 5600 funciona na minha B450M?" required style="font-size: 1.1rem;"></div>
+                                <div class="form-group"><label>Explique sua dúvida</label><textarea id="new-content" rows="8" placeholder="Conte o que você quer fazer ou o que está dando errado." required></textarea><small style="color:#64748b;line-height:1.55;">Se for problema ou upgrade, diga as peças do PC, o que você quer fazer e o que já tentou. Não precisa saber o nome técnico de tudo.</small></div>
                                 <div style="display:flex; justify-content:space-between; align-items:center; margin-top:20px;">
                                     <a href="forum.html" class="btn-secondary" style="text-decoration:none;">Cancelar</a>
-                                    <button type="submit" class="btn-main" style="padding: 14px 30px; font-size: 1.1rem;">Publicar na Comunidade</button>
+                                    <button type="submit" class="btn-main" style="padding: 14px 30px; font-size: 1.1rem;">Publicar tópico</button>
                                 </div>
                             </form>
                         </div>`;
@@ -2048,14 +2049,14 @@ footer{
                         subRespostas.forEach(sub => { respostasHTML += renderizarBlocoResposta(sub, tLogado, t.id, true); });
                     });
 
-                    let formRespostaHTML = `<div class="auth-gate-box"><p>Participe do QualProcessador para interagir.</p><a href="forum.html?action=auth" class="btn-main">Entrar ou Cadastrar</a></div>`;
+                    let formRespostaHTML = `<div class="auth-gate-box"><p>Entre na sua conta para responder ou reagir.</p><a href="forum.html?action=auth" class="btn-main">Entrar ou criar conta</a></div>`;
                     if(tLogado) {
                         formRespostaHTML = `
                             <div class="form-card" style="border-top: 4px solid #3b82f6; border-radius: 0 0 12px 12px; margin-top: -20px; box-shadow: none;">
-                                <h3 style="margin: 0 0 15px 0; font-size: 1.2rem; color: #0f172a;">Escrever uma Resposta Geral</h3>
+                                <h3 style="margin: 0 0 15px 0; font-size: 1.2rem; color: #0f172a;">Responder</h3>
                                 <form onsubmit="postarRespostaAninhada(event, ${t.id}, null, 'general')">
-                                    <div class="form-group"><textarea id="inline-reply-text-general" rows="5" placeholder="Adicione sua visão técnica ou contribuição..." required></textarea></div>
-                                    <div style="display:flex; justify-content:flex-end;"><button type="submit" class="btn-main" style="padding: 12px 25px;">Publicar Comentário</button></div>
+                                    <div class="form-group"><textarea id="inline-reply-text-general" rows="5" placeholder="Escreva sua resposta. Se puder, explique o motivo ou diga o que você testou." required></textarea></div>
+                                    <div style="display:flex; justify-content:flex-end;"><button type="submit" class="btn-main" style="padding: 12px 25px;">Publicar resposta</button></div>
                                 </form>
                             </div>`;
                     }
@@ -2065,7 +2066,7 @@ footer{
                     target.innerHTML = `
                         <div><a href="forum.html" class="btn-secondary" style="margin-bottom:15px; display:inline-flex; align-items:center; gap:5px;">⬅ Voltar aos Tópicos</a></div>
                         <div class="topic-header-panel">
-                            <h1>${t.titulo}</h1><div style="font-size: 0.85rem; color: #64748b; font-weight: 700; background: #f1f5f9; padding: 8px 15px; border-radius: 20px;">Tópico Oficial</div>
+                            <h1>${t.titulo}</h1><div style="font-size: 0.85rem; color: #64748b; font-weight: 700; background: #f1f5f9; padding: 8px 15px; border-radius: 20px;">Tópico</div>
                         </div>
                         <div class="post-card" style="border-left: 5px solid #38bdf8;">
                             <div class="post-user">
@@ -2076,22 +2077,22 @@ footer{
                             </div>
                             <div class="post-body">
                                 <div>
-                                    <div class="post-header">Publicado na comunidade em ${t.data || 'Recente'} ${flagEditTopico}</div>
+                                    <div class="post-header">Publicado em ${t.data || 'Recente'} ${flagEditTopico}</div>
                                     <p class="post-text" id="text-topico">${t.conteudo}</p>
                                 </div>
                                 <div class="post-footer">
                                     ${gerarComponenteReacoesHTML(t.reacoes, 'text-topico', true)}
                                     <div class="post-actions">
-                                        ${tLogado ? `<button class="action-link" onclick="abrirFormRespostaTopico('general', true)">➥ Responder Tópico</button>` : ''}
+                                        ${tLogado ? `<button class="action-link" onclick="abrirFormRespostaTopico('general', true)">➥ Responder</button>` : ''}
                                         ${permissaoTopico ? `<button class="action-link" onclick="abrirEdicao('text-topico', true)">✎ Editar</button>` : ''}
-                                        ${permissaoTopico ? `<button class="action-link delete" onclick="excluirTopicoCompleto(${t.id})">✖ Apagar Tópico Inteiro</button>` : ''}
+                                        ${permissaoTopico ? `<button class="action-link delete" onclick="excluirTopicoCompleto(${t.id})">✖ Apagar tópico</button>` : ''}
                                     </div>
                                 </div>
                                 <div id="reply-box-general" class="inline-reply-box"></div>
                             </div>
                         </div>
                         <h3 style="margin: 30px 0 20px 0; font-size: 1.3rem; color: #0f172a; display: flex; align-items: center; gap: 10px;">
-                            Respostas da Comunidade <span style="background: #e2e8f0; color: #475569; padding: 4px 12px; border-radius: 20px; font-size: 0.9rem;">${listaRespostasGeral.length}</span>
+                            Respostas <span style="background: #e2e8f0; color: #475569; padding: 4px 12px; border-radius: 20px; font-size: 0.9rem;">${listaRespostasGeral.length}</span>
                         </h3>
                         ${respostasHTML}
                         ${formRespostaHTML}
