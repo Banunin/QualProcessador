@@ -38,7 +38,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "N/A",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 1,
@@ -79,7 +81,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "N/A",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 2,
@@ -120,7 +124,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "N/A",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 3,
@@ -161,7 +167,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "N/A",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 4,
@@ -202,7 +210,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "N/A",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 5,
@@ -243,7 +253,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "N/A",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 6,
@@ -284,7 +296,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "N/A",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 7,
@@ -325,7 +339,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "N/A",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 8,
@@ -366,7 +382,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "N/A",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 9,
@@ -407,7 +425,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "1100 MHz",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "20 total / 16 utilizáveis",
+        "pcieConfig": "x8 para GPU + x4 NVMe"
     },
     {
         "id": 10,
@@ -448,7 +468,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "1250 MHz",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "20 total / 16 utilizáveis",
+        "pcieConfig": "x8 para GPU + x4 NVMe"
     },
     {
         "id": 11,
@@ -489,7 +511,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "N/A",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 12,
@@ -530,7 +554,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "N/A",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 13,
@@ -571,7 +597,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "N/A",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 14,
@@ -612,7 +640,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "N/A",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 15,
@@ -653,7 +683,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "N/A",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 16,
@@ -694,7 +726,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "N/A",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 17,
@@ -735,7 +769,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "1400 MHz",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "20 total / 16 utilizáveis",
+        "pcieConfig": "x8 para GPU + x4 NVMe"
     },
     {
         "id": 18,
@@ -776,7 +812,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "N/A",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 19,
@@ -817,7 +855,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "N/A",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 20,
@@ -858,7 +898,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "N/A",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 21,
@@ -899,7 +941,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "N/A",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 22,
@@ -940,7 +984,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "N/A",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 23,
@@ -981,7 +1027,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "N/A",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 24,
@@ -1022,7 +1070,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "N/A",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 25,
@@ -1063,7 +1113,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "N/A",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 26,
@@ -1104,7 +1156,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "N/A",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 27,
@@ -1145,7 +1199,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "N/A",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 28,
@@ -1186,7 +1242,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "N/A",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 29,
@@ -1227,7 +1285,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado oficialmente",
         "igpuFreq": "N/A",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 30,
@@ -1268,7 +1328,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado oficialmente",
         "igpuFreq": "N/A",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 31,
@@ -1309,7 +1371,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado oficialmente",
         "igpuFreq": "400 MHz - 1900 MHz",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 32,
@@ -1350,7 +1414,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado oficialmente",
         "igpuFreq": "400 MHz - 2100 MHz",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 33,
@@ -1391,7 +1457,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "400 MHz - 1700 MHz",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 34,
@@ -1432,7 +1500,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "N/A",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 35,
@@ -1473,7 +1543,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "N/A",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 36,
@@ -1514,7 +1586,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "400 MHz - 1900 MHz",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 37,
@@ -1554,7 +1628,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "400 MHz - 1900 MHz",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 38,
@@ -1595,7 +1671,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "N/A",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 39,
@@ -1636,7 +1714,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "N/A",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 40,
@@ -1677,7 +1757,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "400 MHz - 2000 MHz",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 41,
@@ -1718,7 +1800,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "400 MHz - 2000 MHz",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 42,
@@ -1759,7 +1843,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "N/A",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 43,
@@ -1800,7 +1886,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "N/A",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 44,
@@ -1841,7 +1929,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "N/A",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 45,
@@ -1882,7 +1972,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "N/A",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 46,
@@ -1923,7 +2015,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "N/A",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 47,
@@ -1964,7 +2058,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "N/A",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 48,
@@ -2005,7 +2101,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "N/A",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 49,
@@ -2046,7 +2144,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "N/A",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 50,
@@ -2087,7 +2187,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "N/A",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 51,
@@ -2128,7 +2230,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Depende da Motherboard)",
         "igpuFreq": "N/A",
         "tempMax": "95°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
+        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
         "id": 52,
@@ -2168,7 +2272,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 4x4"
     },
     {
         "id": 53,
@@ -2208,7 +2314,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 4x4"
     },
     {
         "id": 54,
@@ -2248,7 +2356,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 4x4"
     },
     {
         "id": 55,
@@ -2288,7 +2398,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 4x4"
     },
     {
         "id": 56,
@@ -2328,7 +2440,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 4x4"
     },
     {
         "id": 57,
@@ -2368,7 +2482,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 4x4"
     },
     {
         "id": 58,
@@ -2408,7 +2524,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "500 MHz - 730 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 59,
@@ -2448,7 +2566,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "500 MHz - 730 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 60,
@@ -2488,7 +2608,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "500 MHz - 730 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 61,
@@ -2528,7 +2650,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "500 MHz - 730 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 62,
@@ -2568,7 +2692,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "500 MHz - 730 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 63,
@@ -2608,7 +2734,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "500 MHz - 730 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 64,
@@ -2648,7 +2776,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "500 MHz - 730 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 65,
@@ -2688,7 +2818,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "500 MHz - 900 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 66,
@@ -2728,7 +2860,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "500 MHz - 730 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 67,
@@ -2768,7 +2902,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "500 MHz - 730 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 68,
@@ -2808,7 +2944,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 69,
@@ -2848,7 +2986,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 70,
@@ -2888,7 +3028,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 71,
@@ -2928,7 +3070,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 72,
@@ -2968,7 +3112,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 73,
@@ -3008,7 +3154,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 74,
@@ -3048,7 +3196,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 75,
@@ -3088,7 +3238,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 76,
@@ -3128,7 +3280,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 77,
@@ -3168,7 +3322,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 78,
@@ -3208,7 +3364,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 79,
@@ -3248,7 +3406,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 80,
@@ -3288,7 +3448,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 81,
@@ -3328,7 +3490,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 82,
@@ -3368,7 +3532,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 83,
@@ -3408,7 +3574,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 84,
@@ -3448,7 +3616,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 85,
@@ -3488,7 +3658,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 86,
@@ -3528,7 +3700,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "850 MHz - 1100 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 87,
@@ -3568,7 +3742,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "850 MHz - 1100 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 88,
@@ -3608,7 +3784,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "850 MHz - 1100 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 89,
@@ -3648,7 +3826,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "850 MHz - 1100 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 90,
@@ -3688,7 +3868,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "850 MHz - 1100 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 91,
@@ -3728,7 +3910,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "850 MHz - 1100 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 92,
@@ -3768,7 +3952,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "850 MHz - 1100 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 93,
@@ -3808,7 +3994,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 94,
@@ -3848,7 +4036,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "850 MHz - 1100 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 95,
@@ -3888,7 +4078,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 96,
@@ -3928,7 +4120,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "850 MHz - 1100 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 97,
@@ -3968,7 +4162,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "850 MHz - 1100 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 98,
@@ -4008,7 +4204,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "850 MHz - 1350 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 99,
@@ -4048,7 +4246,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "850 MHz - 1350 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 100,
@@ -4088,7 +4288,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "850 MHz - 1350 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 101,
@@ -4128,7 +4330,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 102,
@@ -4168,7 +4372,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 103,
@@ -4208,7 +4414,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 104,
@@ -4248,7 +4456,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 105,
@@ -4288,7 +4498,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 106,
@@ -4328,7 +4540,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 107,
@@ -4368,7 +4582,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "850 MHz - 1100 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 108,
@@ -4408,7 +4624,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 109,
@@ -4448,7 +4666,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 110,
@@ -4488,7 +4708,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "850 MHz - 1000 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 111,
@@ -4528,7 +4750,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 112,
@@ -4568,7 +4792,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 113,
@@ -4608,7 +4834,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 114,
@@ -4648,7 +4876,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 115,
@@ -4688,7 +4918,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 116,
@@ -4728,7 +4960,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 117,
@@ -4768,7 +5002,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 118,
@@ -4808,7 +5044,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 119,
@@ -4848,7 +5086,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 120,
@@ -4888,7 +5128,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 121,
@@ -4928,7 +5170,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 122,
@@ -4968,7 +5212,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 123,
@@ -5008,7 +5254,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 124,
@@ -5048,7 +5296,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "650 MHz - 1050 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 125,
@@ -5088,7 +5338,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "650 MHz - 1050 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 126,
@@ -5128,7 +5380,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "650 MHz - 1050 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 127,
@@ -5168,7 +5422,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "650 MHz - 1050 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 128,
@@ -5208,7 +5464,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "650 MHz - 1050 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 129,
@@ -5248,7 +5506,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "650 MHz - 1050 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 130,
@@ -5288,7 +5548,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "650 MHz - 1050 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 131,
@@ -5328,7 +5590,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "650 MHz - 1100 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 132,
@@ -5368,7 +5632,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "650 MHz - 1100 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 133,
@@ -5408,7 +5674,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "650 MHz - 1150 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 134,
@@ -5448,7 +5716,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "650 MHz - 1150 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 135,
@@ -5488,7 +5758,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "650 MHz - 1150 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 136,
@@ -5528,7 +5800,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "650 MHz - 1150 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 137,
@@ -5568,7 +5842,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "650 MHz - 1150 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 138,
@@ -5608,7 +5884,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "650 MHz - 1050 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 139,
@@ -5648,7 +5926,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "650 MHz - 1050 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 140,
@@ -5688,7 +5968,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "650 MHz - 1000 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 141,
@@ -5728,7 +6010,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 142,
@@ -5768,7 +6052,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 143,
@@ -5808,7 +6094,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "650 MHz - 1050 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 144,
@@ -5848,7 +6136,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "650 MHz - 1050 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 145,
@@ -5888,7 +6178,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "650 MHz - 1050 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 146,
@@ -5928,7 +6220,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 147,
@@ -5968,7 +6262,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
         "igpuFreq": "350 MHz - 1200 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 148,
@@ -6008,7 +6304,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 149,
@@ -6048,7 +6346,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 150,
@@ -6088,7 +6388,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 151,
@@ -6128,7 +6430,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 152,
@@ -6168,7 +6472,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
         "igpuFreq": "350 MHz - 1200 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 153,
@@ -6208,7 +6514,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 154,
@@ -6248,7 +6556,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 155,
@@ -6288,7 +6598,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
         "igpuFreq": "350 MHz - 1250 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 156,
@@ -6328,7 +6640,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 157,
@@ -6368,7 +6682,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 158,
@@ -6408,7 +6724,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1150 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 159,
@@ -6448,7 +6766,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1150 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 160,
@@ -6488,7 +6808,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1150 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 161,
@@ -6528,7 +6850,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1150 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 162,
@@ -6568,7 +6892,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1150 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 163,
@@ -6608,7 +6934,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1150 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 164,
@@ -6648,7 +6976,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1150 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 165,
@@ -6688,7 +7018,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1150 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 166,
@@ -6728,7 +7060,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1150 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 167,
@@ -6768,7 +7102,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1100 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 168,
@@ -6808,7 +7144,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1100 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 169,
@@ -6848,7 +7186,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1100 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 170,
@@ -6888,7 +7228,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1150 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 171,
@@ -6928,7 +7270,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1150 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 172,
@@ -6968,7 +7312,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1200 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 173,
@@ -7008,7 +7354,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1200 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 174,
@@ -7048,7 +7396,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1200 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 175,
@@ -7088,7 +7438,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1200 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 176,
@@ -7128,7 +7480,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1200 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 177,
@@ -7168,7 +7522,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1250 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 178,
@@ -7208,7 +7564,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1200 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 179,
@@ -7248,7 +7606,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1250 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 180,
@@ -7288,7 +7648,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1100 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 181,
@@ -7328,7 +7690,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1100 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 182,
@@ -7368,7 +7732,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1100 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 183,
@@ -7408,7 +7774,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1150 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 184,
@@ -7448,7 +7816,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 185,
@@ -7488,7 +7858,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1150 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 186,
@@ -7528,7 +7900,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1150 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 187,
@@ -7568,7 +7942,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1100 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 188,
@@ -7608,7 +7984,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1100 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 189,
@@ -7648,7 +8026,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1050 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 190,
@@ -7688,7 +8068,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1050 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 191,
@@ -7728,7 +8110,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1050 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 192,
@@ -7768,7 +8152,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1050 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2"
+        "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 193,
@@ -7808,7 +8194,9 @@ const listaDeCpus = [
         "suporteEcc": "Suportado (Requer placa-mãe compatível)",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 194,
@@ -7848,7 +8236,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1050 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 195,
@@ -7888,7 +8278,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1050 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 196,
@@ -7928,7 +8320,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1150 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 197,
@@ -7968,7 +8362,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1100 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 198,
@@ -8008,7 +8404,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1000 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 199,
@@ -8048,7 +8446,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1150 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 200,
@@ -8088,7 +8488,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1050 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 201,
@@ -8128,7 +8530,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1100 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 202,
@@ -8168,7 +8572,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1150 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 203,
@@ -8208,7 +8614,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1200 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 204,
@@ -8248,7 +8656,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 205,
@@ -8288,7 +8698,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1200 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 206,
@@ -8328,7 +8740,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1200 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 207,
@@ -8368,7 +8782,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 208,
@@ -8408,7 +8824,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 209,
@@ -8448,7 +8866,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1200 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "16",
+        "pcieConfig": "1x16, 2x8 ou 1x8 + 2x4"
     },
     {
         "id": 210,
@@ -8488,7 +8908,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "20",
+        "pcieConfig": "1x16 + x4, 2x8 + x4 ou x8 + 3x4"
     },
     {
         "id": 211,
@@ -8528,7 +8950,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1300 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "20",
+        "pcieConfig": "1x16 + x4, 2x8 + x4 ou x8 + 3x4"
     },
     {
         "id": 212,
@@ -8568,7 +8992,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "350 MHz - 1300 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "20",
+        "pcieConfig": "1x16 + x4, 2x8 + x4 ou x8 + 3x4"
     },
     {
         "id": 213,
@@ -8608,7 +9034,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "20",
+        "pcieConfig": "1x16 + x4 ou 2x8 + x4"
     },
     {
         "id": 214,
@@ -8648,7 +9076,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "20",
+        "pcieConfig": "1x16 + x4 ou 2x8 + x4"
     },
     {
         "id": 215,
@@ -8688,7 +9118,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "300 MHz - 1500 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "20",
+        "pcieConfig": "1x16 + x4 ou 2x8 + x4"
     },
     {
         "id": 216,
@@ -8728,7 +9160,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "300 MHz - 1500 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "20",
+        "pcieConfig": "1x16 + x4 ou 2x8 + x4"
     },
     {
         "id": 217,
@@ -8768,7 +9202,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "300 MHz - 1600 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "20",
+        "pcieConfig": "1x16 + x4 ou 2x8 + x4"
     },
     {
         "id": 218,
@@ -8808,7 +9244,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "300 MHz - 1650 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "20",
+        "pcieConfig": "1x16 + x4 ou 2x8 + x4"
     },
     {
         "id": 219,
@@ -8848,7 +9286,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "N/A",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "20",
+        "pcieConfig": "1x16 + x4 ou 2x8 + x4"
     },
     {
         "id": 220,
@@ -8888,7 +9328,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "300 MHz - 1550 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "20",
+        "pcieConfig": "1x16 + x4 ou 2x8 + x4"
     },
     {
         "id": 221,
@@ -8928,7 +9370,9 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "300 MHz - 1600 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "20",
+        "pcieConfig": "1x16 + x4 ou 2x8 + x4"
     },
     {
         "id": 222,
@@ -8968,6 +9412,8 @@ const listaDeCpus = [
         "suporteEcc": "Não suportado",
         "igpuFreq": "300 MHz - 1650 MHz",
         "tempMax": "100°C",
-        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2"
+        "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
+        "pcieLanes": "20",
+        "pcieConfig": "1x16 + x4 ou 2x8 + x4"
     }
 ];

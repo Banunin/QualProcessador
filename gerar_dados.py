@@ -529,6 +529,28 @@ for item in lista_bruta:
         <p>O clock base é de {item['base']}, com boost de até <strong>{item['boost']}</strong>. O TDP informado é de <strong>{item['tdp']}</strong>.</p>
     """
 
+    # Linhas PCIe da CPU. Valores por plataforma; modelos não cobertos ficam sem chute.
+    pcie_lanes = "—"
+    pcie_config = "—"
+    if marca == "amd":
+        if gen_meta["soquete"] == "AM4":
+            if item["v"] != "Não possui" and g == "A2":
+                pcie_lanes = "20 total / 16 utilizáveis"
+                pcie_config = "x8 para GPU + x4 NVMe"
+            else:
+                pcie_lanes = "24 total / 20 utilizáveis"
+                pcie_config = "x16 ou 2x8 para GPU + x4 NVMe"
+    elif marca == "intel":
+        if g in {"I1","I2","I3","I4","I5","I6","I7","I8","I9","I10"}:
+            pcie_lanes = "16"
+            pcie_config = "1x16, 2x8 ou 1x8 + 2x4"
+        elif g == "I11":
+            pcie_lanes = "20"
+            pcie_config = "1x16 + x4, 2x8 + x4 ou x8 + 3x4"
+        elif g in {"I12","I13","I14"}:
+            pcie_lanes = "20"
+            pcie_config = "1x16 + x4 ou 2x8 + x4"
+
     nome_foto_automatica = f"{nome_cpu.replace(' ', '_')}.webp"
     ppt_final = item.get("consumoMaximo", obter_ppt_real(nome_cpu, item["tdp"], marca))
 
@@ -565,6 +587,8 @@ for item in lista_bruta:
         "cacheL3": obter_cache_l3(nome_cpu, g),
         "chipsets": "Compatíveis com soquete " + gen_meta["soquete"],
         "pcie": gen_meta["pcie"],
+        "pcieLanes": pcie_lanes,
+        "pcieConfig": pcie_config,
         "canaisMemoria": gen_meta["canais"],
         "freqMaxMemoria": gen_meta["memoria"],
         "suporteEcc": obter_suporte_ecc_real(nome_cpu, marca),

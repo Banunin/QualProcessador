@@ -148,7 +148,7 @@
                     ['TDP','tdp'],['Soquete','soquete'],['Arquitetura','arquitetura'],['Codinome','codinome'],
                     ['Litografia','litografia'],['Cache L1','cacheL1'],['Cache L2','cacheL2'],['Cache L3','cacheL3'],
                     ['Memória','memoria'],['Frequência máx. da memória','freqMaxMemoria'],['Canais de memória','canaisMemoria'],
-                    ['PCI Express','pcie'],['Vídeo integrado','video'],['Frequência iGPU','igpuFreq'],['Temperatura máxima','tempMax'],
+                    ['Versão PCI Express','pcie'],['Linhas PCIe da CPU','pcieLanes'],['Configurações PCIe','pcieConfig'],['Vídeo integrado','video'],['Frequência iGPU','igpuFreq'],['Temperatura máxima','tempMax'],
                     ['Lançamento','lancamento'],['Segmento','segmento']
                 ];
                 $('spec-body').innerHTML=linhas.map(([rotulo,campo])=>`<tr><td>${esc(rotulo)}</td><td>${esc(valor(a[campo]))}</td><td>${esc(valor(b[campo]))}</td></tr>`).join('');
@@ -169,7 +169,7 @@
                 $('related-grid').innerHTML=rel.slice(0,6).map(x=>`<a href="${esc(x.url)}" data-compare-a="${esc(x.baseCpu.id)}" data-compare-b="${esc(x.cpu.id)}">${esc(x.baseCpu.nome)} vs ${esc(x.cpu.nome)}</a>`).join('');
 
                 document.title=`${a.nome} vs ${b.nome}: comparação de processadores | QualProcessador`;
-                const desc=`Compare ${a.nome} vs ${b.nome}: núcleos, threads, clocks, TDP, soquete, plataforma e benchmarks Single-Core e Multi-Core.`;
+                const desc=`Compare ${a.nome} vs ${b.nome}: núcleos, threads, clocks, TDP, soquete, linhas PCIe e resultados CPU-Z.`;
                 meta('description',desc,false);
                 meta('og:title',`${a.nome} vs ${b.nome} | QualProcessador`,true);
                 meta('og:description',desc,true);
