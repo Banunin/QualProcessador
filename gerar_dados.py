@@ -535,10 +535,10 @@ for item in lista_bruta:
     if marca == "amd":
         if gen_meta["soquete"] == "AM4":
             if item["v"] != "Não possui" and g == "A2":
-                pcie_lanes = "20 total / 16 utilizáveis"
+                pcie_lanes = "16"
                 pcie_config = "x8 para GPU + x4 NVMe"
             else:
-                pcie_lanes = "24 total / 20 utilizáveis"
+                pcie_lanes = "20"
                 pcie_config = "x16 ou 2x8 para GPU + x4 NVMe"
     elif marca == "intel":
         if g in {"I1","I2","I3","I4","I5","I6","I7","I8","I9","I10"}:

@@ -39,7 +39,7 @@ const listaDeCpus = [
         "igpuFreq": "N/A",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -82,7 +82,7 @@ const listaDeCpus = [
         "igpuFreq": "N/A",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -125,7 +125,7 @@ const listaDeCpus = [
         "igpuFreq": "N/A",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -168,7 +168,7 @@ const listaDeCpus = [
         "igpuFreq": "N/A",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -211,7 +211,7 @@ const listaDeCpus = [
         "igpuFreq": "N/A",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -254,7 +254,7 @@ const listaDeCpus = [
         "igpuFreq": "N/A",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -297,7 +297,7 @@ const listaDeCpus = [
         "igpuFreq": "N/A",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -340,7 +340,7 @@ const listaDeCpus = [
         "igpuFreq": "N/A",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -383,7 +383,7 @@ const listaDeCpus = [
         "igpuFreq": "N/A",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -426,7 +426,7 @@ const listaDeCpus = [
         "igpuFreq": "1100 MHz",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "20 total / 16 utilizáveis",
+        "pcieLanes": "16",
         "pcieConfig": "x8 para GPU + x4 NVMe"
     },
     {
@@ -469,7 +469,7 @@ const listaDeCpus = [
         "igpuFreq": "1250 MHz",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "20 total / 16 utilizáveis",
+        "pcieLanes": "16",
         "pcieConfig": "x8 para GPU + x4 NVMe"
     },
     {
@@ -512,7 +512,7 @@ const listaDeCpus = [
         "igpuFreq": "N/A",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -555,7 +555,7 @@ const listaDeCpus = [
         "igpuFreq": "N/A",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -598,7 +598,7 @@ const listaDeCpus = [
         "igpuFreq": "N/A",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -641,7 +641,7 @@ const listaDeCpus = [
         "igpuFreq": "N/A",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -684,7 +684,7 @@ const listaDeCpus = [
         "igpuFreq": "N/A",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -727,7 +727,7 @@ const listaDeCpus = [
         "igpuFreq": "N/A",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -770,7 +770,7 @@ const listaDeCpus = [
         "igpuFreq": "1400 MHz",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "20 total / 16 utilizáveis",
+        "pcieLanes": "16",
         "pcieConfig": "x8 para GPU + x4 NVMe"
     },
     {
@@ -813,7 +813,7 @@ const listaDeCpus = [
         "igpuFreq": "N/A",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -856,7 +856,7 @@ const listaDeCpus = [
         "igpuFreq": "N/A",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -899,7 +899,7 @@ const listaDeCpus = [
         "igpuFreq": "N/A",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -942,7 +942,7 @@ const listaDeCpus = [
         "igpuFreq": "N/A",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -985,7 +985,7 @@ const listaDeCpus = [
         "igpuFreq": "N/A",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -1028,7 +1028,7 @@ const listaDeCpus = [
         "igpuFreq": "N/A",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -1071,7 +1071,7 @@ const listaDeCpus = [
         "igpuFreq": "N/A",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -1114,7 +1114,7 @@ const listaDeCpus = [
         "igpuFreq": "N/A",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -1157,7 +1157,7 @@ const listaDeCpus = [
         "igpuFreq": "N/A",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -1200,7 +1200,7 @@ const listaDeCpus = [
         "igpuFreq": "N/A",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -1243,7 +1243,7 @@ const listaDeCpus = [
         "igpuFreq": "N/A",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -1286,7 +1286,7 @@ const listaDeCpus = [
         "igpuFreq": "N/A",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -1329,7 +1329,7 @@ const listaDeCpus = [
         "igpuFreq": "N/A",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -1372,7 +1372,7 @@ const listaDeCpus = [
         "igpuFreq": "400 MHz - 1900 MHz",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -1415,7 +1415,7 @@ const listaDeCpus = [
         "igpuFreq": "400 MHz - 2100 MHz",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -1458,7 +1458,7 @@ const listaDeCpus = [
         "igpuFreq": "400 MHz - 1700 MHz",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -1501,7 +1501,7 @@ const listaDeCpus = [
         "igpuFreq": "N/A",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -1544,7 +1544,7 @@ const listaDeCpus = [
         "igpuFreq": "N/A",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -1587,7 +1587,7 @@ const listaDeCpus = [
         "igpuFreq": "400 MHz - 1900 MHz",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -1629,7 +1629,7 @@ const listaDeCpus = [
         "igpuFreq": "400 MHz - 1900 MHz",
         "tempMax": "95°C",
         "instrucoes": "x86-64, SSE4.1, SSE4.2, AVX, AVX2",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -1672,7 +1672,7 @@ const listaDeCpus = [
         "igpuFreq": "N/A",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -1715,7 +1715,7 @@ const listaDeCpus = [
         "igpuFreq": "N/A",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -1758,7 +1758,7 @@ const listaDeCpus = [
         "igpuFreq": "400 MHz - 2000 MHz",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -1801,7 +1801,7 @@ const listaDeCpus = [
         "igpuFreq": "400 MHz - 2000 MHz",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -1844,7 +1844,7 @@ const listaDeCpus = [
         "igpuFreq": "N/A",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -1887,7 +1887,7 @@ const listaDeCpus = [
         "igpuFreq": "N/A",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -1930,7 +1930,7 @@ const listaDeCpus = [
         "igpuFreq": "N/A",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -1973,7 +1973,7 @@ const listaDeCpus = [
         "igpuFreq": "N/A",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -2016,7 +2016,7 @@ const listaDeCpus = [
         "igpuFreq": "N/A",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -2059,7 +2059,7 @@ const listaDeCpus = [
         "igpuFreq": "N/A",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -2102,7 +2102,7 @@ const listaDeCpus = [
         "igpuFreq": "N/A",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -2145,7 +2145,7 @@ const listaDeCpus = [
         "igpuFreq": "N/A",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -2188,7 +2188,7 @@ const listaDeCpus = [
         "igpuFreq": "N/A",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
@@ -2231,7 +2231,7 @@ const listaDeCpus = [
         "igpuFreq": "N/A",
         "tempMax": "95°C",
         "instrucoes": "x86-64, MMX, SSE, SSE2, SSE3, SSSE3, SSE4.1, SSE4.2, SSE4A, AMD-V, AES, AVX, AVX2, FMA3, SHA",
-        "pcieLanes": "24 total / 20 utilizáveis",
+        "pcieLanes": "20",
         "pcieConfig": "x16 ou 2x8 para GPU + x4 NVMe"
     },
     {
