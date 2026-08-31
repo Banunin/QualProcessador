@@ -1,0 +1,41 @@
+name: Normalize PCIe version once
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/normalize-pcie-version-once.yml'
+permissions:
+  contents: write
+jobs:
+  normalize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Keep PCIe version separate from lane width
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json, re
+          path=Path('dados.js')
+          raw=path.read_text(encoding='utf-8')
+          m=re.match(r'^(\s*const\s+listaDeCpus\s*=\s*)(.*?)(;\s*)$',raw,re.S)
+          if not m: raise RuntimeError('Formato inesperado em dados.js')
+          cpus=json.loads(m.group(2))
+          changed=0
+          for cpu in cpus:
+              old=str(cpu.get('pcie') or '').strip()
+              if not old: continue
+              new=re.sub(r'(?i)\s+x\d+(?:\s*(?:/|\+|,)\s*x\d+)*','',old)
+              new=re.sub(r'\s+',' ',new).strip(' ,/+;-')
+              if new and new != old:
+                  cpu['pcie']=new
+                  changed+=1
+          path.write_text(m.group(1)+json.dumps(cpus,ensure_ascii=False,indent=4)+m.group(3),encoding='utf-8')
+          print(f'Normalizados {changed} campos PCIe.')
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/normalize-pcie-version-once.yml
+          git add dados.js
+          git commit -m "Separate PCIe version from lane configuration"
+          git push
