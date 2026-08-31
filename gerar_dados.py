@@ -517,16 +517,16 @@ for item in lista_bruta:
     detalhe = f"{gen_meta['serie']} • {familia_txt} {detalhe_extra}"
 
     analise = (
-        f"O {nome_cpu} é um processador construído sobre a microarquitetura {gen_meta['arquitetura']} "
-        f"com litografia de {gen_meta['litografia']}. Equipado com {item['c']} núcleos físicos e {item['t']} threads, "
-        f"este modelo opera no soquete {gen_meta['soquete']} e destaca-se por ser {gen_meta['epoca']}."
+        f"O {nome_cpu} usa a arquitetura {gen_meta['arquitetura']} e o soquete {gen_meta['soquete']}. "
+        f"Tem {item['c']} núcleos e {item['t']} threads, clock base de {item['base']}, "
+        f"boost de até {item['boost']} e TDP de {item['tdp']}."
     )
 
     analise_completa = f"""
-        <h2>1. Visão Geral e Arquitetura do {nome_cpu}</h2>
-        <p>O <strong>{nome_cpu}</strong> pertence à linha {familia_txt} da {marca.upper()} baseada na arquitetura <strong>{gen_meta['arquitetura']}</strong>. Projetado para o segmento de Desktops utilizando o encaixe <strong>{gen_meta['soquete']}</strong>.</p>
-        <h2>2. Desempenho e Consumo Térmico</h2>
-        <p>Conta com uma frequência base de {item['base']} atingindo picos automáticos de até <strong>{item['boost']}</strong> em tarefas exigentes. O seu perfil operacional trabalha sob o limite de TDP estruturado em <strong>{item['tdp']}</strong>.</p>
+        <h2>Visão geral</h2>
+        <p>O <strong>{nome_cpu}</strong> usa a arquitetura <strong>{gen_meta['arquitetura']}</strong>, o soquete <strong>{gen_meta['soquete']}</strong> e tem {item['c']} núcleos e {item['t']} threads.</p>
+        <h2>Clocks e TDP</h2>
+        <p>O clock base é de {item['base']}, com boost de até <strong>{item['boost']}</strong>. O TDP informado é de <strong>{item['tdp']}</strong>.</p>
     """
 
     nome_foto_automatica = f"{nome_cpu.replace(' ', '_')}.webp"
@@ -554,8 +554,8 @@ for item in lista_bruta:
         "litografia": gen_meta["litografia"],
         "memoria": gen_meta["memoria"],
         "analiseCompleta": analise_completa.strip(),
-        "notaJogos": 5.0,
-        "notaTrabalho": 5.0,
+        "notaJogos": "N/A",
+        "notaTrabalho": "N/A",
         "geracao": gen_meta["serie"],
         "arquitetura": gen_meta["arquitetura"],
         "lancamento": gen_meta["ano"],
@@ -579,4 +579,4 @@ for item in lista_bruta:
 with open("dados.js", "w", encoding="utf-8") as f:
     f.write(f"const listaDeCpus = {json.dumps(processadores_finais, ensure_ascii=False, indent=4)};")
 
-print(f"✨ Sucesso Total! O seu 'dados.js' foi gerado profissionalmente. Total na base: {len(processadores_finais)} cpus.")
+print(f"dados.js gerado. Total na base: {len(processadores_finais)} CPUs.")

@@ -6,9 +6,9 @@
     <link rel="stylesheet" href="mobile-port.css">
     <link rel="icon" href="img/icon.ico" type="image/x-icon">
     
-    <title>QualProcessador | Compare Processadores AMD e Intel para Jogos e Trabalho</title>
+    <title>QualProcessador | Fichas técnicas, CPU-Z e comparação de processadores</title>
     
-    <meta name="description" content="Compare especificações técnicas detalhadas, analise benchmarks de hardware em jogos ou produtividade e tire dúvidas na nossa comunidade. Descubra qual processador comprar para o seu setup.">
+    <meta name="description" content="Compare processadores AMD e Intel com fichas técnicas, resultados CPU-Z, núcleos, threads, clocks, soquete, TDP e comparação lado a lado.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -79,9 +79,9 @@
 
     <header class="hero">
         <h1>QualProcessador</h1>
-        <p>Compare fichas técnicas completas, analise o desempenho em jogos ou trabalho e monte o setup ideal com as últimas novidades de hardware AMD Ryzen e Intel Core.</p>
+        <p>Fichas técnicas, resultados CPU-Z e comparações de processadores AMD e Intel. Veja o essencial primeiro e abra os detalhes quando precisar.</p>
         <div class="search-wrapper">
-            <input type="text" id="campo-busca" class="search-input" placeholder="Pesquise por uma ficha de CPU... (Ex: Ryzen 5 5600)" autocomplete="off">
+            <input type="text" id="campo-busca" class="search-input" placeholder="Digite um processador (ex.: Ryzen 5 5600)" autocomplete="off">
             <div id="caixa-sugestoes" class="suggestions-box"></div>
         </div>
     </header>
@@ -100,7 +100,7 @@
 
     <div class="container tab-content">
         <section id="topico-analises">
-            <h2 class="section-title">Artigos em Destaque</h2>
+            <h2 class="section-title">Artigos em destaque</h2>
             <div class="editorial-grid">
             
                 <a href="/ler-artigo.html?id=102" class="editorial-card">
@@ -115,7 +115,7 @@
         </section>
 
         <section id="topico-fichas">
-            <h2 id="titulo-fichas" class="section-title">Últimos Processadores e Fichas Técnicas Catalogadas</h2>
+            <h2 id="titulo-fichas" class="section-title">Processadores adicionados recentemente</h2>
             
             <div id="filtros-container" class="filtros-panel">
                 <div class="filter-group">
@@ -138,7 +138,7 @@
                 </div>
 
                 <div class="filter-group">
-                    <label for="filtro-video">Vídeo Integrado</label>
+                    <label for="filtro-video">Vídeo integrado</label>
                     <select id="filtro-video" class="filter-select">
                         <option value="todos">Todos</option>
                         <option value="sim">Sim</option>
@@ -147,7 +147,7 @@
                 </div>
 
                 <div class="filter-group">
-                    <label for="filtro-preco">Classificação de Desempenho</label>
+                    <label for="filtro-preco">Classificação</label>
                     <select id="filtro-preco" class="filter-select">
                         <option value="todos">Padrão</option>
                     </select>
@@ -164,7 +164,7 @@
             <div class="reviews-grid" id="grid-processadores"></div>
 
             <div class="ver-todos-wrapper" id="wrapper-ver-todos">
-                <button id="btn-ver-todos" class="btn-outline">Ver Mais CPUs</button>
+                <button id="btn-ver-todos" class="btn-outline">Ver mais CPUs</button>
             </div>
         </section>
     </div>
@@ -244,12 +244,12 @@
                 abaHome.classList.add('active'); abaCpus.classList.remove('active');
                 topicoAnalises.style.display = 'block'; filtrosContainer.style.display = 'none';
                 wrapperVerTodos.style.display = 'block'; 
-                tituloFichas.innerText = 'Últimos Processadores e Fichas Técnicas Catalogadas';
+                tituloFichas.innerText = 'Processadores adicionados recentemente';
             } else if (abaAtiva === 'cpus') {
                 abaCpus.classList.add('active'); abaHome.classList.remove('active');
                 topicoAnalises.style.display = 'none'; filtrosContainer.style.display = 'grid';
                 wrapperVerTodos.style.display = 'none'; 
-                tituloFichas.innerText = 'Catálogo Completo de Processadores Intel e AMD';
+                tituloFichas.innerText = 'Todos os processadores';
             }
             renderizarCards();
         }
@@ -331,12 +331,12 @@
                             </div>
                             <p class="cpu-tagline">${detalheSeguro}</p>
                             <div class="card-specs">
-                                <div class="card-spec-item"><strong>${coresSeguro}/${threadsSegura}</strong><span>Cores/Threads</span></div>
-                                <div class="card-spec-item"><strong>${freqBoostSegura}</strong><span>Boost Clock</span></div>
+                                <div class="card-spec-item"><strong>${coresSeguro}/${threadsSegura}</strong><span>Núcleos/Threads</span></div>
+                                <div class="card-spec-item"><strong>${freqBoostSegura}</strong><span>Boost</span></div>
                                 <div class="card-spec-item"><strong>${tdpSeguro}</strong><span>TDP</span></div>
                             </div>
                         </div>
-                        <a href="${urlDetalhes}" class="btn-read ${classeBtn}">Visualizar Ficha Completa</a>
+                        <a href="${urlDetalhes}" class="btn-read ${classeBtn}">Abrir ficha técnica</a>
                     `;
                     gridProcessadores.appendChild(card);
                 });

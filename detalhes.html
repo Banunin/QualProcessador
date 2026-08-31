@@ -373,11 +373,11 @@
                 </div>
 
                 <div class="top-specs-bar">
-                    <div class="spec-box"><strong>${cpu.cores}</strong><span>Cores</span></div>
+                    <div class="spec-box"><strong>${cpu.cores}</strong><span>Núcleos</span></div>
                     <div class="spec-box"><strong>${cpu.threads}</strong><span>Threads</span></div>
                     <div class="spec-box"><strong>${cpu.tdp}</strong><span>TDP</span></div>
-                    <div class="spec-box"><strong>${cpu.freqBase}</strong><span>Base Clock</span></div>
-                    <div class="spec-box"><strong>${cpu.freqBoost}</strong><span>Boost Clock</span></div>
+                    <div class="spec-box"><strong>${cpu.freqBase}</strong><span>Clock base</span></div>
+                    <div class="spec-box"><strong>${cpu.freqBoost}</strong><span>Boost</span></div>
                     <div class="spec-box"><strong>${cpu.codinome}</strong><span>Codinome</span></div>
                     <div class="spec-box"><strong>${cpu.soquete}</strong><span>Soquete</span></div>
                 </div>
@@ -392,9 +392,9 @@
                         ${htmlMiniaturas}
             
                         <div class="side-menu">
-                            <button class="tab-btn active ${classeMarca}" data-tab="ficha">Ficha Técnica</button>
-                            <button class="tab-btn" data-tab="preco">Histórico de Preços</button>
-                            <button class="tab-btn" data-tab="comparar">Comparar Modelo</button>
+                            <button class="tab-btn active ${classeMarca}" data-tab="ficha">Ficha técnica</button>
+                            <button class="tab-btn" data-tab="preco">Histórico de preços</button>
+                            <button class="tab-btn" data-tab="comparar">Comparar</button>
                             <button class="tab-btn" data-tab="comentarios">
                                 Comentários
                                 <span id="tab-contador-comentarios" class="badge-tab">0</span>
@@ -406,9 +406,9 @@
                         
                         <div id="panel-ficha" class="tab-panel active">
                             <div class="panel-card">
-                                <h2>Geral</h2>
-                                <p>${cpu.analise}</p>
-                                <p>Operando com consumo de <strong>${cpu.tdp}</strong> e alcançando até <strong>${cpu.freqBoost}</strong>, este é um componente notável. Vale ressaltar que o processador <strong>${cpu.video === 'Não possui' ? 'exigirá uma placa de vídeo dedicada' : 'já possui gráfico integrado'}</strong>.</p>
+                                <h2>Visão geral</h2>
+                                <p><strong>${cpu.nome}</strong>: ${cpu.cores} núcleos, ${cpu.threads} threads, clock base de ${cpu.freqBase} e boost de até ${cpu.freqBoost}.</p>
+                                <p>TDP de <strong>${cpu.tdp}</strong>. ${cpu.video === 'Não possui' ? 'Não possui vídeo integrado e precisa de placa de vídeo dedicada para exibir imagem.' : `Possui vídeo integrado: <strong>${cpu.video}</strong>.`}</p>
                             </div>
 
                             <div class="panel-card">
@@ -417,25 +417,25 @@
                                     <div class="fichometro-item">
                                         <div class="fichometro-label">
                                             <span class="tooltip-container">
-                                                Desempenho Single-Core 
-                                                <span class="help-icon" data-tooltip="Mede a força de um único núcleo. É o fator crucial para empurrar as taxas de quadro (FPS) em jogos de PC. Dados: CPU-Z - CPU-monkey.">?</span>
+                                                CPU-Z Single Thread 
+                                                <span class="help-icon" data-tooltip="Pontuação do CPU-Z usando uma thread. É um benchmark sintético e não corresponde diretamente a FPS em jogos.">?</span>
                                             </span>
-                                            <strong>${ptsSingle.toLocaleString('pt-BR')} pts</strong>
+                                            <strong>${ptsSingle ? ptsSingle.toLocaleString('pt-BR') + ' pts' : 'N/A'}</strong>
                                         </div>
                                         <div class="fichometro-bar-bg">
-                                            <div class="fichometro-bar-fill ${classeMarca}" style="width: ${Math.min((ptsSingle / 3500) * 100, 100)}%"></div>
+                                            <div class="fichometro-bar-fill ${classeMarca}" style="width: ${Math.min((ptsSingle / 1000) * 100, 100)}%"></div>
                                         </div>
                                     </div>
                                     <div class="fichometro-item">
                                         <div class="fichometro-label">
                                             <span class="tooltip-container">
-                                                Desempenho Multi-Core
-                                                <span class="help-icon" data-tooltip="Mede a potência de todos os núcleos trabalhando juntos. Vital para streaming, render de vídeos e tarefas pesadas em lote. Dados: CPU-Z - CPU-monkey">?</span>
+                                                CPU-Z Multi Thread
+                                                <span class="help-icon" data-tooltip="Pontuação do CPU-Z usando várias threads. O resultado varia com núcleos, threads, clocks e plataforma.">?</span>
                                             </span>
-                                            <strong>${ptsMulti.toLocaleString('pt-BR')} pts</strong>
+                                            <strong>${ptsMulti ? ptsMulti.toLocaleString('pt-BR') + ' pts' : 'N/A'}</strong>
                                         </div>
                                         <div class="fichometro-bar-bg">
-                                            <div class="fichometro-bar-fill ${classeMarca}" style="width: ${Math.min((ptsMulti / 45000) * 100, 100)}%"></div>
+                                            <div class="fichometro-bar-fill ${classeMarca}" style="width: ${Math.min((ptsMulti / 20000) * 100, 100)}%"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -451,8 +451,8 @@
                                     <tr><td>Arquitetura</td><td>${cpu.arquitetura || '—'}</td></tr>
                                     <tr><td>Codinome</td><td>${cpu.codinome}</td></tr>
                                     <tr><td>Data de lançamento</td><td>${cpu.lancamento || '—'}</td></tr>
-                                    <tr><td>Segmento</td><td>${cpu.segmento || 'Desktop'}</td></tr>
-                                    <tr><td>Mercado</td><td>${cpu.mercado || 'Consumidor'}</td></tr>
+                                    <tr><td>Segmento</td><td>${cpu.segmento || '—'}</td></tr>
+                                    <tr><td>Mercado</td><td>${cpu.mercado || '—'}</td></tr>
                                 </tbody>
                             </table>
 
@@ -463,8 +463,8 @@
                                     <tr><td>Threads</td><td>${cpu.threads}</td></tr>
                                     <tr><td>Frequência base</td><td>${cpu.freqBase}</td></tr>
                                     <tr><td>Frequência turbo</td><td>${cpu.freqBoost}</td></tr>
-                                    <tr><td>Multiplicador desbloqueado</td><td>${cpu.desbloqueado || 'Sim'}</td></tr>
-                                    <tr><td>Overclock</td><td>${cpu.overclock || 'Suportado'}</td></tr>
+                                    <tr><td>Multiplicador desbloqueado</td><td>${cpu.desbloqueado || '—'}</td></tr>
+                                    <tr><td>Overclock</td><td>${cpu.overclock || '—'}</td></tr>
                                     <tr><td>Cache L1</td><td>${cpu.cacheL1 || '—'}</td></tr>
                                     <tr><td>Cache L2</td><td>${cpu.cacheL2 || '—'}</td></tr>
                                     <tr><td>Cache L3</td><td>${cpu.cacheL3 || '—'}</td></tr>
@@ -476,19 +476,19 @@
                                 <tbody>
                                     <tr><td>Socket / Soquete</td><td>${cpu.soquete}</td></tr>
                                     <tr><td>Chipsets compatíveis</td><td>${cpu.chipsets || '—'}</td></tr>
-                                    <tr><td>Tipo de Conexão</td><td>${cpu.tipoFixacao || (cpu.marca === 'amd' ? 'PGA / LGA' : 'LGA')}</td></tr>
-                                    <tr><td>PCI Express</td><td>${cpu.pcie || ''}</td></tr>
+                                    <tr><td>Tipo de Conexão</td><td>${cpu.tipoFixacao || '—'}</td></tr>
+                                    <tr><td>PCI Express</td><td>${cpu.pcie || '—'}</td></tr>
                                 </tbody>
                             </table>
 
                             <table class="tech-table" style="margin-bottom: 25px;">
                                 <thead><tr><th colspan="2" class="${classeMarca}"> Memória</th></tr></thead>
                                 <tbody>
-                                    <tr><td>Tipo de memória</td><td>${cpu.memoria}</td></tr>
-                                    <tr><td>Canais de memória</td><td>${cpu.canaisMemoria || 'Dual Channel'}</td></tr>
+                                    <tr><td>Tipo de memória</td><td>${cpu.memoria || '—'}</td></tr>
+                                    <tr><td>Canais de memória</td><td>${cpu.canaisMemoria || '—'}</td></tr>
                                     <tr><td>Frequência oficial</td><td>${cpu.freqMemoria || '—'}</td></tr>
-                                    <tr><td>Memória máxima suportada</td><td>${cpu.memoriaMaxima || '128 GB'}</td></tr>
-                                    <tr><td>Suporte a ECC</td><td>${cpu.ecc || 'Não'}</td></tr>
+                                    <tr><td>Memória máxima suportada</td><td>${cpu.memoriaMaxima || '—'}</td></tr>
+                                    <tr><td>Suporte a ECC</td><td>${cpu.ecc || cpu.suporteEcc || '—'}</td></tr>
                                 </tbody>
                             </table>
 
@@ -496,8 +496,8 @@
                                 <thead><tr><th colspan="2" class="${classeMarca}"> Gráficos</th></tr></thead>
                                 <tbody>
                                     <tr><td>Vídeo integrado</td><td>${cpu.video}</td></tr>
-                                    <tr><td>GPU integrada</td><td>${cpu.gpuIntegrada || (cpu.video === 'Não possui' ? '—' : 'Possui')}</td></tr>
-                                    <tr><td>Frequência GPU</td><td>${cpu.igpuFreq || ''}</td></tr>
+                                    <tr><td>GPU integrada</td><td>${cpu.gpuIntegrada || '—'}</td></tr>
+                                    <tr><td>Frequência GPU</td><td>${cpu.igpuFreq || '—'}</td></tr>
                                 </tbody>
                             </table>
 
@@ -506,7 +506,7 @@
                                 <tbody>
                                     <tr><td>TDP</td><td>${cpu.tdp}</td></tr>
                                     <tr><td>Consumo máximo (PPT/Turbo)</td><td>${cpu.consumoMaximo || '—'}</td></tr>
-                                    <tr><td>Cooler incluso</td><td>${cpu.coolerIncluso || 'Depende do lote / modelo'}</td></tr>
+                                    <tr><td>Cooler incluso</td><td>${cpu.coolerIncluso || '—'}</td></tr>
                                     <tr><td>Processo de fabricação (Litografia)</td><td>${cpu.litografia}</td></tr>
                                 </tbody>
                             </table>
@@ -515,22 +515,22 @@
                                 <thead><tr><th colspan="2" class="${classeMarca}"> Recursos e Tecnologias</th></tr></thead>
                                 <tbody>
                                     <tr><td>Tecnologia Multithreading (SMT/HT)</td><td>${cpu.threads > cpu.cores ? 'Sim' : 'Não'}</td></tr>
-                                    <tr><td>Virtualização</td><td>${cpu.virtualizacao || (cpu.marca === 'amd' ? 'AMD-V / SVM' : 'Intel VT-x')}</td></tr>
-                                    <tr><td>Conjunto de Instruções</td><td>${cpu.instrucoes || 'AES, AVX, AVX2, FMA3'}</td></tr>
+                                    <tr><td>Virtualização</td><td>${cpu.virtualizacao || '—'}</td></tr>
+                                    <tr><td>Conjunto de Instruções</td><td>${cpu.instrucoes || '—'}</td></tr>
                                 </tbody>
                             </table>
                         </div>
 
                         <div id="panel-preco" class="tab-panel">
                             <div class="panel-card">
-                                <h2>Histórico de Preços</h2>
-                                <p>Esta funcionalidade está sendo estruturada. Em breve, você poderá acompanhar gráficos com a variação de valores deste processador nos principais varejistas do mercado.</p>
+                                <h2>Histórico de preços</h2>
+                                <p>O histórico de preços ainda não está disponível para este modelo.</p>
                             </div>
                         </div>
 
                         <div id="panel-comparar" class="tab-panel">
                             <div class="panel-card">
-                                <h2>Comparar Modelo</h2>
+                                <h2>Comparar</h2>
                                 <p>Selecione outro processador para comparar com <strong>${cpu.nome}</strong>.</p>
                                 <select id="comparador-select" style="width:100%;padding:14px;font-size:15px; border:1px solid #cbd5e1; border-radius:10px; margin-top:15px; margin-bottom:25px; outline:none; font-family:'Poppins', sans-serif;">
                                     <option value="">Selecione um processador...</option>
@@ -543,13 +543,13 @@
                         <div id="panel-comentarios" class="tab-panel">
                             <div class="panel-card">
                                 <h2 style="display: flex; align-items: center; justify-content: space-between;">
-                                    Comentários e Discussões
+                                    Comentários
                                     <span id="secao-contador-comentarios" class="badge-secao">0</span>
                                 </h2>
                                 
                                 <div id="auth-prompt-container" style="display: none; text-align: center; padding: 25px; background: #f8fafc; border: 1px dashed #cbd5e1; border-radius: 12px; margin-bottom: 20px;">
-                                    <p style="color: #475569; font-weight: 600; margin-bottom: 15px; font-size: 1.05rem;">Faça login para participar da discussão e deixar sua opinião.</p>
-                                    <button onclick="abrirModalAuth('login')" class="btn-action ${classeMarca}">Entrar / Criar Conta</button>
+                                    <p style="color: #475569; font-weight: 600; margin-bottom: 15px; font-size: 1.05rem;">Entre na sua conta para comentar ou responder.</p>
+                                    <button onclick="abrirModalAuth('login')" class="btn-action ${classeMarca}">Entrar / Criar conta</button>
                                 </div>
 
                                 <div id="comment-form-container" style="display: none;">
@@ -558,8 +558,8 @@
                                         <button type="button" id="btn-logout" style="background: none; border: none; color: #ef4444; font-weight: 700; cursor: pointer; font-family: 'Poppins', sans-serif; font-size: 0.95rem;">Desconectar</button>
                                     </div>
                                     <form class="comment-form" id="form-comentario">
-                                        <textarea id="comment-text" rows="4" placeholder="Escreva sua opinião técnica ou dúvida sobre este processador..." required></textarea>
-                                        <button type="submit" class="btn-action ${classeMarca}" style="align-self: flex-end;">Publicar Comentário</button>
+                                        <textarea id="comment-text" rows="4" placeholder="Escreva sua dúvida, experiência ou correção sobre este processador." required></textarea>
+                                        <button type="submit" class="btn-action ${classeMarca}" style="align-self: flex-end;">Publicar comentário</button>
                                     </form>
                                 </div>
 
@@ -668,7 +668,7 @@ function atualizarEstadoAutenticacao() {
                     userLoggedName.innerText = userSeguro;
                 } else {
                     // Usuário Deslogado / Visitante
-                    navUserContainer.innerHTML = `<button class="btn-nav-auth" onclick="abrirModalAuth('login')">Entrar / Cadastrar</button>`;
+                    navUserContainer.innerHTML = `<button class="btn-nav-auth" onclick="abrirModalAuth('login')">Entrar / Criar conta</button>`;
                     authPromptContainer.style.display = 'block';
                     commentFormContainer.style.display = 'none';
                 }
@@ -702,7 +702,7 @@ function atualizarEstadoAutenticacao() {
 
                 listaComentarios.innerHTML = '';
                 if (!comentariosSalvos || comentariosSalvos.length === 0) {
-                    listaComentarios.innerHTML = '<p class="no-comments">Nenhum comentário registrado ainda. Seja o primeiro a comentar!</p>';
+                    listaComentarios.innerHTML = '<p class="no-comments">Ainda não há comentários.</p>';
                     return;
                 }
 

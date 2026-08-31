@@ -113,7 +113,7 @@
             const nota = document.createElement('p');
             nota.className = 'qp-benchmark-note';
             nota.style.cssText = 'margin:18px 0 0;color:#64748b;font-size:.88rem;line-height:1.65;';
-            nota.textContent = 'Os resultados acima são do CPU-Z. Eles ajudam a comparar processadores, mas não equivalem diretamente a FPS em jogos ou ao tempo de execução de um programa específico.';
+            nota.textContent = 'CPU-Z é um benchmark sintético. Os pontos ajudam a comparar processadores, mas não representam diretamente FPS ou o desempenho de um programa específico.';
             bloco.insertAdjacentElement('afterend', nota);
         }
     }
@@ -145,7 +145,7 @@
         const h3 = document.createElement('h3');
         h3.textContent = 'Comparações relacionadas';
         const p = document.createElement('p');
-        p.textContent = 'Modelos próximos em geração, plataforma ou desempenho para continuar a comparação.';
+        p.textContent = 'Modelos próximos em geração, plataforma ou desempenho.';
         const grid = document.createElement('div');
         grid.className = 'qp-comparacoes-grid';
         relacionados.forEach(outro => {

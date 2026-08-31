@@ -365,7 +365,7 @@
                 commentForm.style.display = 'block';
                 if(nomeLogado) nomeLogado.innerText = userSeguro;
             } else {
-                navContainer.innerHTML = `<button class="btn-nav-auth" onclick="abrirModalAuth('login')">Entrar / Cadastrar</button>`;
+                navContainer.innerHTML = `<button class="btn-nav-auth" onclick="abrirModalAuth('login')">Entrar / Criar conta</button>`;
                 authPrompt.style.display = 'block';
                 commentForm.style.display = 'none';
             }
@@ -418,9 +418,9 @@
                     } else {
                         document.getElementById('conteudo-artigo-dinamico').innerHTML = `
                             <div class="article-container" style="text-align: center; margin-top: 100px;">
-                                <h2>Artigo Não Encontrado</h2>
-                                <p style="color: #ef4444; font-weight: 600;">O artigo solicitado não foi encontrado no banco de dados.</p>
-                                <a href="analises.html" style="color: #0284c7; font-weight: bold; text-decoration: underline;">Voltar ao Hub de Análises</a>
+                                <h2>Artigo não encontrado</h2>
+                                <p style="color: #ef4444; font-weight: 600;">Não encontramos este artigo.</p>
+                                <a href="analises.html" style="color: #0284c7; font-weight: bold; text-decoration: underline;">Voltar aos artigos</a>
                             </div>
                         `;
                     }
@@ -439,7 +439,7 @@
                         <div class="article-meta-info">
                             <div class="author-avatar">QP</div>
                             <div>
-                                Publicado por <strong>${escapeHTML(artigo.autor)}</strong> • ⏱️ Leitura: ${escapeHTML(artigo.tempoLeitura)} • 💬 <a href="#secao-comentarios" class="link-comentarios-topo"><span id="topo-contador-comentarios">0</span> Comentários</a>
+                                Por <strong>${escapeHTML(artigo.autor)}</strong> • Leitura: ${escapeHTML(artigo.tempoLeitura)} • <a href="#secao-comentarios" class="link-comentarios-topo"><span id="topo-contador-comentarios">0</span> comentários</a>
                             </div>
                         </div>
                     </header>
@@ -483,7 +483,7 @@
 
             container.innerHTML = '';
             if (!comentariosSalvos || comentariosSalvos.length === 0) {
-                container.innerHTML = '<p class="no-comments">Nenhum comentário registrado ainda. Seja o primeiro a comentar!</p>';
+                container.innerHTML = '<p class="no-comments">Ainda não há comentários.</p>';
                 return;
             }
 
@@ -573,7 +573,7 @@
                 <div style="display:flex; gap:8px; flex-direction:column;">
                     <textarea id="reply-text-${idAlvo}" rows="2" placeholder="Escreva sua resposta..." style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; font-family:inherit; font-size:0.9rem; outline:none; resize:vertical;"></textarea>
                     <div style="display:flex; gap:8px;">
-                        <button onclick="enviarResposta(${idAlvo}, ${idPrincipal})" style="background:#10b981; color:white; border:none; padding:6px 12px; border-radius:4px; cursor:pointer; font-weight:bold; font-size:0.85rem;">Enviar Resposta</button>
+                        <button onclick="enviarResposta(${idAlvo}, ${idPrincipal})" style="background:#10b981; color:white; border:none; padding:6px 12px; border-radius:4px; cursor:pointer; font-weight:bold; font-size:0.85rem;">Enviar resposta</button>
                         <button onclick="carregarComentarios()" style="background:#e2e8f0; color:#0f172a; border:none; padding:6px 12px; border-radius:4px; cursor:pointer; font-weight:bold; font-size:0.85rem;">Cancelar</button>
                     </div>
                 </div>
@@ -613,7 +613,7 @@
             editBox.innerHTML = `
                 <textarea id="edit-input-${idComentario}" style="width:100%; padding:8px; border:1px solid #cbd5e1; border-radius:6px; font-family:inherit; font-size:0.9rem; outline:none; resize:vertical;" rows="3">${original}</textarea>
                 <div style="display:flex; gap:8px; margin-top:6px;">
-                    <button onclick="salvarEdicao(${idComentario})" style="background:#3b82f6; color:white; border:none; border-radius:4px; padding:6px 12px; font-weight:bold; font-size:0.8rem; cursor:pointer;">Salvar Edição</button>
+                    <button onclick="salvarEdicao(${idComentario})" style="background:#3b82f6; color:white; border:none; border-radius:4px; padding:6px 12px; font-weight:bold; font-size:0.8rem; cursor:pointer;">Salvar edição</button>
                     <button onclick="carregarComentarios()" style="background:#e2e8f0; color:#0f172a; border:none; border-radius:4px; padding:6px 12px; font-weight:bold; font-size:0.8rem; cursor:pointer;">Cancelar</button>
                 </div>
             `;

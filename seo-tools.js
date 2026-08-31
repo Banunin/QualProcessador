@@ -213,7 +213,7 @@
 
     function textoGrafico(cpu) {
         const video = String((cpu && cpu.video) || '').trim();
-        if (!valorInformado(video) || /não possui|nao possui|sem (?:vídeo|video)|none/i.test(video)) return 'Não possui vídeo integrado; para saída de imagem e aceleração 3D é necessária uma placa de vídeo dedicada.';
+        if (!valorInformado(video) || /não possui|nao possui|sem (?:vídeo|video)|none/i.test(video)) return 'Não possui vídeo integrado. O computador precisa de uma placa de vídeo dedicada para exibir imagem.';
         return `Inclui vídeo integrado ${video}.`;
     }
 
@@ -253,7 +253,7 @@
         if (memoria) plataforma.push(`memória ${memoria}`);
         if (pcie) plataforma.push(pcie);
         if (cacheL3) plataforma.push(`cache L3 de ${cacheL3}`);
-        let plataformaTexto = plataforma.length ? `A ficha registra ${plataforma.join(', ')}. ` : '';
+        let plataformaTexto = plataforma.length ? `Especificações de plataforma: ${plataforma.join(', ')}. ` : '';
         plataformaTexto += textoGrafico(cpu);
         paragrafos.push(plataformaTexto);
         const single = pontosCpu(cpu.notaJogos);
@@ -262,14 +262,14 @@
             const partes = [];
             if (single) partes.push(`${single.toLocaleString('pt-BR')} pontos em Single Thread`);
             if (multi) partes.push(`${multi.toLocaleString('pt-BR')} pontos em Multi Thread`);
-            paragrafos.push(`Nos resultados CPU-Z cadastrados no QualProcessador, o ${nome} registra ${partes.join(' e ')}.`);
+            paragrafos.push(`No CPU-Z, o ${nome} registra ${partes.join(' e ')}.`);
         }
         const metaPartes = [];
         if (cores && threads) metaPartes.push(`${cores} núcleos/${threads} threads`);
         if (boost) metaPartes.push(`até ${boost}`);
         if (socket) metaPartes.push(socket);
         if (tdp) metaPartes.push(`TDP ${tdp}`);
-        const meta = `${nome}: ficha técnica${metaPartes.length ? ' com ' + metaPartes.join(', ') : ''}, resultados CPU-Z e comparações de processadores.`;
+        const meta = `${nome}: ficha técnica${metaPartes.length ? ' com ' + metaPartes.join(', ') : ''}, resultados CPU-Z e comparação com outros processadores.`;
         return { paragrafos, meta };
     }
 

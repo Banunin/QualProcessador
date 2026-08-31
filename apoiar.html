@@ -168,8 +168,8 @@ textarea{min-height:132px;resize:vertical}
   <div class="wrap hero-grid">
     <div>
       <span class="kicker">Apoie o QualProcessador</span>
-      <h1>Ajude a manter o projeto evoluindo.</h1>
-      <p>O QualProcessador, o Upscendra e o WinFormatKit são desenvolvidos de forma independente. Se alguma dessas ferramentas economizou seu tempo, você pode contribuir com qualquer valor e ajudar a financiar desenvolvimento, testes e infraestrutura.</p>
+      <h1>Ajude a manter o projeto.</h1>
+      <p>O QualProcessador, o Upscendra e o WinFormatKit são projetos independentes. As contribuições ajudam a pagar infraestrutura, testes e tempo de desenvolvimento.</p>
     </div>
     <aside class="hero-note">
       <strong>Contribuição voluntária</strong>
@@ -272,14 +272,14 @@ textarea{min-height:132px;resize:vertical}
   <div class="wrap">
     <div class="section-head">
       <span class="kicker" style="color:var(--blue-dark)">WinFormatKit</span>
-      <h2>Escolha a versão que combina com seu uso</h2>
-      <p>A versão gratuita continua útil. Plus e Pro ampliam conversões, idiomas, temas e recursos para quem usa o programa com mais frequência.</p>
+      <h2>WinFormatKit Plus e Pro</h2>
+      <p>A versão gratuita continua disponível. Plus e Pro acrescentam formatos, idiomas, temas e ferramentas.</p>
     </div>
     <div class="plan-mini">
       <div class="plan">
         <strong>Plus</strong>
         <span class="plan-price">R$ 15,99 <small>pagamento único</small></span>
-        <span>Quase toda a experiência avançada do Pro, por um valor mais acessível.</span>
+        <span>Mais formatos, idiomas, temas e ferramentas do que a versão gratuita.</span>
         <ul class="plan-feature-list">
           <li>Mais formatos e rotas de conversão</li>
           <li>Biblioteca ampliada de temas e modelos de interface</li>
@@ -291,7 +291,7 @@ textarea{min-height:132px;resize:vertical}
       <div class="plan highlight">
         <strong>Pro</strong>
         <span class="plan-price">R$ 30,99 <small>pagamento único</small></span>
-        <span>A edição mais completa, com o maior conjunto de conversões, personalização e recursos avançados.</span>
+        <span>Inclui tudo do Plus e amplia o catálogo de formatos, temas, idiomas e ferramentas.</span>
         <ul class="plan-feature-list">
           <li>Todo o conteúdo do Plus</li>
           <li>Maior catálogo de conversões e formatos</li>
@@ -309,7 +309,7 @@ textarea{min-height:132px;resize:vertical}
   <div class="wrap">
     <div class="section-head">
       <h2>Fale com o desenvolvedor</h2>
-      <p>Não quer contribuir agora? Você também pode enviar uma mensagem, sugestão ou relato sobre alguma das ferramentas.</p>
+      <p>Para enviar uma dúvida, sugestão ou relato sobre as ferramentas, use o formulário.</p>
     </div>
     <div class="contact-grid">
       <aside class="contact-aside">
@@ -460,7 +460,7 @@ document.getElementById('contactForm').addEventListener('submit', async (event)=
     const response = await fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
     if(!response.ok) throw new Error('Falha ao enviar');
     status.className='status-msg show ok';
-    status.textContent='Mensagem enviada. Obrigado pelo contato.';
+    status.textContent='Mensagem enviada.';
     event.target.reset();
   }catch(error){
     status.className='status-msg show warn';

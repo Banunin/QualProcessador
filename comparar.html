@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="/img/icon.ico" type="image/x-icon">
     <title>Comparar Processadores AMD e Intel | QualProcessador</title>
-    <meta name="description" content="Compare processadores AMD e Intel lado a lado: núcleos, threads, clocks, TDP, plataforma e benchmarks Single-Core e Multi-Core.">
+    <meta name="description" content="Compare processadores AMD e Intel lado a lado: núcleos, threads, clocks, TDP, plataforma e resultados CPU-Z Single Thread e Multi Thread.">
     <meta name="robots" content="index,follow">
     <link rel="canonical" href="https://qualprocessador.vercel.app/comparar">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Comparar Processadores | QualProcessador">
-    <meta property="og:description" content="Compare fichas técnicas e benchmarks de processadores AMD e Intel lado a lado.">
+    <meta property="og:description" content="Compare fichas técnicas e resultados CPU-Z de processadores AMD e Intel lado a lado.">
     <meta property="og:url" content="https://qualprocessador.vercel.app/comparar">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -34,7 +34,7 @@
 
     <header class="hero">
         <h1 id="hero-title">Comparar Processadores</h1>
-        <p id="hero-desc">Escolha dois processadores para comparar ficha técnica, plataforma e as pontuações Single-Core e Multi-Core cadastradas no QualProcessador.</p>
+        <p id="hero-desc">Escolha dois processadores. A página mostra especificações, plataforma e resultados CPU-Z lado a lado.</p>
     </header>
 
     <main class="container">
@@ -58,13 +58,13 @@
                 <table class="spec-table"><thead id="spec-head"></thead><tbody id="spec-body"></tbody></table>
             </div>
             <div id="summary-card" class="summary-card"></div>
-            <section class="related"><h2>Outras comparações relacionadas</h2><div id="related-grid" class="related-grid"></div></section>
+            <section class="related"><h2>Comparações relacionadas</h2><div id="related-grid" class="related-grid"></div></section>
         </section>
 
         <section id="empty-intro" class="empty-intro">
             <h2>Compare qualquer CPU cadastrada</h2>
             <p>A página de comparação usa o mesmo banco de processadores das fichas técnicas. Você pode pesquisar pelo nome completo ou apenas pelo modelo, como <code>5600</code>, <code>12400F</code> ou <code>E5 2680</code>.</p>
-            <p>Cada comparação recebe uma URL própria no formato <code>/comparar/processador-a-vs-processador-b</code>, facilitando compartilhar, voltar à análise e permitir que mecanismos de busca descubram comparações relevantes.</p>
+            <p>A comparação pode ser compartilhada por link e mantém acesso às fichas técnicas individuais.</p>
         </section>
     </main>
 
@@ -106,7 +106,7 @@
             }
             function meta(name,content,property){let el=document.querySelector(property?`meta[property="${name}"]`:`meta[name="${name}"]`);if(!el){el=document.createElement('meta');property?el.setAttribute('property',name):el.setAttribute('name',name);document.head.appendChild(el)}el.content=content}
             function canonical(url){let el=document.querySelector('link[rel="canonical"]');if(!el){el=document.createElement('link');el.rel='canonical';document.head.appendChild(el)}el.href=url}
-            function jsonLd(a,b,url){document.getElementById('comparison-jsonld')?.remove();const script=document.createElement('script');script.type='application/ld+json';script.id='comparison-jsonld';script.textContent=JSON.stringify({'@context':'https://schema.org','@type':'WebPage',name:`${a.nome} vs ${b.nome}: comparação de processadores`,url,description:`Compare ${a.nome} e ${b.nome}: especificações, plataforma e benchmarks Single-Core e Multi-Core.`,isPartOf:{'@type':'WebSite',name:'QualProcessador',url:BASE+'/'},breadcrumb:{'@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'QualProcessador',item:BASE+'/'},{'@type':'ListItem',position:2,name:'Comparar processadores',item:BASE+'/comparar'},{'@type':'ListItem',position:3,name:`${a.nome} vs ${b.nome}`,item:url}]}});document.head.appendChild(script)}
+            function jsonLd(a,b,url){document.getElementById('comparison-jsonld')?.remove();const script=document.createElement('script');script.type='application/ld+json';script.id='comparison-jsonld';script.textContent=JSON.stringify({'@context':'https://schema.org','@type':'WebPage',name:`${a.nome} vs ${b.nome}: comparação de processadores`,url,description:`Compare ${a.nome} e ${b.nome}: especificações, plataforma e resultados CPU-Z Single Thread e Multi Thread.`,isPartOf:{'@type':'WebSite',name:'QualProcessador',url:BASE+'/'},breadcrumb:{'@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'QualProcessador',item:BASE+'/'},{'@type':'ListItem',position:2,name:'Comparar processadores',item:BASE+'/comparar'},{'@type':'ListItem',position:3,name:`${a.nome} vs ${b.nome}`,item:url}]}});document.head.appendChild(script)}
 
             lista.forEach(cpu=>{const op=document.createElement('option');op.value=cpu.nome;datalist.appendChild(op)});
 
@@ -135,12 +135,12 @@
                 $('comparison').classList.add('active');
                 $('empty-intro').style.display='none';
                 $('hero-title').textContent=`${a.nome} vs ${b.nome}`;
-                $('hero-desc').textContent='Comparação direta de especificações, plataforma e benchmarks cadastrados no QualProcessador.';
+                $('hero-desc').textContent='Especificações e resultados CPU-Z lado a lado.';
                 $('breadcrumb').innerHTML=`<a href="/">Home</a> › <a href="/comparar">Comparar</a> › ${esc(a.nome)} vs ${esc(b.nome)}`;
                 $('comparison-heading').textContent=`${a.nome} vs ${b.nome}`;
-                $('comparison-lead').textContent=`Veja lado a lado os dados técnicos de ${a.nome} e ${b.nome}, usando as informações já cadastradas nas fichas do QualProcessador.`;
+                $('comparison-lead').textContent=`Compare os dados técnicos de ${a.nome} e ${b.nome}.`;
                 $('cpu-heads').innerHTML=cabeca(a)+cabeca(b);
-                $('score-grid').innerHTML=scoreCard('Single-Core (Jogos)',a,b,'notaJogos')+scoreCard('Multi-Core (Trabalho)',a,b,'notaTrabalho');
+                $('score-grid').innerHTML=scoreCard('CPU-Z Single Thread',a,b,'notaJogos')+scoreCard('CPU-Z Multi Thread',a,b,'notaTrabalho');
                 $('spec-head').innerHTML=`<tr><th>Especificação</th><th>${esc(a.nome)}</th><th>${esc(b.nome)}</th></tr>`;
 
                 const linhas=[
@@ -153,7 +153,7 @@
                 ];
                 $('spec-body').innerHTML=linhas.map(([rotulo,campo])=>`<tr><td>${esc(rotulo)}</td><td>${esc(valor(a[campo]))}</td><td>${esc(valor(b[campo]))}</td></tr>`).join('');
 
-                $('summary-card').innerHTML=`<h2>Resumo da comparação</h2><p><strong>${esc(a.nome)}</strong> possui ${esc(valor(a.cores))} núcleos e ${esc(valor(a.threads))} threads, enquanto o <strong>${esc(b.nome)}</strong> possui ${esc(valor(b.cores))} núcleos e ${esc(valor(b.threads))} threads.</p><p>No banco do QualProcessador, as pontuações cadastradas são <strong>${esc(pontos(a.notaJogos))}</strong> contra <strong>${esc(pontos(b.notaJogos))}</strong> em Single-Core e <strong>${esc(pontos(a.notaTrabalho))}</strong> contra <strong>${esc(pontos(b.notaTrabalho))}</strong> em Multi-Core. Consulte as fichas individuais para contexto técnico completo.</p>`;
+                $('summary-card').innerHTML=`<h2>Resumo</h2><p><strong>${esc(a.nome)}</strong> tem ${esc(valor(a.cores))} núcleos e ${esc(valor(a.threads))} threads; <strong>${esc(b.nome)}</strong> tem ${esc(valor(b.cores))} núcleos e ${esc(valor(b.threads))} threads.</p><p>No CPU-Z: <strong>${esc(pontos(a.notaJogos))}</strong> contra <strong>${esc(pontos(b.notaJogos))}</strong> em Single Thread e <strong>${esc(pontos(a.notaTrabalho))}</strong> contra <strong>${esc(pontos(b.notaTrabalho))}</strong> em Multi Thread. São resultados sintéticos e não representam FPS diretamente.</p>`;
 
                 const rel=[];
                 const seen=new Set();
@@ -185,7 +185,7 @@
                 $('comparison').classList.remove('active');
                 $('empty-intro').style.display='block';
                 $('hero-title').textContent='Comparar Processadores';
-                $('hero-desc').textContent='Escolha dois processadores para comparar ficha técnica, plataforma e as pontuações Single-Core e Multi-Core cadastradas no QualProcessador.';
+                $('hero-desc').textContent='Escolha dois processadores. A página mostra especificações, plataforma e resultados CPU-Z lado a lado.';
                 document.title='Comparar Processadores AMD e Intel | QualProcessador';
                 canonical(BASE+'/comparar');
             }
