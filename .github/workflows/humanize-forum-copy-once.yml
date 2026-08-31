@@ -1,0 +1,103 @@
+name: Humanize forum copy once
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/humanize-forum-copy-once.yml'
+permissions:
+  contents: write
+jobs:
+  humanize:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rewrite forum copy without changing features
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+
+          p = Path('forum.html')
+          s = p.read_text(encoding='utf-8')
+
+          def once(old, new):
+              global s
+              if old not in s:
+                  raise RuntimeError('Expected text not found: ' + old[:100])
+              s = s.replace(old, new, 1)
+
+          # SEO: descriptive and natural, without keyword stuffing.
+          once(
+              '<title>Fórum de Hardware - QualProcessador</title>',
+              '<title>Fórum de Hardware: dúvidas, upgrades e PCs | QualProcessador</title>\n    <meta name="description" content="Fórum de hardware para tirar dúvidas sobre processadores, placas-mãe, upgrades, compatibilidade e montagem de PCs. Pergunte, responda e compartilhe o que funcionou.">'
+          )
+
+          # Navigation / authentication copy.
+          s = s.replace('Modo Visitante', 'Visitante')
+          s = s.replace('Acessar / Criar Conta', 'Entrar / Criar conta')
+          s = s.replace('Acessar Conta', 'Entrar')
+          s = s.replace('Criar Nova Conta', 'Criar conta')
+          s = s.replace('E-mail ou Nome de Usuário', 'E-mail ou nome de usuário')
+          s = s.replace('Digite seu e-mail ou username', 'Digite seu e-mail ou nome de usuário')
+          s = s.replace('Senha de Acesso', 'Senha')
+          s = s.replace('Sua senha secreta', 'Digite sua senha')
+          s = s.replace('Entrar na Plataforma', 'Entrar')
+          s = s.replace('Endereço de E-mail', 'E-mail')
+          s = s.replace('Nome de Usuário (Nickname)', 'Nome de usuário')
+          s = s.replace('Senha Segura', 'Senha')
+          s = s.replace('Finalizar Cadastro', 'Criar conta')
+          s = s.replace('Conta criada com sucesso!', 'Conta criada.')
+          s = s.replace('Credenciais incorretas.', 'E-mail, usuário ou senha incorretos.')
+
+          # Do not fabricate a personality for new members.
+          s = s.replace('bio: "Novo membro explorando o mundo do hardware."', 'bio: ""')
+          s = s.replace('status_msg: "Acabou de chegar no fórum!"', 'status_msg: ""')
+
+          # Forum list and sidebar: classic forum vocabulary.
+          s = s.replace('Discussões Ativas', 'Tópicos recentes')
+          s = s.replace('${totalResp} interações', '${totalResp} respostas')
+          s = s.replace('+ Nova Discussão', '+ Novo tópico')
+          s = s.replace('Inicie uma discussão!', 'Ainda não há tópicos.')
+
+          old_header = 'target.innerHTML = `<div class="forum-action-header"><h2>Fórum</h2><a href="forum.html?action=novo" class="btn-main">+ Novo tópico</a></div>${listaHTML}`;'
+          new_header = 'target.innerHTML = `<div class="forum-action-header"><div><h2>Fórum</h2><p style="margin:5px 0 0;color:#64748b;font-size:.88rem;line-height:1.5;">Dúvidas, upgrades, compatibilidade e montagem. Pergunte do jeito que souber.</p></div><a href="forum.html?action=novo" class="btn-main">+ Novo tópico</a></div>${listaHTML}`;'
+          once(old_header, new_header)
+
+          # New-topic form: ask for useful context in plain language.
+          s = s.replace('Criar Novo Tópico', 'Novo tópico')
+          s = s.replace('Ex: Dúvida sobre compatibilidade AM4 e AM5...', 'Ex.: Ryzen 5 5600 funciona na minha B450M?')
+          old_question = '<div class="form-group"><label>Desenvolva sua ideia ou dúvida:</label><textarea id="new-content" rows="8" placeholder="Escreva os detalhes, especificações da sua máquina, etc..." required></textarea></div>'
+          new_question = '<div class="form-group"><label>Explique sua dúvida</label><textarea id="new-content" rows="8" placeholder="Conte o que você quer fazer ou o que está dando errado." required></textarea><small style="color:#64748b;line-height:1.55;">Se for problema ou upgrade, diga as peças do PC, o que você quer fazer e o que já tentou. Não precisa saber o nome técnico de tudo.</small></div>'
+          once(old_question, new_question)
+          s = s.replace('Publicar na Comunidade', 'Publicar tópico')
+
+          # Topic and reply language.
+          s = s.replace('Participe do QualProcessador para interagir.', 'Entre na sua conta para responder ou reagir.')
+          s = s.replace('Entrar ou Cadastrar', 'Entrar ou criar conta')
+          s = s.replace('Escrever uma Resposta Geral', 'Responder')
+          s = s.replace('Adicione sua visão técnica ou contribuição...', 'Escreva sua resposta. Se puder, explique o motivo ou diga o que você testou.')
+          s = s.replace('Publicar Comentário', 'Publicar resposta')
+          s = s.replace('Tópico Oficial', 'Tópico')
+          s = s.replace('Publicado na comunidade em', 'Publicado em')
+          s = s.replace('Responder Tópico', 'Responder')
+          s = s.replace('Apagar Tópico Inteiro', 'Apagar tópico')
+          s = s.replace('Respostas da Comunidade', 'Respostas')
+          s = s.replace('Retornar à Comunidade', 'Voltar ao fórum')
+          s = s.replace('Publicar Resposta', 'Publicar resposta')
+
+          # Profile terminology: remove inflated/system-like labels.
+          s = s.replace("${uInfo.role === 'admin' ? 'Administrador Chefe' : 'Membro Verificado'}", "${uInfo.role === 'admin' ? 'Administrador' : 'Membro'}")
+          s = s.replace('Discussões Criadas', 'Tópicos criados')
+          s = s.replace('Histórico de Respostas', 'Respostas')
+
+          # Existing markup typo in the profile stats.
+          s = s.replace('<div class="stat-label" style="color: #64748b;">Reaçõesdiv>', '<div class="stat-label" style="color: #64748b;">Reações</div>')
+
+          p.write_text(s, encoding='utf-8')
+          PY
+      - name: Commit forum humanization
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add forum.html
+          git commit -m "Humanize forum language for beginners and enthusiasts" || exit 0
+          git push
