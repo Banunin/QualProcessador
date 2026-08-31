@@ -1,0 +1,142 @@
+name: Add PCIe lane data once
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/add-pcie-lanes-once.yml'
+permissions:
+  contents: write
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Add PCIe lane fields and UI rows
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import json, re
+
+          def norm(v):
+              return str(v or '').strip().lower()
+
+          def infer_pcie(cpu):
+              name = norm(cpu.get('nome'))
+              socket = norm(cpu.get('soquete') or cpu.get('socket')).replace('fclga','lga')
+              pcie = norm(cpu.get('pcie'))
+              code = norm(cpu.get('codinome'))
+              family = norm(cpu.get('familia'))
+              brand = norm(cpu.get('marca') or cpu.get('fabricante'))
+
+              # AMD Ryzen desktop. AMD distingue linhas nativas totais e utilizáveis.
+              if 'amd' in brand or name.startswith('amd '):
+                  if 'ryzen' in name:
+                      if 'am5' in socket:
+                          return ('28 total / 24 utilizáveis', 'x16 ou 2x8 para GPU + x4 NVMe + x4 de uso geral')
+                      if 'am4' in socket:
+                          # Raven Ridge/Picasso: link gráfico reduzido a x8.
+                          if any(x in name for x in ['2200g','2400g','3200g','3400g']) or any(x in code for x in ['raven ridge','picasso']):
+                              return ('20 total / 16 utilizáveis', 'x8 para GPU + x4 NVMe')
+                          # Demais Ryzen AM4 de desktop: 16 para gráficos, 4 NVMe e 4 para chipset; 20 utilizáveis diretamente.
+                          return ('24 total / 20 utilizáveis', 'x16 ou 2x8 para GPU + x4 NVMe')
+
+              # Intel Xeon: tratar famílias de servidor/workstation antes das regras de socket mainstream.
+              if 'intel' in brand or name.startswith('intel '):
+                  if 'xeon' in name:
+                      if 'x34' in name and 'lga1156' in socket:
+                          return ('16', '1x16, 2x8 ou 4x4')
+                      if re.search(r'\be5[- ]?24\d{2}', name) and 'lga1356' in socket:
+                          return ('24', '—')
+                      if re.search(r'\be5[- ]?', name) and ('lga2011' in socket or 'lga2011-3' in socket):
+                          return ('40', 'x4, x8 ou x16')
+                      if re.search(r'\be3[- ]?1[0-9]{3}', name) and any(s in socket for s in ['lga1155','lga1150','lga1151']):
+                          return ('16', '1x16, 2x8 ou 1x8 + 2x4')
+                      if 'lga1366' in socket:
+                          return ('—', 'PCIe fornecido pelo chipset/IOH, não pela CPU')
+
+                  # Intel Core/Pentium/Celeron desktop mainstream.
+                  if any(s in socket for s in ['lga1156','lga1155','lga1150','lga1151','lga1151-v2']):
+                      if any(x in name for x in ['core','pentium','celeron']):
+                          return ('16', '1x16, 2x8 ou 1x8 + 2x4')
+                  if 'lga1200' in socket and any(x in name for x in ['core','pentium','celeron']):
+                      # Rocket Lake expõe 20 linhas; Comet Lake permanece em 16.
+                      if '4.0' in pcie or any(x in code for x in ['rocket lake','cypress cove']):
+                          return ('20', '1x16 + x4, 2x8 + x4 ou x8 + 3x4')
+                      return ('16', '1x16, 2x8 ou 1x8 + 2x4')
+                  if 'lga1700' in socket and any(x in name for x in ['core','pentium','celeron']):
+                      return ('20', '1x16 + x4 ou 2x8 + x4')
+              return (None, None)
+
+          # Atualiza o banco sem alterar nenhum valor técnico já existente.
+          path = Path('dados.js')
+          raw = path.read_text(encoding='utf-8')
+          m = re.match(r'^(\s*const\s+listaDeCpus\s*=\s*)(.*?)(;\s*)$', raw, re.S)
+          if not m:
+              raise RuntimeError('Formato inesperado em dados.js')
+          cpus = json.loads(m.group(2))
+          filled = 0
+          unknown = 0
+          examples_unknown = []
+          for cpu in cpus:
+              lanes, config = infer_pcie(cpu)
+              if lanes is None:
+                  unknown += 1
+                  if len(examples_unknown) < 25:
+                      examples_unknown.append(cpu.get('nome','?'))
+                  continue
+              if not cpu.get('pcieLanes'):
+                  cpu['pcieLanes'] = lanes
+              if not cpu.get('pcieConfig'):
+                  cpu['pcieConfig'] = config
+              filled += 1
+          path.write_text(m.group(1) + json.dumps(cpus, ensure_ascii=False, indent=4) + m.group(3), encoding='utf-8')
+          print(f'PCIe preenchido em {filled} CPUs; {unknown} ficaram sem inferência segura.')
+          if examples_unknown:
+              print('Exemplos sem inferência:', ', '.join(examples_unknown))
+          Path('.pcie_migration_count').write_text(str(filled), encoding='utf-8')
+
+          # Ficha técnica: versão, quantidade de linhas e configurações ficam separadas.
+          p = Path('detalhes.html'); s = p.read_text(encoding='utf-8')
+          old = "                                    <tr><td>PCI Express</td><td>${cpu.pcie || '—'}</td></tr>"
+          new = "                                    <tr><td>Versão PCI Express</td><td>${cpu.pcie || '—'}</td></tr>\n                                    <tr><td>Linhas PCIe da CPU</td><td>${cpu.pcieLanes || '—'}</td></tr>\n                                    <tr><td>Configurações PCIe</td><td>${cpu.pcieConfig || '—'}</td></tr>"
+          if old not in s: raise RuntimeError('Linha PCIe não encontrada em detalhes.html')
+          p.write_text(s.replace(old,new), encoding='utf-8')
+
+          # Comparador: mostrar os mesmos campos lado a lado.
+          p = Path('comparar.html'); s = p.read_text(encoding='utf-8')
+          old = "['PCI Express','pcie'],['Vídeo integrado','video']"
+          new = "['Versão PCI Express','pcie'],['Linhas PCIe da CPU','pcieLanes'],['Configurações PCIe','pcieConfig'],['Vídeo integrado','video']"
+          if old not in s: raise RuntimeError('Lista PCIe não encontrada em comparar.html')
+          s = s.replace(old,new)
+          s = s.replace('núcleos, threads, clocks, TDP, soquete, plataforma e benchmarks Single-Core e Multi-Core.', 'núcleos, threads, clocks, TDP, soquete, linhas PCIe e resultados CPU-Z.')
+          p.write_text(s, encoding='utf-8')
+
+          # Gerador: CPUs novas já nascem com os campos, sem depender desta migração.
+          p = Path('gerar_dados.py'); s = p.read_text(encoding='utf-8')
+          anchor = '    nome_foto_automatica = f"{nome_cpu.replace(\' \\', \'_\')}.webp"'
+          # O anchor acima pode variar conforme escaping; inserir a partir da linha real conhecida.
+          real_anchor = '    nome_foto_automatica = f"{nome_cpu.replace(\' \' , \'_\')}.webp"'
+          # Preferir inserção antes de nome_foto_automatica usando regex para não depender de espaços internos.
+          helper_call = '''    # Linhas PCIe da CPU. Valores por plataforma; modelos não cobertos ficam sem chute.\n    pcie_lanes = "—"\n    pcie_config = "—"\n    if marca == "amd":\n        if gen_meta["soquete"] == "AM4":\n            if item["v"] != "Não possui" and g == "A2":\n                pcie_lanes = "20 total / 16 utilizáveis"\n                pcie_config = "x8 para GPU + x4 NVMe"\n            else:\n                pcie_lanes = "24 total / 20 utilizáveis"\n                pcie_config = "x16 ou 2x8 para GPU + x4 NVMe"\n    elif marca == "intel":\n        if g in {"I1","I2","I3","I4","I5","I6","I7","I8","I9","I10"}:\n            pcie_lanes = "16"\n            pcie_config = "1x16, 2x8 ou 1x8 + 2x4"\n        elif g == "I11":\n            pcie_lanes = "20"\n            pcie_config = "1x16 + x4, 2x8 + x4 ou x8 + 3x4"\n        elif g in {"I12","I13","I14"}:\n            pcie_lanes = "20"\n            pcie_config = "1x16 + x4 ou 2x8 + x4"\n\n'''
+          if 'pcie_lanes = "—"' not in s:
+              idx = s.find('    nome_foto_automatica = f"')
+              if idx < 0: raise RuntimeError('Ponto de inserção não encontrado em gerar_dados.py')
+              s = s[:idx] + helper_call + s[idx:]
+          field_anchor = '        "pcie": gen_meta["pcie"],'
+          if field_anchor not in s: raise RuntimeError('Campo pcie não encontrado em gerar_dados.py')
+          if '"pcieLanes": pcie_lanes' not in s:
+              s = s.replace(field_anchor, field_anchor + '\n        "pcieLanes": pcie_lanes,\n        "pcieConfig": pcie_config,')
+          p.write_text(s, encoding='utf-8')
+          PY
+
+          COUNT=$(cat .pcie_migration_count)
+          rm .pcie_migration_count
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dados.js detalhes.html comparar.html gerar_dados.py
+          if git diff --cached --quiet; then
+            echo "No changes"
+            exit 0
+          fi
+          git commit -m "Add PCIe lane data to ${COUNT} CPUs"
+          git push
