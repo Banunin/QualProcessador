@@ -111,6 +111,17 @@ function cpuCardPublica(cpu) {
   };
 }
 
+function datasetResumoFrontend() {
+  const dataset = carregarDatasetCpus();
+  return {
+    name: dataset.dataset || 'QualProcessador CPU Database',
+    dataset_version: dataset.dataset_version || null,
+    last_modified: dataset.last_modified || null,
+    count: dataset.processors.length,
+    canonical_url: dataset.canonical_url || BASE_URL + '/dados.json'
+  };
+}
+
 function catalog(req, res) {
   const cpus = carregarCpus();
   const id = String(req.query.id || '').trim();
@@ -156,9 +167,8 @@ function catalog(req, res) {
 
   const total = filtradas.length;
   const pagina = filtradas.slice(offset, offset + limit);
-  const itens = view === 'card' || view === 'frontend-card'
-    ? pagina.map(cpuCardPublica)
-    : pagina.map(cpuPublica);
+  const cardView = view === 'card' || view === 'frontend-card';
+  const itens = cardView ? pagina.map(cpuCardPublica) : pagina.map(cpuPublica);
 
   if (req.method === 'HEAD') {
     res.statusCode = 200;
@@ -170,7 +180,7 @@ function catalog(req, res) {
   return responderJson(res, 200, {
     source: 'QualProcessador',
     language: 'pt-BR',
-    dataset: datasetPublico(),
+    dataset: cardView ? datasetResumoFrontend() : datasetPublico(),
     view: view || 'full',
     filters: {
       id: id || null,
