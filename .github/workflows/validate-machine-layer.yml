@@ -11,6 +11,12 @@ on:
       - 'api/ai-site.js'
       - 'api/render-cpu.js'
       - 'api/render-comparison.js'
+      - 'home-catalog.js'
+      - 'search-enhancer.js'
+      - 'details-compare-loader.js'
+      - 'compare-page.js'
+      - 'index.html'
+      - 'comparar.html'
       - 'scripts/validate-machine-layer.js'
       - 'vercel.json'
       - '.github/workflows/validate-machine-layer.yml'
@@ -30,6 +36,10 @@ jobs:
           node --check api/ai-site.js
           node --check api/render-cpu.js
           node --check api/render-comparison.js
+          node --check home-catalog.js
+          node --check search-enhancer.js
+          node --check details-compare-loader.js
+          node --check compare-page.js
       - name: Validate entity identity, SSR, APIs and Vercel Hobby limit
         run: node scripts/validate-machine-layer.js
       - name: Validate JSON configuration
