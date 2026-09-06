@@ -68,11 +68,9 @@ vm.createContext(context);
 vm.runInContext(compatCode + '\nthis.__cpus = listaDeCpus; this.__meta = qpCpuDatasetMetadata;', context);
 assert.strictEqual(context.__cpus.length, dataset.processors.length, 'dados.js diverge na contagem');
 assert.strictEqual(context.__meta.dataset_version, dataset.dataset_version, 'dados.js diverge na versão');
-assert.deepStrictEqual(
-  context.__cpus.map(cpu => [String(cpu.id), cpu.entity_id, cpu.slug]),
-  dataset.processors.map(cpu => [String(cpu.id), cpu.entity_id, cpu.slug]),
-  'dados.js diverge da identidade do JSON'
-);
+const compatIdentity = JSON.stringify(context.__cpus.map(cpu => [String(cpu.id), cpu.entity_id, cpu.slug]));
+const jsonIdentity = JSON.stringify(dataset.processors.map(cpu => [String(cpu.id), cpu.entity_id, cpu.slug]));
+assert.strictEqual(compatIdentity, jsonIdentity, 'dados.js diverge da identidade do JSON');
 
 const ryzen = dataset.processors.find(cpu => /ryzen 5 5600$/i.test(cpu.nome));
 assert.ok(ryzen, 'CPU de referência Ryzen 5 5600 não encontrada');
