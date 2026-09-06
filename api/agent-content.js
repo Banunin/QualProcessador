@@ -1,0 +1,262 @@
+'use strict';
+
+const fs = require('fs');
+const path = require('path');
+const {
+  BASE_URL,
+  ROOT,
+  carregarCpus,
+  carregarArtigos,
+  resolverCpu,
+  urlCpu,
+  cpuPublica,
+  artigoPorCaminho,
+  artigoPublico,
+  htmlParaMarkdown,
+  responderMarkdown
+} = require('../lib/ai-utils');
+
+function valor(valor) {
+  if (valor === null || valor === undefined || valor === '') return 'N/A';
+  if (Array.isArray(valor)) return valor.join(', ');
+  if (typeof valor === 'object') return JSON.stringify(valor);
+  return String(valor);
+}
+
+function tituloCampo(chave) {
+  const especiais = {
+    notaJogos: 'CPU-Z Benchmark 17 Single Thread',
+    notaTrabalho: 'CPU-Z Benchmark 17 Multi Thread',
+    freqBase: 'Clock base',
+    freqBoost: 'Clock boost',
+    cacheL1: 'Cache L1',
+    cacheL2: 'Cache L2',
+    cacheL3: 'Cache L3',
+    pcieLanes: 'PCIe lanes',
+    pcieConfig: 'Configuração PCIe'
+  };
+  if (especiais[chave]) return especiais[chave];
+  return chave
+    .replace(/([a-z0-9])([A-Z])/g, '$1 $2')
+    .replace(/_/g, ' ')
+    .replace(/^./, c => c.toUpperCase());
+}
+
+function markdownCpu(cpu) {
+  const publico = cpuPublica(cpu);
+  const ignorar = new Set(['nome', 'notaJogos', 'notaTrabalho', 'canonical_url', 'benchmarks']);
+  const linhas = [
+    `# ${cpu.nome}`,
+    '',
+    `> Ficha técnica de processador no QualProcessador.`,
+    '',
+    `URL canônica: ${publico.canonical_url}`,
+    '',
+    '## Benchmarks CPU-Z',
+    '',
+    `- CPU-Z Benchmark 17 Single Thread: ${valor(cpu.notaJogos)}`,
+    `- CPU-Z Benchmark 17 Multi Thread: ${valor(cpu.notaTrabalho)}`,
+    '',
+    'Os pontos CPU-Z são benchmarks sintéticos. Valor ausente é representado como N/A.',
+    '',
+    '## Especificações cadastradas',
+    ''
+  ];
+  for (const [chave, dado] of Object.entries(cpu)) {
+    if (ignorar.has(chave)) continue;
+    linhas.push(`- **${tituloCampo(chave)}:** ${valor(dado)}`);
+  }
+  linhas.push('', '## Recursos relacionados', '');
+  linhas.push(`- [Comparar processadores](${BASE_URL}/comparar)`);
+  linhas.push(`- [Catálogo estruturado de CPUs](${BASE_URL}/api/ai-cpus?slug=${encodeURIComponent(require('../lib/ai-utils').slugCpu(cpu))})`);
+  linhas.push(`- [Mapa Markdown do site](${BASE_URL}/sitemap.md)`);
+  return linhas.join('\n');
+}
+
+function markdownArtigo(artigo) {
+  const item = artigoPublico(artigo, true);
+  const linhas = [
+    `# ${item.titulo}`,
+    '',
+    item.descricao ? `> ${item.descricao}` : '',
+    '',
+    `URL canônica: ${item.canonical_url}`,
+    `Autor: ${item.autor}`,
+    item.categoria ? `Categoria: ${item.categoria}` : '',
+    item.tempo_leitura ? `Tempo de leitura informado: ${item.tempo_leitura}` : '',
+    '',
+    item.conteudo_markdown,
+    '',
+    '---',
+    `Fonte: [QualProcessador](${BASE_URL}/)`
+  ];
+  return linhas.filter((linha, i, arr) => !(linha === '' && arr[i - 1] === '')).join('\n');
+}
+
+function markdownAnalises() {
+  const artigos = Object.values(carregarArtigos());
+  const linhas = [
+    '# Artigos e análises | QualProcessador',
+    '',
+    'Conteúdo editorial de hardware publicado pelo QualProcessador.',
+    '',
+    '## Artigos disponíveis',
+    ''
+  ];
+  for (const artigo of artigos) {
+    const item = artigoPublico(artigo, false);
+    linhas.push(`- [${item.titulo}](${item.canonical_url}) — ${item.descricao}`);
+  }
+  return linhas.join('\n');
+}
+
+function markdownComparacao(slugComparacao) {
+  const partes = String(slugComparacao || '').split('-vs-');
+  if (partes.length !== 2) return null;
+  const a = resolverCpu('', partes[0]);
+  const b = resolverCpu('', partes[1]);
+  if (!a || !b) return null;
+  const chaves = ['cores', 'threads', 'freqBase', 'freqBoost', 'tdp', 'soquete', 'litografia', 'cacheL3', 'notaJogos', 'notaTrabalho'];
+  const linhas = [
+    `# ${a.nome} vs ${b.nome}`,
+    '',
+    `Comparação entre dois processadores catalogados no QualProcessador.`,
+    '',
+    '| Dado | ' + a.nome + ' | ' + b.nome + ' |',
+    '|---|---:|---:|'
+  ];
+  for (const chave of chaves) linhas.push(`| ${tituloCampo(chave)} | ${valor(a[chave])} | ${valor(b[chave])} |`);
+  linhas.push('', '## Fichas individuais', '');
+  linhas.push(`- [${a.nome}](${BASE_URL}${urlCpu(a)})`);
+  linhas.push(`- [${b.nome}](${BASE_URL}${urlCpu(b)})`);
+  return linhas.join('\n');
+}
+
+function markdownHome() {
+  let cpus = [];
+  let artigos = [];
+  try { cpus = carregarCpus(); } catch (_) {}
+  try { artigos = Object.values(carregarArtigos()); } catch (_) {}
+  return [
+    '# QualProcessador',
+    '',
+    '> Plataforma brasileira de hardware focada em fichas técnicas de processadores AMD e Intel, benchmarks CPU-Z, comparações, artigos e ferramentas.',
+    '',
+    `URL canônica: ${BASE_URL}/`,
+    `Idioma principal: pt-BR`,
+    cpus.length ? `Processadores catalogados: ${cpus.length}` : '',
+    artigos.length ? `Artigos catalogados: ${artigos.length}` : '',
+    '',
+    '## Conteúdo principal',
+    '',
+    `- [Processadores e fichas técnicas](${BASE_URL}/#cpus)`,
+    `- [Comparador de processadores](${BASE_URL}/comparar)`,
+    `- [Artigos e análises](${BASE_URL}/analises)`,
+    `- [Fórum](${BASE_URL}/forum)`,
+    `- [Comunidade](${BASE_URL}/comunidade)`,
+    `- [Ferramentas](${BASE_URL}/ferramentas)`,
+    '',
+    '## Como interpretar os benchmarks',
+    '',
+    '- `notaJogos`: CPU-Z Benchmark 17 Single Thread.',
+    '- `notaTrabalho`: CPU-Z Benchmark 17 Multi Thread.',
+    '- Quando não existe benchmark cadastrado, o valor deve ser interpretado como N/A.',
+    '',
+    '## Recursos para agentes e sistemas automáticos',
+    '',
+    `- [llms.txt](${BASE_URL}/llms.txt)`,
+    `- [Sitemap Markdown](${BASE_URL}/sitemap.md)`,
+    `- [Sitemap XML](${BASE_URL}/sitemap.xml)`,
+    `- [Índice JSON](${BASE_URL}/ai-index.json)`,
+    `- [API pública de CPUs](${BASE_URL}/api/ai-cpus)`,
+    `- [API pública de artigos](${BASE_URL}/api/ai-articles)`,
+    `- [Manifesto do site](${BASE_URL}/api/ai-site)`
+  ].filter(Boolean).join('\n');
+}
+
+const STATIC_MAP = {
+  '/forum': 'forum.html',
+  '/comunidade': 'Comunidade.html',
+  '/ferramentas': 'ferramentas.html',
+  '/upscendra': 'upscendra.html',
+  '/winformatkit': 'winformatkit.html',
+  '/apoiar': 'apoiar.html',
+  '/comparar': 'comparar.html'
+};
+
+function markdownEstatico(caminho) {
+  const arquivo = STATIC_MAP[caminho.toLowerCase()];
+  if (!arquivo) return null;
+  const full = path.join(ROOT, arquivo);
+  if (!fs.existsSync(full)) return null;
+  const html = fs.readFileSync(full, 'utf8');
+  const conteudo = htmlParaMarkdown(html);
+  return `# ${arquivo.replace(/\.html$/i, '')}\n\nURL canônica: ${BASE_URL}${caminho}\n\n${conteudo}\n`;
+}
+
+function arquivoTextual(caminho) {
+  const permitidos = new Map([
+    ['/llms.txt', 'llms.txt'],
+    ['/sitemap.md', 'sitemap.md'],
+    ['/robots.txt', 'robots.txt'],
+    ['/sitemap.xml', 'sitemap.xml'],
+    ['/feed.xml', 'feed.xml'],
+    ['/ai-index.json', 'ai-index.json']
+  ]);
+  const arquivo = permitidos.get(caminho.toLowerCase());
+  if (!arquivo) return null;
+  const full = path.join(ROOT, arquivo);
+  if (!fs.existsSync(full)) return null;
+  return fs.readFileSync(full, 'utf8');
+}
+
+module.exports = function handler(req, res) {
+  if (!['GET', 'HEAD'].includes(req.method)) return responderMarkdown(res, 405, '# Método não permitido');
+
+  const bruto = Array.isArray(req.query.path) ? req.query.path.join('/') : String(req.query.path || '');
+  let caminho = '/' + bruto.replace(/^\/+/, '').split('?')[0];
+  caminho = caminho.replace(/\/{2,}/g, '/');
+  if (caminho.length > 1) caminho = caminho.replace(/\/+$/, '');
+
+  try {
+    let markdown = null;
+    if (caminho === '/' || caminho === '/index' || caminho === '/index.html') markdown = markdownHome();
+    else if (caminho === '/analises' || caminho === '/analises.html') markdown = markdownAnalises();
+    else if (/^\/cpu\/[^/]+\/[^/]+$/i.test(caminho)) {
+      const [, , marca, slug] = caminho.split('/');
+      const cpu = resolverCpu(marca, slug);
+      if (cpu) markdown = markdownCpu(cpu);
+    } else if (/^\/comparar\//i.test(caminho)) {
+      markdown = markdownComparacao(caminho.replace(/^\/comparar\//i, ''));
+    }
+
+    if (!markdown) {
+      const artigo = artigoPorCaminho(caminho);
+      if (artigo) markdown = markdownArtigo(artigo);
+    }
+    if (!markdown) markdown = arquivoTextual(caminho);
+    if (!markdown) markdown = markdownEstatico(caminho);
+
+    if (!markdown) {
+      markdown = `# Conteúdo não encontrado\n\nA representação Markdown para \`${caminho}\` não foi encontrada.\n\n- [Início](${BASE_URL}/)\n- [Mapa do site para agentes](${BASE_URL}/sitemap.md)\n`;
+      if (req.method === 'HEAD') {
+        res.statusCode = 404;
+        res.setHeader('Content-Type', 'text/markdown; charset=utf-8');
+        res.setHeader('Vary', 'Accept');
+        return res.end();
+      }
+      return responderMarkdown(res, 404, markdown);
+    }
+
+    if (req.method === 'HEAD') {
+      res.statusCode = 200;
+      res.setHeader('Content-Type', 'text/markdown; charset=utf-8');
+      res.setHeader('Content-Language', 'pt-BR');
+      res.setHeader('Vary', 'Accept');
+      return res.end();
+    }
+    return responderMarkdown(res, 200, markdown);
+  } catch (error) {
+    return responderMarkdown(res, 500, `# Erro ao gerar representação para agentes\n\n${error.message}`);
+  }
+};
