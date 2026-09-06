@@ -6,6 +6,7 @@ on:
       - 'dados.js'
       - 'dados.json'
       - 'migrar_dados_json.py'
+      - 'finalizar_descoberta_dados.py'
       - 'schemas/processadores.schema.json'
       - 'artigos.json'
       - 'gerar_sitemap_seo.py'
@@ -45,6 +46,10 @@ jobs:
         env:
           SEO_BASE_URL: https://qualprocessador.vercel.app
         run: python3 gerar_ai_discovery.py
+      - name: Advertise canonical dataset in discovery files
+        env:
+          SEO_BASE_URL: https://qualprocessador.vercel.app
+        run: python3 finalizar_descoberta_dados.py
       - name: Synchronize SSR article routes
         run: python3 sincronizar_rotas_artigos.py
       - name: Commit generated discovery files and routes when changed
