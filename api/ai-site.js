@@ -35,7 +35,8 @@ module.exports = function handler(req, res) {
         notaJogos: 'CPU-Z Benchmark 17 Single Thread',
         notaTrabalho: 'CPU-Z Benchmark 17 Multi Thread',
         missing_value: 'N/A'
-      }
+      },
+      image_semantics: 'Imagens relevantes usam texto alternativo, legendas e/ou descrições estruturadas. Gráficos e screenshots devem manter os dados importantes também em texto quando possível.'
     },
     sections: {
       home: BASE_URL + '/',
@@ -50,7 +51,8 @@ module.exports = function handler(req, res) {
     rendering: {
       processor_pages: 'Server-rendered HTML with client-side enhancement.',
       article_pages: 'Server-rendered full article HTML with client-side comments and account features.',
-      forum: 'Server-rendered public topic/list content with client-side interaction enhancements.'
+      forum: 'Server-rendered public topic/list content with client-side interaction enhancements.',
+      images: 'Publisher-supplied alt text, captions and ImageObject metadata are exposed without requiring computer vision.'
     },
     machine_readable: {
       llms: BASE_URL + '/llms.txt',
@@ -58,8 +60,12 @@ module.exports = function handler(req, res) {
       markdown_sitemap: BASE_URL + '/sitemap.md',
       rss: BASE_URL + '/feed.xml',
       ai_index: BASE_URL + '/ai-index.json',
+      image_index: BASE_URL + '/image-index.json',
+      cpu_dataset: BASE_URL + '/dados.json',
+      cpu_dataset_schema: BASE_URL + '/schemas/processadores.schema.json',
       cpu_api: BASE_URL + '/api/ai-cpus',
       article_api: BASE_URL + '/api/ai-articles',
+      image_api: BASE_URL + '/api/ai-images',
       site_api: BASE_URL + '/api/ai-site',
       content_negotiation: 'As páginas públicas aceitam Accept: text/markdown e retornam uma representação textual otimizada para agentes.'
     },

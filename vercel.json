@@ -34,13 +34,27 @@
     {"source":"/painel-postar","headers":[{"key":"X-Robots-Tag","value":"noindex, nofollow, noarchive"}]},
     {"source":"/painel-postar.html","headers":[{"key":"X-Robots-Tag","value":"noindex, nofollow, noarchive"}]},
     {
+      "source":"/dados.json",
+      "headers":[
+        {"key":"Access-Control-Allow-Origin","value":"*"},
+        {"key":"Cache-Control","value":"public, max-age=0, s-maxage=3600, stale-while-revalidate=86400"}
+      ]
+    },
+    {
+      "source":"/schemas/processadores.schema.json",
+      "headers":[
+        {"key":"Access-Control-Allow-Origin","value":"*"},
+        {"key":"Cache-Control","value":"public, max-age=0, s-maxage=86400, stale-while-revalidate=604800"}
+      ]
+    },
+    {
       "source": "/(.*)",
       "headers": [
         {"key":"X-Content-Type-Options","value":"nosniff"},
         {"key":"Referrer-Policy","value":"strict-origin-when-cross-origin"},
         {"key":"Content-Language","value":"pt-BR"},
         {"key":"Vary","value":"Accept"},
-        {"key":"Link","value":"<https://qualprocessador.vercel.app/llms.txt>; rel=\"alternate\"; type=\"text/plain\", <https://qualprocessador.vercel.app/sitemap.md>; rel=\"alternate\"; type=\"text/markdown\", <https://qualprocessador.vercel.app/ai-index.json>; rel=\"describedby\"; type=\"application/json\""}
+        {"key":"Link","value":"<https://qualprocessador.vercel.app/llms.txt>; rel=\"alternate\"; type=\"text/plain\", <https://qualprocessador.vercel.app/sitemap.md>; rel=\"alternate\"; type=\"text/markdown\", <https://qualprocessador.vercel.app/ai-index.json>; rel=\"describedby\"; type=\"application/json\", <https://qualprocessador.vercel.app/dados.json>; rel=\"alternate\"; type=\"application/json\", <https://qualprocessador.vercel.app/schemas/processadores.schema.json>; rel=\"describedby\"; type=\"application/schema+json\""}
       ]
     }
   ]

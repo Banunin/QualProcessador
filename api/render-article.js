@@ -3,6 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const { BASE_URL, carregarArtigos, artigoPorCaminho } = require('../lib/ai-utils');
+const { absoluteUrl, enrichArticleHtml, collectArticleImages, toImageObject } = require('../lib/image-semantics');
 
 const TEMPLATE_PATH = path.resolve(__dirname, '..', 'ler-artigo.html');
 let templateCache = null;
@@ -37,9 +38,22 @@ function findArticle(req) {
   return null;
 }
 
+function articleImageContext(article) {
+  return {
+    title: article.titulo,
+    kind: 'Imagem',
+    baseUrl: BASE_URL
+  };
+}
+
 function renderArticleMain(article) {
-  const cover = article.imagemCapa
-    ? `<img src="${attr(article.imagemCapa)}" class="cover-img" alt="${attr(article.titulo)}">`
+  const context = articleImageContext(article);
+  const body = enrichArticleHtml(article.texto || '', context);
+  const coverUrl = article.imagemCapa ? absoluteUrl(article.imagemCapa, BASE_URL) : '';
+  const coverAlt = article.imagemCapaAlt || `Imagem de capa do artigo ${article.titulo}`;
+  const coverCaption = article.imagemCapaLegenda || '';
+  const cover = coverUrl
+    ? `<figure class="article-cover" data-image-kind="cover"><img src="${attr(coverUrl)}" class="cover-img" alt="${attr(coverAlt)}" loading="eager" decoding="async" fetchpriority="high" data-qp-semantic-image="true">${coverCaption ? `<figcaption>${esc(coverCaption)}</figcaption>` : ''}</figure>`
     : '';
   return `<main id="conteudo-artigo-dinamico">
     <article itemscope itemtype="https://schema.org/TechArticle">
@@ -53,7 +67,7 @@ function renderArticleMain(article) {
       </header>
       <div class="article-container">
         ${cover}
-        <div class="article-body" itemprop="articleBody">${article.texto || ''}</div>
+        <div class="article-body" itemprop="articleBody">${body}</div>
       </div>
     </article>
   </main>`;
@@ -65,7 +79,21 @@ function renderPage(article) {
   const canonical = BASE_URL + cleanPath;
   const title = `${article.titulo} | QualProcessador`;
   const description = article.descricao || `Leia ${article.titulo} no QualProcessador.`;
-  const image = article.imagemCapa || '';
+  const coverUrl = article.imagemCapa ? absoluteUrl(article.imagemCapa, BASE_URL) : '';
+  const embedded = collectArticleImages(article.texto || '', articleImageContext(article));
+  const images = [];
+  if (coverUrl) {
+    images.push({
+      image_url: coverUrl,
+      alt: article.imagemCapaAlt || `Imagem de capa do artigo ${article.titulo}`,
+      caption: article.imagemCapaLegenda || '',
+      kind: 'cover'
+    });
+  }
+  embedded.forEach(image => {
+    if (!images.some(existing => existing.image_url === image.image_url)) images.push(image);
+  });
+
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'TechArticle',
@@ -78,7 +106,7 @@ function renderPage(article) {
     publisher: { '@type': 'Organization', name: 'QualProcessador', url: BASE_URL + '/' },
     isPartOf: { '@type': 'WebSite', name: 'QualProcessador', url: BASE_URL + '/' }
   };
-  if (image) jsonLd.image = image;
+  if (images.length) jsonLd.image = images.map(image => toImageObject(image, canonical));
   if (article.dataPublicacao) jsonLd.datePublished = article.dataPublicacao;
   if (article.dataModificacao) jsonLd.dateModified = article.dataModificacao;
 
@@ -92,7 +120,8 @@ function renderPage(article) {
     `<meta property="og:description" content="${attr(description)}">`,
     `<meta property="og:url" content="${attr(canonical)}">`,
     '<meta property="og:locale" content="pt_BR">',
-    image ? `<meta property="og:image" content="${attr(image)}">` : '',
+    coverUrl ? `<meta property="og:image" content="${attr(coverUrl)}">` : '',
+    coverUrl ? `<meta property="og:image:alt" content="${attr(article.imagemCapaAlt || `Imagem de capa do artigo ${article.titulo}`)}">` : '',
     '<meta name="twitter:card" content="summary_large_image">',
     `<script type="application/ld+json" id="qp-ssr-article-jsonld">${safeJson(jsonLd)}</script>`
   ].filter(Boolean).join('\n    ');
