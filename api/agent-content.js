@@ -51,6 +51,8 @@ function markdownCpu(cpu) {
     `> Ficha técnica de processador no QualProcessador.`,
     '',
     `URL canônica: ${publico.canonical_url}`,
+    cpu.foto ? `Imagem de referência: ${BASE_URL}/img/${cpu.foto}` : '',
+    cpu.foto ? `Descrição da imagem: Imagem de referência do processador ${cpu.nome}.` : '',
     '',
     '## Benchmarks CPU-Z',
     '',
@@ -69,8 +71,9 @@ function markdownCpu(cpu) {
   linhas.push('', '## Recursos relacionados', '');
   linhas.push(`- [Comparar processadores](${BASE_URL}/comparar)`);
   linhas.push(`- [Catálogo estruturado de CPUs](${BASE_URL}/api/ai-cpus?slug=${encodeURIComponent(require('../lib/ai-utils').slugCpu(cpu))})`);
+  linhas.push(`- [Catálogo semântico de imagens](${BASE_URL}/api/ai-images?entity=processor&q=${encodeURIComponent(cpu.nome)})`);
   linhas.push(`- [Mapa Markdown do site](${BASE_URL}/sitemap.md)`);
-  return linhas.join('\n');
+  return linhas.filter((linha, i, arr) => !(linha === '' && arr[i - 1] === '')).join('\n');
 }
 
 function markdownArtigo(artigo) {
@@ -84,8 +87,14 @@ function markdownArtigo(artigo) {
     `Autor: ${item.autor}`,
     item.categoria ? `Categoria: ${item.categoria}` : '',
     item.tempo_leitura ? `Tempo de leitura informado: ${item.tempo_leitura}` : '',
+    artigo.imagemCapa ? `Imagem de capa: ${/^https?:\/\//i.test(artigo.imagemCapa) ? artigo.imagemCapa : BASE_URL + '/' + String(artigo.imagemCapa).replace(/^\/+/, '')}` : '',
+    artigo.imagemCapaAlt ? `Descrição da capa: ${artigo.imagemCapaAlt}` : '',
     '',
     item.conteudo_markdown,
+    '',
+    '## Recursos de imagem',
+    '',
+    `- [Imagens associadas a este artigo](${BASE_URL}/api/ai-images?entity=article&q=${encodeURIComponent(item.titulo)})`,
     '',
     '---',
     `Fonte: [QualProcessador](${BASE_URL}/)`
@@ -140,7 +149,7 @@ function markdownHome() {
   return [
     '# QualProcessador',
     '',
-    '> Plataforma brasileira de hardware focada em fichas técnicas de processadores AMD e Intel, benchmarks CPU-Z, comparações, artigos e ferramentas.',
+    '> Portal brasileiro de hardware com banco de dados técnico, benchmarks, comparações, artigos, análises, ferramentas e fórum da comunidade.',
     '',
     `URL canônica: ${BASE_URL}/`,
     `Idioma principal: pt-BR`,
@@ -156,6 +165,13 @@ function markdownHome() {
     `- [Comunidade](${BASE_URL}/comunidade)`,
     `- [Ferramentas](${BASE_URL}/ferramentas)`,
     '',
+    '## Imagens e conteúdo visual',
+    '',
+    '- Imagens relevantes possuem descrições alternativas, legendas e/ou metadados estruturados.',
+    '- Gráficos e resultados visuais importantes devem também aparecer como texto ou tabela HTML quando possível.',
+    `- [Índice semântico de imagens](${BASE_URL}/image-index.json)`,
+    `- [API pública de imagens](${BASE_URL}/api/ai-images)`,
+    '',
     '## Como interpretar os benchmarks',
     '',
     '- `notaJogos`: CPU-Z Benchmark 17 Single Thread.',
@@ -168,8 +184,10 @@ function markdownHome() {
     `- [Sitemap Markdown](${BASE_URL}/sitemap.md)`,
     `- [Sitemap XML](${BASE_URL}/sitemap.xml)`,
     `- [Índice JSON](${BASE_URL}/ai-index.json)`,
+    `- [Índice de imagens](${BASE_URL}/image-index.json)`,
     `- [API pública de CPUs](${BASE_URL}/api/ai-cpus)`,
     `- [API pública de artigos](${BASE_URL}/api/ai-articles)`,
+    `- [API pública de imagens](${BASE_URL}/api/ai-images)`,
     `- [Manifesto do site](${BASE_URL}/api/ai-site)`
   ].filter(Boolean).join('\n');
 }
@@ -201,7 +219,8 @@ function arquivoTextual(caminho) {
     ['/robots.txt', 'robots.txt'],
     ['/sitemap.xml', 'sitemap.xml'],
     ['/feed.xml', 'feed.xml'],
-    ['/ai-index.json', 'ai-index.json']
+    ['/ai-index.json', 'ai-index.json'],
+    ['/image-index.json', 'image-index.json']
   ]);
   const arquivo = permitidos.get(caminho.toLowerCase());
   if (!arquivo) return null;
