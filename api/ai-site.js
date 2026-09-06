@@ -1,6 +1,6 @@
 'use strict';
 
-const { BASE_URL, carregarCpus, carregarArtigos, responderJson } = require('../lib/ai-utils');
+const { BASE_URL, carregarCpus, carregarArtigos, datasetPublico, responderJson } = require('../lib/ai-utils');
 
 module.exports = function handler(req, res) {
   if (req.method === 'OPTIONS') {
@@ -13,7 +13,8 @@ module.exports = function handler(req, res) {
 
   let cpuCount = null;
   let articleCount = null;
-  try { cpuCount = carregarCpus().length; } catch (_) {}
+  let dataset = null;
+  try { cpuCount = carregarCpus().length; dataset = datasetPublico(); } catch (_) {}
   try { articleCount = Object.keys(carregarArtigos()).length; } catch (_) {}
 
   const payload = {
@@ -21,6 +22,14 @@ module.exports = function handler(req, res) {
     canonical_url: BASE_URL + '/',
     language: 'pt-BR',
     description: 'Portal brasileiro de hardware com banco de dados técnico, benchmarks, comparações, artigos, análises, ferramentas e fórum da comunidade. A primeira grande base estruturada do projeto é o catálogo de processadores AMD e Intel.',
+    knowledge_layer: {
+      canonical_cpu_source: BASE_URL + '/dados.json',
+      frontend_compatibility: 'dados.js é um artefato gerado automaticamente a partir de dados.json para manter compatibilidade com o frontend legado. Não é a fonte primária.',
+      stable_identity: 'Cada CPU possui entity_id persistente, slug persistido e URL canônica.',
+      dataset,
+      provenance: dataset?.field_provenance || null,
+      relations: dataset?.relation_semantics || null
+    },
     content_types: {
       technical_database: 'Fichas técnicas e benchmarks de hardware; atualmente com forte cobertura de processadores.',
       editorial: 'Artigos, guias, reviews e análises publicados pelo QualProcessador.',
@@ -30,7 +39,7 @@ module.exports = function handler(req, res) {
     content: {
       processors: cpuCount,
       articles: articleCount,
-      processor_fields: 'Fichas técnicas, especificações, plataforma, clocks, núcleos, threads, cache, TDP e outros dados cadastrados.',
+      processor_fields: 'Fichas técnicas, identidade persistente, relações, plataforma, clocks, núcleos, threads, cache, TDP e outros dados cadastrados.',
       benchmark_semantics: {
         notaJogos: 'CPU-Z Benchmark 17 Single Thread',
         notaTrabalho: 'CPU-Z Benchmark 17 Multi Thread',
@@ -49,7 +58,7 @@ module.exports = function handler(req, res) {
       support: BASE_URL + '/apoiar'
     },
     rendering: {
-      processor_pages: 'Server-rendered HTML with client-side enhancement.',
+      processor_pages: 'Server-rendered HTML with rich JSON-LD and client-side enhancement.',
       article_pages: 'Server-rendered full article HTML with client-side comments and account features.',
       forum: 'Server-rendered public topic/list content with client-side interaction enhancements.',
       images: 'Publisher-supplied alt text, captions and ImageObject metadata are exposed without requiring computer vision.'
@@ -63,7 +72,10 @@ module.exports = function handler(req, res) {
       image_index: BASE_URL + '/image-index.json',
       cpu_dataset: BASE_URL + '/dados.json',
       cpu_dataset_schema: BASE_URL + '/schemas/processadores.schema.json',
-      cpu_api: BASE_URL + '/api/ai-cpus',
+      cpu_catalog_api: BASE_URL + '/api/ai-cpus',
+      cpu_individual_api_template: BASE_URL + '/api/cpu/{slug}',
+      search_api_template: BASE_URL + '/api/search?q={query}',
+      comparison_api_template: BASE_URL + '/api/comparison/{slug-a}-vs-{slug-b}',
       article_api: BASE_URL + '/api/ai-articles',
       image_api: BASE_URL + '/api/ai-images',
       site_api: BASE_URL + '/api/ai-site',
