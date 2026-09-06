@@ -3,15 +3,24 @@
 const fs = require('fs');
 const path = require('path');
 const { BASE_URL } = require('../lib/ai-utils');
+const { replacePrimaryNav } = require('../lib/site-nav');
 
 const TEMPLATE_PATH = path.resolve(__dirname, '..', 'forum.html');
 const SUPABASE_URL = 'https://sterozqxsblanvjyzjmi.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN0ZXJvenF4c2JsYW52anl6am1pIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODM3OTc3OTAsImV4cCI6MjA5OTM3Mzc5MH0.IBx9tIoVF-RepV_IKjgRFwuQVE0CbEMRo9fLUN066WM';
 let templateCache = null;
+let supabaseKeyCache = null;
 
 function template() {
   if (!templateCache) templateCache = fs.readFileSync(TEMPLATE_PATH, 'utf8');
   return templateCache;
+}
+
+function supabaseKey() {
+  if (supabaseKeyCache) return supabaseKeyCache;
+  const match = template().match(/const\s+SUPABASE_KEY\s*=\s*["']([^"']+)["']/);
+  if (!match) throw new Error('Supabase public key not found in forum template');
+  supabaseKeyCache = match[1];
+  return supabaseKeyCache;
 }
 
 function esc(value) {
@@ -30,8 +39,9 @@ function slugify(text) {
 }
 
 async function supabase(pathname) {
+  const key = supabaseKey();
   const response = await fetch(`${SUPABASE_URL}/rest/v1/${pathname}`, {
-    headers: { apikey: SUPABASE_KEY, Authorization: `Bearer ${SUPABASE_KEY}`, Accept: 'application/json' }
+    headers: { apikey: key, Authorization: `Bearer ${key}`, Accept: 'application/json' }
   });
   if (!response.ok) throw new Error(`Supabase ${response.status}`);
   return response.json();
@@ -84,6 +94,13 @@ function injectHead(html, title, description, canonical, jsonLd) {
   return html.replace('</head>', `    ${block}\n</head>`);
 }
 
+function injectCanonicalNav(html) {
+  return replacePrimaryNav(html, 'forum', {
+    linksBox: true,
+    userSlot: '<div id="navbar-user-box" class="nav-user-status"></div>'
+  });
+}
+
 async function renderPage(req) {
   let html = template();
   const idRaw = Array.isArray(req.query.id) ? req.query.id[0] : req.query.id;
@@ -92,9 +109,7 @@ async function renderPage(req) {
 
   if (action || !Number.isFinite(id)) {
     let topics = [];
-    try {
-      topics = await supabase('topicos?select=id,titulo,autor,data,respostas&order=id.desc&limit=50');
-    } catch (_) {}
+    try { topics = await supabase('topicos?select=id,titulo,autor,data,respostas&order=id.desc&limit=50'); } catch (_) {}
     const title = 'Fórum de Hardware | QualProcessador';
     const description = 'Fórum público do QualProcessador com discussões da comunidade sobre hardware, computadores, processadores, dúvidas e experiências de usuários.';
     const canonical = BASE_URL + '/forum';
@@ -105,7 +120,7 @@ async function renderPage(req) {
     };
     html = injectHead(html, title, description, canonical, jsonLd);
     html = html.replace('<div class="main-forum-area" id="render-target"></div>', `<div class="main-forum-area" id="render-target">${renderList(topics)}</div>`);
-    return html;
+    return injectCanonicalNav(html);
   }
 
   let topic = null;
@@ -120,7 +135,7 @@ async function renderPage(req) {
     const canonical = `${BASE_URL}/forum?id=${id}`;
     html = injectHead(html, title, description, canonical, { '@context': 'https://schema.org', '@type': 'WebPage', name: title, url: canonical });
     html = html.replace('<div class="main-forum-area" id="render-target"></div>', '<div class="main-forum-area" id="render-target"><section class="forum-action-header"><h1>Tópico não encontrado</h1><p>Esta discussão não está disponível.</p></section></div>');
-    return html;
+    return injectCanonicalNav(html);
   }
 
   const canonical = topicUrl(topic);
@@ -136,7 +151,7 @@ async function renderPage(req) {
   };
   html = injectHead(html, title, description, canonical, jsonLd);
   html = html.replace('<div class="main-forum-area" id="render-target"></div>', `<div class="main-forum-area" id="render-target">${renderTopic(topic)}</div>`);
-  return html;
+  return injectCanonicalNav(html);
 }
 
 module.exports = async function handler(req, res) {
