@@ -20,7 +20,13 @@ module.exports = function handler(req, res) {
     name: 'QualProcessador',
     canonical_url: BASE_URL + '/',
     language: 'pt-BR',
-    description: 'Plataforma brasileira de hardware focada em fichas técnicas de processadores AMD e Intel, benchmarks CPU-Z, comparações, artigos e ferramentas.',
+    description: 'Portal brasileiro de hardware com banco de dados técnico, benchmarks, comparações, artigos, análises, ferramentas e fórum da comunidade. A primeira grande base estruturada do projeto é o catálogo de processadores AMD e Intel.',
+    content_types: {
+      technical_database: 'Fichas técnicas e benchmarks de hardware; atualmente com forte cobertura de processadores.',
+      editorial: 'Artigos, guias, reviews e análises publicados pelo QualProcessador.',
+      community: 'Tópicos e respostas publicados por usuários no fórum; esse conteúdo não representa necessariamente a posição editorial do site.',
+      tools: 'Comparadores e ferramentas oferecidos pelo projeto.'
+    },
     content: {
       processors: cpuCount,
       articles: articleCount,
@@ -40,6 +46,11 @@ module.exports = function handler(req, res) {
       community: BASE_URL + '/comunidade',
       tools: BASE_URL + '/ferramentas',
       support: BASE_URL + '/apoiar'
+    },
+    rendering: {
+      processor_pages: 'Server-rendered HTML with client-side enhancement.',
+      article_pages: 'Server-rendered full article HTML with client-side comments and account features.',
+      forum: 'Server-rendered public topic/list content with client-side interaction enhancements.'
     },
     machine_readable: {
       llms: BASE_URL + '/llms.txt',

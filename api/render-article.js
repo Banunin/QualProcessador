@@ -1,0 +1,124 @@
+'use strict';
+
+const fs = require('fs');
+const path = require('path');
+const { BASE_URL, carregarArtigos, artigoPorCaminho } = require('../lib/ai-utils');
+
+const TEMPLATE_PATH = path.resolve(__dirname, '..', 'ler-artigo.html');
+let templateCache = null;
+
+function template() {
+  if (!templateCache) templateCache = fs.readFileSync(TEMPLATE_PATH, 'utf8');
+  return templateCache;
+}
+
+function esc(value) {
+  return String(value ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+function attr(value) { return esc(value); }
+function safeJson(obj) { return JSON.stringify(obj).replace(/</g, '\\u003c'); }
+
+function findArticle(req) {
+  const artigos = carregarArtigos();
+  const id = Array.isArray(req.query.id) ? req.query.id[0] : req.query.id;
+  if (id && artigos[String(id)]) return artigos[String(id)];
+
+  const rawPath = Array.isArray(req.query.path) ? req.query.path[0] : req.query.path;
+  if (rawPath) {
+    const byPath = artigoPorCaminho(rawPath);
+    if (byPath) return byPath;
+  }
+  return null;
+}
+
+function renderArticleMain(article) {
+  const cover = article.imagemCapa
+    ? `<img src="${attr(article.imagemCapa)}" class="cover-img" alt="${attr(article.titulo)}">`
+    : '';
+  return `<main id="conteudo-artigo-dinamico">
+    <article itemscope itemtype="https://schema.org/TechArticle">
+      <header class="article-header">
+        <span class="meta-category">${esc(article.categoria || 'Hardware')}</span>
+        <h1 class="article-title" itemprop="headline">${esc(article.titulo)}</h1>
+        <div class="article-meta-info">
+          <div class="author-avatar" aria-hidden="true">QP</div>
+          <div>Por <strong itemprop="author">${esc(article.autor || 'QualProcessador')}</strong>${article.tempoLeitura ? ` • Leitura: ${esc(article.tempoLeitura)}` : ''} • <a href="#secao-comentarios" class="link-comentarios-topo"><span id="topo-contador-comentarios">0</span> comentários</a></div>
+        </div>
+      </header>
+      <div class="article-container">
+        ${cover}
+        <div class="article-body" itemprop="articleBody">${article.texto || ''}</div>
+      </div>
+    </article>
+  </main>`;
+}
+
+function renderPage(article) {
+  let html = template();
+  const cleanPath = article.urlLimpa || `/artigo/${article.id}`;
+  const canonical = BASE_URL + cleanPath;
+  const title = `${article.titulo} | QualProcessador`;
+  const description = article.descricao || `Leia ${article.titulo} no QualProcessador.`;
+  const image = article.imagemCapa || '';
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    headline: article.titulo,
+    description,
+    mainEntityOfPage: canonical,
+    url: canonical,
+    inLanguage: 'pt-BR',
+    author: { '@type': 'Organization', name: article.autor || 'QualProcessador' },
+    publisher: { '@type': 'Organization', name: 'QualProcessador', url: BASE_URL + '/' },
+    isPartOf: { '@type': 'WebSite', name: 'QualProcessador', url: BASE_URL + '/' }
+  };
+  if (image) jsonLd.image = image;
+  if (article.dataPublicacao) jsonLd.datePublished = article.dataPublicacao;
+  if (article.dataModificacao) jsonLd.dateModified = article.dataModificacao;
+
+  html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${esc(title)}</title>`);
+  html = html.replace(/<meta\s+name="description"\s+content="[^"]*"\s*\/?\s*>/i, `<meta name="description" content="${attr(description)}">`);
+  html = html.replace(/<meta\s+name="robots"\s+content="[^"]*"\s*\/?\s*>/i, '<meta name="robots" content="index,follow,max-image-preview:large">');
+  const extraHead = [
+    `<link rel="canonical" href="${attr(canonical)}">`,
+    '<meta property="og:type" content="article">',
+    `<meta property="og:title" content="${attr(title)}">`,
+    `<meta property="og:description" content="${attr(description)}">`,
+    `<meta property="og:url" content="${attr(canonical)}">`,
+    '<meta property="og:locale" content="pt_BR">',
+    image ? `<meta property="og:image" content="${attr(image)}">` : '',
+    '<meta name="twitter:card" content="summary_large_image">',
+    `<script type="application/ld+json" id="qp-ssr-article-jsonld">${safeJson(jsonLd)}</script>`
+  ].filter(Boolean).join('\n    ');
+  html = html.replace('</head>', `    ${extraHead}\n</head>`);
+  html = html.replace(/<main id="conteudo-artigo-dinamico">[\s\S]*?<\/main>/i, renderArticleMain(article));
+  return html;
+}
+
+module.exports = function handler(req, res) {
+  if (!['GET', 'HEAD'].includes(req.method)) {
+    res.statusCode = 405;
+    res.setHeader('Allow', 'GET, HEAD');
+    return res.end('Method Not Allowed');
+  }
+  let article = null;
+  try { article = findArticle(req); } catch (_) {}
+  if (!article) {
+    res.statusCode = 404;
+    res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    return res.end('<!doctype html><html lang="pt-BR"><meta charset="utf-8"><title>Artigo não encontrado | QualProcessador</title><body><main><h1>Artigo não encontrado</h1><p>O conteúdo solicitado não foi localizado.</p></main></body></html>');
+  }
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'text/html; charset=utf-8');
+  res.setHeader('Content-Language', 'pt-BR');
+  res.setHeader('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400');
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  if (req.method === 'HEAD') return res.end();
+  return res.end(renderPage(article));
+};
