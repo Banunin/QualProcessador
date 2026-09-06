@@ -39,7 +39,10 @@
     "rss": "https://qualprocessador.vercel.app/feed.xml",
     "content_negotiation": "Accept: text/markdown",
     "cpu_dataset": "https://qualprocessador.vercel.app/dados.json",
-    "cpu_dataset_schema": "https://qualprocessador.vercel.app/schemas/processadores.schema.json"
+    "cpu_dataset_schema": "https://qualprocessador.vercel.app/schemas/processadores.schema.json",
+    "cpu_individual_api": "https://qualprocessador.vercel.app/api/cpu/{slug}",
+    "search_api": "https://qualprocessador.vercel.app/api/search?q={query}",
+    "comparison_api": "https://qualprocessador.vercel.app/api/comparison/{slug-a}-vs-{slug-b}"
   },
   "apis": {
     "site": "https://qualprocessador.vercel.app/api/ai-site",
@@ -75,12 +78,87 @@
     "url": "https://qualprocessador.vercel.app/dados.json",
     "schema": "https://qualprocessador.vercel.app/schemas/processadores.schema.json",
     "format": "application/json",
+    "canonical_source": true,
+    "legacy_adapter": "https://qualprocessador.vercel.app/dados.js",
     "structure": "self-describing object with processors array",
+    "schema_version": "2.0",
+    "dataset_version": "sha256-2a29447906f9555f",
+    "content_sha256": "2a29447906f9555f31ff7c406a7a2bcaf5e602acdd225c9921bf8ce69ccd0ecd",
+    "last_modified": "2026-09-06T02:13:11Z",
+    "count": 223,
+    "field_provenance": {
+      "technical_specifications": {
+        "kind": "structured technical database fields",
+        "fields": [
+          "cores",
+          "threads",
+          "tdp",
+          "freqBase",
+          "freqBoost",
+          "soquete",
+          "arquitetura",
+          "codinome",
+          "litografia",
+          "cacheL1",
+          "cacheL2",
+          "cacheL3",
+          "memoria",
+          "pcie",
+          "video"
+        ]
+      },
+      "benchmarks": {
+        "kind": "benchmark values published in the QualProcessador database",
+        "fields": [
+          "notaJogos",
+          "notaTrabalho"
+        ],
+        "method": "CPU-Z Benchmark 17",
+        "note": "Não presumir que um valor foi medido diretamente pelo QualProcessador quando o registro não informa uma origem específica."
+      },
+      "editorial": {
+        "kind": "QualProcessador editorial/context fields",
+        "fields": [
+          "analise",
+          "detalhe",
+          "selo"
+        ]
+      },
+      "media": {
+        "kind": "reference images associated with the processor record",
+        "fields": [
+          "foto",
+          "fotos"
+        ]
+      }
+    },
+    "identity_semantics": {
+      "entity_id": "Identificador persistente interno. Não depende do nome ou do slug.",
+      "slug": "Identificador legível e persistido para URL. Depois de criado, não deve ser alterado apenas porque o título mudou.",
+      "canonical_url": "URL pública canônica da ficha no QualProcessador."
+    },
+    "relation_semantics": {
+      "brand": "Fabricante/marca associado ao processador.",
+      "socket": "Plataforma física de soquete registrada.",
+      "family": "Família/linha do modelo registrada ou derivada do nome quando ausente.",
+      "generation": "Geração registrada na base quando disponível.",
+      "architecture": "Arquitetura ou codinome registrado quando disponível.",
+      "related_entity_ids": "Até oito processadores relacionados por família, plataforma, geração, arquitetura ou marca; a relação serve para descoberta e não implica equivalência de desempenho."
+    },
     "benchmark_semantics": {
       "notaJogos": "CPU-Z Benchmark 17 Single Thread",
       "notaTrabalho": "CPU-Z Benchmark 17 Multi Thread",
       "missing_value": "N/A"
     },
-    "note": "Prefer this JSON resource or /api/ai-cpus for deterministic machine parsing instead of parsing the legacy JavaScript compatibility file."
+    "note": "Use dados.json ou as APIs para parsing determinístico. dados.js é gerado a partir do JSON apenas para compatibilidade do frontend."
+  },
+  "machine_apis": {
+    "cpu_catalog": "https://qualprocessador.vercel.app/api/ai-cpus",
+    "cpu_individual_template": "https://qualprocessador.vercel.app/api/cpu/{slug}",
+    "search_template": "https://qualprocessador.vercel.app/api/search?q={query}",
+    "comparison_template": "https://qualprocessador.vercel.app/api/comparison/{slug-a}-vs-{slug-b}",
+    "articles": "https://qualprocessador.vercel.app/api/ai-articles",
+    "images": "https://qualprocessador.vercel.app/api/ai-images",
+    "site": "https://qualprocessador.vercel.app/api/ai-site"
   }
 }

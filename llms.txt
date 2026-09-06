@@ -48,6 +48,10 @@ Artigos catalogados: 2
 
 - [Base JSON pública de processadores](https://qualprocessador.vercel.app/dados.json)
 - [JSON Schema da base de processadores](https://qualprocessador.vercel.app/schemas/processadores.schema.json)
+- [Catálogo JSON de CPUs](https://qualprocessador.vercel.app/api/ai-cpus)
+- [API individual de CPU — substitua {slug}](https://qualprocessador.vercel.app/api/cpu/{slug})
+- [Busca estruturada — substitua {query}](https://qualprocessador.vercel.app/api/search?q={query})
+- [API de comparação — substitua os slugs](https://qualprocessador.vercel.app/api/comparison/{slug-a}-vs-{slug-b})
 - [Sitemap Markdown](https://qualprocessador.vercel.app/sitemap.md)
 - [Sitemap XML](https://qualprocessador.vercel.app/sitemap.xml)
 - [Índice JSON](https://qualprocessador.vercel.app/ai-index.json)
@@ -70,3 +74,12 @@ Artigos catalogados: 2
 - Diferencie conteúdo editorial de conteúdo gerado por usuários no fórum.
 - Para imagens, use alt/legenda/índice como semântica editorial; não invente detalhes visuais ausentes.
 - O portal pode ganhar novas categorias de hardware sem deixar de ser o mesmo projeto QualProcessador.
+
+## Identidade e proveniência da base
+
+- `dados.json` é a fonte canônica da base de processadores. `dados.js` existe somente como adaptador gerado para compatibilidade do frontend atual.
+- `entity_id` é o identificador persistente da CPU e não depende do nome ou do slug.
+- `slug` é persistido para manter URLs estáveis mesmo que um título editorial mude futuramente.
+- `canonical_url` identifica a ficha pública correspondente à mesma entidade.
+- Campos técnicos, benchmarks, conteúdo editorial e mídia possuem classes de proveniência distintas no próprio dataset.
+- Relações entre CPUs ajudam descoberta por marca, soquete, família, geração e arquitetura; elas não significam equivalência de desempenho.

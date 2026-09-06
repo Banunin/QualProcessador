@@ -251,6 +251,10 @@
 
 - [Base JSON pública de processadores](https://qualprocessador.vercel.app/dados.json)
 - [JSON Schema da base de processadores](https://qualprocessador.vercel.app/schemas/processadores.schema.json)
+- [API de catálogo de CPUs](https://qualprocessador.vercel.app/api/ai-cpus)
+- [Busca estruturada](https://qualprocessador.vercel.app/api/search?q=ryzen+5+5600)
+- [Exemplo de API individual de CPU](https://qualprocessador.vercel.app/api/cpu/amd-ryzen-5-5600)
+- [Exemplo de API de comparação](https://qualprocessador.vercel.app/api/comparison/amd-ryzen-5-5600-vs-intel-core-i5-12400f)
 - [API de CPUs](https://qualprocessador.vercel.app/api/ai-cpus)
 - [API de artigos](https://qualprocessador.vercel.app/api/ai-articles)
 - [API de imagens](https://qualprocessador.vercel.app/api/ai-images)

@@ -3,63 +3,187 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    {"source":"/Ferramentas","destination":"/ferramentas","permanent":true},
-    {"source":"/Upscendra","destination":"/upscendra","permanent":true},
-    {"source":"/WinFormatKit","destination":"/winformatkit","permanent":true}
+    {
+      "source": "/Ferramentas",
+      "destination": "/ferramentas",
+      "permanent": true
+    },
+    {
+      "source": "/Upscendra",
+      "destination": "/upscendra",
+      "permanent": true
+    },
+    {
+      "source": "/WinFormatKit",
+      "destination": "/winformatkit",
+      "permanent": true
+    }
   ],
   "rewrites": [
-    {"source":"/dados.js","destination":"/api/ai-cpus?mode=legacy-js"},
-    {"source":"/api/cpu/:cpu","destination":"/api/ai-cpus?mode=single&cpu=:cpu"},
-    {"source":"/api/search","destination":"/api/ai-site?mode=search"},
-    {"source":"/api/comparison/:comparison*","destination":"/api/render-comparison?format=json&comparacao=:comparison*"},
     {
-      "source":"/:path*",
-      "has":[{"type":"header","key":"accept","value":"(.*)text/markdown(.*)"}],
-      "destination":"/api/agent-content?path=:path*"
+      "source": "/dados.js",
+      "destination": "/api/ai-cpus?mode=legacy-js"
     },
-    {"source":"/cpu/:marca/:cpu","destination":"/api/render-cpu?marca=:marca&cpu=:cpu"},
-    {"source":"/comparar/:comparacao*","destination":"/api/render-comparison?comparacao=:comparacao*"},
-    {"source":"/forum","destination":"/api/render-forum"},
-    {"source":"/forum.html","destination":"/api/render-forum"},
-    {"source":"/Comunidade","destination":"/Comunidade.html"},
-    {"source":"/comunidade","destination":"/Comunidade.html"},
-    {"source":"/upscendra","destination":"/upscendra.html"},
-    {"source":"/winformatkit","destination":"/winformatkit.html"},
-    {"source":"/ferramentas","destination":"/ferramentas.html"},
-    {"source":"/apoiar","destination":"/apoiar.html"},
-    {"source":"/Apoiar","destination":"/apoiar.html"},
-    {"source":"/artigo/:id","destination":"/api/render-article?id=:id"},
-    {"source":"/ler-artigo","destination":"/api/render-article"},
-    {"source":"/ler-artigo.html","destination":"/api/render-article"},
-    {"source":"/elg/2026/08/review-powerbank-elg-PB200BK-20.000mAh","destination":"/api/render-article?id=102"},
-    {"source":"/amd/o-que-e-uma-APU","destination":"/api/render-article?id=101"}
+    {
+      "source": "/api/cpu/:cpu",
+      "destination": "/api/ai-cpus?mode=single&cpu=:cpu"
+    },
+    {
+      "source": "/api/search",
+      "destination": "/api/ai-site?mode=search"
+    },
+    {
+      "source": "/api/comparison/:comparison*",
+      "destination": "/api/render-comparison?format=json&comparacao=:comparison*"
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept",
+          "value": "(.*)text/markdown(.*)"
+        }
+      ],
+      "destination": "/api/agent-content?path=:path*"
+    },
+    {
+      "source": "/cpu/:marca/:cpu",
+      "destination": "/api/render-cpu?marca=:marca&cpu=:cpu"
+    },
+    {
+      "source": "/comparar/:comparacao*",
+      "destination": "/api/render-comparison?comparacao=:comparacao*"
+    },
+    {
+      "source": "/forum",
+      "destination": "/api/render-forum"
+    },
+    {
+      "source": "/forum.html",
+      "destination": "/api/render-forum"
+    },
+    {
+      "source": "/Comunidade",
+      "destination": "/Comunidade.html"
+    },
+    {
+      "source": "/comunidade",
+      "destination": "/Comunidade.html"
+    },
+    {
+      "source": "/upscendra",
+      "destination": "/upscendra.html"
+    },
+    {
+      "source": "/winformatkit",
+      "destination": "/winformatkit.html"
+    },
+    {
+      "source": "/ferramentas",
+      "destination": "/ferramentas.html"
+    },
+    {
+      "source": "/apoiar",
+      "destination": "/apoiar.html"
+    },
+    {
+      "source": "/Apoiar",
+      "destination": "/apoiar.html"
+    },
+    {
+      "source": "/artigo/:id",
+      "destination": "/api/render-article?id=:id"
+    },
+    {
+      "source": "/ler-artigo",
+      "destination": "/api/render-article"
+    },
+    {
+      "source": "/ler-artigo.html",
+      "destination": "/api/render-article"
+    },
+    {
+      "source": "/elg/2026/08/review-powerbank-elg-PB200BK-20.000mAh",
+      "destination": "/api/render-article?id=102"
+    },
+    {
+      "source": "/amd/o-que-e-uma-APU",
+      "destination": "/api/render-article?id=101"
+    }
   ],
   "headers": [
-    {"source":"/painel-postar","headers":[{"key":"X-Robots-Tag","value":"noindex, nofollow, noarchive"}]},
-    {"source":"/painel-postar.html","headers":[{"key":"X-Robots-Tag","value":"noindex, nofollow, noarchive"}]},
     {
-      "source":"/dados.json",
-      "headers":[
-        {"key":"Access-Control-Allow-Origin","value":"*"},
-        {"key":"Cache-Control","value":"public, max-age=0, s-maxage=3600, stale-while-revalidate=86400"},
-        {"key":"Link","value":"<https://qualprocessador.vercel.app/schemas/processadores.schema.json>; rel=\"describedby\"; type=\"application/schema+json\", <https://qualprocessador.vercel.app/api/ai-cpus>; rel=\"alternate\"; type=\"application/json\""}
+      "source": "/painel-postar",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        }
       ]
     },
     {
-      "source":"/schemas/processadores.schema.json",
-      "headers":[
-        {"key":"Access-Control-Allow-Origin","value":"*"},
-        {"key":"Cache-Control","value":"public, max-age=0, s-maxage=86400, stale-while-revalidate=604800"}
+      "source": "/painel-postar.html",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive"
+        }
       ]
     },
     {
-      "source":"/(.*)",
-      "headers":[
-        {"key":"X-Content-Type-Options","value":"nosniff"},
-        {"key":"Referrer-Policy","value":"strict-origin-when-cross-origin"},
-        {"key":"Content-Language","value":"pt-BR"},
-        {"key":"Vary","value":"Accept"},
-        {"key":"Link","value":"<https://qualprocessador.vercel.app/llms.txt>; rel=\"alternate\"; type=\"text/plain\", <https://qualprocessador.vercel.app/sitemap.md>; rel=\"alternate\"; type=\"text/markdown\", <https://qualprocessador.vercel.app/ai-index.json>; rel=\"describedby\"; type=\"application/json\", <https://qualprocessador.vercel.app/dados.json>; rel=\"alternate\"; type=\"application/json\", <https://qualprocessador.vercel.app/schemas/processadores.schema.json>; rel=\"describedby\"; type=\"application/schema+json\", <https://qualprocessador.vercel.app/api/search>; rel=\"search\"; type=\"application/json\""}
+      "source": "/dados.json",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, s-maxage=3600, stale-while-revalidate=86400"
+        },
+        {
+          "key": "Link",
+          "value": "<https://qualprocessador.vercel.app/schemas/processadores.schema.json>; rel=\"describedby\"; type=\"application/schema+json\", <https://qualprocessador.vercel.app/api/ai-cpus>; rel=\"alternate\"; type=\"application/json\""
+        }
+      ]
+    },
+    {
+      "source": "/schemas/processadores.schema.json",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=0, s-maxage=86400, stale-while-revalidate=604800"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Content-Language",
+          "value": "pt-BR"
+        },
+        {
+          "key": "Vary",
+          "value": "Accept"
+        },
+        {
+          "key": "Link",
+          "value": "<https://qualprocessador.vercel.app/llms.txt>; rel=\"alternate\"; type=\"text/plain\", <https://qualprocessador.vercel.app/sitemap.md>; rel=\"alternate\"; type=\"text/markdown\", <https://qualprocessador.vercel.app/ai-index.json>; rel=\"describedby\"; type=\"application/json\", <https://qualprocessador.vercel.app/dados.json>; rel=\"alternate\"; type=\"application/json\", <https://qualprocessador.vercel.app/schemas/processadores.schema.json>; rel=\"describedby\"; type=\"application/schema+json\", <https://qualprocessador.vercel.app/api/search>; rel=\"search\"; type=\"application/json\""
+        }
       ]
     }
   ]
