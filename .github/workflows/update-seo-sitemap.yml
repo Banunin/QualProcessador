@@ -13,12 +13,11 @@ on:
       - 'sincronizar_rotas_artigos.py'
       - 'lib/ai-utils.js'
       - 'lib/image-semantics.js'
+      - 'api/agent-content.js'
       - 'api/ai-cpus.js'
-      - 'api/cpu.js'
-      - 'api/search.js'
-      - 'api/comparison.js'
-      - 'api/dados-compat.js'
+      - 'api/ai-site.js'
       - 'api/render-cpu.js'
+      - 'api/render-comparison.js'
       - 'api/ai-images.js'
       - 'scripts/validate-machine-layer.js'
       - 'vercel.json'
@@ -36,12 +35,11 @@ jobs:
       - name: Validate machine-readable knowledge layer
         run: |
           node --check lib/ai-utils.js
+          node --check api/agent-content.js
           node --check api/ai-cpus.js
-          node --check api/cpu.js
-          node --check api/search.js
-          node --check api/comparison.js
-          node --check api/dados-compat.js
+          node --check api/ai-site.js
           node --check api/render-cpu.js
+          node --check api/render-comparison.js
           node scripts/validate-machine-layer.js
       - name: Generate XML sitemap
         env:
