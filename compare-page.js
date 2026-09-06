@@ -18,10 +18,51 @@
     function pontos(v){if(v===undefined||v===null||String(v).trim()===''||String(v).toUpperCase()==='N/A')return 'N/A';const n=Number.parseInt(v,10);return Number.isFinite(n)&&n>=100?n.toLocaleString('pt-BR')+' pts':'N/A'}
     function pathOf(url){try{const parsed=new URL(url,location.origin);return parsed.pathname+parsed.search+parsed.hash}catch(_){return String(url||'')}}
     function cpuPath(cpu){return pathOf(cpu.canonical_url||cpu.url||'#')}
+    function absoluteCpuUrl(cpu){try{return new URL(cpu.canonical_url||cpu.url||cpuPath(cpu),BASE).href}catch(_){return BASE+cpuPath(cpu)}}
     function showStatus(text){status.textContent=text;status.classList.toggle('show',Boolean(text))}
     function meta(name,content,property){let el=document.querySelector(property?`meta[property="${name}"]`:`meta[name="${name}"]`);if(!el){el=document.createElement('meta');property?el.setAttribute('property',name):el.setAttribute('name',name);document.head.appendChild(el)}el.content=content}
     function canonical(url){let el=document.querySelector('link[rel="canonical"]');if(!el){el=document.createElement('link');el.rel='canonical';document.head.appendChild(el)}el.href=url}
-    function jsonLd(a,b,url){document.getElementById('comparison-jsonld')?.remove();document.getElementById('qp-ssr-comparison-jsonld')?.remove();const script=document.createElement('script');script.type='application/ld+json';script.id='comparison-jsonld';script.textContent=JSON.stringify({'@context':'https://schema.org','@type':'WebPage',name:`${a.nome} vs ${b.nome}: comparação de processadores`,url,description:`Compare ${a.nome} e ${b.nome}: especificações, plataforma e resultados CPU-Z Single Thread e Multi Thread.`,isPartOf:{'@type':'WebSite',name:'QualProcessador',url:BASE+'/'},breadcrumb:{'@type':'BreadcrumbList',itemListElement:[{'@type':'ListItem',position:1,name:'QualProcessador',item:BASE+'/'},{'@type':'ListItem',position:2,name:'Comparar processadores',item:BASE+'/comparar'},{'@type':'ListItem',position:3,name:`${a.nome} vs ${b.nome}`,item:url}]}});document.head.appendChild(script)}
+    function jsonLd(a,b,url){
+        document.getElementById('comparison-jsonld')?.remove();
+        document.getElementById('qp-ssr-comparison-jsonld')?.remove();
+        const description=`Compare ${a.nome} e ${b.nome}: especificações, plataforma e resultados CPU-Z Single Thread e Multi Thread.`;
+        const cpuAUrl=absoluteCpuUrl(a);
+        const cpuBUrl=absoluteCpuUrl(b);
+        const apiSlug=a.slug&&b.slug?`${a.slug}-vs-${b.slug}`:'';
+        const graph={
+            '@context':'https://schema.org',
+            '@graph':[
+                {
+                    '@type':'WebPage',
+                    '@id':url+'#webpage',
+                    name:`${a.nome} vs ${b.nome}`,
+                    description,
+                    url,
+                    inLanguage:'pt-BR',
+                    isPartOf:{'@type':'WebSite','@id':BASE+'/#website',name:'QualProcessador',url:BASE+'/'},
+                    about:[
+                        {'@type':'Product','@id':cpuAUrl+'#processor',name:a.nome,identifier:a.entity_id||String(a.id||''),url:cpuAUrl},
+                        {'@type':'Product','@id':cpuBUrl+'#processor',name:b.nome,identifier:b.entity_id||String(b.id||''),url:cpuBUrl}
+                    ],
+                    subjectOf:apiSlug?{'@type':'WebAPI',name:'API estruturada desta comparação',url:`${BASE}/api/comparison/${apiSlug}`} : undefined,
+                    isBasedOn:{'@type':'Dataset','@id':BASE+'/dados.json#dataset',url:BASE+'/dados.json'}
+                },
+                {
+                    '@type':'BreadcrumbList',
+                    itemListElement:[
+                        {'@type':'ListItem',position:1,name:'QualProcessador',item:BASE+'/'},
+                        {'@type':'ListItem',position:2,name:'Comparar processadores',item:BASE+'/comparar'},
+                        {'@type':'ListItem',position:3,name:`${a.nome} vs ${b.nome}`,item:url}
+                    ]
+                }
+            ]
+        };
+        const script=document.createElement('script');
+        script.type='application/ld+json';
+        script.id='comparison-jsonld';
+        script.textContent=JSON.stringify(graph);
+        document.head.appendChild(script);
+    }
 
     async function searchCpu(query,limit,signal){
         const params=new URLSearchParams({q:query,type:'cpu',limit:String(limit||8)});
@@ -137,6 +178,7 @@
         document.title='Comparar Processadores AMD e Intel | QualProcessador';
         canonical(BASE+'/comparar');
         document.getElementById('comparison-jsonld')?.remove();
+        document.getElementById('qp-ssr-comparison-jsonld')?.remove();
         showStatus('');
     }
 
