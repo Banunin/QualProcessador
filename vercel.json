@@ -3,141 +3,44 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    {
-      "source": "/Ferramentas",
-      "destination": "/ferramentas",
-      "permanent": true
-    },
-    {
-      "source": "/Upscendra",
-      "destination": "/upscendra",
-      "permanent": true
-    },
-    {
-      "source": "/WinFormatKit",
-      "destination": "/winformatkit",
-      "permanent": true
-    }
+    {"source":"/Ferramentas","destination":"/ferramentas","permanent":true},
+    {"source":"/Upscendra","destination":"/upscendra","permanent":true},
+    {"source":"/WinFormatKit","destination":"/winformatkit","permanent":true}
   ],
   "rewrites": [
     {
       "source": "/:path*",
-      "has": [
-        {
-          "type": "header",
-          "key": "accept",
-          "value": "(.*)text/markdown(.*)"
-        }
-      ],
+      "has": [{"type":"header","key":"accept","value":"(.*)text/markdown(.*)"}],
       "destination": "/api/agent-content?path=:path*"
     },
-    {
-      "source": "/cpu/:marca/:cpu",
-      "destination": "/api/render-cpu?marca=:marca&cpu=:cpu"
-    },
-    {
-      "source": "/comparar/:comparacao*",
-      "destination": "/comparar"
-    },
-    {
-      "source": "/forum",
-      "destination": "/api/render-forum"
-    },
-    {
-      "source": "/forum.html",
-      "destination": "/api/render-forum"
-    },
-    {
-      "source": "/Comunidade",
-      "destination": "/Comunidade.html"
-    },
-    {
-      "source": "/comunidade",
-      "destination": "/Comunidade.html"
-    },
-    {
-      "source": "/upscendra",
-      "destination": "/upscendra.html"
-    },
-    {
-      "source": "/winformatkit",
-      "destination": "/winformatkit.html"
-    },
-    {
-      "source": "/ferramentas",
-      "destination": "/ferramentas.html"
-    },
-    {
-      "source": "/apoiar",
-      "destination": "/apoiar.html"
-    },
-    {
-      "source": "/Apoiar",
-      "destination": "/apoiar.html"
-    },
-    {
-      "source": "/artigo/:id",
-      "destination": "/api/render-article?id=:id"
-    },
-    {
-      "source": "/ler-artigo",
-      "destination": "/api/render-article"
-    },
-    {
-      "source": "/ler-artigo.html",
-      "destination": "/api/render-article"
-    },
-    {
-      "source": "/elg/2026/08/review-powerbank-elg-PB200BK-20.000mAh",
-      "destination": "/api/render-article?id=102"
-    },
-    {
-      "source": "/amd/o-que-e-uma-APU",
-      "destination": "/api/render-article?id=101"
-    }
+    {"source":"/cpu/:marca/:cpu","destination":"/api/render-cpu?marca=:marca&cpu=:cpu"},
+    {"source":"/comparar/:comparacao*","destination":"/api/render-comparison?comparacao=:comparacao*"},
+    {"source":"/forum","destination":"/api/render-forum"},
+    {"source":"/forum.html","destination":"/api/render-forum"},
+    {"source":"/Comunidade","destination":"/Comunidade.html"},
+    {"source":"/comunidade","destination":"/Comunidade.html"},
+    {"source":"/upscendra","destination":"/upscendra.html"},
+    {"source":"/winformatkit","destination":"/winformatkit.html"},
+    {"source":"/ferramentas","destination":"/ferramentas.html"},
+    {"source":"/apoiar","destination":"/apoiar.html"},
+    {"source":"/Apoiar","destination":"/apoiar.html"},
+    {"source":"/artigo/:id","destination":"/api/render-article?id=:id"},
+    {"source":"/ler-artigo","destination":"/api/render-article"},
+    {"source":"/ler-artigo.html","destination":"/api/render-article"},
+    {"source":"/elg/2026/08/review-powerbank-elg-PB200BK-20.000mAh","destination":"/api/render-article?id=102"},
+    {"source":"/amd/o-que-e-uma-APU","destination":"/api/render-article?id=101"}
   ],
   "headers": [
-    {
-      "source": "/painel-postar",
-      "headers": [
-        {
-          "key": "X-Robots-Tag",
-          "value": "noindex, nofollow, noarchive"
-        }
-      ]
-    },
-    {
-      "source": "/painel-postar.html",
-      "headers": [
-        {
-          "key": "X-Robots-Tag",
-          "value": "noindex, nofollow, noarchive"
-        }
-      ]
-    },
+    {"source":"/painel-postar","headers":[{"key":"X-Robots-Tag","value":"noindex, nofollow, noarchive"}]},
+    {"source":"/painel-postar.html","headers":[{"key":"X-Robots-Tag","value":"noindex, nofollow, noarchive"}]},
     {
       "source": "/(.*)",
       "headers": [
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "Referrer-Policy",
-          "value": "strict-origin-when-cross-origin"
-        },
-        {
-          "key": "Content-Language",
-          "value": "pt-BR"
-        },
-        {
-          "key": "Vary",
-          "value": "Accept"
-        },
-        {
-          "key": "Link",
-          "value": "<https://qualprocessador.vercel.app/llms.txt>; rel=\"alternate\"; type=\"text/plain\", <https://qualprocessador.vercel.app/sitemap.md>; rel=\"alternate\"; type=\"text/markdown\", <https://qualprocessador.vercel.app/ai-index.json>; rel=\"describedby\"; type=\"application/json\""
-        }
+        {"key":"X-Content-Type-Options","value":"nosniff"},
+        {"key":"Referrer-Policy","value":"strict-origin-when-cross-origin"},
+        {"key":"Content-Language","value":"pt-BR"},
+        {"key":"Vary","value":"Accept"},
+        {"key":"Link","value":"<https://qualprocessador.vercel.app/llms.txt>; rel=\"alternate\"; type=\"text/plain\", <https://qualprocessador.vercel.app/sitemap.md>; rel=\"alternate\"; type=\"text/markdown\", <https://qualprocessador.vercel.app/ai-index.json>; rel=\"describedby\"; type=\"application/json\""}
       ]
     }
   ]
