@@ -84,6 +84,76 @@ function summary(a, b) {
   return `<h2>Resumo da comparação</h2><p><strong>${esc(a.nome)}</strong> e <strong>${esc(b.nome)}</strong> são comparados com base nos dados cadastrados no QualProcessador. Veja núcleos, threads, clocks, plataforma, TDP e resultados CPU-Z.</p><p>CPU-Z Single Thread: ${esc(a.nome)} ${esc(points(a.notaJogos))}; ${esc(b.nome)} ${esc(points(b.notaJogos))}. CPU-Z Multi Thread: ${esc(a.nome)} ${esc(points(a.notaTrabalho))}; ${esc(b.nome)} ${esc(points(b.notaTrabalho))}.</p>`;
 }
 
+function anoLancamento(cpu) {
+  const match = String(cpu && cpu.lancamento || '').match(/(?:19|20)\d{2}/);
+  return match ? Number(match[0]) : 0;
+}
+
+function scoreSimilaridadeCpu(base, item) {
+  const singleBase = numeroCpu(base.notaJogos);
+  const multiBase = numeroCpu(base.notaTrabalho);
+  const coresBase = numeroCpu(base.cores);
+  const threadsBase = numeroCpu(base.threads);
+  const anoBase = anoLancamento(base);
+  const singleItem = numeroCpu(item.notaJogos);
+  const multiItem = numeroCpu(item.notaTrabalho);
+  const coresItem = numeroCpu(item.cores);
+  const threadsItem = numeroCpu(item.threads);
+  const ds = singleBase > 0 && singleItem > 0 ? Math.abs(singleItem - singleBase) / Math.max(singleBase, 1) : 0.45;
+  const dm = multiBase > 0 && multiItem > 0 ? Math.abs(multiItem - multiBase) / Math.max(multiBase, 1) : 0.45;
+  const dc = coresBase > 0 ? Math.abs(coresItem - coresBase) / Math.max(coresBase, 1) : 0.3;
+  const dt = threadsBase > 0 ? Math.abs(threadsItem - threadsBase) / Math.max(threadsBase, 1) : 0.3;
+  const anoItem = anoLancamento(item);
+  const diffAno = anoBase && anoItem ? Math.abs(anoItem - anoBase) : 2;
+  const dy = Math.min(diffAno / 4, 1.5);
+  let score = ds * 0.36 + dm * 0.22 + dc * 0.17 + dt * 0.10 + dy * 0.15;
+  if (diffAno > 5) score += 1.2;
+  if (diffAno > 8) score += 1.5;
+  if (normalizar(base.soquete || base.socket) && normalizar(base.soquete || base.socket) === normalizar(item.soquete || item.socket)) score *= 0.82;
+  if (normalizar(base.marca) && normalizar(base.marca) !== normalizar(item.marca) && diffAno <= 3) score *= 0.94;
+  return score;
+}
+
+function cpusRelacionadas(base, cpus, limit) {
+  return cpus
+    .filter(item => entityIdCpu(item) !== entityIdCpu(base))
+    .map(item => ({ cpu: item, score: scoreSimilaridadeCpu(base, item) }))
+    .sort((a, b) => a.score - b.score)
+    .slice(0, limit)
+    .map(item => item.cpu);
+}
+
+function relatedComparisons(a, b) {
+  const cpus = carregarCpus();
+  const output = [];
+  const seen = new Set();
+  const current = comparisonPath(a, b);
+  const related = [...cpusRelacionadas(a, cpus, 3), ...cpusRelacionadas(b, cpus, 3)];
+
+  for (const cpu of related) {
+    for (const baseCpu of [a, b]) {
+      if (entityIdCpu(cpu) === entityIdCpu(baseCpu)) continue;
+      const url = urlComparacao(baseCpu, cpu);
+      if (url === current || seen.has(url)) continue;
+      seen.add(url);
+      output.push({
+        title: `${baseCpu.nome} vs ${cpu.nome}`,
+        url,
+        processor_a: { id: baseCpu.id, nome: baseCpu.nome, slug: slugCpu(baseCpu) },
+        processor_b: { id: cpu.id, nome: cpu.nome, slug: slugCpu(cpu) }
+      });
+      if (output.length >= 6) return output;
+    }
+  }
+  return output;
+}
+
+function renderRelated(a, b) {
+  return relatedComparisons(a, b)
+    .map(item => `<a href="${attr(item.url)}">${esc(item.title)}</a>`)
+    .join('');
+}
+
 function renderPage(a, b) {
   [a, b] = ordenarPar(a, b);
   let html = template();
@@ -131,6 +201,7 @@ function renderPage(a, b) {
   html = html.replace('<div id="score-grid" class="score-grid"></div>', `<div id="score-grid" class="score-grid">${scoreCard('CPU-Z Single Thread', a, b, 'notaJogos')}${scoreCard('CPU-Z Multi Thread', a, b, 'notaTrabalho')}</div>`);
   html = html.replace('<table class="spec-table"><thead id="spec-head"></thead><tbody id="spec-body"></tbody></table>', `<table class="spec-table"><thead id="spec-head"><tr><th>Especificação</th><th>${esc(a.nome)}</th><th>${esc(b.nome)}</th></tr></thead><tbody id="spec-body">${specRows(a, b)}</tbody></table>`);
   html = html.replace('<div id="summary-card" class="summary-card"></div>', `<div id="summary-card" class="summary-card">${summary(a, b)}</div>`);
+  html = html.replace('<div id="related-grid" class="related-grid"></div>', `<div id="related-grid" class="related-grid">${renderRelated(a, b)}</div>`);
   html = html.replace('<section id="empty-intro" class="empty-intro">', '<section id="empty-intro" class="empty-intro" style="display:none">');
   return html;
 }
@@ -151,6 +222,7 @@ function structuredComparison(a, b) {
     processor_a: cpuPublica(a),
     processor_b: cpuPublica(b),
     fields,
+    related_comparisons: relatedComparisons(a, b),
     benchmark_semantics: {
       notaJogos: 'CPU-Z Benchmark 17 Single Thread',
       notaTrabalho: 'CPU-Z Benchmark 17 Multi Thread',
@@ -213,3 +285,4 @@ module.exports = function handler(req, res) {
 
 module.exports.renderPage = renderPage;
 module.exports.structuredComparison = structuredComparison;
+module.exports.relatedComparisons = relatedComparisons;
