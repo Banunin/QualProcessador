@@ -8,6 +8,7 @@
     {"source":"/WinFormatKit","destination":"/winformatkit","permanent":true}
   ],
   "rewrites": [
+    {"source":"/dados.js","destination":"/api/dados-compat"},
     {"source":"/api/cpu/:cpu","destination":"/api/cpu?cpu=:cpu"},
     {"source":"/api/comparison/:comparison*","destination":"/api/comparison?comparison=:comparison*"},
     {
