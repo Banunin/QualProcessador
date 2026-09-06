@@ -18,11 +18,11 @@ jobs:
       - uses: actions/checkout@v4
       - name: Generate XML sitemap
         env:
-          SEO_BASE_URL: https://qualprocessador.com
+          SEO_BASE_URL: https://qualprocessador.vercel.app
         run: python3 gerar_sitemap_seo.py
       - name: Generate AI discovery files
         env:
-          SEO_BASE_URL: https://qualprocessador.com
+          SEO_BASE_URL: https://qualprocessador.vercel.app
         run: python3 gerar_ai_discovery.py
       - name: Commit generated discovery files when changed
         run: |
