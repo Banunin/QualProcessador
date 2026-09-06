@@ -15,7 +15,8 @@
         catalogOffset: 0,
         catalogHasMore: true,
         loading: false,
-        requestId: 0
+        requestId: 0,
+        controller: null
     };
 
     const el = {
@@ -68,6 +69,13 @@
             </article>`;
     }
 
+    function cancelRequest() {
+        if (state.controller) state.controller.abort();
+        state.controller = null;
+        state.loading = false;
+        state.requestId += 1;
+    }
+
     function setLoading(message) {
         if (!el.grid.children.length) {
             el.grid.innerHTML = `<div class="aviso-vazio">${esc(message || 'Carregando processadores...')}</div>`;
@@ -100,8 +108,9 @@
         return `${API}?${params.toString()}`;
     }
 
-    async function fetchPage(limit, offset) {
+    async function fetchPage(limit, offset, signal) {
         const response = await fetch(endpoint(limit, offset), {
+            signal,
             headers: { Accept: 'application/json' },
             credentials: 'same-origin'
         });
@@ -112,54 +121,72 @@
     async function loadHome() {
         if (state.homeItems) {
             render(state.homeItems, false);
+            updateMoreButton();
             return;
         }
-        const requestId = ++state.requestId;
+
+        cancelRequest();
+        const requestId = state.requestId;
+        const controller = new AbortController();
+        state.controller = controller;
         state.loading = true;
         setLoading('Carregando processadores...');
         try {
-            const payload = await fetchPage(HOME_LIMIT, 0);
+            const payload = await fetchPage(HOME_LIMIT, 0, controller.signal);
             if (requestId !== state.requestId || state.tab !== 'home') return;
             state.homeItems = Array.isArray(payload.items) ? payload.items : [];
             render(state.homeItems, false);
-        } catch (_) {
+        } catch (error) {
+            if (error && error.name === 'AbortError') return;
             if (requestId === state.requestId && state.tab === 'home') {
                 setError('Não foi possível carregar os processadores agora. Tente novamente em instantes.');
             }
         } finally {
-            state.loading = false;
-            updateMoreButton();
+            if (requestId === state.requestId) {
+                state.loading = false;
+                state.controller = null;
+                updateMoreButton();
+            }
         }
     }
 
     async function loadCatalog(reset) {
-        if (state.loading) return;
         if (reset) {
+            cancelRequest();
             state.catalogItems = [];
             state.catalogOffset = 0;
             state.catalogHasMore = true;
             el.grid.innerHTML = '';
+        } else if (state.loading) {
+            return;
         }
         if (!state.catalogHasMore) return;
 
-        const requestId = ++state.requestId;
+        const requestId = state.requestId;
+        const controller = new AbortController();
+        state.controller = controller;
         state.loading = true;
         setLoading('Carregando catálogo...');
         try {
-            const payload = await fetchPage(PAGE_SIZE, state.catalogOffset);
+            const payload = await fetchPage(PAGE_SIZE, state.catalogOffset, controller.signal);
             if (requestId !== state.requestId || state.tab !== 'cpus') return;
             const items = Array.isArray(payload.items) ? payload.items : [];
+            const append = !reset && state.catalogOffset > 0;
             state.catalogItems.push(...items);
             state.catalogOffset += items.length;
             state.catalogHasMore = Boolean(payload.pagination && payload.pagination.has_more);
-            render(items, !reset && state.catalogOffset > items.length);
-        } catch (_) {
-            if (requestId === state.requestId && state.tab === 'cpus') {
-                if (!state.catalogItems.length) setError('Não foi possível carregar o catálogo agora. Tente novamente em instantes.');
+            render(items, append);
+        } catch (error) {
+            if (error && error.name === 'AbortError') return;
+            if (requestId === state.requestId && state.tab === 'cpus' && !state.catalogItems.length) {
+                setError('Não foi possível carregar o catálogo agora. Tente novamente em instantes.');
             }
         } finally {
-            state.loading = false;
-            updateMoreButton();
+            if (requestId === state.requestId) {
+                state.loading = false;
+                state.controller = null;
+                updateMoreButton();
+            }
         }
     }
 
@@ -191,10 +218,9 @@
 
     function applyTab(next) {
         const changed = state.tab !== next;
+        if (changed) cancelRequest();
         state.tab = next;
         if (changed) resetFilters();
-        state.requestId += 1;
-        state.loading = false;
 
         if (next === 'cpus') {
             el.cpusTab.classList.add('active');
@@ -220,7 +246,6 @@
             if (el.filters) el.filters.style.display = 'none';
             if (el.title) el.title.textContent = 'Processadores adicionados recentemente';
             loadHome();
-            updateMoreButton();
         }
     }
 
