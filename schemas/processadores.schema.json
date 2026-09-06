@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://qualprocessador.vercel.app/schemas/processadores.schema.json",
+  "title": "QualProcessador CPU Database",
+  "description": "Esquema da base pública de processadores do QualProcessador.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "dataset",
+    "language",
+    "canonical_url",
+    "benchmark_semantics",
+    "count",
+    "processors"
+  ],
+  "properties": {
+    "$schema": { "type": "string", "format": "uri" },
+    "schema_version": { "type": "string" },
+    "dataset": { "const": "QualProcessador CPU Database" },
+    "language": { "const": "pt-BR" },
+    "publisher": { "type": "string" },
+    "canonical_url": { "type": "string", "format": "uri" },
+    "description": { "type": "string" },
+    "benchmark_semantics": {
+      "type": "object",
+      "required": ["notaJogos", "notaTrabalho", "missing_value"],
+      "properties": {
+        "notaJogos": { "type": "string" },
+        "notaTrabalho": { "type": "string" },
+        "missing_value": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+    "interpretation_rules": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "count": { "type": "integer", "minimum": 0 },
+    "processors": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/processor" }
+    }
+  },
+  "$defs": {
+    "processor": {
+      "type": "object",
+      "required": ["id", "nome", "marca"],
+      "properties": {
+        "id": { "type": ["integer", "string"] },
+        "nome": { "type": "string", "minLength": 1 },
+        "marca": { "type": "string", "minLength": 1 },
+        "cores": { "type": ["string", "number", "null"] },
+        "threads": { "type": ["string", "number", "null"] },
+        "tdp": { "type": ["string", "number", "null"] },
+        "freqBase": { "type": ["string", "number", "null"] },
+        "freqBoost": { "type": ["string", "number", "null"] },
+        "soquete": { "type": ["string", "null"] },
+        "notaJogos": { "type": ["string", "number", "null"] },
+        "notaTrabalho": { "type": ["string", "number", "null"] },
+        "foto": { "type": ["string", "null"] },
+        "fotos": {
+          "type": ["array", "null"],
+          "items": { "type": "string" }
+        }
+      },
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}
