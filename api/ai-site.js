@@ -61,6 +61,8 @@ module.exports = function handler(req, res) {
       rss: BASE_URL + '/feed.xml',
       ai_index: BASE_URL + '/ai-index.json',
       image_index: BASE_URL + '/image-index.json',
+      cpu_dataset: BASE_URL + '/dados.json',
+      cpu_dataset_schema: BASE_URL + '/schemas/processadores.schema.json',
       cpu_api: BASE_URL + '/api/ai-cpus',
       article_api: BASE_URL + '/api/ai-articles',
       image_api: BASE_URL + '/api/ai-images',
