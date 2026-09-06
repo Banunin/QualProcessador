@@ -8,9 +8,10 @@
     {"source":"/WinFormatKit","destination":"/winformatkit","permanent":true}
   ],
   "rewrites": [
-    {"source":"/dados.js","destination":"/api/dados-compat"},
-    {"source":"/api/cpu/:cpu","destination":"/api/cpu?cpu=:cpu"},
-    {"source":"/api/comparison/:comparison*","destination":"/api/comparison?comparison=:comparison*"},
+    {"source":"/dados.js","destination":"/api/ai-cpus?mode=legacy-js"},
+    {"source":"/api/cpu/:cpu","destination":"/api/ai-cpus?mode=single&cpu=:cpu"},
+    {"source":"/api/search","destination":"/api/ai-site?mode=search"},
+    {"source":"/api/comparison/:comparison*","destination":"/api/render-comparison?format=json&comparacao=:comparison*"},
     {
       "source":"/:path*",
       "has":[{"type":"header","key":"accept","value":"(.*)text/markdown(.*)"}],
