@@ -8,6 +8,8 @@ on:
       - 'gerar_sitemap_seo.py'
       - 'gerar_ai_discovery.py'
       - 'sincronizar_rotas_artigos.py'
+      - 'lib/image-semantics.js'
+      - 'api/ai-images.js'
       - '.github/workflows/update-seo-sitemap.yml'
   workflow_dispatch:
 permissions:
@@ -29,12 +31,12 @@ jobs:
         run: python3 sincronizar_rotas_artigos.py
       - name: Commit generated discovery files and routes when changed
         run: |
-          git add sitemap.xml sitemap.md llms.txt ai-index.json feed.xml vercel.json
+          git add sitemap.xml sitemap.md llms.txt ai-index.json image-index.json feed.xml vercel.json
           if git diff --cached --quiet; then
-            echo "SEO, AI discovery and SSR article routes already up to date"
+            echo "SEO, AI discovery, image semantics and SSR article routes already up to date"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "Update SEO, AI discovery and SSR article routes"
+          git commit -m "Update SEO, AI discovery, image semantics and SSR routes"
           git push
