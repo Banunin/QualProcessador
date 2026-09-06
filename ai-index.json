@@ -37,7 +37,9 @@
     "markdown_sitemap": "https://qualprocessador.vercel.app/sitemap.md",
     "image_index": "https://qualprocessador.vercel.app/image-index.json",
     "rss": "https://qualprocessador.vercel.app/feed.xml",
-    "content_negotiation": "Accept: text/markdown"
+    "content_negotiation": "Accept: text/markdown",
+    "cpu_dataset": "https://qualprocessador.vercel.app/dados.json",
+    "cpu_dataset_schema": "https://qualprocessador.vercel.app/schemas/processadores.schema.json"
   },
   "apis": {
     "site": "https://qualprocessador.vercel.app/api/ai-site",
@@ -68,5 +70,17 @@
       "description": "Entenda o que é uma APU, como o vídeo integrado usa a memória RAM, onde esse tipo de processador faz sentido e quais são seus principais limites.",
       "canonical_url": "https://qualprocessador.vercel.app/amd/o-que-e-uma-APU"
     }
-  ]
+  ],
+  "cpu_dataset": {
+    "url": "https://qualprocessador.vercel.app/dados.json",
+    "schema": "https://qualprocessador.vercel.app/schemas/processadores.schema.json",
+    "format": "application/json",
+    "structure": "self-describing object with processors array",
+    "benchmark_semantics": {
+      "notaJogos": "CPU-Z Benchmark 17 Single Thread",
+      "notaTrabalho": "CPU-Z Benchmark 17 Multi Thread",
+      "missing_value": "N/A"
+    },
+    "note": "Prefer this JSON resource or /api/ai-cpus for deterministic machine parsing instead of parsing the legacy JavaScript compatibility file."
+  }
 }

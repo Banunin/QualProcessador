@@ -249,6 +249,8 @@
 
 ## Dados estruturados
 
+- [Base JSON pública de processadores](https://qualprocessador.vercel.app/dados.json)
+- [JSON Schema da base de processadores](https://qualprocessador.vercel.app/schemas/processadores.schema.json)
 - [API de CPUs](https://qualprocessador.vercel.app/api/ai-cpus)
 - [API de artigos](https://qualprocessador.vercel.app/api/ai-articles)
 - [API de imagens](https://qualprocessador.vercel.app/api/ai-images)
