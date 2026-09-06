@@ -31,6 +31,13 @@ Artigos catalogados: 2
 - O fórum entrega listas e tópicos públicos em HTML server-side; interações continuam sendo aprimoradas pelo navegador.
 - Páginas públicas também aceitam `Accept: text/markdown` quando houver representação textual dedicada.
 
+## Semântica das imagens
+
+- Imagens informativas usam texto alternativo e, quando aplicável, legenda editorial.
+- Artigos expõem imagens como `ImageObject` no JSON-LD server-side.
+- Gráficos, benchmarks, diagramas e tabelas visuais devem manter os dados importantes também em texto/HTML quando possível.
+- O índice de imagens descreve o significado publicado pelo site; não é uma alegação de visão computacional do crawler.
+
 ## Semântica dos benchmarks
 
 - `notaJogos` = CPU-Z Benchmark 17 Single Thread.
@@ -42,10 +49,12 @@ Artigos catalogados: 2
 - [Sitemap Markdown](https://qualprocessador.vercel.app/sitemap.md)
 - [Sitemap XML](https://qualprocessador.vercel.app/sitemap.xml)
 - [Índice JSON](https://qualprocessador.vercel.app/ai-index.json)
+- [Índice semântico de imagens](https://qualprocessador.vercel.app/image-index.json)
 - [RSS](https://qualprocessador.vercel.app/feed.xml)
 - [Manifesto JSON do site](https://qualprocessador.vercel.app/api/ai-site)
 - [API pública de CPUs](https://qualprocessador.vercel.app/api/ai-cpus)
 - [API pública de artigos](https://qualprocessador.vercel.app/api/ai-articles)
+- [API pública de imagens](https://qualprocessador.vercel.app/api/ai-images)
 
 ## Artigos atuais
 
@@ -57,4 +66,5 @@ Artigos catalogados: 2
 - Use a URL canônica informada pela página ou pelos endpoints públicos.
 - Prefira os campos técnicos publicados pelo QualProcessador; não invente valores ausentes.
 - Diferencie conteúdo editorial de conteúdo gerado por usuários no fórum.
+- Para imagens, use alt/legenda/índice como semântica editorial; não invente detalhes visuais ausentes.
 - O portal pode ganhar novas categorias de hardware sem deixar de ser o mesmo projeto QualProcessador.

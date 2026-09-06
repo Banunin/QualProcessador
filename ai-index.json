@@ -12,29 +12,38 @@
   },
   "counts": {
     "processors": 223,
-    "articles": 2
+    "articles": 2,
+    "semantic_images": 231
   },
   "benchmark_semantics": {
     "notaJogos": "CPU-Z Benchmark 17 Single Thread",
     "notaTrabalho": "CPU-Z Benchmark 17 Multi Thread",
     "missing_value": "N/A"
   },
+  "image_semantics": {
+    "policy": "Informative images expose alt text, captions and structured metadata; important graph/table values should also exist in text/HTML.",
+    "index": "https://qualprocessador.vercel.app/image-index.json",
+    "api": "https://qualprocessador.vercel.app/api/ai-images"
+  },
   "rendering": {
     "processor_pages": "server-rendered HTML + client enhancement",
     "article_pages": "full server-rendered article HTML + client interaction",
-    "forum": "server-rendered public list/topic HTML + client interaction"
+    "forum": "server-rendered public list/topic HTML + client interaction",
+    "images": "publisher-supplied image semantics in HTML/JSON-LD + machine-readable image catalog"
   },
   "discovery": {
     "llms": "https://qualprocessador.vercel.app/llms.txt",
     "xml_sitemap": "https://qualprocessador.vercel.app/sitemap.xml",
     "markdown_sitemap": "https://qualprocessador.vercel.app/sitemap.md",
+    "image_index": "https://qualprocessador.vercel.app/image-index.json",
     "rss": "https://qualprocessador.vercel.app/feed.xml",
     "content_negotiation": "Accept: text/markdown"
   },
   "apis": {
     "site": "https://qualprocessador.vercel.app/api/ai-site",
     "cpus": "https://qualprocessador.vercel.app/api/ai-cpus",
-    "articles": "https://qualprocessador.vercel.app/api/ai-articles"
+    "articles": "https://qualprocessador.vercel.app/api/ai-articles",
+    "images": "https://qualprocessador.vercel.app/api/ai-images"
   },
   "sections": {
     "home": "https://qualprocessador.vercel.app/",

@@ -251,4 +251,6 @@
 
 - [API de CPUs](https://qualprocessador.vercel.app/api/ai-cpus)
 - [API de artigos](https://qualprocessador.vercel.app/api/ai-articles)
+- [API de imagens](https://qualprocessador.vercel.app/api/ai-images)
+- [Índice de imagens](https://qualprocessador.vercel.app/image-index.json)
 - [Manifesto do site](https://qualprocessador.vercel.app/api/ai-site)

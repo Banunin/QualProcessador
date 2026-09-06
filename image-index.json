@@ -1,0 +1,2324 @@
+{
+  "name": "QualProcessador image semantics index",
+  "canonical_site": "https://qualprocessador.vercel.app/",
+  "language": "pt-BR",
+  "description": "Índice textual das imagens relevantes publicadas no QualProcessador. As descrições vêm de metadados editoriais e contexto da página; não afirmam que o crawler inspecionou visualmente os pixels.",
+  "guidance": {
+    "alt": "Descrição alternativa do conteúdo ou papel informativo da imagem.",
+    "caption": "Legenda editorial quando disponível.",
+    "graphs": "Resultados relevantes de gráficos, benchmarks e tabelas visuais devem também aparecer como texto ou tabela HTML quando possível."
+  },
+  "count": 231,
+  "images": [
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 3 1200",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-3-1200",
+      "image_url": "https://qualprocessador.vercel.app/img/1200.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 3 1200",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 3 1200.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 3 1300X",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-3-1300x",
+      "image_url": "https://qualprocessador.vercel.app/img/1300x.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 3 1300X",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 3 1300X.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 5 1400",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-5-1400",
+      "image_url": "https://qualprocessador.vercel.app/img/1400.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 5 1400",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 5 1400.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 5 1500X",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-5-1500x",
+      "image_url": "https://qualprocessador.vercel.app/img/1500x.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 5 1500X",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 5 1500X.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 5 1600",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-5-1600",
+      "image_url": "https://qualprocessador.vercel.app/img/1600.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 5 1600",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 5 1600.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 5 1600X",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-5-1600x",
+      "image_url": "https://qualprocessador.vercel.app/img/1600x.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 5 1600X",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 5 1600X.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 7 1700",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-7-1700",
+      "image_url": "https://qualprocessador.vercel.app/img/placeholder.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 7 1700",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 7 1700.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 7 1700X",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-7-1700x",
+      "image_url": "https://qualprocessador.vercel.app/img/placeholder.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 7 1700X",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 7 1700X.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 7 1800X",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-7-1800x",
+      "image_url": "https://qualprocessador.vercel.app/img/placeholder.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 7 1800X",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 7 1800X.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 3 2200G",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-3-2200g",
+      "image_url": "https://qualprocessador.vercel.app/img/2200g.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 3 2200G",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 3 2200G.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 5 2400G",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-5-2400g",
+      "image_url": "https://qualprocessador.vercel.app/img/2400G.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 5 2400G",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 5 2400G.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 5 2600",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-5-2600",
+      "image_url": "https://qualprocessador.vercel.app/img/placeholder.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 5 2600",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 5 2600.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 5 2600X",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-5-2600x",
+      "image_url": "https://qualprocessador.vercel.app/img/placeholder.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 5 2600X",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 5 2600X.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 7 2700",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-7-2700",
+      "image_url": "https://qualprocessador.vercel.app/img/2700.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 7 2700",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 7 2700.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 7 2700X",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-7-2700x",
+      "image_url": "https://qualprocessador.vercel.app/img/2700x.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 7 2700X",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 7 2700X.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 3 3100",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-3-3100",
+      "image_url": "https://qualprocessador.vercel.app/img/3100.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 3 3100",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 3 3100.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 3 3300X",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-3-3300x",
+      "image_url": "https://qualprocessador.vercel.app/img/placeholder.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 3 3300X",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 3 3300X.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 5 3400G",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-5-3400g",
+      "image_url": "https://qualprocessador.vercel.app/img/3400g.jpg",
+      "alt": "Imagem de referência do processador AMD Ryzen 5 3400G",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 5 3400G.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 5 3500X",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-5-3500x",
+      "image_url": "https://qualprocessador.vercel.app/img/placeholder.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 5 3500X",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 5 3500X.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 5 3600",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-5-3600",
+      "image_url": "https://qualprocessador.vercel.app/img/3600.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 5 3600",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 5 3600.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 5 3600X",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-5-3600x",
+      "image_url": "https://qualprocessador.vercel.app/img/3600x.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 5 3600X",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 5 3600X.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 5 3600XT",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-5-3600xt",
+      "image_url": "https://qualprocessador.vercel.app/img/placeholder.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 5 3600XT",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 5 3600XT.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 7 3700X",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-7-3700x",
+      "image_url": "https://qualprocessador.vercel.app/img/placeholder.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 7 3700X",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 7 3700X.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 7 3800X",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-7-3800x",
+      "image_url": "https://qualprocessador.vercel.app/img/placeholder.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 7 3800X",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 7 3800X.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 7 3800XT",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-7-3800xt",
+      "image_url": "https://qualprocessador.vercel.app/img/placeholder.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 7 3800XT",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 7 3800XT.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 9 3900",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-9-3900",
+      "image_url": "https://qualprocessador.vercel.app/img/placeholder.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 9 3900",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 9 3900.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 9 3900X",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-9-3900x",
+      "image_url": "https://qualprocessador.vercel.app/img/placeholder.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 9 3900X",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 9 3900X.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 9 3900XT",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-9-3900xt",
+      "image_url": "https://qualprocessador.vercel.app/img/placeholder.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 9 3900XT",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 9 3900XT.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 9 3950X",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-9-3950x",
+      "image_url": "https://qualprocessador.vercel.app/img/placeholder.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 9 3950X",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 9 3950X.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 3 4100",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-3-4100",
+      "image_url": "https://qualprocessador.vercel.app/img/placeholder.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 3 4100",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 3 4100.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 5 4500",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-5-4500",
+      "image_url": "https://qualprocessador.vercel.app/img/4500.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 5 4500",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 5 4500.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 5 4600G",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-5-4600g",
+      "image_url": "https://qualprocessador.vercel.app/img/4600g.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 5 4600G",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 5 4600G.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 7 4700G",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-7-4700g",
+      "image_url": "https://qualprocessador.vercel.app/img/AMD_Ryzen_7_4700G.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 7 4700G",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 7 4700G.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 3 5300G",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-3-5300g",
+      "image_url": "https://qualprocessador.vercel.app/img/5300g.jpg",
+      "alt": "Imagem de referência do processador AMD Ryzen 3 5300G",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 3 5300G.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 5 5500",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-5-5500",
+      "image_url": "https://qualprocessador.vercel.app/img/5500.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 5 5500",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 5 5500.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 5 5600",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-5-5600",
+      "image_url": "https://qualprocessador.vercel.app/img/5600.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 5 5600",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 5 5600.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 5 5600G",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-5-5600g",
+      "image_url": "https://qualprocessador.vercel.app/img/5600g.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 5 5600G",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 5 5600G.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 5 5600GE",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-5-5600ge",
+      "image_url": "https://qualprocessador.vercel.app/img/placeholder.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 5 5600GE",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 5 5600GE.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 5 5600X",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-5-5600x",
+      "image_url": "https://qualprocessador.vercel.app/img/5600x.jpg",
+      "alt": "Imagem de referência do processador AMD Ryzen 5 5600X",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 5 5600X.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 7 5700",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-7-5700",
+      "image_url": "https://qualprocessador.vercel.app/img/5700.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 7 5700",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 7 5700.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 7 5700G",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-7-5700g",
+      "image_url": "https://qualprocessador.vercel.app/img/5700g.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 7 5700G",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 7 5700G.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 7 5700GE",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-7-5700ge",
+      "image_url": "https://qualprocessador.vercel.app/img/AMD_Ryzen_7_5700GE.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 7 5700GE",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 7 5700GE.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 7 5700X",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-7-5700x",
+      "image_url": "https://qualprocessador.vercel.app/img/5700x.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 7 5700X",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 7 5700X.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 7 5700X3D",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-7-5700x3d",
+      "image_url": "https://qualprocessador.vercel.app/img/5700x3d.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 7 5700X3D",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 7 5700X3D.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 7 5800",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-7-5800",
+      "image_url": "https://qualprocessador.vercel.app/img/AMD_Ryzen_7_5800.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 7 5800",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 7 5800.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 7 5800X",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-7-5800x",
+      "image_url": "https://qualprocessador.vercel.app/img/AMD_Ryzen_7_5800X.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 7 5800X",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 7 5800X.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 7 5800XT",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-7-5800xt",
+      "image_url": "https://qualprocessador.vercel.app/img/5800xt.jpg",
+      "alt": "Imagem de referência do processador AMD Ryzen 7 5800XT",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 7 5800XT.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 7 5800X3D",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-7-5800x3d",
+      "image_url": "https://qualprocessador.vercel.app/img/5800x3d.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 7 5800X3D",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 7 5800X3D.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 9 5900",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-9-5900",
+      "image_url": "https://qualprocessador.vercel.app/img/placeholder.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 9 5900",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 9 5900.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 9 5900X",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-9-5900x",
+      "image_url": "https://qualprocessador.vercel.app/img/5900x.jpg",
+      "alt": "Imagem de referência do processador AMD Ryzen 9 5900X",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 9 5900X.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 9 5900XT",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-9-5900xt",
+      "image_url": "https://qualprocessador.vercel.app/img/5900XT.jpg",
+      "alt": "Imagem de referência do processador AMD Ryzen 9 5900XT",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 9 5900XT.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "AMD Ryzen 9 5950X",
+      "page_url": "https://qualprocessador.vercel.app/cpu/amd/amd-ryzen-9-5950x",
+      "image_url": "https://qualprocessador.vercel.app/img/5950x.webp",
+      "alt": "Imagem de referência do processador AMD Ryzen 9 5950X",
+      "caption": "Imagem principal cadastrada para AMD Ryzen 9 5950X.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Xeon X3430",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-xeon-x3430",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Xeon_X3430.webp",
+      "alt": "Imagem de referência do processador Intel Xeon X3430",
+      "caption": "Imagem principal cadastrada para Intel Xeon X3430.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Xeon X3440",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-xeon-x3440",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Xeon_X3440.webp",
+      "alt": "Imagem de referência do processador Intel Xeon X3440",
+      "caption": "Imagem principal cadastrada para Intel Xeon X3440.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Xeon X3450",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-xeon-x3450",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Xeon_X3450.webp",
+      "alt": "Imagem de referência do processador Intel Xeon X3450",
+      "caption": "Imagem principal cadastrada para Intel Xeon X3450.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Xeon X3460",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-xeon-x3460",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Xeon_X3460.webp",
+      "alt": "Imagem de referência do processador Intel Xeon X3460",
+      "caption": "Imagem principal cadastrada para Intel Xeon X3460.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Xeon X3470",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-xeon-x3470",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Xeon_X3470.webp",
+      "alt": "Imagem de referência do processador Intel Xeon X3470",
+      "caption": "Imagem principal cadastrada para Intel Xeon X3470.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Xeon X3480",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-xeon-x3480",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Xeon_X3480.webp",
+      "alt": "Imagem de referência do processador Intel Xeon X3480",
+      "caption": "Imagem principal cadastrada para Intel Xeon X3480.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i3-530",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i3-530",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i3-530.webp",
+      "alt": "Imagem de referência do processador Intel Core i3-530",
+      "caption": "Imagem principal cadastrada para Intel Core i3-530.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i3-540",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i3-540",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i3-540.webp",
+      "alt": "Imagem de referência do processador Intel Core i3-540",
+      "caption": "Imagem principal cadastrada para Intel Core i3-540.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i3-550",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i3-550",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i3-550.webp",
+      "alt": "Imagem de referência do processador Intel Core i3-550",
+      "caption": "Imagem principal cadastrada para Intel Core i3-550.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i3-560",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i3-560",
+      "image_url": "https://qualprocessador.vercel.app/img/i3-560.webp",
+      "alt": "Imagem de referência do processador Intel Core i3-560",
+      "caption": "Imagem principal cadastrada para Intel Core i3-560.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i5-650",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i5-650",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i5-650.webp",
+      "alt": "Imagem de referência do processador Intel Core i5-650",
+      "caption": "Imagem principal cadastrada para Intel Core i5-650.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i5-655K",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i5-655k",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i5-655K.webp",
+      "alt": "Imagem de referência do processador Intel Core i5-655K",
+      "caption": "Imagem principal cadastrada para Intel Core i5-655K.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i5-660",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i5-660",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i5-660.webp",
+      "alt": "Imagem de referência do processador Intel Core i5-660",
+      "caption": "Imagem principal cadastrada para Intel Core i5-660.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i5-661",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i5-661",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i5-661.webp",
+      "alt": "Imagem de referência do processador Intel Core i5-661",
+      "caption": "Imagem principal cadastrada para Intel Core i5-661.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i5-670",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i5-670",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i5-670.webp",
+      "alt": "Imagem de referência do processador Intel Core i5-670",
+      "caption": "Imagem principal cadastrada para Intel Core i5-670.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i5-680",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i5-680",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i5-680.webp",
+      "alt": "Imagem de referência do processador Intel Core i5-680",
+      "caption": "Imagem principal cadastrada para Intel Core i5-680.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i5-750",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i5-750",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i5-750.webp",
+      "alt": "Imagem de referência do processador Intel Core i5-750",
+      "caption": "Imagem principal cadastrada para Intel Core i5-750.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i5-760",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i5-760",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i5-760.webp",
+      "alt": "Imagem de referência do processador Intel Core i5-760",
+      "caption": "Imagem principal cadastrada para Intel Core i5-760.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i7-860",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i7-860",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i7-860.webp",
+      "alt": "Imagem de referência do processador Intel Core i7-860",
+      "caption": "Imagem principal cadastrada para Intel Core i7-860.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i7-870",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i7-870",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i7-870.webp",
+      "alt": "Imagem de referência do processador Intel Core i7-870",
+      "caption": "Imagem principal cadastrada para Intel Core i7-870.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i7-875K",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i7-875k",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i7-875K.webp",
+      "alt": "Imagem de referência do processador Intel Core i7-875K",
+      "caption": "Imagem principal cadastrada para Intel Core i7-875K.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i7-880",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i7-880",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i7-880.webp",
+      "alt": "Imagem de referência do processador Intel Core i7-880",
+      "caption": "Imagem principal cadastrada para Intel Core i7-880.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Pentium G6950",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-pentium-g6950",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Pentium_G6950.webp",
+      "alt": "Imagem de referência do processador Intel Pentium G6950",
+      "caption": "Imagem principal cadastrada para Intel Pentium G6950.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Celeron G1101",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-celeron-g1101",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Celeron_G1101.webp",
+      "alt": "Imagem de referência do processador Intel Celeron G1101",
+      "caption": "Imagem principal cadastrada para Intel Celeron G1101.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Xeon E3-1220",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-xeon-e3-1220",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Xeon_E3-1220.webp",
+      "alt": "Imagem de referência do processador Intel Xeon E3-1220",
+      "caption": "Imagem principal cadastrada para Intel Xeon E3-1220.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Xeon E3-1225",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-xeon-e3-1225",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Xeon_E3-1225.webp",
+      "alt": "Imagem de referência do processador Intel Xeon E3-1225",
+      "caption": "Imagem principal cadastrada para Intel Xeon E3-1225.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Xeon E3-1230",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-xeon-e3-1230",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Xeon_E3-1230.webp",
+      "alt": "Imagem de referência do processador Intel Xeon E3-1230",
+      "caption": "Imagem principal cadastrada para Intel Xeon E3-1230.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Xeon E3-1235",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-xeon-e3-1235",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Xeon_E3-1235.webp",
+      "alt": "Imagem de referência do processador Intel Xeon E3-1235",
+      "caption": "Imagem principal cadastrada para Intel Xeon E3-1235.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Xeon E3-1240",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-xeon-e3-1240",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Xeon_E3-1240.webp",
+      "alt": "Imagem de referência do processador Intel Xeon E3-1240",
+      "caption": "Imagem principal cadastrada para Intel Xeon E3-1240.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Xeon E3-1245",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-xeon-e3-1245",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Xeon_E3-1245.webp",
+      "alt": "Imagem de referência do processador Intel Xeon E3-1245",
+      "caption": "Imagem principal cadastrada para Intel Xeon E3-1245.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Xeon E3-1270",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-xeon-e3-1270",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Xeon_E3-1270.webp",
+      "alt": "Imagem de referência do processador Intel Xeon E3-1270",
+      "caption": "Imagem principal cadastrada para Intel Xeon E3-1270.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Xeon E3-1275",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-xeon-e3-1275",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Xeon_E3-1275.webp",
+      "alt": "Imagem de referência do processador Intel Xeon E3-1275",
+      "caption": "Imagem principal cadastrada para Intel Xeon E3-1275.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Xeon E3-1280",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-xeon-e3-1280",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Xeon_E3-1280.webp",
+      "alt": "Imagem de referência do processador Intel Xeon E3-1280",
+      "caption": "Imagem principal cadastrada para Intel Xeon E3-1280.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Xeon E3-1290",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-xeon-e3-1290",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Xeon_E3-1290.webp",
+      "alt": "Imagem de referência do processador Intel Xeon E3-1290",
+      "caption": "Imagem principal cadastrada para Intel Xeon E3-1290.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i3-2100",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i3-2100",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i3-2100.webp",
+      "alt": "Imagem de referência do processador Intel Core i3-2100",
+      "caption": "Imagem principal cadastrada para Intel Core i3-2100.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i3-2120",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i3-2120",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i3-2120.webp",
+      "alt": "Imagem de referência do processador Intel Core i3-2120",
+      "caption": "Imagem principal cadastrada para Intel Core i3-2120.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i3-2125",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i3-2125",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i3-2125.webp",
+      "alt": "Imagem de referência do processador Intel Core i3-2125",
+      "caption": "Imagem principal cadastrada para Intel Core i3-2125.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i3-2130",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i3-2130",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i3-2130.webp",
+      "alt": "Imagem de referência do processador Intel Core i3-2130",
+      "caption": "Imagem principal cadastrada para Intel Core i3-2130.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i5-2300",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i5-2300",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i5-2300.webp",
+      "alt": "Imagem de referência do processador Intel Core i5-2300",
+      "caption": "Imagem principal cadastrada para Intel Core i5-2300.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i5-2310",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i5-2310",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i5-2310.webp",
+      "alt": "Imagem de referência do processador Intel Core i5-2310",
+      "caption": "Imagem principal cadastrada para Intel Core i5-2310.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i5-2320",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i5-2320",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i5-2320.webp",
+      "alt": "Imagem de referência do processador Intel Core i5-2320",
+      "caption": "Imagem principal cadastrada para Intel Core i5-2320.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i5-2380P",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i5-2380p",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i5-2380P.webp",
+      "alt": "Imagem de referência do processador Intel Core i5-2380P",
+      "caption": "Imagem principal cadastrada para Intel Core i5-2380P.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i5-2400",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i5-2400",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i5-2400.webp",
+      "alt": "Imagem de referência do processador Intel Core i5-2400",
+      "caption": "Imagem principal cadastrada para Intel Core i5-2400.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i5-2450P",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i5-2450p",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i5-2450P.webp",
+      "alt": "Imagem de referência do processador Intel Core i5-2450P",
+      "caption": "Imagem principal cadastrada para Intel Core i5-2450P.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i5-2500",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i5-2500",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i5-2500.webp",
+      "alt": "Imagem de referência do processador Intel Core i5-2500",
+      "caption": "Imagem principal cadastrada para Intel Core i5-2500.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i5-2500K",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i5-2500k",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i5-2500K.webp",
+      "alt": "Imagem de referência do processador Intel Core i5-2500K",
+      "caption": "Imagem principal cadastrada para Intel Core i5-2500K.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i7-2600",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i7-2600",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i7-2600.webp",
+      "alt": "Imagem de referência do processador Intel Core i7-2600",
+      "caption": "Imagem principal cadastrada para Intel Core i7-2600.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i7-2600K",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i7-2600k",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i7-2600K.webp",
+      "alt": "Imagem de referência do processador Intel Core i7-2600K",
+      "caption": "Imagem principal cadastrada para Intel Core i7-2600K.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i7-2700K",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i7-2700k",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i7-2700K.webp",
+      "alt": "Imagem de referência do processador Intel Core i7-2700K",
+      "caption": "Imagem principal cadastrada para Intel Core i7-2700K.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Pentium G620",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-pentium-g620",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Pentium_G620.webp",
+      "alt": "Imagem de referência do processador Intel Pentium G620",
+      "caption": "Imagem principal cadastrada para Intel Pentium G620.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Pentium G630",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-pentium-g630",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Pentium_G630.webp",
+      "alt": "Imagem de referência do processador Intel Pentium G630",
+      "caption": "Imagem principal cadastrada para Intel Pentium G630.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Pentium G640",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-pentium-g640",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Pentium_G640.webp",
+      "alt": "Imagem de referência do processador Intel Pentium G640",
+      "caption": "Imagem principal cadastrada para Intel Pentium G640.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Pentium G645",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-pentium-g645",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Pentium_G645.webp",
+      "alt": "Imagem de referência do processador Intel Pentium G645",
+      "caption": "Imagem principal cadastrada para Intel Pentium G645.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Pentium G840",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-pentium-g840",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Pentium_G840.webp",
+      "alt": "Imagem de referência do processador Intel Pentium G840",
+      "caption": "Imagem principal cadastrada para Intel Pentium G840.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Pentium G850",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-pentium-g850",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Pentium_G850.webp",
+      "alt": "Imagem de referência do processador Intel Pentium G850",
+      "caption": "Imagem principal cadastrada para Intel Pentium G850.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Pentium G860",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-pentium-g860",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Pentium_G860.webp",
+      "alt": "Imagem de referência do processador Intel Pentium G860",
+      "caption": "Imagem principal cadastrada para Intel Pentium G860.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Pentium G870",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-pentium-g870",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Pentium_G870.webp",
+      "alt": "Imagem de referência do processador Intel Pentium G870",
+      "caption": "Imagem principal cadastrada para Intel Pentium G870.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Celeron G440",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-celeron-g440",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Celeron_G440.webp",
+      "alt": "Imagem de referência do processador Intel Celeron G440",
+      "caption": "Imagem principal cadastrada para Intel Celeron G440.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Celeron G530",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-celeron-g530",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Celeron_G530.webp",
+      "alt": "Imagem de referência do processador Intel Celeron G530",
+      "caption": "Imagem principal cadastrada para Intel Celeron G530.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Celeron G540",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-celeron-g540",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Celeron_G540.webp",
+      "alt": "Imagem de referência do processador Intel Celeron G540",
+      "caption": "Imagem principal cadastrada para Intel Celeron G540.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Celeron G550",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-celeron-g550",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Celeron_G550.webp",
+      "alt": "Imagem de referência do processador Intel Celeron G550",
+      "caption": "Imagem principal cadastrada para Intel Celeron G550.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Celeron G555",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-celeron-g555",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Celeron_G555.webp",
+      "alt": "Imagem de referência do processador Intel Celeron G555",
+      "caption": "Imagem principal cadastrada para Intel Celeron G555.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Xeon E3-1220 V2",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-xeon-e3-1220-v2",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Xeon_E3-1220_V2.webp",
+      "alt": "Imagem de referência do processador Intel Xeon E3-1220 V2",
+      "caption": "Imagem principal cadastrada para Intel Xeon E3-1220 V2.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Xeon E3-1225 V2",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-xeon-e3-1225-v2",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Xeon_E3-1225_V2.webp",
+      "alt": "Imagem de referência do processador Intel Xeon E3-1225 V2",
+      "caption": "Imagem principal cadastrada para Intel Xeon E3-1225 V2.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Xeon E3-1230 V2",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-xeon-e3-1230-v2",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Xeon_E3-1230_V2.webp",
+      "alt": "Imagem de referência do processador Intel Xeon E3-1230 V2",
+      "caption": "Imagem principal cadastrada para Intel Xeon E3-1230 V2.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Xeon E3-1235 V2",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-xeon-e3-1235-v2",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Xeon_E3-1235_V2.webp",
+      "alt": "Imagem de referência do processador Intel Xeon E3-1235 V2",
+      "caption": "Imagem principal cadastrada para Intel Xeon E3-1235 V2.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Xeon E3-1240 V2",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-xeon-e3-1240-v2",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Xeon_E3-1240_V2.webp",
+      "alt": "Imagem de referência do processador Intel Xeon E3-1240 V2",
+      "caption": "Imagem principal cadastrada para Intel Xeon E3-1240 V2.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Xeon E3-1245 V2",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-xeon-e3-1245-v2",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Xeon_E3-1245_V2.webp",
+      "alt": "Imagem de referência do processador Intel Xeon E3-1245 V2",
+      "caption": "Imagem principal cadastrada para Intel Xeon E3-1245 V2.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Xeon E3-1270 V2",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-xeon-e3-1270-v2",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Xeon_E3-1270_V2.webp",
+      "alt": "Imagem de referência do processador Intel Xeon E3-1270 V2",
+      "caption": "Imagem principal cadastrada para Intel Xeon E3-1270 V2.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Xeon E3-1275 V2",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-xeon-e3-1275-v2",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Xeon_E3-1275_V2.webp",
+      "alt": "Imagem de referência do processador Intel Xeon E3-1275 V2",
+      "caption": "Imagem principal cadastrada para Intel Xeon E3-1275 V2.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Xeon E3-1280 V2",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-xeon-e3-1280-v2",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Xeon_E3-1280_V2.webp",
+      "alt": "Imagem de referência do processador Intel Xeon E3-1280 V2",
+      "caption": "Imagem principal cadastrada para Intel Xeon E3-1280 V2.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Xeon E3-1290 V2",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-xeon-e3-1290-v2",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Xeon_E3-1290_V2.webp",
+      "alt": "Imagem de referência do processador Intel Xeon E3-1290 V2",
+      "caption": "Imagem principal cadastrada para Intel Xeon E3-1290 V2.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i3-3220",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i3-3220",
+      "image_url": "https://qualprocessador.vercel.app/img/3220.webp",
+      "alt": "Imagem de referência do processador Intel Core i3-3220",
+      "caption": "Imagem principal cadastrada para Intel Core i3-3220.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i3-3225",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i3-3225",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i3-3225.webp",
+      "alt": "Imagem de referência do processador Intel Core i3-3225",
+      "caption": "Imagem principal cadastrada para Intel Core i3-3225.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i3-3240",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i3-3240",
+      "image_url": "https://qualprocessador.vercel.app/img/3240.webp",
+      "alt": "Imagem de referência do processador Intel Core i3-3240",
+      "caption": "Imagem principal cadastrada para Intel Core i3-3240.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i3-3245",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i3-3245",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i3-3245.webp",
+      "alt": "Imagem de referência do processador Intel Core i3-3245",
+      "caption": "Imagem principal cadastrada para Intel Core i3-3245.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i3-3250",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i3-3250",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i3-3250.webp",
+      "alt": "Imagem de referência do processador Intel Core i3-3250",
+      "caption": "Imagem principal cadastrada para Intel Core i3-3250.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i5-3330",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i5-3330",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i5-3330.webp",
+      "alt": "Imagem de referência do processador Intel Core i5-3330",
+      "caption": "Imagem principal cadastrada para Intel Core i5-3330.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i5-3340",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i5-3340",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i5-3340.webp",
+      "alt": "Imagem de referência do processador Intel Core i5-3340",
+      "caption": "Imagem principal cadastrada para Intel Core i5-3340.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i5-3450",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i5-3450",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i5-3450.webp",
+      "alt": "Imagem de referência do processador Intel Core i5-3450",
+      "caption": "Imagem principal cadastrada para Intel Core i5-3450.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i5-3470",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i5-3470",
+      "image_url": "https://qualprocessador.vercel.app/img/3470.webp",
+      "alt": "Imagem de referência do processador Intel Core i5-3470",
+      "caption": "Imagem principal cadastrada para Intel Core i5-3470.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i5-3550",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i5-3550",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i5-3550.webp",
+      "alt": "Imagem de referência do processador Intel Core i5-3550",
+      "caption": "Imagem principal cadastrada para Intel Core i5-3550.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i5-3570",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i5-3570",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i5-3570.webp",
+      "alt": "Imagem de referência do processador Intel Core i5-3570",
+      "caption": "Imagem principal cadastrada para Intel Core i5-3570.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i5-3570K",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i5-3570k",
+      "image_url": "https://qualprocessador.vercel.app/img/3570k.webp",
+      "alt": "Imagem de referência do processador Intel Core i5-3570K",
+      "caption": "Imagem principal cadastrada para Intel Core i5-3570K.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i7-3770",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i7-3770",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i7-3770.webp",
+      "alt": "Imagem de referência do processador Intel Core i7-3770",
+      "caption": "Imagem principal cadastrada para Intel Core i7-3770.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i7-3770K",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i7-3770k",
+      "image_url": "https://qualprocessador.vercel.app/img/3770k.webp",
+      "alt": "Imagem de referência do processador Intel Core i7-3770K",
+      "caption": "Imagem principal cadastrada para Intel Core i7-3770K.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Pentium G2010",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-pentium-g2010",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Pentium_G2010.webp",
+      "alt": "Imagem de referência do processador Intel Pentium G2010",
+      "caption": "Imagem principal cadastrada para Intel Pentium G2010.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Pentium G2020",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-pentium-g2020",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Pentium_G2020.webp",
+      "alt": "Imagem de referência do processador Intel Pentium G2020",
+      "caption": "Imagem principal cadastrada para Intel Pentium G2020.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Pentium G2030",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-pentium-g2030",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Pentium_G2030.webp",
+      "alt": "Imagem de referência do processador Intel Pentium G2030",
+      "caption": "Imagem principal cadastrada para Intel Pentium G2030.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Pentium G2120",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-pentium-g2120",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Pentium_G2120.webp",
+      "alt": "Imagem de referência do processador Intel Pentium G2120",
+      "caption": "Imagem principal cadastrada para Intel Pentium G2120.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Pentium G2130",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-pentium-g2130",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Pentium_G2130.webp",
+      "alt": "Imagem de referência do processador Intel Pentium G2130",
+      "caption": "Imagem principal cadastrada para Intel Pentium G2130.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Celeron G1610",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-celeron-g1610",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Celeron_G1610.webp",
+      "alt": "Imagem de referência do processador Intel Celeron G1610",
+      "caption": "Imagem principal cadastrada para Intel Celeron G1610.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Celeron G1620",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-celeron-g1620",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Celeron_G1620.webp",
+      "alt": "Imagem de referência do processador Intel Celeron G1620",
+      "caption": "Imagem principal cadastrada para Intel Celeron G1620.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Celeron G1630",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-celeron-g1630",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Celeron_G1630.webp",
+      "alt": "Imagem de referência do processador Intel Celeron G1630",
+      "caption": "Imagem principal cadastrada para Intel Celeron G1630.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Xeon E3-1220 V3",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-xeon-e3-1220-v3",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Xeon_E3-1220_V3.webp",
+      "alt": "Imagem de referência do processador Intel Xeon E3-1220 V3",
+      "caption": "Imagem principal cadastrada para Intel Xeon E3-1220 V3.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Xeon E3-1225 V3",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-xeon-e3-1225-v3",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Xeon_E3-1225_V3.webp",
+      "alt": "Imagem de referência do processador Intel Xeon E3-1225 V3",
+      "caption": "Imagem principal cadastrada para Intel Xeon E3-1225 V3.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Xeon E3-1230 V3",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-xeon-e3-1230-v3",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Xeon_E3-1230_V3.webp",
+      "alt": "Imagem de referência do processador Intel Xeon E3-1230 V3",
+      "caption": "Imagem principal cadastrada para Intel Xeon E3-1230 V3.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Xeon E3-1231 V3",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-xeon-e3-1231-v3",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Xeon_E3-1231_V3.webp",
+      "alt": "Imagem de referência do processador Intel Xeon E3-1231 V3",
+      "caption": "Imagem principal cadastrada para Intel Xeon E3-1231 V3.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Xeon E3-1240 V3",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-xeon-e3-1240-v3",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Xeon_E3-1240_V3.webp",
+      "alt": "Imagem de referência do processador Intel Xeon E3-1240 V3",
+      "caption": "Imagem principal cadastrada para Intel Xeon E3-1240 V3.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Xeon E3-1241 V3",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-xeon-e3-1241-v3",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Xeon_E3-1241_V3.webp",
+      "alt": "Imagem de referência do processador Intel Xeon E3-1241 V3",
+      "caption": "Imagem principal cadastrada para Intel Xeon E3-1241 V3.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Xeon E3-1245 V3",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-xeon-e3-1245-v3",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Xeon_E3-1245_V3.webp",
+      "alt": "Imagem de referência do processador Intel Xeon E3-1245 V3",
+      "caption": "Imagem principal cadastrada para Intel Xeon E3-1245 V3.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Xeon E3-1270 V3",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-xeon-e3-1270-v3",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Xeon_E3-1270_V3.webp",
+      "alt": "Imagem de referência do processador Intel Xeon E3-1270 V3",
+      "caption": "Imagem principal cadastrada para Intel Xeon E3-1270 V3.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Xeon E3-1271 V3",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-xeon-e3-1271-v3",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Xeon_E3-1271_V3.webp",
+      "alt": "Imagem de referência do processador Intel Xeon E3-1271 V3",
+      "caption": "Imagem principal cadastrada para Intel Xeon E3-1271 V3.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Xeon E3-1275 V3",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-xeon-e3-1275-v3",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Xeon_E3-1275_V3.webp",
+      "alt": "Imagem de referência do processador Intel Xeon E3-1275 V3",
+      "caption": "Imagem principal cadastrada para Intel Xeon E3-1275 V3.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Xeon E3-1280 V3",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-xeon-e3-1280-v3",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Xeon_E3-1280_V3.webp",
+      "alt": "Imagem de referência do processador Intel Xeon E3-1280 V3",
+      "caption": "Imagem principal cadastrada para Intel Xeon E3-1280 V3.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Xeon E3-1281 V3",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-xeon-e3-1281-v3",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Xeon_E3-1281_V3.webp",
+      "alt": "Imagem de referência do processador Intel Xeon E3-1281 V3",
+      "caption": "Imagem principal cadastrada para Intel Xeon E3-1281 V3.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i3-4130",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i3-4130",
+      "image_url": "https://qualprocessador.vercel.app/img/4130.webp",
+      "alt": "Imagem de referência do processador Intel Core i3-4130",
+      "caption": "Imagem principal cadastrada para Intel Core i3-4130.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i3-4150",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i3-4150",
+      "image_url": "https://qualprocessador.vercel.app/img/4150.webp",
+      "alt": "Imagem de referência do processador Intel Core i3-4150",
+      "caption": "Imagem principal cadastrada para Intel Core i3-4150.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i3-4160",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i3-4160",
+      "image_url": "https://qualprocessador.vercel.app/img/4160.webp",
+      "alt": "Imagem de referência do processador Intel Core i3-4160",
+      "caption": "Imagem principal cadastrada para Intel Core i3-4160.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i3-4170",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i3-4170",
+      "image_url": "https://qualprocessador.vercel.app/img/4170.webp",
+      "alt": "Imagem de referência do processador Intel Core i3-4170",
+      "caption": "Imagem principal cadastrada para Intel Core i3-4170.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i3-4330",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i3-4330",
+      "image_url": "https://qualprocessador.vercel.app/img/placeholder18.webp",
+      "alt": "Imagem de referência do processador Intel Core i3-4330",
+      "caption": "Imagem principal cadastrada para Intel Core i3-4330.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i3-4340",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i3-4340",
+      "image_url": "https://qualprocessador.vercel.app/img/placeholder18.webp",
+      "alt": "Imagem de referência do processador Intel Core i3-4340",
+      "caption": "Imagem principal cadastrada para Intel Core i3-4340.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i3-4350",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i3-4350",
+      "image_url": "https://qualprocessador.vercel.app/img/placeholder18.webp",
+      "alt": "Imagem de referência do processador Intel Core i3-4350",
+      "caption": "Imagem principal cadastrada para Intel Core i3-4350.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i3-4360",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i3-4360",
+      "image_url": "https://qualprocessador.vercel.app/img/placeholder18.webp",
+      "alt": "Imagem de referência do processador Intel Core i3-4360",
+      "caption": "Imagem principal cadastrada para Intel Core i3-4360.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i3-4370",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i3-4370",
+      "image_url": "https://qualprocessador.vercel.app/img/placeholder18.webp",
+      "alt": "Imagem de referência do processador Intel Core i3-4370",
+      "caption": "Imagem principal cadastrada para Intel Core i3-4370.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i5-4430",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i5-4430",
+      "image_url": "https://qualprocessador.vercel.app/img/1.webp",
+      "alt": "Imagem de referência do processador Intel Core i5-4430",
+      "caption": "Imagem principal cadastrada para Intel Core i5-4430.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i5-4440",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i5-4440",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i5-4440.webp",
+      "alt": "Imagem de referência do processador Intel Core i5-4440",
+      "caption": "Imagem principal cadastrada para Intel Core i5-4440.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i5-4460",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i5-4460",
+      "image_url": "https://qualprocessador.vercel.app/img/4460.webp",
+      "alt": "Imagem de referência do processador Intel Core i5-4460",
+      "caption": "Imagem principal cadastrada para Intel Core i5-4460.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i5-4570",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i5-4570",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i5-4570.webp",
+      "alt": "Imagem de referência do processador Intel Core i5-4570",
+      "caption": "Imagem principal cadastrada para Intel Core i5-4570.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i5-4590",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i5-4590",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i5-4590.webp",
+      "alt": "Imagem de referência do processador Intel Core i5-4590",
+      "caption": "Imagem principal cadastrada para Intel Core i5-4590.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i5-4670",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i5-4670",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i5-4670.webp",
+      "alt": "Imagem de referência do processador Intel Core i5-4670",
+      "caption": "Imagem principal cadastrada para Intel Core i5-4670.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i5-4670K",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i5-4670k",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i5-4670K.webp",
+      "alt": "Imagem de referência do processador Intel Core i5-4670K",
+      "caption": "Imagem principal cadastrada para Intel Core i5-4670K.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i5-4690",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i5-4690",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i5-4690.webp",
+      "alt": "Imagem de referência do processador Intel Core i5-4690",
+      "caption": "Imagem principal cadastrada para Intel Core i5-4690.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i5-4690K",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i5-4690k",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i5-4690K.webp",
+      "alt": "Imagem de referência do processador Intel Core i5-4690K",
+      "caption": "Imagem principal cadastrada para Intel Core i5-4690K.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i7-4770",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i7-4770",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i7-4770.webp",
+      "alt": "Imagem de referência do processador Intel Core i7-4770",
+      "caption": "Imagem principal cadastrada para Intel Core i7-4770.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i7-4770K",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i7-4770k",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i7-4770K.webp",
+      "alt": "Imagem de referência do processador Intel Core i7-4770K",
+      "caption": "Imagem principal cadastrada para Intel Core i7-4770K.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i7-4790",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i7-4790",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i7-4790.webp",
+      "alt": "Imagem de referência do processador Intel Core i7-4790",
+      "caption": "Imagem principal cadastrada para Intel Core i7-4790.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i7-4790K",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i7-4790k",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i7-4790K.webp",
+      "alt": "Imagem de referência do processador Intel Core i7-4790K",
+      "caption": "Imagem principal cadastrada para Intel Core i7-4790K.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Pentium G3220",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-pentium-g3220",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Pentium_G3220.webp",
+      "alt": "Imagem de referência do processador Intel Pentium G3220",
+      "caption": "Imagem principal cadastrada para Intel Pentium G3220.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Pentium G3240",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-pentium-g3240",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Pentium_G3240.webp",
+      "alt": "Imagem de referência do processador Intel Pentium G3240",
+      "caption": "Imagem principal cadastrada para Intel Pentium G3240.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Pentium G3250",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-pentium-g3250",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Pentium_G3250.webp",
+      "alt": "Imagem de referência do processador Intel Pentium G3250",
+      "caption": "Imagem principal cadastrada para Intel Pentium G3250.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Pentium G3258",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-pentium-g3258",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Pentium_G3258.webp",
+      "alt": "Imagem de referência do processador Intel Pentium G3258",
+      "caption": "Imagem principal cadastrada para Intel Pentium G3258.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Pentium G3260",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-pentium-g3260",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Pentium_G3260.webp",
+      "alt": "Imagem de referência do processador Intel Pentium G3260",
+      "caption": "Imagem principal cadastrada para Intel Pentium G3260.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Pentium G3420",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-pentium-g3420",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Pentium_G3420.webp",
+      "alt": "Imagem de referência do processador Intel Pentium G3420",
+      "caption": "Imagem principal cadastrada para Intel Pentium G3420.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Pentium G3440",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-pentium-g3440",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Pentium_G3440.webp",
+      "alt": "Imagem de referência do processador Intel Pentium G3440",
+      "caption": "Imagem principal cadastrada para Intel Pentium G3440.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Pentium G3450",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-pentium-g3450",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Pentium_G3450.webp",
+      "alt": "Imagem de referência do processador Intel Pentium G3450",
+      "caption": "Imagem principal cadastrada para Intel Pentium G3450.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Pentium G3460",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-pentium-g3460",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Pentium_G3460.webp",
+      "alt": "Imagem de referência do processador Intel Pentium G3460",
+      "caption": "Imagem principal cadastrada para Intel Pentium G3460.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Celeron G1820",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-celeron-g1820",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Celeron_G1820.webp",
+      "alt": "Imagem de referência do processador Intel Celeron G1820",
+      "caption": "Imagem principal cadastrada para Intel Celeron G1820.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Celeron G1830",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-celeron-g1830",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Celeron_G1830.webp",
+      "alt": "Imagem de referência do processador Intel Celeron G1830",
+      "caption": "Imagem principal cadastrada para Intel Celeron G1830.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Celeron G1840",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-celeron-g1840",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Celeron_G1840.webp",
+      "alt": "Imagem de referência do processador Intel Celeron G1840",
+      "caption": "Imagem principal cadastrada para Intel Celeron G1840.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Celeron G1850",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-celeron-g1850",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Celeron_G1850.webp",
+      "alt": "Imagem de referência do processador Intel Celeron G1850",
+      "caption": "Imagem principal cadastrada para Intel Celeron G1850.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Xeon E3-1285 V4",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-xeon-e3-1285-v4",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Xeon_E3-1285_V4.webp",
+      "alt": "Imagem de referência do processador Intel Xeon E3-1285 V4",
+      "caption": "Imagem principal cadastrada para Intel Xeon E3-1285 V4.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i3-6100",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i3-6100",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i3-6100.webp",
+      "alt": "Imagem de referência do processador Intel Core i3-6100",
+      "caption": "Imagem principal cadastrada para Intel Core i3-6100.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i5-6500",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i5-6500",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i5-6500.webp",
+      "alt": "Imagem de referência do processador Intel Core i5-6500",
+      "caption": "Imagem principal cadastrada para Intel Core i5-6500.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i7-6700K",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i7-6700k",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i7-6700K.webp",
+      "alt": "Imagem de referência do processador Intel Core i7-6700K",
+      "caption": "Imagem principal cadastrada para Intel Core i7-6700K.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i3-7100",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i3-7100",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i3-7100.webp",
+      "alt": "Imagem de referência do processador Intel Core i3-7100",
+      "caption": "Imagem principal cadastrada para Intel Core i3-7100.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i5-7400",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i5-7400",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i5-7400.webp",
+      "alt": "Imagem de referência do processador Intel Core i5-7400",
+      "caption": "Imagem principal cadastrada para Intel Core i5-7400.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i7-7700K",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i7-7700k",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i7-7700K.webp",
+      "alt": "Imagem de referência do processador Intel Core i7-7700K",
+      "caption": "Imagem principal cadastrada para Intel Core i7-7700K.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Pentium G4560",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-pentium-g4560",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Pentium_G4560.webp",
+      "alt": "Imagem de referência do processador Intel Pentium G4560",
+      "caption": "Imagem principal cadastrada para Intel Pentium G4560.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i3-8100",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i3-8100",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i3-8100.webp",
+      "alt": "Imagem de referência do processador Intel Core i3-8100",
+      "caption": "Imagem principal cadastrada para Intel Core i3-8100.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i5-8400",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i5-8400",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i5-8400.webp",
+      "alt": "Imagem de referência do processador Intel Core i5-8400",
+      "caption": "Imagem principal cadastrada para Intel Core i5-8400.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i7-8700K",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i7-8700k",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i7-8700K.webp",
+      "alt": "Imagem de referência do processador Intel Core i7-8700K",
+      "caption": "Imagem principal cadastrada para Intel Core i7-8700K.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i5-9400F",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i5-9400f",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i5-9400F.webp",
+      "alt": "Imagem de referência do processador Intel Core i5-9400F",
+      "caption": "Imagem principal cadastrada para Intel Core i5-9400F.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i7-9700K",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i7-9700k",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i7-9700K.webp",
+      "alt": "Imagem de referência do processador Intel Core i7-9700K",
+      "caption": "Imagem principal cadastrada para Intel Core i7-9700K.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i9-9900K",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i9-9900k",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i9-9900K.webp",
+      "alt": "Imagem de referência do processador Intel Core i9-9900K",
+      "caption": "Imagem principal cadastrada para Intel Core i9-9900K.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i3-10100F",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i3-10100f",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i3-10100F.webp",
+      "alt": "Imagem de referência do processador Intel Core i3-10100F",
+      "caption": "Imagem principal cadastrada para Intel Core i3-10100F.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i5-10400F",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i5-10400f",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i5-10400F.webp",
+      "alt": "Imagem de referência do processador Intel Core i5-10400F",
+      "caption": "Imagem principal cadastrada para Intel Core i5-10400F.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i7-10700K",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i7-10700k",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i7-10700K.webp",
+      "alt": "Imagem de referência do processador Intel Core i7-10700K",
+      "caption": "Imagem principal cadastrada para Intel Core i7-10700K.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i5-11400F",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i5-11400f",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i5-11400F.webp",
+      "alt": "Imagem de referência do processador Intel Core i5-11400F",
+      "caption": "Imagem principal cadastrada para Intel Core i5-11400F.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i7-11700K",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i7-11700k",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i7-11700K.webp",
+      "alt": "Imagem de referência do processador Intel Core i7-11700K",
+      "caption": "Imagem principal cadastrada para Intel Core i7-11700K.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i9-11900K",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i9-11900k",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i9-11900K.webp",
+      "alt": "Imagem de referência do processador Intel Core i9-11900K",
+      "caption": "Imagem principal cadastrada para Intel Core i9-11900K.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i3-12100F",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i3-12100f",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i3-12100F.webp",
+      "alt": "Imagem de referência do processador Intel Core i3-12100F",
+      "caption": "Imagem principal cadastrada para Intel Core i3-12100F.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i5-12400F",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i5-12400f",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i5-12400F.webp",
+      "alt": "Imagem de referência do processador Intel Core i5-12400F",
+      "caption": "Imagem principal cadastrada para Intel Core i5-12400F.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i7-12700K",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i7-12700k",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i7-12700K.webp",
+      "alt": "Imagem de referência do processador Intel Core i7-12700K",
+      "caption": "Imagem principal cadastrada para Intel Core i7-12700K.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i5-13600K",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i5-13600k",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i5-13600K.webp",
+      "alt": "Imagem de referência do processador Intel Core i5-13600K",
+      "caption": "Imagem principal cadastrada para Intel Core i5-13600K.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i7-13700K",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i7-13700k",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i7-13700K.webp",
+      "alt": "Imagem de referência do processador Intel Core i7-13700K",
+      "caption": "Imagem principal cadastrada para Intel Core i7-13700K.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i9-13900K",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i9-13900k",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i9-13900K.webp",
+      "alt": "Imagem de referência do processador Intel Core i9-13900K",
+      "caption": "Imagem principal cadastrada para Intel Core i9-13900K.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i3-14100F",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i3-14100f",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i3-14100F.webp",
+      "alt": "Imagem de referência do processador Intel Core i3-14100F",
+      "caption": "Imagem principal cadastrada para Intel Core i3-14100F.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i5-14600K",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i5-14600k",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i5-14600K.webp",
+      "alt": "Imagem de referência do processador Intel Core i5-14600K",
+      "caption": "Imagem principal cadastrada para Intel Core i5-14600K.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i7-14700K",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i7-14700k",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i7-14700K.webp",
+      "alt": "Imagem de referência do processador Intel Core i7-14700K",
+      "caption": "Imagem principal cadastrada para Intel Core i7-14700K.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "technical-database",
+      "entity_type": "processor",
+      "entity_name": "Intel Core i9-14900K",
+      "page_url": "https://qualprocessador.vercel.app/cpu/intel/intel-core-i9-14900k",
+      "image_url": "https://qualprocessador.vercel.app/img/Intel_Core_i9-14900K.webp",
+      "alt": "Imagem de referência do processador Intel Core i9-14900K",
+      "caption": "Imagem principal cadastrada para Intel Core i9-14900K.",
+      "kind": "product-reference"
+    },
+    {
+      "source_type": "editorial",
+      "entity_type": "article",
+      "entity_name": "Análise: PowerBank Elg PB200BK 20.000mAh",
+      "page_url": "https://qualprocessador.vercel.app/elg/2026/08/review-powerbank-elg-PB200BK-20.000mAh",
+      "image_url": "https://qualprocessador.vercel.app/img/photo_5_2026-08-04_16-58-55.webp",
+      "alt": "PowerBank ELG PB200BK fotografado para a análise do QualProcessador",
+      "caption": "PowerBank ELG PB200BK de 20.000 mAh usado na análise prática.",
+      "kind": "cover"
+    },
+    {
+      "source_type": "editorial",
+      "entity_type": "article",
+      "entity_name": "Análise: PowerBank Elg PB200BK 20.000mAh",
+      "page_url": "https://qualprocessador.vercel.app/elg/2026/08/review-powerbank-elg-PB200BK-20.000mAh",
+      "image_url": "https://qualprocessador.vercel.app/img/photo_4_2026-08-04_16-58-55.webp",
+      "alt": "PowerBank ELG PB200BK fotografado durante a análise — vista 2",
+      "caption": "PowerBank ELG PB200BK — segunda fotografia do produto usada na análise.",
+      "kind": "foto"
+    },
+    {
+      "source_type": "editorial",
+      "entity_type": "article",
+      "entity_name": "Análise: PowerBank Elg PB200BK 20.000mAh",
+      "page_url": "https://qualprocessador.vercel.app/elg/2026/08/review-powerbank-elg-PB200BK-20.000mAh",
+      "image_url": "https://qualprocessador.vercel.app/img/photo_3_2026-08-04_16-58-55.webp",
+      "alt": "PowerBank ELG PB200BK fotografado durante a análise — vista 3",
+      "caption": "PowerBank ELG PB200BK — terceira fotografia do produto usada na análise.",
+      "kind": "foto"
+    },
+    {
+      "source_type": "editorial",
+      "entity_type": "article",
+      "entity_name": "Análise: PowerBank Elg PB200BK 20.000mAh",
+      "page_url": "https://qualprocessador.vercel.app/elg/2026/08/review-powerbank-elg-PB200BK-20.000mAh",
+      "image_url": "https://qualprocessador.vercel.app/img/photo_2_2026-08-04_16-58-55.webp",
+      "alt": "PowerBank ELG PB200BK fotografado durante a análise — vista 4",
+      "caption": "PowerBank ELG PB200BK — quarta fotografia do produto usada na análise.",
+      "kind": "foto"
+    },
+    {
+      "source_type": "editorial",
+      "entity_type": "article",
+      "entity_name": "Análise: PowerBank Elg PB200BK 20.000mAh",
+      "page_url": "https://qualprocessador.vercel.app/elg/2026/08/review-powerbank-elg-PB200BK-20.000mAh",
+      "image_url": "https://qualprocessador.vercel.app/img/photo_1_2026-08-04_16-58-55.webp",
+      "alt": "PowerBank ELG PB200BK fotografado durante a análise — vista 5",
+      "caption": "PowerBank ELG PB200BK — quinta fotografia do produto usada na análise.",
+      "kind": "foto"
+    },
+    {
+      "source_type": "editorial",
+      "entity_type": "article",
+      "entity_name": "O que é uma APU? CPU e vídeo integrado no mesmo processador",
+      "page_url": "https://qualprocessador.vercel.app/amd/o-que-e-uma-APU",
+      "image_url": "https://images.unsplash.com/photo-1591488320449-011701bb6704?q=80&w=600&auto=format&fit=crop",
+      "alt": "Imagem ilustrativa de hardware usada na capa do artigo sobre APUs",
+      "caption": "Imagem ilustrativa para o guia sobre processadores com gráficos integrados.",
+      "kind": "cover"
+    },
+    {
+      "source_type": "tool",
+      "entity_type": "software",
+      "entity_name": "Upscendra Image Suite 1.0",
+      "page_url": "https://qualprocessador.vercel.app/upscendra",
+      "image_url": "https://qualprocessador.vercel.app/upscendra-interface.jpg",
+      "alt": "Interface do Upscendra Image Suite 1.0 no Windows",
+      "caption": "Captura da interface do Upscendra Image Suite 1.0.",
+      "kind": "software-screenshot"
+    },
+    {
+      "source_type": "tool",
+      "entity_type": "software",
+      "entity_name": "WinFormatKit 1.1",
+      "page_url": "https://qualprocessador.vercel.app/winformatkit",
+      "image_url": "https://qualprocessador.vercel.app/winformatkit-interface.jpg",
+      "alt": "Interface do WinFormatKit 1.1 no Windows",
+      "caption": "Captura da interface do WinFormatKit 1.1.",
+      "kind": "software-screenshot"
+    }
+  ]
+}
