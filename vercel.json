@@ -33,7 +33,7 @@
     },
     {
       "source": "/cpu/:marca/:cpu",
-      "destination": "/detalhes?marca=:marca&cpu=:cpu"
+      "destination": "/api/render-cpu?marca=:marca&cpu=:cpu"
     },
     {
       "source": "/comparar/:comparacao*",
@@ -41,7 +41,11 @@
     },
     {
       "source": "/forum",
-      "destination": "/forum.html"
+      "destination": "/api/render-forum"
+    },
+    {
+      "source": "/forum.html",
+      "destination": "/api/render-forum"
     },
     {
       "source": "/Comunidade",
@@ -73,15 +77,23 @@
     },
     {
       "source": "/artigo/:id",
-      "destination": "/ler-artigo?id=:id"
+      "destination": "/api/render-article?id=:id"
+    },
+    {
+      "source": "/ler-artigo",
+      "destination": "/api/render-article"
+    },
+    {
+      "source": "/ler-artigo.html",
+      "destination": "/api/render-article"
     },
     {
       "source": "/elg/2026/08/review-powerbank-elg-PB200BK-20.000mAh",
-      "destination": "/ler-artigo?id=102"
+      "destination": "/api/render-article?id=102"
     },
     {
       "source": "/amd/o-que-e-uma-APU",
-      "destination": "/ler-artigo?id=101"
+      "destination": "/api/render-article?id=101"
     }
   ],
   "headers": [
@@ -124,7 +136,7 @@
         },
         {
           "key": "Link",
-          "value": "<https://qualprocessador.com/llms.txt>; rel=\"alternate\"; type=\"text/plain\", <https://qualprocessador.com/sitemap.md>; rel=\"alternate\"; type=\"text/markdown\", <https://qualprocessador.com/ai-index.json>; rel=\"describedby\"; type=\"application/json\""
+          "value": "<https://qualprocessador.vercel.app/llms.txt>; rel=\"alternate\"; type=\"text/plain\", <https://qualprocessador.vercel.app/sitemap.md>; rel=\"alternate\"; type=\"text/markdown\", <https://qualprocessador.vercel.app/ai-index.json>; rel=\"describedby\"; type=\"application/json\""
         }
       ]
     }
