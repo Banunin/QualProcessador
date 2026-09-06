@@ -4,10 +4,12 @@
 
 Idioma principal: pt-BR
 URL canônica: https://qualprocessador.com/
+Processadores catalogados: 223
+Artigos catalogados: 2
 
 ## Conteúdo principal
 
-- [Início](https://qualprocessador.com/): busca, fichas técnicas e processadores.
+- [Início](https://qualprocessador.com/): visão geral, busca e processadores recentes.
 - [Comparador](https://qualprocessador.com/comparar): comparação lado a lado de processadores.
 - [Artigos](https://qualprocessador.com/analises): análises e guias de hardware.
 - [Fórum](https://qualprocessador.com/forum): comunidade e discussões.
@@ -34,8 +36,8 @@ As páginas públicas suportam negociação de conteúdo. Envie `Accept: text/ma
 
 ## Artigos atuais
 
-- [Análise: PowerBank Elg PB200BK 20.000mAh](https://qualprocessador.com/elg/2026/08/review-powerbank-elg-PB200BK-20.000mAh): análise de autonomia, carregamento, construção e custo-benefício.
-- [O que é uma APU? CPU e vídeo integrado no mesmo processador](https://qualprocessador.com/amd/o-que-e-uma-APU): explicação sobre CPU com gráficos integrados, memória e limitações.
+- [Análise: PowerBank Elg PB200BK 20.000mAh](https://qualprocessador.com/elg/2026/08/review-powerbank-elg-PB200BK-20.000mAh): Vale a pena comprar a Power Bank ELG de R$ 130? Eu testei o modelo e mostro os resultados reais de autonomia, velocidade de carregamento, qualidade de construção e custo-benefício.
+- [O que é uma APU? CPU e vídeo integrado no mesmo processador](https://qualprocessador.com/amd/o-que-e-uma-APU): Entenda o que é uma APU, como o vídeo integrado usa a memória RAM, onde esse tipo de processador faz sentido e quais são seus principais limites.
 
 ## Observações para sistemas automáticos
 

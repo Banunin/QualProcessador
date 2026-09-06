@@ -3,19 +3,19 @@
   <channel>
     <title>QualProcessador — Artigos e análises</title>
     <link>https://qualprocessador.com/analises</link>
-    <description>Artigos, análises e guias de hardware do QualProcessador.</description>
+    <description>Plataforma brasileira de hardware focada em fichas técnicas de processadores AMD e Intel, benchmarks CPU-Z, comparações, artigos e ferramentas.</description>
     <language>pt-BR</language>
     <item>
       <title>Análise: PowerBank Elg PB200BK 20.000mAh</title>
       <link>https://qualprocessador.com/elg/2026/08/review-powerbank-elg-PB200BK-20.000mAh</link>
       <guid isPermaLink="true">https://qualprocessador.com/elg/2026/08/review-powerbank-elg-PB200BK-20.000mAh</guid>
-      <description>Vale a pena comprar a Power Bank ELG? Avaliação de autonomia, velocidade de carregamento, construção e custo-benefício.</description>
+      <description>Vale a pena comprar a Power Bank ELG de R$ 130? Eu testei o modelo e mostro os resultados reais de autonomia, velocidade de carregamento, qualidade de construção e custo-benefício.</description>
     </item>
     <item>
       <title>O que é uma APU? CPU e vídeo integrado no mesmo processador</title>
       <link>https://qualprocessador.com/amd/o-que-e-uma-APU</link>
       <guid isPermaLink="true">https://qualprocessador.com/amd/o-que-e-uma-APU</guid>
-      <description>Entenda o que é uma APU, como o vídeo integrado usa a memória RAM e quais são seus principais limites.</description>
+      <description>Entenda o que é uma APU, como o vídeo integrado usa a memória RAM, onde esse tipo de processador faz sentido e quais são seus principais limites.</description>
     </item>
   </channel>
 </rss>
