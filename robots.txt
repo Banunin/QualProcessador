@@ -1,4 +1,10 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://qualprocessador.vercel.app/sitemap.xml
+# O QualProcessador não bloqueia crawlers públicos de busca ou IA pela regra geral acima.
+# Recursos de descoberta legíveis por máquinas:
+# https://qualprocessador.com/llms.txt
+# https://qualprocessador.com/sitemap.md
+# https://qualprocessador.com/ai-index.json
+
+Sitemap: https://qualprocessador.com/sitemap.xml
