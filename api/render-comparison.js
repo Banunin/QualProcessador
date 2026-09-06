@@ -2,7 +2,20 @@
 
 const fs = require('fs');
 const path = require('path');
-const { BASE_URL, carregarCpus, slugCpu, urlCpu, normalizar, numeroCpu } = require('../lib/ai-utils');
+const {
+  BASE_URL,
+  carregarCpus,
+  slugCpu,
+  urlCpu,
+  normalizar,
+  numeroCpu,
+  entityIdCpu,
+  cpuPublica,
+  datasetPublico,
+  ordenarPar,
+  resolverComparacao: resolverComparacaoBase,
+  urlComparacao
+} = require('../lib/ai-utils');
 
 const TEMPLATE_PATH = path.resolve(__dirname, '..', 'comparar.html');
 let templateCache = null;
@@ -28,50 +41,43 @@ function points(v) {
 }
 function safeJson(obj) { return JSON.stringify(obj).replace(/</g, '\\u003c'); }
 
-function ordenarPar(a, b) {
-  const ai = Number(a && a.id);
-  const bi = Number(b && b.id);
-  if (Number.isFinite(ai) && Number.isFinite(bi)) return ai <= bi ? [a, b] : [b, a];
-  return slugCpu(a) <= slugCpu(b) ? [a, b] : [b, a];
-}
-
 function resolverSlug(slug, cpus) {
   const alvo = normalizar(decodeURIComponent(String(slug || '')));
   return cpus.find(cpu => normalizar(slugCpu(cpu)) === alvo || normalizar(cpu.nome) === alvo) || null;
 }
 
 function resolverComparacao(raw, cpus) {
+  const direto = resolverComparacaoBase(decodeURIComponent(String(raw || '')));
+  if (direto) return direto;
   const bruto = decodeURIComponent(String(raw || '')).replace(/^\/+|\/+$/g, '');
   const idx = bruto.indexOf('-vs-');
   if (idx < 1) return null;
   const a = resolverSlug(bruto.slice(0, idx), cpus);
   const b = resolverSlug(bruto.slice(idx + 4), cpus);
-  return a && b && a.id !== b.id ? ordenarPar(a, b) : null;
+  return a && b && entityIdCpu(a) !== entityIdCpu(b) ? ordenarPar(a, b) : null;
 }
 
-function comparisonPath(a, b) {
-  const [x, y] = ordenarPar(a, b);
-  return `/comparar/${slugCpu(x)}-vs-${slugCpu(y)}`;
-}
+function comparisonPath(a, b) { return urlComparacao(a, b); }
 
 function cpuHead(cpu) {
   const brand = String(cpu.marca || cpu.fabricante || '').toLowerCase();
-  return `<article class="cpu-head ${attr(brand)}"><span class="brand">${esc(String(cpu.marca || cpu.fabricante || '').toUpperCase())}</span><h3>${esc(cpu.nome)}</h3><div>${esc(value(cpu.cores))} núcleos • ${esc(value(cpu.threads))} threads • ${esc(value(cpu.soquete))}</div><a href="${attr(urlCpu(cpu))}">Abrir ficha técnica →</a></article>`;
+  return `<article class="cpu-head ${attr(brand)}" data-entity-id="${attr(entityIdCpu(cpu))}"><span class="brand">${esc(String(cpu.marca || cpu.fabricante || '').toUpperCase())}</span><h3>${esc(cpu.nome)}</h3><div>${esc(value(cpu.cores))} núcleos • ${esc(value(cpu.threads))} threads • ${esc(value(cpu.soquete))}</div><a href="${attr(urlCpu(cpu))}">Abrir ficha técnica →</a></article>`;
 }
 
 function scoreCard(title, a, b, field) {
   return `<article class="score-card"><h3>${esc(title)}</h3><div class="score-row"><span>${esc(a.nome)}</span><strong>${esc(points(a[field]))}</strong></div><div class="score-row"><span>${esc(b.nome)}</span><strong>${esc(points(b[field]))}</strong></div></article>`;
 }
 
+const CAMPOS = [
+  ['cores', 'Núcleos'], ['threads', 'Threads'], ['freqBase', 'Clock base'], ['freqBoost', 'Clock boost'],
+  ['tdp', 'TDP'], ['soquete', 'Soquete'], ['arquitetura', 'Arquitetura'], ['codinome', 'Codinome'],
+  ['litografia', 'Litografia'], ['cacheL3', 'Cache L3'], ['memoria', 'Memória'], ['pcie', 'PCI Express'],
+  ['video', 'Vídeo integrado'], ['notaJogos', 'CPU-Z Benchmark 17 Single Thread'], ['notaTrabalho', 'CPU-Z Benchmark 17 Multi Thread']
+];
+
 function specRows(a, b) {
-  const rows = [
-    ['Núcleos', a.cores, b.cores], ['Threads', a.threads, b.threads], ['Clock base', a.freqBase, b.freqBase],
-    ['Clock boost', a.freqBoost, b.freqBoost], ['TDP', a.tdp, b.tdp], ['Soquete', a.soquete, b.soquete],
-    ['Arquitetura', a.arquitetura, b.arquitetura], ['Litografia', a.litografia, b.litografia],
-    ['Cache L3', a.cacheL3, b.cacheL3], ['Memória', a.memoria, b.memoria], ['PCI Express', a.pcie, b.pcie],
-    ['Vídeo integrado', a.video, b.video]
-  ];
-  return rows.map(([label, av, bv]) => `<tr><td>${esc(label)}</td><td>${esc(value(av))}</td><td>${esc(value(bv))}</td></tr>`).join('');
+  return CAMPOS.filter(([key]) => !['notaJogos', 'notaTrabalho'].includes(key))
+    .map(([key, label]) => `<tr><td>${esc(label)}</td><td>${esc(value(a[key]))}</td><td>${esc(value(b[key]))}</td></tr>`).join('');
 }
 
 function summary(a, b) {
@@ -79,22 +85,33 @@ function summary(a, b) {
 }
 
 function renderPage(a, b) {
+  [a, b] = ordenarPar(a, b);
   let html = template();
   const canonical = BASE_URL + comparisonPath(a, b);
   const title = `${a.nome} vs ${b.nome}: comparação de processadores | QualProcessador`;
   const description = `Compare ${a.nome} e ${b.nome}: núcleos, threads, clocks, TDP, soquete, plataforma e resultados CPU-Z Single Thread e Multi Thread.`;
+  const apiUrl = `${BASE_URL}/api/comparison/${slugCpu(a)}-vs-${slugCpu(b)}`;
   const jsonLd = {
-    '@context': 'https://schema.org', '@type': 'WebPage', name: `${a.nome} vs ${b.nome}`, description, url: canonical, inLanguage: 'pt-BR',
-    isPartOf: { '@type': 'WebSite', name: 'QualProcessador', url: BASE_URL + '/' },
-    about: [
-      { '@type': 'Product', name: a.nome, url: BASE_URL + urlCpu(a) },
-      { '@type': 'Product', name: b.nome, url: BASE_URL + urlCpu(b) }
-    ],
-    breadcrumb: { '@type': 'BreadcrumbList', itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'QualProcessador', item: BASE_URL + '/' },
-      { '@type': 'ListItem', position: 2, name: 'Comparar processadores', item: BASE_URL + '/comparar' },
-      { '@type': 'ListItem', position: 3, name: `${a.nome} vs ${b.nome}`, item: canonical }
-    ] }
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebPage', '@id': canonical + '#webpage', name: `${a.nome} vs ${b.nome}`, description, url: canonical, inLanguage: 'pt-BR',
+        isPartOf: { '@type': 'WebSite', '@id': BASE_URL + '/#website', name: 'QualProcessador', url: BASE_URL + '/' },
+        about: [
+          { '@type': 'Product', '@id': BASE_URL + urlCpu(a) + '#processor', name: a.nome, identifier: entityIdCpu(a), url: BASE_URL + urlCpu(a) },
+          { '@type': 'Product', '@id': BASE_URL + urlCpu(b) + '#processor', name: b.nome, identifier: entityIdCpu(b), url: BASE_URL + urlCpu(b) }
+        ],
+        subjectOf: { '@type': 'WebAPI', name: 'API estruturada desta comparação', url: apiUrl },
+        isBasedOn: { '@type': 'Dataset', '@id': BASE_URL + '/dados.json#dataset', url: BASE_URL + '/dados.json' }
+      },
+      {
+        '@type': 'BreadcrumbList', itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'QualProcessador', item: BASE_URL + '/' },
+          { '@type': 'ListItem', position: 2, name: 'Comparar processadores', item: BASE_URL + '/comparar' },
+          { '@type': 'ListItem', position: 3, name: `${a.nome} vs ${b.nome}`, item: canonical }
+        ]
+      }
+    ]
   };
 
   html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${esc(title)}</title>`);
@@ -103,7 +120,7 @@ function renderPage(a, b) {
   html = html.replace(/<meta property="og:title" content="[^"]*">/i, `<meta property="og:title" content="${attr(title)}">`);
   html = html.replace(/<meta property="og:description" content="[^"]*">/i, `<meta property="og:description" content="${attr(description)}">`);
   html = html.replace(/<meta property="og:url" content="[^"]*">/i, `<meta property="og:url" content="${attr(canonical)}">`);
-  html = html.replace('</head>', `    <script type="application/ld+json" id="qp-ssr-comparison-jsonld">${safeJson(jsonLd)}</script>\n</head>`);
+  html = html.replace('</head>', `    <link rel="alternate" type="application/json" href="${attr(apiUrl)}">\n    <script type="application/ld+json" id="qp-ssr-comparison-jsonld">${safeJson(jsonLd)}</script>\n</head>`);
 
   html = html.replace('<h1 id="hero-title">Comparar Processadores</h1>', `<h1 id="hero-title">${esc(a.nome)} vs ${esc(b.nome)}</h1>`);
   html = html.replace('<p id="hero-desc">Escolha dois processadores. A página mostra especificações, plataforma e resultados CPU-Z lado a lado.</p>', '<p id="hero-desc">Especificações, plataforma e resultados CPU-Z lado a lado.</p>');
@@ -118,22 +135,81 @@ function renderPage(a, b) {
   return html;
 }
 
-module.exports = function handler(req, res) {
-  if (!['GET', 'HEAD'].includes(req.method)) {
-    res.statusCode = 405; res.setHeader('Allow', 'GET, HEAD'); return res.end('Method Not Allowed');
+function structuredComparison(a, b) {
+  [a, b] = ordenarPar(a, b);
+  const fields = {};
+  for (const [key, label] of CAMPOS) {
+    const av = a[key] === undefined || a[key] === null || String(a[key]).trim() === '' ? null : a[key];
+    const bv = b[key] === undefined || b[key] === null || String(b[key]).trim() === '' ? null : b[key];
+    fields[key] = { label, processor_a: av, processor_b: bv, different: String(av ?? '') !== String(bv ?? '') };
   }
-  const raw = Array.isArray(req.query.comparacao) ? req.query.comparacao[0] : req.query.comparacao;
+  return {
+    entity_type: 'processor_comparison',
+    entity_id: `qp:comparison:${String(a.id)}:${String(b.id)}`,
+    slug: `${slugCpu(a)}-vs-${slugCpu(b)}`,
+    canonical_url: BASE_URL + comparisonPath(a, b),
+    processor_a: cpuPublica(a),
+    processor_b: cpuPublica(b),
+    fields,
+    benchmark_semantics: {
+      notaJogos: 'CPU-Z Benchmark 17 Single Thread',
+      notaTrabalho: 'CPU-Z Benchmark 17 Multi Thread',
+      missing_value: 'N/A'
+    },
+    provenance: {
+      source: 'QualProcessador CPU Database',
+      dataset_url: BASE_URL + '/dados.json',
+      note: 'A comparação reutiliza os valores publicados na mesma base canônica das fichas individuais; campos ausentes não são preenchidos por inferência.'
+    }
+  };
+}
+
+function responderComparisonJson(req, res, a, b) {
+  const comparison = structuredComparison(a, b);
+  res.statusCode = 200;
+  res.setHeader('Content-Type', 'application/json; charset=utf-8');
+  res.setHeader('Content-Language', 'pt-BR');
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400');
+  res.setHeader('Link', `<${comparison.canonical_url}>; rel="canonical", <${BASE_URL}/dados.json>; rel="describedby"; type="application/json"`);
+  if (req.method === 'HEAD') return res.end();
+  return res.end(JSON.stringify({ source: 'QualProcessador', language: 'pt-BR', dataset: datasetPublico(), comparison }, null, 2));
+}
+
+module.exports = function handler(req, res) {
+  if (req.method === 'OPTIONS') {
+    res.statusCode = 204;
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, HEAD, OPTIONS');
+    return res.end();
+  }
+  if (!['GET', 'HEAD'].includes(req.method)) {
+    res.statusCode = 405; res.setHeader('Allow', 'GET, HEAD, OPTIONS'); return res.end('Method Not Allowed');
+  }
+  const raw = Array.isArray(req.query.comparacao) ? req.query.comparacao[0] : (req.query.comparacao || req.query.comparison);
   const pair = resolverComparacao(raw, carregarCpus());
+  const wantsJson = normalizar(req.query.format || '') === 'json';
   if (!pair) {
-    res.statusCode = 404; res.setHeader('Content-Type', 'text/html; charset=utf-8');
+    res.statusCode = 404;
+    if (wantsJson) {
+      res.setHeader('Content-Type', 'application/json; charset=utf-8');
+      return res.end(JSON.stringify({ error: 'comparison_not_found', query: raw || null }, null, 2));
+    }
+    res.setHeader('Content-Type', 'text/html; charset=utf-8');
     return res.end('<!doctype html><html lang="pt-BR"><meta charset="utf-8"><title>Comparação não encontrada | QualProcessador</title><body><main><h1>Comparação não encontrada</h1><p>Não foi possível resolver os dois processadores solicitados.</p></main></body></html>');
   }
   const [a, b] = pair;
+  if (wantsJson) return responderComparisonJson(req, res, a, b);
+
   res.statusCode = 200;
   res.setHeader('Content-Type', 'text/html; charset=utf-8');
   res.setHeader('Content-Language', 'pt-BR');
   res.setHeader('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400');
   res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('Link', `<${BASE_URL}/api/comparison/${slugCpu(a)}-vs-${slugCpu(b)}>; rel="alternate"; type="application/json", <${BASE_URL}/dados.json>; rel="describedby"; type="application/json"`);
   if (req.method === 'HEAD') return res.end();
   return res.end(renderPage(a, b));
 };
+
+module.exports.renderPage = renderPage;
+module.exports.structuredComparison = structuredComparison;

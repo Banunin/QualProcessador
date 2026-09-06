@@ -3,7 +3,6 @@ on:
   push:
     branches: [main]
     paths:
-      - 'dados.js'
       - 'dados.json'
       - 'migrar_dados_json.py'
       - 'finalizar_descoberta_dados.py'
@@ -12,8 +11,16 @@ on:
       - 'gerar_sitemap_seo.py'
       - 'gerar_ai_discovery.py'
       - 'sincronizar_rotas_artigos.py'
+      - 'lib/ai-utils.js'
       - 'lib/image-semantics.js'
+      - 'api/agent-content.js'
+      - 'api/ai-cpus.js'
+      - 'api/ai-site.js'
+      - 'api/render-cpu.js'
+      - 'api/render-comparison.js'
       - 'api/ai-images.js'
+      - 'scripts/validate-machine-layer.js'
+      - 'vercel.json'
       - '.github/workflows/update-seo-sitemap.yml'
   workflow_dispatch:
 permissions:
@@ -23,21 +30,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Build canonical CPU JSON dataset
+      - name: Normalize canonical CPU dataset and build temporary frontend adapter
         run: python3 migrar_dados_json.py
-      - name: Validate canonical CPU JSON dataset
+      - name: Validate machine-readable knowledge layer
         run: |
-          python3 - <<'PY'
-          import json
-          from pathlib import Path
-          data = json.loads(Path('dados.json').read_text(encoding='utf-8'))
-          assert data['dataset'] == 'QualProcessador CPU Database'
-          assert isinstance(data['processors'], list) and data['processors']
-          assert data['count'] == len(data['processors'])
-          assert data['benchmark_semantics']['notaJogos'] == 'CPU-Z Benchmark 17 Single Thread'
-          assert data['benchmark_semantics']['notaTrabalho'] == 'CPU-Z Benchmark 17 Multi Thread'
-          print(f"dados.json válido: {data['count']} processadores")
-          PY
+          node --check lib/ai-utils.js
+          node --check api/agent-content.js
+          node --check api/ai-cpus.js
+          node --check api/ai-site.js
+          node --check api/render-cpu.js
+          node --check api/render-comparison.js
+          node scripts/validate-machine-layer.js
       - name: Generate XML sitemap
         env:
           SEO_BASE_URL: https://qualprocessador.vercel.app
@@ -46,20 +49,22 @@ jobs:
         env:
           SEO_BASE_URL: https://qualprocessador.vercel.app
         run: python3 gerar_ai_discovery.py
-      - name: Advertise canonical dataset in discovery files
+      - name: Advertise canonical dataset and knowledge APIs
         env:
           SEO_BASE_URL: https://qualprocessador.vercel.app
         run: python3 finalizar_descoberta_dados.py
       - name: Synchronize SSR article routes
         run: python3 sincronizar_rotas_artigos.py
-      - name: Commit generated discovery files and routes when changed
+      - name: Remove temporary compatibility artifact
+        run: rm -f dados.js
+      - name: Commit generated knowledge, discovery and routes when changed
         run: |
           git add dados.json sitemap.xml sitemap.md llms.txt ai-index.json image-index.json feed.xml vercel.json
           if git diff --cached --quiet; then
-            echo "CPU JSON, SEO, AI discovery, image semantics and SSR routes already up to date"
+            echo "Knowledge layer, SEO, AI discovery, image semantics and SSR routes already up to date"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "Update canonical CPU JSON and machine discovery"
+          git commit -m "Update canonical knowledge layer and machine discovery"
           git push

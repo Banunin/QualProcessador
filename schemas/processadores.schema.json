@@ -2,39 +2,53 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://qualprocessador.vercel.app/schemas/processadores.schema.json",
   "title": "QualProcessador CPU Database",
-  "description": "Esquema da base pública de processadores do QualProcessador.",
+  "description": "Esquema da base pública canônica de processadores do QualProcessador.",
   "type": "object",
   "required": [
     "schema_version",
+    "dataset_version",
     "dataset",
     "language",
     "canonical_url",
+    "content_sha256",
     "benchmark_semantics",
+    "identity_semantics",
+    "relation_semantics",
+    "field_provenance",
     "count",
     "processors"
   ],
   "properties": {
     "$schema": { "type": "string", "format": "uri" },
-    "schema_version": { "type": "string" },
+    "schema_version": { "type": "string", "const": "2.0" },
+    "dataset_version": { "type": "string", "minLength": 1 },
     "dataset": { "const": "QualProcessador CPU Database" },
+    "entity_type": { "const": "Dataset" },
     "language": { "const": "pt-BR" },
     "publisher": { "type": "string" },
     "canonical_url": { "type": "string", "format": "uri" },
     "description": { "type": "string" },
+    "generated_at": { "type": "string" },
+    "last_modified": { "type": "string" },
+    "content_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
     "benchmark_semantics": {
       "type": "object",
       "required": ["notaJogos", "notaTrabalho", "missing_value"],
       "properties": {
-        "notaJogos": { "type": "string" },
-        "notaTrabalho": { "type": "string" },
+        "notaJogos": { "const": "CPU-Z Benchmark 17 Single Thread" },
+        "notaTrabalho": { "const": "CPU-Z Benchmark 17 Multi Thread" },
         "missing_value": { "type": "string" }
       },
       "additionalProperties": true
     },
+    "field_provenance": { "type": "object" },
+    "identity_semantics": { "type": "object" },
+    "relation_semantics": { "type": "object" },
     "interpretation_rules": {
       "type": "array",
       "items": { "type": "string" }
     },
+    "apis": { "type": "object" },
     "count": { "type": "integer", "minimum": 0 },
     "processors": {
       "type": "array",
@@ -42,13 +56,48 @@
     }
   },
   "$defs": {
+    "relations": {
+      "type": "object",
+      "properties": {
+        "brand": { "type": ["string", "null"] },
+        "brand_id": { "type": ["string", "null"] },
+        "socket": { "type": ["string", "null"] },
+        "socket_id": { "type": ["string", "null"] },
+        "family": { "type": ["string", "null"] },
+        "family_id": { "type": ["string", "null"] },
+        "generation": { "type": ["string", "null"] },
+        "generation_id": { "type": ["string", "null"] },
+        "architecture": { "type": ["string", "null"] },
+        "architecture_id": { "type": ["string", "null"] },
+        "related_entity_ids": {
+          "type": "array",
+          "maxItems": 8,
+          "items": { "type": "string", "pattern": "^qp:cpu:" }
+        }
+      },
+      "additionalProperties": true
+    },
     "processor": {
       "type": "object",
-      "required": ["id", "nome", "marca"],
+      "required": [
+        "id",
+        "entity_type",
+        "entity_id",
+        "slug",
+        "canonical_url",
+        "nome",
+        "marca",
+        "relations"
+      ],
       "properties": {
         "id": { "type": ["integer", "string"] },
+        "entity_type": { "const": "processor" },
+        "entity_id": { "type": "string", "pattern": "^qp:cpu:" },
+        "slug": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+        "canonical_url": { "type": "string", "format": "uri" },
         "nome": { "type": "string", "minLength": 1 },
         "marca": { "type": "string", "minLength": 1 },
+        "relations": { "$ref": "#/$defs/relations" },
         "cores": { "type": ["string", "number", "null"] },
         "threads": { "type": ["string", "number", "null"] },
         "tdp": { "type": ["string", "number", "null"] },
