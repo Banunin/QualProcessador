@@ -17,7 +17,7 @@
       "has": [{ "type": "header", "key": "accept", "value": "(.*)text/markdown(.*)" }],
       "destination": "/api/agent-content?path=:path*"
     },
-    { "source": "/cpu/:marca/:cpu", "destination": "/api/render-cpu?marca=:marca&cpu=:cpu" },
+    { "source": "/cpu/:marca/:cpu", "destination": "/api/render-cpu-page?marca=:marca&cpu=:cpu" },
     { "source": "/comparar/:comparacao*", "destination": "/api/render-comparison?comparacao=:comparacao*" },
     { "source": "/analises", "destination": "/api/render-static-section?page=articles" },
     { "source": "/comunidade", "destination": "/api/render-static-section?page=community" },
