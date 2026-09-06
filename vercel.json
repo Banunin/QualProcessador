@@ -21,6 +21,17 @@
   ],
   "rewrites": [
     {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept",
+          "value": "(.*)text/markdown(.*)"
+        }
+      ],
+      "destination": "/api/agent-content?path=:path*"
+    },
+    {
       "source": "/cpu/:marca/:cpu",
       "destination": "/detalhes?marca=:marca&cpu=:cpu"
     },
@@ -102,6 +113,18 @@
         {
           "key": "Referrer-Policy",
           "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Content-Language",
+          "value": "pt-BR"
+        },
+        {
+          "key": "Vary",
+          "value": "Accept"
+        },
+        {
+          "key": "Link",
+          "value": "<https://qualprocessador.com/llms.txt>; rel=\"alternate\"; type=\"text/plain\", <https://qualprocessador.com/sitemap.md>; rel=\"alternate\"; type=\"text/markdown\", <https://qualprocessador.com/ai-index.json>; rel=\"describedby\"; type=\"application/json\""
         }
       ]
     }
