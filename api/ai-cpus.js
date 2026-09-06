@@ -111,6 +111,16 @@ function cpuCardPublica(cpu) {
   };
 }
 
+function cpuOptionPublica(cpu) {
+  return {
+    id: cpu.id,
+    nome: cpu.nome,
+    marca: marcaCpu(cpu),
+    slug: slugCpu(cpu),
+    url: urlCpu(cpu)
+  };
+}
+
 function datasetResumoFrontend() {
   const dataset = carregarDatasetCpus();
   return {
@@ -168,7 +178,12 @@ function catalog(req, res) {
   const total = filtradas.length;
   const pagina = filtradas.slice(offset, offset + limit);
   const cardView = view === 'card' || view === 'frontend-card';
-  const itens = cardView ? pagina.map(cpuCardPublica) : pagina.map(cpuPublica);
+  const optionView = view === 'option' || view === 'frontend-option';
+  const itens = optionView
+    ? pagina.map(cpuOptionPublica)
+    : cardView
+      ? pagina.map(cpuCardPublica)
+      : pagina.map(cpuPublica);
 
   if (req.method === 'HEAD') {
     res.statusCode = 200;
@@ -180,7 +195,7 @@ function catalog(req, res) {
   return responderJson(res, 200, {
     source: 'QualProcessador',
     language: 'pt-BR',
-    dataset: cardView ? datasetResumoFrontend() : datasetPublico(),
+    dataset: cardView || optionView ? datasetResumoFrontend() : datasetPublico(),
     view: view || 'full',
     filters: {
       id: id || null,
@@ -229,3 +244,4 @@ module.exports.catalog = catalog;
 module.exports.individual = individual;
 module.exports.legacyJs = legacyJs;
 module.exports.cpuCardPublica = cpuCardPublica;
+module.exports.cpuOptionPublica = cpuOptionPublica;
