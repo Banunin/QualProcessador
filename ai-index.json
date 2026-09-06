@@ -1,0 +1,44 @@
+{
+  "name": "QualProcessador",
+  "canonical_url": "https://qualprocessador.com/",
+  "language": "pt-BR",
+  "description": "Plataforma brasileira de hardware focada em fichas técnicas de processadores AMD e Intel, benchmarks CPU-Z, comparações, artigos e ferramentas.",
+  "benchmark_semantics": {
+    "notaJogos": "CPU-Z Benchmark 17 Single Thread",
+    "notaTrabalho": "CPU-Z Benchmark 17 Multi Thread",
+    "missing_value": "N/A"
+  },
+  "discovery": {
+    "llms": "https://qualprocessador.com/llms.txt",
+    "xml_sitemap": "https://qualprocessador.com/sitemap.xml",
+    "markdown_sitemap": "https://qualprocessador.com/sitemap.md",
+    "rss": "https://qualprocessador.com/feed.xml",
+    "content_negotiation": "Accept: text/markdown"
+  },
+  "apis": {
+    "site": "https://qualprocessador.com/api/ai-site",
+    "cpus": "https://qualprocessador.com/api/ai-cpus",
+    "articles": "https://qualprocessador.com/api/ai-articles"
+  },
+  "sections": {
+    "home": "https://qualprocessador.com/",
+    "compare": "https://qualprocessador.com/comparar",
+    "articles": "https://qualprocessador.com/analises",
+    "forum": "https://qualprocessador.com/forum",
+    "community": "https://qualprocessador.com/comunidade",
+    "tools": "https://qualprocessador.com/ferramentas",
+    "support": "https://qualprocessador.com/apoiar"
+  },
+  "articles": [
+    {
+      "id": "102",
+      "title": "Análise: PowerBank Elg PB200BK 20.000mAh",
+      "canonical_url": "https://qualprocessador.com/elg/2026/08/review-powerbank-elg-PB200BK-20.000mAh"
+    },
+    {
+      "id": "101",
+      "title": "O que é uma APU? CPU e vídeo integrado no mesmo processador",
+      "canonical_url": "https://qualprocessador.com/amd/o-que-e-uma-APU"
+    }
+  ]
+}

@@ -5,7 +5,7 @@ import unicodedata
 from pathlib import Path
 from xml.sax.saxutils import escape
 
-BASE_URL = os.getenv("SEO_BASE_URL", "https://qualprocessador.vercel.app").rstrip("/")
+BASE_URL = os.getenv("SEO_BASE_URL", "https://qualprocessador.com").rstrip("/")
 ROOT = Path(__file__).resolve().parent
 
 

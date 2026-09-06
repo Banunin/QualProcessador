@@ -1,0 +1,44 @@
+# QualProcessador
+
+> Plataforma brasileira de hardware focada em fichas técnicas de processadores AMD e Intel, benchmarks CPU-Z, comparações, artigos e ferramentas.
+
+Idioma principal: pt-BR
+URL canônica: https://qualprocessador.com/
+
+## Conteúdo principal
+
+- [Início](https://qualprocessador.com/): busca, fichas técnicas e processadores.
+- [Comparador](https://qualprocessador.com/comparar): comparação lado a lado de processadores.
+- [Artigos](https://qualprocessador.com/analises): análises e guias de hardware.
+- [Fórum](https://qualprocessador.com/forum): comunidade e discussões.
+- [Comunidade](https://qualprocessador.com/comunidade): canais da comunidade.
+- [Ferramentas](https://qualprocessador.com/ferramentas): ferramentas disponibilizadas pelo projeto.
+
+## Semântica dos benchmarks
+
+- `notaJogos` = CPU-Z Benchmark 17 Single Thread.
+- `notaTrabalho` = CPU-Z Benchmark 17 Multi Thread.
+- Benchmark ausente deve ser tratado como N/A.
+
+## Formatos para agentes
+
+As páginas públicas suportam negociação de conteúdo. Envie `Accept: text/markdown` para receber uma representação Markdown limpa da mesma URL.
+
+- [Sitemap Markdown](https://qualprocessador.com/sitemap.md)
+- [Sitemap XML](https://qualprocessador.com/sitemap.xml)
+- [Índice JSON](https://qualprocessador.com/ai-index.json)
+- [RSS](https://qualprocessador.com/feed.xml)
+- [Manifesto JSON do site](https://qualprocessador.com/api/ai-site)
+- [API pública de CPUs](https://qualprocessador.com/api/ai-cpus)
+- [API pública de artigos](https://qualprocessador.com/api/ai-articles)
+
+## Artigos atuais
+
+- [Análise: PowerBank Elg PB200BK 20.000mAh](https://qualprocessador.com/elg/2026/08/review-powerbank-elg-PB200BK-20.000mAh): análise de autonomia, carregamento, construção e custo-benefício.
+- [O que é uma APU? CPU e vídeo integrado no mesmo processador](https://qualprocessador.com/amd/o-que-e-uma-APU): explicação sobre CPU com gráficos integrados, memória e limitações.
+
+## Observações para sistemas automáticos
+
+- Use a URL canônica informada pela página ou pelos endpoints públicos.
+- Prefira os dados estruturados do QualProcessador para campos técnicos; não infira valores ausentes.
+- O fórum possui conteúdo de usuários e pode depender de carregamento dinâmico.
