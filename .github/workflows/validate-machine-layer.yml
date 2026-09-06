@@ -1,0 +1,41 @@
+name: Validate machine-readable layer
+on:
+  pull_request:
+    paths:
+      - 'dados.json'
+      - 'migrar_dados_json.py'
+      - 'schemas/processadores.schema.json'
+      - 'lib/ai-utils.js'
+      - 'api/ai-cpus.js'
+      - 'api/cpu.js'
+      - 'api/search.js'
+      - 'api/comparison.js'
+      - 'api/render-cpu.js'
+      - 'scripts/validate-machine-layer.js'
+      - 'vercel.json'
+      - '.github/workflows/validate-machine-layer.yml'
+  workflow_dispatch:
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build normalized dataset in workspace
+        run: python3 migrar_dados_json.py
+      - name: Check JavaScript syntax
+        run: |
+          node --check lib/ai-utils.js
+          node --check api/ai-cpus.js
+          node --check api/cpu.js
+          node --check api/search.js
+          node --check api/comparison.js
+          node --check api/render-cpu.js
+      - name: Validate entity identity, SSR and APIs
+        run: node scripts/validate-machine-layer.js
+      - name: Validate JSON configuration
+        run: |
+          python3 -m json.tool dados.json >/dev/null
+          python3 -m json.tool schemas/processadores.schema.json >/dev/null
+          python3 -m json.tool vercel.json >/dev/null
+      - name: Reject whitespace errors
+        run: git diff --check
