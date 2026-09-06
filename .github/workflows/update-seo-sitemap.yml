@@ -4,7 +4,6 @@ on:
     branches: [main]
     paths:
       - 'dados.json'
-      - 'dados.js'
       - 'migrar_dados_json.py'
       - 'finalizar_descoberta_dados.py'
       - 'schemas/processadores.schema.json'
@@ -18,6 +17,7 @@ on:
       - 'api/cpu.js'
       - 'api/search.js'
       - 'api/comparison.js'
+      - 'api/dados-compat.js'
       - 'api/render-cpu.js'
       - 'api/ai-images.js'
       - 'scripts/validate-machine-layer.js'
@@ -31,7 +31,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Normalize canonical CPU dataset and build frontend adapter
+      - name: Normalize canonical CPU dataset and build temporary frontend adapter
         run: python3 migrar_dados_json.py
       - name: Validate machine-readable knowledge layer
         run: |
@@ -40,6 +40,7 @@ jobs:
           node --check api/cpu.js
           node --check api/search.js
           node --check api/comparison.js
+          node --check api/dados-compat.js
           node --check api/render-cpu.js
           node scripts/validate-machine-layer.js
       - name: Generate XML sitemap
@@ -56,9 +57,11 @@ jobs:
         run: python3 finalizar_descoberta_dados.py
       - name: Synchronize SSR article routes
         run: python3 sincronizar_rotas_artigos.py
+      - name: Remove temporary compatibility artifact
+        run: rm -f dados.js
       - name: Commit generated knowledge, discovery and routes when changed
         run: |
-          git add dados.json dados.js sitemap.xml sitemap.md llms.txt ai-index.json image-index.json feed.xml vercel.json
+          git add dados.json sitemap.xml sitemap.md llms.txt ai-index.json image-index.json feed.xml vercel.json
           if git diff --cached --quiet; then
             echo "Knowledge layer, SEO, AI discovery, image semantics and SSR routes already up to date"
             exit 0
