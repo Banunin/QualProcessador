@@ -7,6 +7,7 @@ on:
       - 'artigos.json'
       - 'gerar_sitemap_seo.py'
       - 'gerar_ai_discovery.py'
+      - 'sincronizar_rotas_artigos.py'
       - '.github/workflows/update-seo-sitemap.yml'
   workflow_dispatch:
 permissions:
@@ -24,14 +25,16 @@ jobs:
         env:
           SEO_BASE_URL: https://qualprocessador.vercel.app
         run: python3 gerar_ai_discovery.py
-      - name: Commit generated discovery files when changed
+      - name: Synchronize SSR article routes
+        run: python3 sincronizar_rotas_artigos.py
+      - name: Commit generated discovery files and routes when changed
         run: |
-          git add sitemap.xml sitemap.md llms.txt ai-index.json feed.xml
+          git add sitemap.xml sitemap.md llms.txt ai-index.json feed.xml vercel.json
           if git diff --cached --quiet; then
-            echo "SEO and AI discovery files already up to date"
+            echo "SEO, AI discovery and SSR article routes already up to date"
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "Update SEO and AI discovery from site data"
+          git commit -m "Update SEO, AI discovery and SSR article routes"
           git push
