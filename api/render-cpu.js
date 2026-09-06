@@ -2,14 +2,15 @@
 
 const fs = require('fs');
 const path = require('path');
-const { BASE_URL, resolverCpu, urlCpu, numeroCpu } = (() => {
-  const utils = require('../lib/ai-utils');
-  return { ...utils, numeroCpu: (v) => {
-    if (typeof v === 'number' && Number.isFinite(v)) return v;
-    const m = String(v ?? '').match(/-?\d+(?:[.,]\d+)?/);
-    return m ? Number(m[0].replace(',', '.')) : null;
-  }};
-})();
+const {
+  BASE_URL,
+  resolverCpu,
+  urlCpu,
+  numeroCpu,
+  entityIdCpu,
+  slugCpu,
+  datasetPublico
+} = require('../lib/ai-utils');
 
 const TEMPLATE_PATH = path.resolve(__dirname, '..', 'detalhes.html');
 let templateCache = null;
@@ -34,6 +35,7 @@ function points(v) {
   const n = numeroCpu(v);
   return Number.isFinite(n) && n >= 100 ? `${Math.round(n).toLocaleString('pt-BR')} pts` : 'N/A';
 }
+function present(v) { return v !== undefined && v !== null && String(v).trim() !== '' && String(v).toUpperCase() !== 'N/A'; }
 
 function row(label, val) {
   return `<tr><td>${esc(label)}</td><td>${esc(value(val))}</td></tr>`;
@@ -51,7 +53,7 @@ function renderContent(cpu) {
   const manufacturer = cpu.fabricante || (String(cpu.marca || '').toLowerCase() === 'amd' ? 'AMD' : 'Intel');
 
   const basic = [
-    row('Nome completo', cpu.nome), row('Fabricante', manufacturer), row('Família do modelo', cpu.familia),
+    row('Nome completo', cpu.nome), row('Identificador QualProcessador', entityIdCpu(cpu)), row('Fabricante', manufacturer), row('Família do modelo', cpu.familia || cpu.relations?.family),
     row('Geração', cpu.geracao), row('Arquitetura', cpu.arquitetura), row('Codinome', cpu.codinome),
     row('Data de lançamento', cpu.lancamento), row('Segmento', cpu.segmento), row('Mercado', cpu.mercado)
   ];
@@ -78,7 +80,7 @@ function renderContent(cpu) {
     row('Virtualização', cpu.virtualizacao), row('Conjunto de instruções', cpu.instrucoes)
   ];
 
-  return `<article aria-labelledby="cpu-title">
+  return `<article aria-labelledby="cpu-title" data-entity-id="${attr(entityIdCpu(cpu))}" data-cpu-slug="${attr(slugCpu(cpu))}">
     <div class="processor-header"><h1 id="cpu-title">${esc(cpu.nome)}</h1></div>
     <div class="top-specs-bar">
       <div class="spec-box"><strong>${esc(value(cpu.cores))}</strong><span>Núcleos</span></div>
@@ -92,7 +94,7 @@ function renderContent(cpu) {
     <div class="layout-grid">
       <aside class="sidebar">
         <div class="product-photo" style="border-color:${border};border-style:solid">
-          ${cpu.foto ? `<img src="/img/${attr(cpu.foto)}" alt="${attr(cpu.nome)}">` : `<span>${esc(cpu.nome)}</span>`}
+          ${cpu.foto ? `<img src="/img/${attr(cpu.foto)}" alt="Imagem de referência do processador ${attr(cpu.nome)}">` : `<span>${esc(cpu.nome)}</span>`}
         </div>
       </aside>
       <div class="main-content-panel">
@@ -125,48 +127,123 @@ function renderContent(cpu) {
 
 function safeJson(obj) { return JSON.stringify(obj).replace(/</g, '\\u003c'); }
 
+function property(name, val, propertyID) {
+  if (!present(val)) return null;
+  const item = { '@type': 'PropertyValue', name, value: String(val) };
+  if (propertyID) item.propertyID = propertyID;
+  return item;
+}
+
+function jsonLdCpu(cpu, canonical, description) {
+  const dataset = datasetPublico();
+  const productId = canonical + '#processor';
+  const webpageId = canonical + '#webpage';
+  const breadcrumbId = canonical + '#breadcrumb';
+  const datasetId = BASE_URL + '/dados.json#dataset';
+  const fabricante = cpu.fabricante || String(cpu.marca || '').toUpperCase();
+  const properties = [
+    property('Identificador QualProcessador', entityIdCpu(cpu), 'qp:entity_id'),
+    property('Núcleos', cpu.cores, 'cores'),
+    property('Threads', cpu.threads, 'threads'),
+    property('Clock base', cpu.freqBase, 'freqBase'),
+    property('Clock boost', cpu.freqBoost, 'freqBoost'),
+    property('Soquete', cpu.soquete, 'soquete'),
+    property('TDP', cpu.tdp, 'tdp'),
+    property('Arquitetura', cpu.arquitetura, 'arquitetura'),
+    property('Codinome', cpu.codinome, 'codinome'),
+    property('Litografia', cpu.litografia, 'litografia'),
+    property('Cache L3', cpu.cacheL3, 'cacheL3'),
+    property('Memória', cpu.memoria, 'memoria'),
+    property('PCI Express', cpu.pcie, 'pcie'),
+    property('Vídeo integrado', cpu.video, 'video'),
+    property('CPU-Z Benchmark 17 Single Thread', points(cpu.notaJogos), 'notaJogos'),
+    property('CPU-Z Benchmark 17 Multi Thread', points(cpu.notaTrabalho), 'notaTrabalho')
+  ].filter(Boolean);
+
+  const product = {
+    '@type': 'Product',
+    '@id': productId,
+    identifier: entityIdCpu(cpu),
+    name: cpu.nome,
+    model: cpu.nome,
+    url: canonical,
+    description,
+    category: 'Processador para computador',
+    brand: { '@type': 'Brand', name: fabricante },
+    manufacturer: { '@type': 'Organization', name: fabricante },
+    additionalProperty: properties,
+    subjectOf: {
+      '@type': 'WebAPI',
+      name: `API individual de ${cpu.nome}`,
+      url: `${BASE_URL}/api/cpu/${encodeURIComponent(slugCpu(cpu))}`
+    }
+  };
+  if (cpu.foto) {
+    product.image = {
+      '@type': 'ImageObject',
+      contentUrl: `${BASE_URL}/img/${String(cpu.foto).replace(/^\/+/, '')}`,
+      caption: `Imagem de referência do processador ${cpu.nome}`,
+      description: `Imagem associada à ficha técnica de ${cpu.nome} no QualProcessador.`
+    };
+  }
+
+  const webpage = {
+    '@type': 'WebPage',
+    '@id': webpageId,
+    name: `${cpu.nome} - ficha técnica e resultados CPU-Z`,
+    description,
+    url: canonical,
+    inLanguage: 'pt-BR',
+    mainEntity: { '@id': productId },
+    about: { '@id': productId },
+    isPartOf: { '@type': 'WebSite', '@id': BASE_URL + '/#website', name: 'QualProcessador', url: BASE_URL + '/' },
+    isBasedOn: { '@id': datasetId },
+    breadcrumb: { '@id': breadcrumbId }
+  };
+  if (dataset.last_modified) webpage.dateModified = dataset.last_modified;
+
+  const datasetNode = {
+    '@type': 'Dataset',
+    '@id': datasetId,
+    name: dataset.name,
+    url: dataset.canonical_url,
+    version: dataset.dataset_version || undefined,
+    description: 'Base estruturada de processadores utilizada pelas fichas e APIs do QualProcessador.',
+    creator: { '@type': 'Organization', name: 'QualProcessador', url: BASE_URL + '/' },
+    distribution: {
+      '@type': 'DataDownload',
+      contentUrl: dataset.canonical_url,
+      encodingFormat: 'application/json'
+    }
+  };
+  if (dataset.last_modified) datasetNode.dateModified = dataset.last_modified;
+
+  const breadcrumb = {
+    '@type': 'BreadcrumbList',
+    '@id': breadcrumbId,
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'QualProcessador', item: BASE_URL + '/' },
+      { '@type': 'ListItem', position: 2, name: String(cpu.marca || fabricante).toUpperCase(), item: BASE_URL + '/#cpus' },
+      { '@type': 'ListItem', position: 3, name: cpu.nome, item: canonical }
+    ]
+  };
+
+  return { '@context': 'https://schema.org', '@graph': [webpage, product, datasetNode, breadcrumb] };
+}
+
 function renderPage(cpu, marca, slug) {
   let html = template();
   const canonical = BASE_URL + urlCpu(cpu);
   const description = `${cpu.nome}: ficha técnica com núcleos, threads, clocks, soquete, TDP, memória, gráficos e resultados CPU-Z Single Thread e Multi Thread.`;
   const title = `${cpu.nome}: ficha técnica, CPU-Z e especificações | QualProcessador`;
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    name: `${cpu.nome} - ficha técnica e resultados CPU-Z`,
-    description,
-    url: canonical,
-    inLanguage: 'pt-BR',
-    isPartOf: { '@type': 'WebSite', name: 'QualProcessador', url: BASE_URL + '/' },
-    about: {
-      '@type': 'Product',
-      name: cpu.nome,
-      brand: { '@type': 'Brand', name: cpu.fabricante || String(cpu.marca || '').toUpperCase() },
-      category: 'Processador para computador',
-      additionalProperty: [
-        { '@type': 'PropertyValue', name: 'Núcleos', value: value(cpu.cores) },
-        { '@type': 'PropertyValue', name: 'Threads', value: value(cpu.threads) },
-        { '@type': 'PropertyValue', name: 'Soquete', value: value(cpu.soquete) },
-        { '@type': 'PropertyValue', name: 'TDP', value: value(cpu.tdp) },
-        { '@type': 'PropertyValue', name: 'CPU-Z Single Thread', value: points(cpu.notaJogos) },
-        { '@type': 'PropertyValue', name: 'CPU-Z Multi Thread', value: points(cpu.notaTrabalho) }
-      ]
-    },
-    breadcrumb: {
-      '@type': 'BreadcrumbList',
-      itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'QualProcessador', item: BASE_URL + '/' },
-        { '@type': 'ListItem', position: 2, name: String(cpu.marca || cpu.fabricante || '').toUpperCase(), item: BASE_URL + '/#cpus' },
-        { '@type': 'ListItem', position: 3, name: cpu.nome, item: canonical }
-      ]
-    }
-  };
+  const jsonLd = jsonLdCpu(cpu, canonical, description);
+  const imageMeta = cpu.foto ? `\n<meta property="og:image" content="${attr(`${BASE_URL}/img/${String(cpu.foto).replace(/^\/+/, '')}`)}">` : '';
 
   html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${esc(title)}</title>`);
-  html = html.replace('</head>', `\n<meta name="description" content="${attr(description)}">\n<meta name="robots" content="index,follow,max-image-preview:large">\n<link rel="canonical" href="${attr(canonical)}">\n<meta property="og:type" content="article">\n<meta property="og:title" content="${attr(title)}">\n<meta property="og:description" content="${attr(description)}">\n<meta property="og:url" content="${attr(canonical)}">\n<meta property="og:locale" content="pt_BR">\n<meta name="twitter:card" content="summary">\n<script type="application/ld+json" id="qp-ssr-jsonld">${safeJson(jsonLd)}</script>\n</head>`);
+  html = html.replace('</head>', `\n<meta name="description" content="${attr(description)}">\n<meta name="robots" content="index,follow,max-image-preview:large">\n<meta name="qp:entity-id" content="${attr(entityIdCpu(cpu))}">\n<meta name="qp:cpu-slug" content="${attr(slugCpu(cpu))}">\n<link rel="canonical" href="${attr(canonical)}">\n<link rel="alternate" type="application/json" href="${attr(`${BASE_URL}/api/cpu/${encodeURIComponent(slugCpu(cpu))}`)}">\n<meta property="og:type" content="article">\n<meta property="og:title" content="${attr(title)}">\n<meta property="og:description" content="${attr(description)}">\n<meta property="og:url" content="${attr(canonical)}">\n<meta property="og:locale" content="pt_BR">${imageMeta}\n<meta name="twitter:card" content="summary_large_image">\n<script type="application/ld+json" id="qp-ssr-jsonld">${safeJson(jsonLd)}</script>\n</head>`);
   html = html.replace('<div class="container" id="conteudo-dinamico"></div>', `<div class="container" id="conteudo-dinamico">${renderContent(cpu)}</div>`);
   html = html.replace("const marca = urlParams.get('marca');", `const marca = urlParams.get('marca') || ${JSON.stringify(String(marca || cpu.marca || ''))};`);
-  html = html.replace("const cpuSlug = urlParams.get('cpu');", `const cpuSlug = urlParams.get('cpu') || ${JSON.stringify(String(slug || ''))};`);
+  html = html.replace("const cpuSlug = urlParams.get('cpu');", `const cpuSlug = urlParams.get('cpu') || ${JSON.stringify(String(slug || cpu.slug || ''))};`);
   return html;
 }
 
@@ -189,6 +266,10 @@ module.exports = function handler(req, res) {
   res.setHeader('Content-Language', 'pt-BR');
   res.setHeader('Cache-Control', 'public, s-maxage=3600, stale-while-revalidate=86400');
   res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('Link', `<${BASE_URL}/api/cpu/${encodeURIComponent(slugCpu(cpu))}>; rel="alternate"; type="application/json", <${BASE_URL}/dados.json>; rel="describedby"; type="application/json"`);
   if (req.method === 'HEAD') return res.end();
   return res.end(renderPage(cpu, marca, slug));
 };
+
+module.exports.renderPage = renderPage;
+module.exports.jsonLdCpu = jsonLdCpu;
