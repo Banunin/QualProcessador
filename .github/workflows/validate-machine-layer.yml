@@ -6,11 +6,11 @@ on:
       - 'migrar_dados_json.py'
       - 'schemas/processadores.schema.json'
       - 'lib/ai-utils.js'
+      - 'api/agent-content.js'
       - 'api/ai-cpus.js'
-      - 'api/cpu.js'
-      - 'api/search.js'
-      - 'api/comparison.js'
+      - 'api/ai-site.js'
       - 'api/render-cpu.js'
+      - 'api/render-comparison.js'
       - 'scripts/validate-machine-layer.js'
       - 'vercel.json'
       - '.github/workflows/validate-machine-layer.yml'
@@ -25,12 +25,12 @@ jobs:
       - name: Check JavaScript syntax
         run: |
           node --check lib/ai-utils.js
+          node --check api/agent-content.js
           node --check api/ai-cpus.js
-          node --check api/cpu.js
-          node --check api/search.js
-          node --check api/comparison.js
+          node --check api/ai-site.js
           node --check api/render-cpu.js
-      - name: Validate entity identity, SSR and APIs
+          node --check api/render-comparison.js
+      - name: Validate entity identity, SSR, APIs and Vercel Hobby limit
         run: node scripts/validate-machine-layer.js
       - name: Validate JSON configuration
         run: |
