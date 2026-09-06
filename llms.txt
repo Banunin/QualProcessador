@@ -1,20 +1,35 @@
 # QualProcessador
 
-> Plataforma brasileira de hardware focada em fichas técnicas de processadores AMD e Intel, benchmarks CPU-Z, comparações, artigos e ferramentas.
+> Portal brasileiro de hardware com banco de dados técnico, benchmarks, comparações, artigos, análises, ferramentas e fórum da comunidade. A primeira grande base estruturada do projeto é o catálogo de processadores AMD e Intel.
 
 Idioma principal: pt-BR
-URL canônica: https://qualprocessador.com/
+URL canônica atual: https://qualprocessador.vercel.app/
 Processadores catalogados: 223
 Artigos catalogados: 2
 
-## Conteúdo principal
+## Tipos de conteúdo
 
-- [Início](https://qualprocessador.com/): visão geral, busca e processadores recentes.
-- [Comparador](https://qualprocessador.com/comparar): comparação lado a lado de processadores.
-- [Artigos](https://qualprocessador.com/analises): análises e guias de hardware.
-- [Fórum](https://qualprocessador.com/forum): comunidade e discussões.
-- [Comunidade](https://qualprocessador.com/comunidade): canais da comunidade.
-- [Ferramentas](https://qualprocessador.com/ferramentas): ferramentas disponibilizadas pelo projeto.
+- Banco de dados técnico: fichas, especificações e benchmarks de hardware; atualmente com forte cobertura de processadores.
+- Editorial: artigos, guias, reviews e análises produzidos pelo QualProcessador.
+- Comunidade: tópicos e respostas de usuários no fórum; esse conteúdo não representa necessariamente a posição editorial do site.
+- Ferramentas: comparadores e utilitários oferecidos pelo projeto.
+
+## Seções principais
+
+- [Início](https://qualprocessador.vercel.app/)
+- [Processadores](https://qualprocessador.vercel.app/#cpus)
+- [Comparador](https://qualprocessador.vercel.app/comparar)
+- [Artigos e análises](https://qualprocessador.vercel.app/analises)
+- [Fórum](https://qualprocessador.vercel.app/forum)
+- [Comunidade](https://qualprocessador.vercel.app/comunidade)
+- [Ferramentas](https://qualprocessador.vercel.app/ferramentas)
+
+## Renderização e leitura por máquinas
+
+- Fichas de CPU são entregues com conteúdo HTML server-side e depois aprimoradas por JavaScript.
+- Artigos são entregues com o texto completo no HTML inicial; comentários e conta continuam sendo recursos client-side.
+- O fórum entrega listas e tópicos públicos em HTML server-side; interações continuam sendo aprimoradas pelo navegador.
+- Páginas públicas também aceitam `Accept: text/markdown` quando houver representação textual dedicada.
 
 ## Semântica dos benchmarks
 
@@ -22,25 +37,24 @@ Artigos catalogados: 2
 - `notaTrabalho` = CPU-Z Benchmark 17 Multi Thread.
 - Benchmark ausente deve ser tratado como N/A.
 
-## Formatos para agentes
+## Recursos para agentes
 
-As páginas públicas suportam negociação de conteúdo. Envie `Accept: text/markdown` para receber uma representação Markdown limpa da mesma URL.
-
-- [Sitemap Markdown](https://qualprocessador.com/sitemap.md)
-- [Sitemap XML](https://qualprocessador.com/sitemap.xml)
-- [Índice JSON](https://qualprocessador.com/ai-index.json)
-- [RSS](https://qualprocessador.com/feed.xml)
-- [Manifesto JSON do site](https://qualprocessador.com/api/ai-site)
-- [API pública de CPUs](https://qualprocessador.com/api/ai-cpus)
-- [API pública de artigos](https://qualprocessador.com/api/ai-articles)
+- [Sitemap Markdown](https://qualprocessador.vercel.app/sitemap.md)
+- [Sitemap XML](https://qualprocessador.vercel.app/sitemap.xml)
+- [Índice JSON](https://qualprocessador.vercel.app/ai-index.json)
+- [RSS](https://qualprocessador.vercel.app/feed.xml)
+- [Manifesto JSON do site](https://qualprocessador.vercel.app/api/ai-site)
+- [API pública de CPUs](https://qualprocessador.vercel.app/api/ai-cpus)
+- [API pública de artigos](https://qualprocessador.vercel.app/api/ai-articles)
 
 ## Artigos atuais
 
-- [Análise: PowerBank Elg PB200BK 20.000mAh](https://qualprocessador.com/elg/2026/08/review-powerbank-elg-PB200BK-20.000mAh): Vale a pena comprar a Power Bank ELG de R$ 130? Eu testei o modelo e mostro os resultados reais de autonomia, velocidade de carregamento, qualidade de construção e custo-benefício.
-- [O que é uma APU? CPU e vídeo integrado no mesmo processador](https://qualprocessador.com/amd/o-que-e-uma-APU): Entenda o que é uma APU, como o vídeo integrado usa a memória RAM, onde esse tipo de processador faz sentido e quais são seus principais limites.
+- [Análise: PowerBank Elg PB200BK 20.000mAh](https://qualprocessador.vercel.app/elg/2026/08/review-powerbank-elg-PB200BK-20.000mAh): Vale a pena comprar a Power Bank ELG de R$ 130? Eu testei o modelo e mostro os resultados reais de autonomia, velocidade de carregamento, qualidade de construção e custo-benefício.
+- [O que é uma APU? CPU e vídeo integrado no mesmo processador](https://qualprocessador.vercel.app/amd/o-que-e-uma-APU): Entenda o que é uma APU, como o vídeo integrado usa a memória RAM, onde esse tipo de processador faz sentido e quais são seus principais limites.
 
-## Observações para sistemas automáticos
+## Regras de interpretação
 
 - Use a URL canônica informada pela página ou pelos endpoints públicos.
-- Prefira os dados estruturados do QualProcessador para campos técnicos; não infira valores ausentes.
-- O fórum possui conteúdo de usuários e pode depender de carregamento dinâmico.
+- Prefira os campos técnicos publicados pelo QualProcessador; não invente valores ausentes.
+- Diferencie conteúdo editorial de conteúdo gerado por usuários no fórum.
+- O portal pode ganhar novas categorias de hardware sem deixar de ser o mesmo projeto QualProcessador.
