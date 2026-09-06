@@ -242,8 +242,10 @@ function renderPage(cpu, marca, slug) {
   html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${esc(title)}</title>`);
   html = html.replace('</head>', `\n<meta name="description" content="${attr(description)}">\n<meta name="robots" content="index,follow,max-image-preview:large">\n<meta name="qp:entity-id" content="${attr(entityIdCpu(cpu))}">\n<meta name="qp:cpu-slug" content="${attr(slugCpu(cpu))}">\n<link rel="canonical" href="${attr(canonical)}">\n<link rel="alternate" type="application/json" href="${attr(`${BASE_URL}/api/cpu/${encodeURIComponent(slugCpu(cpu))}`)}">\n<meta property="og:type" content="article">\n<meta property="og:title" content="${attr(title)}">\n<meta property="og:description" content="${attr(description)}">\n<meta property="og:url" content="${attr(canonical)}">\n<meta property="og:locale" content="pt_BR">${imageMeta}\n<meta name="twitter:card" content="summary_large_image">\n<script type="application/ld+json" id="qp-ssr-jsonld">${safeJson(jsonLd)}</script>\n</head>`);
   html = html.replace('<div class="container" id="conteudo-dinamico"></div>', `<div class="container" id="conteudo-dinamico">${renderContent(cpu)}</div>`);
+  html = html.replace('<script src="dados.js"></script>', `<script>const listaDeCpus = ${safeJson([cpu])};</script>`);
   html = html.replace("const marca = urlParams.get('marca');", `const marca = urlParams.get('marca') || ${JSON.stringify(String(marca || cpu.marca || ''))};`);
   html = html.replace("const cpuSlug = urlParams.get('cpu');", `const cpuSlug = urlParams.get('cpu') || ${JSON.stringify(String(slug || cpu.slug || ''))};`);
+  html = html.replace('</body>', '<script src="/details-compare-loader.js" defer></script>\n</body>');
   return html;
 }
 

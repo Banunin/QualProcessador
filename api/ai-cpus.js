@@ -7,6 +7,7 @@ const {
   normalizar,
   marcaCpu,
   slugCpu,
+  urlCpu,
   entityIdCpu,
   resolverCpu,
   cpuPublica,
@@ -80,6 +81,57 @@ function individual(req, res) {
   });
 }
 
+function possuiVideoIntegrado(cpu) {
+  const texto = normalizar(cpu && cpu.video || '');
+  if (!texto) return false;
+  return !(
+    texto === 'n-a' ||
+    texto === 'nao' ||
+    texto.includes('nao-possui') ||
+    texto.includes('sem-video') ||
+    texto === 'none'
+  );
+}
+
+function cpuCardPublica(cpu) {
+  return {
+    id: cpu.id,
+    entity_id: entityIdCpu(cpu),
+    nome: cpu.nome,
+    marca: marcaCpu(cpu),
+    detalhe: cpu.detalhe || '',
+    cores: cpu.cores ?? null,
+    threads: cpu.threads ?? null,
+    freqBoost: cpu.freqBoost ?? null,
+    tdp: cpu.tdp ?? null,
+    soquete: cpu.soquete || cpu.socket || null,
+    video: cpu.video ?? null,
+    slug: slugCpu(cpu),
+    url: urlCpu(cpu)
+  };
+}
+
+function cpuOptionPublica(cpu) {
+  return {
+    id: cpu.id,
+    nome: cpu.nome,
+    marca: marcaCpu(cpu),
+    slug: slugCpu(cpu),
+    url: urlCpu(cpu)
+  };
+}
+
+function datasetResumoFrontend() {
+  const dataset = carregarDatasetCpus();
+  return {
+    name: dataset.dataset || 'QualProcessador CPU Database',
+    dataset_version: dataset.dataset_version || null,
+    last_modified: dataset.last_modified || null,
+    count: dataset.processors.length,
+    canonical_url: dataset.canonical_url || BASE_URL + '/dados.json'
+  };
+}
+
 function catalog(req, res) {
   const cpus = carregarCpus();
   const id = String(req.query.id || '').trim();
@@ -89,7 +141,10 @@ function catalog(req, res) {
   const socket = normalizar(req.query.socket || req.query.soquete || '');
   const familia = normalizar(req.query.family || req.query.familia || '');
   const geracao = normalizar(req.query.generation || req.query.geracao || '');
+  const video = normalizar(req.query.video || '');
   const busca = normalizar(req.query.q || '');
+  const view = normalizar(req.query.view || 'full');
+  const sort = normalizar(req.query.sort || 'id-asc');
   const offset = Math.max(0, Number.parseInt(req.query.offset || '0', 10) || 0);
   const limit = Math.min(250, Math.max(1, Number.parseInt(req.query.limit || '50', 10) || 50));
 
@@ -101,6 +156,8 @@ function catalog(req, res) {
   if (socket) filtradas = filtradas.filter(cpu => normalizar(cpu.soquete || cpu.socket) === socket);
   if (familia) filtradas = filtradas.filter(cpu => normalizar(cpu.familia || cpu.relations?.family) === familia);
   if (geracao) filtradas = filtradas.filter(cpu => normalizar(cpu.geracao || cpu.relations?.generation) === geracao);
+  if (video === 'sim') filtradas = filtradas.filter(possuiVideoIntegrado);
+  if (video === 'nao') filtradas = filtradas.filter(cpu => !possuiVideoIntegrado(cpu));
   if (busca) filtradas = filtradas.filter(cpu => {
     const alvo = [
       cpu.nome, cpu.slug, cpu.entity_id, cpu.marca, cpu.fabricante, cpu.familia,
@@ -109,8 +166,25 @@ function catalog(req, res) {
     return alvo.includes(busca) || busca.split('-').filter(Boolean).every(token => alvo.includes(token));
   });
 
+  filtradas = filtradas.slice();
+  if (sort === 'id-desc') {
+    filtradas.sort((a, b) => Number(b.id || 0) - Number(a.id || 0));
+  } else if (sort === 'nome-asc' || sort === 'name-asc') {
+    filtradas.sort((a, b) => String(a.nome || '').localeCompare(String(b.nome || ''), 'pt-BR'));
+  } else {
+    filtradas.sort((a, b) => Number(a.id || 0) - Number(b.id || 0));
+  }
+
   const total = filtradas.length;
-  const itens = filtradas.slice(offset, offset + limit).map(cpuPublica);
+  const pagina = filtradas.slice(offset, offset + limit);
+  const cardView = view === 'card' || view === 'frontend-card';
+  const optionView = view === 'option' || view === 'frontend-option';
+  const itens = optionView
+    ? pagina.map(cpuOptionPublica)
+    : cardView
+      ? pagina.map(cpuCardPublica)
+      : pagina.map(cpuPublica);
+
   if (req.method === 'HEAD') {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json; charset=utf-8');
@@ -121,7 +195,8 @@ function catalog(req, res) {
   return responderJson(res, 200, {
     source: 'QualProcessador',
     language: 'pt-BR',
-    dataset: datasetPublico(),
+    dataset: cardView || optionView ? datasetResumoFrontend() : datasetPublico(),
+    view: view || 'full',
     filters: {
       id: id || null,
       entity_id: entityId || null,
@@ -130,6 +205,7 @@ function catalog(req, res) {
       socket: socket || null,
       family: familia || null,
       generation: geracao || null,
+      video: video || null,
       q: busca || null
     },
     pagination: {
@@ -167,3 +243,5 @@ module.exports = function handler(req, res) {
 module.exports.catalog = catalog;
 module.exports.individual = individual;
 module.exports.legacyJs = legacyJs;
+module.exports.cpuCardPublica = cpuCardPublica;
+module.exports.cpuOptionPublica = cpuOptionPublica;

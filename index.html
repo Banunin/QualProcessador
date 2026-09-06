@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="mobile-port.css">
     <link rel="icon" href="img/icon.ico" type="image/x-icon">
-    
+
     <title>QualProcessador | Fichas técnicas, CPU-Z e comparação de processadores</title>
-    
+
     <meta name="description" content="Compare processadores AMD e Intel com fichas técnicas, resultados CPU-Z, núcleos, threads, clocks, soquete, TDP e comparação lado a lado.">
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -50,7 +50,7 @@
         .filter-select { padding: 12px 14px; border-radius: 8px; border: 1px solid #cbd5e1; background-color: #f8fafc; font-family: 'Poppins', sans-serif; font-size: 0.9rem; font-weight: 600; color: #334155; outline: none; cursor: pointer; transition: all 0.2s; }
         .filter-select:focus { border-color: #38bdf8; background-color: white; box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.15); }
         .reviews-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr)); gap: 25px; }
-        .cpu-card { background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 25px; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.25s; box-shadow: 0 4px 15px rgba(15,23,42,0.02); }
+        .cpu-card { background: white; border-radius: 12px; border: 1px solid #e2e8f0; padding: 25px; display: flex; flex-direction: column; justify-content: space-between; transition: transform 0.25s; box-shadow: 0 4px 15px rgba(15,23,42,0.02); content-visibility: auto; contain-intrinsic-size: 320px; }
         .cpu-card.brand-amd { border-left: 5px solid #ef4444; }
         .cpu-card.brand-intel { border-left: 5px solid #3b82f6; }
         .cpu-card:hover { transform: translateY(-4px); border-color: #cbd5e1; }
@@ -70,8 +70,13 @@
         .ver-todos-wrapper { text-align: center; margin-top: 35px; display: block; }
         .btn-outline { display: inline-block; padding: 14px 36px; border: 2px solid #0f172a; background: transparent; color: #0f172a; font-weight: 700; border-radius: 10px; cursor: pointer; transition: all 0.25s; font-size: 0.95rem; font-family: 'Poppins', sans-serif; }
         .btn-outline:hover { background: #0f172a; color: white; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(15,23,42,0.1); }
+        .btn-outline:disabled { opacity: .6; cursor: wait; transform: none; }
         .aviso-vazio { grid-column: 1 / -1; text-align: center; padding: 40px; color: #64748b; font-weight: 600; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+        @media (prefers-reduced-motion: reduce) {
+            .tab-content { animation: none; }
+            .cpu-card, .editorial-card, .editorial-bg, .btn-outline, .search-input, .nav-link, .suggestion-item { transition: none; }
+        }
         footer { text-align: center; padding: 40px; margin-top: 60px; color: #64748b; border-top: 1px solid #e2e8f0; font-size: 0.85rem; }
     </style>
 </head>
@@ -102,9 +107,8 @@
         <section id="topico-analises">
             <h2 class="section-title">Artigos em destaque</h2>
             <div class="editorial-grid">
-            
                 <a href="/ler-artigo.html?id=102" class="editorial-card">
-                    <div class="editorial-bg" style="background-color: #1e293b; background-image: url('https://github.com/Banunin/QualProcessador/blob/main/img/photo_5_2026-08-04_16-58-55.webp?raw=true');"></div>
+                    <div class="editorial-bg" style="background-color: #1e293b; background-image: url('/img/photo_5_2026-08-04_16-58-55.webp');"></div>
                     <div class="editorial-overlay"></div>
                     <div class="editorial-content">
                         <span class="editorial-tag" style="background-color: #10b981;">Guia de Hardware</span>
@@ -116,7 +120,7 @@
 
         <section id="topico-fichas">
             <h2 id="titulo-fichas" class="section-title">Processadores adicionados recentemente</h2>
-            
+
             <div id="filtros-container" class="filtros-panel">
                 <div class="filter-group">
                     <label for="filtro-marca">Marca</label>
@@ -161,290 +165,17 @@
                 </div>
             </div>
 
-            <div class="reviews-grid" id="grid-processadores"></div>
+            <div class="reviews-grid" id="grid-processadores" aria-live="polite"></div>
 
             <div class="ver-todos-wrapper" id="wrapper-ver-todos">
-                <button id="btn-ver-todos" class="btn-outline">Ver mais CPUs</button>
+                <button id="btn-ver-todos" class="btn-outline">Ver catálogo de CPUs</button>
             </div>
         </section>
     </div>
 
     <footer>&copy; 2026 QualProcessador</footer>
 
-    <script src="dados.js"></script>
-    <script src="seo-tools.js"></script>
-    <script>
-        // ---------------------------------------------------------
-        // FUNÇÃO DE SEGURANÇA: Escapar HTML
-        // Transforma caracteres especiais para evitar execução de scripts
-        // ---------------------------------------------------------
-        function escapeHTML(str) {
-            if (str === null || str === undefined) return '';
-            return String(str)
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
-                .replace(/"/g, '&quot;')
-                .replace(/'/g, '&#039;');
-        }
-
-        // Função auxiliar para gerar slugs limpos
-        function gerarSlug(texto) {
-            return (texto || '').toLowerCase()
-                .normalize("NFD").replace(/[\u0300-\u036f]/g, "") 
-                .replace(/[^a-z0-9]+/g, '-')                   
-                .replace(/(^-|-$)/g, '');                       
-        }
-
-        function obterUrlSeoCpu(cpu) {
-            if (!cpu) return 'detalhes.html';
-            const slugNome = gerarSlug(cpu.nome);
-            const marca = (cpu.marca || '').toLowerCase();
-            const cpuSlug = slugNome.startsWith(marca) ? slugNome : `${marca}-${slugNome}`;
-            return `detalhes.html?id=${cpu.id}&marca=${encodeURIComponent(marca)}&cpu=${encodeURIComponent(cpuSlug)}`;
-        }
-
-        function normalizarTexto(texto) {
-            return (texto || '').toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim();
-        }
-
-        // Estado inicial dos filtros
-        let abaAtiva = 'home';
-        let filtroMarca = 'todos';
-        let filtroSocket = 'todos';
-        let filtroVideo = 'todos';
-        let filtroPreco = 'todos';
-        let tipoOrdenacao = 'padrao';
-
-        const abaHome = document.getElementById('aba-home');
-        const abaCpus = document.getElementById('aba-cpus');
-        const topicoAnalises = document.getElementById('topico-analises');
-        const tituloFichas = document.getElementById('titulo-fichas');
-        const filtrosContainer = document.getElementById('filtros-container');
-        const wrapperVerTodos = document.getElementById('wrapper-ver-todos');
-        const gridProcessadores = document.getElementById('grid-processadores');
-        const btnVerTodos = document.getElementById('btn-ver-todos');
-
-        function alternarAba(novaAba) {
-            abaAtiva = novaAba;
-            
-            filtroMarca = 'todos'; 
-            filtroSocket = 'todos'; 
-            filtroVideo = 'todos'; 
-            filtroPreco = 'todos'; 
-            tipoOrdenacao = 'padrao';
-            
-            document.getElementById('filtro-marca').value = 'todos';
-            document.getElementById('filtro-socket').value = 'todos';
-            document.getElementById('filtro-video').value = 'todos';
-            document.getElementById('filtro-preco').value = 'todos';
-            document.getElementById('ordenar-por').value = 'padrao';
-
-            if (abaAtiva === 'home') {
-                abaHome.classList.add('active'); abaCpus.classList.remove('active');
-                topicoAnalises.style.display = 'block'; filtrosContainer.style.display = 'none';
-                wrapperVerTodos.style.display = 'block'; 
-                tituloFichas.innerText = 'Processadores adicionados recentemente';
-            } else if (abaAtiva === 'cpus') {
-                abaCpus.classList.add('active'); abaHome.classList.remove('active');
-                topicoAnalises.style.display = 'none'; filtrosContainer.style.display = 'grid';
-                wrapperVerTodos.style.display = 'none'; 
-                tituloFichas.innerText = 'Todos os processadores';
-            }
-            renderizarCards();
-        }
-
-        function obterPrecoOuNota(cpu) {
-            if (cpu.preco !== undefined && cpu.preco !== null) {
-                return typeof cpu.preco === 'number' ? cpu.preco : parseFloat(String(cpu.preco).replace(/[^\d.,]/g, '').replace(',', '.'));
-            }
-            return cpu.notaJogos ? Number(cpu.notaJogos) : 0;
-        }
-
-        function renderizarCards() {
-            gridProcessadores.innerHTML = '';
-            if (typeof listaDeCpus !== 'undefined' && Array.isArray(listaDeCpus)) {
-                
-                let cpusFiltradas = listaDeCpus.filter(cpu => {
-                    const atendeMarca = filtroMarca === 'todos' || cpu.marca === filtroMarca;
-                    const socketCpu = (cpu.soquete || cpu.socket || '').toLowerCase().trim();
-                    const atendeSocket = filtroSocket === 'todos' || socketCpu === filtroSocket;
-                    
-                    let temVideo = 'sim';
-                    const videoStr = (cpu.video || '').toLowerCase();
-                    if (videoStr.includes('não') || videoStr.includes('nao') || videoStr === 'não possui' || videoStr === 'n/a') {
-                        temVideo = 'nao';
-                    }
-                    const atendeVideo = filtroVideo === 'todos' || temVideo === filtroVideo;
-                    
-                    const valorReferencia = obterPrecoOuNota(cpu);
-                    let atendePreco = true;
-                    
-                    if (filtroPreco === 'ate600') {
-                        atendePreco = valorReferencia <= 500;
-                    } else if (filtroPreco === '600-1500') {
-                        atendePreco = valorReferencia > 500 && valorReferencia <= 1500;
-                    } else if (filtroPreco === 'acima1500') {
-                        atendePreco = valorReferencia > 1500;
-                    }
-
-                    return atendeMarca && atendeSocket && atendeVideo && atendePreco;
-                });
-
-                if (tipoOrdenacao === 'menor-preco') {
-                    cpusFiltradas.sort((a, b) => obterPrecoOuNota(a) - obterPrecoOuNota(b));
-                } else if (tipoOrdenacao === 'maior-preco') {
-                    cpusFiltradas.sort((a, b) => obterPrecoOuNota(b) - obterPrecoOuNota(a));
-                } else if (tipoOrdenacao === 'padrao') {
-                    cpusFiltradas.sort((a, b) => a.id - b.id);
-                }
-
-                if (abaAtiva === 'home') cpusFiltradas = cpusFiltradas.slice(0, 3);
-
-                if (cpusFiltradas.length === 0) {
-                    gridProcessadores.innerHTML = `<div class="aviso-vazio">Nenhum processador corresponde aos filtros ativos.</div>`;
-                    return;
-                }
-
-                cpusFiltradas.forEach(cpu => {
-                    const card = document.createElement('div');
-                    // Sanitização da marca garantindo que será seguro usar como classe
-                    const marcaSegura = escapeHTML(cpu.marca || 'desconhecida');
-                    const classeBtn = marcaSegura === 'amd' ? 'btn-amd' : 'btn-intel';
-                    
-                    card.className = `cpu-card brand-${marcaSegura}`;
-                    
-                    const urlDetalhes = obterUrlSeoCpu(cpu);
-
-                    // Aplicando a sanitização antes de jogar no innerHTML
-                    const nomeSeguro = escapeHTML(cpu.nome);
-                    const detalheSeguro = escapeHTML(cpu.detalhe);
-                    const coresSeguro = escapeHTML(cpu.cores);
-                    const threadsSegura = escapeHTML(cpu.threads);
-                    const freqBoostSegura = escapeHTML(cpu.freqBoost);
-                    const tdpSeguro = escapeHTML(cpu.tdp);
-
-                    card.innerHTML = `
-                        <div>
-                            <div class="card-top">
-                                <h2>${nomeSeguro}</h2>
-                            </div>
-                            <p class="cpu-tagline">${detalheSeguro}</p>
-                            <div class="card-specs">
-                                <div class="card-spec-item"><strong>${coresSeguro}/${threadsSegura}</strong><span>Núcleos/Threads</span></div>
-                                <div class="card-spec-item"><strong>${freqBoostSegura}</strong><span>Boost</span></div>
-                                <div class="card-spec-item"><strong>${tdpSeguro}</strong><span>TDP</span></div>
-                            </div>
-                        </div>
-                        <a href="${urlDetalhes}" class="btn-read ${classeBtn}">Abrir ficha técnica</a>
-                    `;
-                    gridProcessadores.appendChild(card);
-                });
-            } else {
-                gridProcessadores.innerHTML = `<div class="aviso-vazio">Erro: O arquivo de dados dos processadores não foi carregado corretamente.</div>`;
-            }
-        }
-
-        abaHome.addEventListener('click', () => location.hash = 'home');
-        abaCpus.addEventListener('click', () => location.hash = 'cpus');
-        btnVerTodos.addEventListener('click', () => location.hash = 'cpus');
-
-        document.getElementById('filtro-marca').addEventListener('change', (e) => { filtroMarca = e.target.value; renderizarCards(); });
-        document.getElementById('filtro-socket').addEventListener('change', (e) => { filtroSocket = e.target.value; renderizarCards(); });
-        document.getElementById('filtro-video').addEventListener('change', (e) => { filtroVideo = e.target.value; renderizarCards(); });
-        document.getElementById('filtro-preco').addEventListener('change', (e) => { filtroPreco = e.target.value; renderizarCards(); });
-        document.getElementById('ordenar-por').addEventListener('change', (e) => { tipoOrdenacao = e.target.value; renderizarCards(); });
-
-        const campoBusca = document.getElementById('campo-busca');
-        const caixaSugestoes = document.getElementById('caixa-sugestoes');
-
-        if (campoBusca && caixaSugestoes) {
-            let sugestoesAtuais = [];
-
-            const executarBusca = () => {
-                const termo = normalizarTexto(campoBusca.value);
-                caixaSugestoes.innerHTML = '';
-                sugestoesAtuais = [];
-
-                if (termo.length === 0) {
-                    caixaSugestoes.style.display = 'none';
-                    return;
-                }
-
-                if (typeof listaDeCpus !== 'undefined' && Array.isArray(listaDeCpus)) {
-                    sugestoesAtuais = listaDeCpus.filter(cpu => {
-                        const nomeNormalizado = normalizarTexto(cpu.nome);
-                        const detalheNormalizado = normalizarTexto(cpu.detalhe);
-                        const soqueteNormalizado = normalizarTexto(cpu.soquete || cpu.socket);
-
-                        return nomeNormalizado.includes(termo) || 
-                               detalheNormalizado.includes(termo) || 
-                               soqueteNormalizado.includes(termo);
-                    }).slice(0, 6);
-
-                    if (sugestoesAtuais.length > 0) {
-                        caixaSugestoes.style.display = 'block';
-                        sugestoesAtuais.forEach(cpu => {
-                            const item = document.createElement('div');
-                            item.className = 'suggestion-item';
-                            
-                            // Usando escapeHTML na caixa de busca
-                            const nomeSeguro = escapeHTML(cpu.nome);
-                            const soqueteSeguro = escapeHTML((cpu.soquete || cpu.socket || '').toUpperCase());
-
-                            item.innerHTML = `
-                                <span>${nomeSeguro}</span>
-                                <small style="font-size:0.75rem; color:#64748b; font-weight:600;">${soqueteSeguro}</small>
-                            `;
-
-                            item.addEventListener('click', () => { 
-                                window.location.href = obterUrlSeoCpu(cpu);
-                            });
-
-                            caixaSugestoes.appendChild(item);
-                        });
-                    } else {
-                        caixaSugestoes.style.display = 'none';
-                    }
-                }
-            };
-
-            campoBusca.addEventListener('input', executarBusca);
-            campoBusca.addEventListener('focus', executarBusca);
-
-            campoBusca.addEventListener('keydown', (e) => {
-                if (e.key === 'Enter') {
-                    e.preventDefault();
-                    if (sugestoesAtuais.length > 0) {
-                        window.location.href = obterUrlSeoCpu(sugestoesAtuais[0]);
-                    }
-                } else if (e.key === 'Escape') {
-                    caixaSugestoes.style.display = 'none';
-                }
-            });
-        }
-
-        document.addEventListener('click', (e) => { 
-            if (!e.target.closest('.search-wrapper')) {
-                caixaSugestoes.style.display = 'none'; 
-            }
-        });
-        
-        function gerenciarNavegacaoPorHash() {
-            const hash = location.hash.replace('#', '');
-            if (hash === 'cpus') {
-                alternarAba('cpus');
-            } else {
-                alternarAba('home');
-            }
-        }
-
-        window.addEventListener('hashchange', gerenciarNavegacaoPorHash);
-
-        document.addEventListener('DOMContentLoaded', () => {
-            gerenciarNavegacaoPorHash();
-        });
-    </script>
-    <script src="search-enhancer.js"></script>
+    <script src="home-catalog.js" defer></script>
+    <script src="search-enhancer.js" defer></script>
 </body>
 </html>
