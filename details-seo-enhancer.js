@@ -29,7 +29,7 @@
     }
 
     function atualizarMeta(cpu) {
-        const base = 'https://qualprocessador.vercel.app';
+        const base = 'https://qualprocessador.com';
         const canonicalUrl = base + QPSeo.urlCpu(cpu);
         const editorial = QPSeo.descricaoEditorialCpu(cpu);
         const descricao = editorial.meta;
