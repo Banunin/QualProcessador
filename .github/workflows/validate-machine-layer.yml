@@ -6,11 +6,16 @@ on:
       - 'migrar_dados_json.py'
       - 'schemas/processadores.schema.json'
       - 'lib/ai-utils.js'
+      - 'lib/site-nav.js'
       - 'api/agent-content.js'
       - 'api/ai-cpus.js'
       - 'api/ai-site.js'
       - 'api/render-cpu.js'
+      - 'api/render-cpu-page.js'
       - 'api/render-comparison.js'
+      - 'api/render-forum.js'
+      - 'api/render-article.js'
+      - 'api/render-static-section.js'
       - 'home-catalog.js'
       - 'search-enhancer.js'
       - 'details-compare-loader.js'
@@ -31,11 +36,16 @@ jobs:
       - name: Check JavaScript syntax
         run: |
           node --check lib/ai-utils.js
+          node --check lib/site-nav.js
           node --check api/agent-content.js
           node --check api/ai-cpus.js
           node --check api/ai-site.js
           node --check api/render-cpu.js
+          node --check api/render-cpu-page.js
           node --check api/render-comparison.js
+          node --check api/render-forum.js
+          node --check api/render-article.js
+          node --check api/render-static-section.js
           node --check home-catalog.js
           node --check search-enhancer.js
           node --check details-compare-loader.js
