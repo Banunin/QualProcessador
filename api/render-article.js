@@ -4,9 +4,19 @@ const fs = require('fs');
 const path = require('path');
 const { BASE_URL, carregarArtigos, artigoPorCaminho } = require('../lib/ai-utils');
 const { absoluteUrl, enrichArticleHtml, collectArticleImages, toImageObject } = require('../lib/image-semantics');
+const { replacePrimaryNav } = require('../lib/site-nav');
 
 const TEMPLATE_PATH = path.resolve(__dirname, '..', 'ler-artigo.html');
 let templateCache = null;
+
+const NAV_CSS = `<style id="qp-primary-nav-article">
+.portal-nav{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid #e2e8f0}
+.portal-nav .nav-container{max-width:1400px;margin:0 auto;padding:0 40px;display:flex;align-items:stretch;gap:5px;overflow-x:auto}
+.portal-nav .nav-link{display:flex;align-items:center;padding:18px 20px;color:#475569;text-decoration:none;font-weight:700;font-size:.9rem;border-bottom:3px solid transparent;white-space:nowrap}
+.portal-nav .nav-link:hover,.portal-nav .nav-link.active{color:#0284c7;border-bottom-color:#38bdf8;background:#f8fafc}
+.portal-nav .user-nav-area{margin-left:auto;display:flex;align-items:center;gap:12px;padding-left:16px;white-space:nowrap}
+@media(max-width:760px){.portal-nav .nav-container{padding:0 10px}.portal-nav .nav-link{padding:15px 12px;font-size:.82rem}.portal-nav .user-nav-area{padding-left:8px}}
+</style>`;
 
 function template() {
   if (!templateCache) templateCache = fs.readFileSync(TEMPLATE_PATH, 'utf8');
@@ -29,7 +39,6 @@ function findArticle(req) {
   const artigos = carregarArtigos();
   const id = Array.isArray(req.query.id) ? req.query.id[0] : req.query.id;
   if (id && artigos[String(id)]) return artigos[String(id)];
-
   const rawPath = Array.isArray(req.query.path) ? req.query.path[0] : req.query.path;
   if (rawPath) {
     const byPath = artigoPorCaminho(rawPath);
@@ -39,11 +48,7 @@ function findArticle(req) {
 }
 
 function articleImageContext(article) {
-  return {
-    title: article.titulo,
-    kind: 'Imagem',
-    baseUrl: BASE_URL
-  };
+  return { title: article.titulo, kind: 'Imagem', baseUrl: BASE_URL };
 }
 
 function renderArticleMain(article) {
@@ -65,10 +70,7 @@ function renderArticleMain(article) {
           <div>Por <strong itemprop="author">${esc(article.autor || 'QualProcessador')}</strong>${article.tempoLeitura ? ` • Leitura: ${esc(article.tempoLeitura)}` : ''} • <a href="#secao-comentarios" class="link-comentarios-topo"><span id="topo-contador-comentarios">0</span> comentários</a></div>
         </div>
       </header>
-      <div class="article-container">
-        ${cover}
-        <div class="article-body" itemprop="articleBody">${body}</div>
-      </div>
+      <div class="article-container">${cover}<div class="article-body" itemprop="articleBody">${body}</div></div>
     </article>
   </main>`;
 }
@@ -82,26 +84,12 @@ function renderPage(article) {
   const coverUrl = article.imagemCapa ? absoluteUrl(article.imagemCapa, BASE_URL) : '';
   const embedded = collectArticleImages(article.texto || '', articleImageContext(article));
   const images = [];
-  if (coverUrl) {
-    images.push({
-      image_url: coverUrl,
-      alt: article.imagemCapaAlt || `Imagem de capa do artigo ${article.titulo}`,
-      caption: article.imagemCapaLegenda || '',
-      kind: 'cover'
-    });
-  }
-  embedded.forEach(image => {
-    if (!images.some(existing => existing.image_url === image.image_url)) images.push(image);
-  });
+  if (coverUrl) images.push({ image_url: coverUrl, alt: article.imagemCapaAlt || `Imagem de capa do artigo ${article.titulo}`, caption: article.imagemCapaLegenda || '', kind: 'cover' });
+  embedded.forEach(image => { if (!images.some(existing => existing.image_url === image.image_url)) images.push(image); });
 
   const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'TechArticle',
-    headline: article.titulo,
-    description,
-    mainEntityOfPage: canonical,
-    url: canonical,
-    inLanguage: 'pt-BR',
+    '@context': 'https://schema.org', '@type': 'TechArticle', headline: article.titulo, description,
+    mainEntityOfPage: canonical, url: canonical, inLanguage: 'pt-BR',
     author: { '@type': 'Organization', name: article.autor || 'QualProcessador' },
     publisher: { '@type': 'Organization', name: 'QualProcessador', url: BASE_URL + '/' },
     isPartOf: { '@type': 'WebSite', name: 'QualProcessador', url: BASE_URL + '/' }
@@ -114,19 +102,17 @@ function renderPage(article) {
   html = html.replace(/<meta\s+name="description"\s+content="[^"]*"\s*\/?\s*>/i, `<meta name="description" content="${attr(description)}">`);
   html = html.replace(/<meta\s+name="robots"\s+content="[^"]*"\s*\/?\s*>/i, '<meta name="robots" content="index,follow,max-image-preview:large">');
   const extraHead = [
-    `<link rel="canonical" href="${attr(canonical)}">`,
-    '<meta property="og:type" content="article">',
-    `<meta property="og:title" content="${attr(title)}">`,
-    `<meta property="og:description" content="${attr(description)}">`,
-    `<meta property="og:url" content="${attr(canonical)}">`,
-    '<meta property="og:locale" content="pt_BR">',
+    `<link rel="canonical" href="${attr(canonical)}">`, '<meta property="og:type" content="article">',
+    `<meta property="og:title" content="${attr(title)}">`, `<meta property="og:description" content="${attr(description)}">`,
+    `<meta property="og:url" content="${attr(canonical)}">`, '<meta property="og:locale" content="pt_BR">',
     coverUrl ? `<meta property="og:image" content="${attr(coverUrl)}">` : '',
     coverUrl ? `<meta property="og:image:alt" content="${attr(article.imagemCapaAlt || `Imagem de capa do artigo ${article.titulo}`)}">` : '',
     '<meta name="twitter:card" content="summary_large_image">',
-    `<script type="application/ld+json" id="qp-ssr-article-jsonld">${safeJson(jsonLd)}</script>`
+    `<script type="application/ld+json" id="qp-ssr-article-jsonld">${safeJson(jsonLd)}</script>`, NAV_CSS
   ].filter(Boolean).join('\n    ');
   html = html.replace('</head>', `    ${extraHead}\n</head>`);
   html = html.replace(/<main id="conteudo-artigo-dinamico">[\s\S]*?<\/main>/i, renderArticleMain(article));
+  html = replacePrimaryNav(html, 'articles', { userSlot: '<div id="user-nav-container" class="user-nav-area"></div>' });
   return html;
 }
 
