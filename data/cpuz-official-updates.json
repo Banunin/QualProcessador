@@ -1,0 +1,161 @@
+{
+  "benchmark": "CPU-Z Benchmark (x64 - 2017.1)",
+  "source": "CPU-Z Validator",
+  "policy": {
+    "exact_cpu_name_required": true,
+    "single_core_only_for_notaJogos": true,
+    "multi_core_only_for_notaTrabalho": true,
+    "reject_cpu_z_2015_1": true,
+    "reject_zero": true,
+    "no_estimates": true,
+    "no_averaging": true,
+    "note": "Cada valor abaixo vem de uma submissão real e exata do CPU-Z Validator no benchmark x64 2017.1. A URL da validação é preservada como evidência. Campos já preenchidos no acervo não são sobrescritos."
+  },
+  "updates": [
+    {
+      "nome": "AMD Ryzen 7 5700GE",
+      "notaJogos": 623,
+      "notaJogosFonte": "CPU-Z Benchmark 17 — CPU-Z Validator",
+      "notaTrabalho": 5473,
+      "notaTrabalhoFonte": "CPU-Z Benchmark 17 — CPU-Z Validator",
+      "evidence": {
+        "notaJogos": {"url": "https://valid.x86.fr/bench/hypjts/20", "value": 623, "metric": "Single Thread"},
+        "notaTrabalho": {"url": "https://valid.x86.fr/bench/hypjts/20", "value": 5473, "metric": "Multi Threads"}
+      }
+    },
+    {
+      "nome": "Intel Xeon X3440",
+      "notaJogos": 215,
+      "notaJogosFonte": "CPU-Z Benchmark 17 — CPU-Z Validator",
+      "evidence": {
+        "notaJogos": {"url": "https://valid.x86.fr/bench/rrzahl/12", "value": 215, "metric": "Single Thread"}
+      }
+    },
+    {
+      "nome": "Intel Xeon X3450",
+      "notaJogos": 336,
+      "notaJogosFonte": "CPU-Z Benchmark 17 — CPU-Z Validator",
+      "notaTrabalho": 1808,
+      "notaTrabalhoFonte": "CPU-Z Benchmark 17 — CPU-Z Validator",
+      "evidence": {
+        "notaJogos": {"url": "https://valid.x86.fr/bench/yddzkj/33", "value": 336, "metric": "Single Thread"},
+        "notaTrabalho": {"url": "https://valid.x86.fr/bench/yddzkj/33", "value": 1808, "metric": "Multi Threads"}
+      }
+    },
+    {
+      "nome": "Intel Core i3-560",
+      "notaJogos": 199,
+      "notaJogosFonte": "CPU-Z Benchmark 17 — CPU-Z Validator",
+      "notaTrabalho": 628,
+      "notaTrabalhoFonte": "CPU-Z Benchmark 17 — CPU-Z Validator",
+      "evidence": {
+        "notaJogos": {"url": "https://valid.x86.fr/bench/lm7i8f", "value": 199, "metric": "Single Thread"},
+        "notaTrabalho": {"url": "https://valid.x86.fr/bench/lm7i8f", "value": 628, "metric": "Multi Threads"}
+      }
+    },
+    {
+      "nome": "Intel Core i5-680",
+      "notaJogos": 378,
+      "notaJogosFonte": "CPU-Z Benchmark 17 — CPU-Z Validator",
+      "notaTrabalho": 1030,
+      "notaTrabalhoFonte": "CPU-Z Benchmark 17 — CPU-Z Validator",
+      "evidence": {
+        "notaJogos": {"url": "https://valid.x86.fr/bench/qu3zyq/32", "value": 378, "metric": "Single Thread"},
+        "notaTrabalho": {"url": "https://valid.x86.fr/bench/qu3zyq/32", "value": 1030, "metric": "Multi Threads"}
+      }
+    },
+    {
+      "nome": "Intel Pentium G2120",
+      "notaJogos": 314,
+      "notaJogosFonte": "CPU-Z Benchmark 17 — CPU-Z Validator",
+      "notaTrabalho": 634,
+      "notaTrabalhoFonte": "CPU-Z Benchmark 17 — CPU-Z Validator",
+      "evidence": {
+        "notaJogos": {"url": "https://valid.x86.fr/bench/9esp8k/33", "value": 314, "metric": "Single Thread"},
+        "notaTrabalho": {"url": "https://valid.x86.fr/bench/9esp8k/33", "value": 634, "metric": "Multi Threads"}
+      }
+    },
+    {
+      "nome": "Intel Celeron G1630",
+      "notaJogos": 247,
+      "notaJogosFonte": "CPU-Z Benchmark 17 — CPU-Z Validator",
+      "notaTrabalho": 523,
+      "notaTrabalhoFonte": "CPU-Z Benchmark 17 — CPU-Z Validator",
+      "evidence": {
+        "notaJogos": {"url": "https://valid.x86.fr/bench/3narjv/24", "value": 247, "metric": "Single Thread"},
+        "notaTrabalho": {"url": "https://valid.x86.fr/bench/3narjv/24", "value": 523, "metric": "Multi Threads"}
+      }
+    },
+    {
+      "nome": "Intel Xeon E3-1240 V2",
+      "notaJogos": 315,
+      "notaJogosFonte": "CPU-Z Benchmark 17 — CPU-Z Validator",
+      "evidence": {
+        "notaJogos": {"url": "https://valid.x86.fr/bench/32431u/33", "value": 315, "metric": "Single Thread"}
+      }
+    },
+    {
+      "nome": "Intel Xeon E3-1230 V3",
+      "notaJogos": 414,
+      "notaJogosFonte": "CPU-Z Benchmark 17 — CPU-Z Validator",
+      "evidence": {
+        "notaJogos": {"url": "https://valid.x86.fr/bench/ke15x0", "value": 414, "metric": "Single Thread"}
+      }
+    },
+    {
+      "nome": "Intel Xeon E3-1275 V3",
+      "notaJogos": 417,
+      "notaJogosFonte": "CPU-Z Benchmark 17 — CPU-Z Validator",
+      "notaTrabalho": 2054,
+      "notaTrabalhoFonte": "CPU-Z Benchmark 17 — CPU-Z Validator",
+      "evidence": {
+        "notaJogos": {"url": "https://valid.x86.fr/bench/q1htjz", "value": 417, "metric": "Single Thread"},
+        "notaTrabalho": {"url": "https://valid.x86.fr/bench/q1htjz", "value": 2054, "metric": "Multi Threads"}
+      }
+    },
+    {
+      "nome": "Intel Xeon E3-1280 V3",
+      "notaJogos": 279,
+      "notaJogosFonte": "CPU-Z Benchmark 17 — CPU-Z Validator",
+      "notaTrabalho": 1967,
+      "notaTrabalhoFonte": "CPU-Z Benchmark 17 — CPU-Z Validator",
+      "evidence": {
+        "notaJogos": {"url": "https://valid.x86.fr/bench/5ue19v/1", "value": 279, "metric": "Single Thread"},
+        "notaTrabalho": {"url": "https://valid.x86.fr/bench/5ue19v/1", "value": 1967, "metric": "Multi Threads"}
+      }
+    },
+    {
+      "nome": "Intel Core i3-4340",
+      "notaJogos": 341,
+      "notaJogosFonte": "CPU-Z Benchmark 17 — CPU-Z Validator",
+      "notaTrabalho": 986,
+      "notaTrabalhoFonte": "CPU-Z Benchmark 17 — CPU-Z Validator",
+      "evidence": {
+        "notaJogos": {"url": "https://valid.x86.fr/bench/qf7n2u/33", "value": 341, "metric": "Single Thread"},
+        "notaTrabalho": {"url": "https://valid.x86.fr/bench/qf7n2u/33", "value": 986, "metric": "Multi Threads"}
+      }
+    },
+    {
+      "nome": "Intel Core i3-4350",
+      "notaJogos": 363,
+      "notaJogosFonte": "CPU-Z Benchmark 17 — CPU-Z Validator",
+      "notaTrabalho": 982,
+      "notaTrabalhoFonte": "CPU-Z Benchmark 17 — CPU-Z Validator",
+      "evidence": {
+        "notaJogos": {"url": "https://valid.x86.fr/bench/fbkhbw", "value": 363, "metric": "Single Thread"},
+        "notaTrabalho": {"url": "https://valid.x86.fr/bench/fbkhbw", "value": 982, "metric": "Multi Threads"}
+      }
+    },
+    {
+      "nome": "Intel Pentium G3460",
+      "notaJogos": 386,
+      "notaJogosFonte": "CPU-Z Benchmark 17 — CPU-Z Validator",
+      "notaTrabalho": 725,
+      "notaTrabalhoFonte": "CPU-Z Benchmark 17 — CPU-Z Validator",
+      "evidence": {
+        "notaJogos": {"url": "https://valid.x86.fr/bench/h9b2bx", "value": 386, "metric": "Single Thread"},
+        "notaTrabalho": {"url": "https://valid.x86.fr/bench/h9b2bx", "value": 725, "metric": "Multi Threads"}
+      }
+    }
+  ]
+}
