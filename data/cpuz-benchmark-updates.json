@@ -17,7 +17,7 @@
     "zero_means_missing": true,
     "no_cross_cpu_substitution": true
   },
-  "researched_at": "2026-09-07T18:28:57Z",
+  "researched_at": "2026-09-07T18:29:27Z",
   "checks": [
     {
       "nome": "AMD Ryzen 7 5700GE",
@@ -31,13 +31,13 @@
           "value": "N/A",
           "url": "https://www.cpu-monkey.com/en/benchmark-amd_ryzen_7_5700ge-cpu_z_benchmark_17_single_core",
           "benchmark": "CPU-Z Benchmark 17 Single-Core",
-          "checked_at": "2026-09-07T18:28:50Z"
+          "checked_at": "2026-09-07T18:29:22Z"
         },
         "notaTrabalho": {
           "value": "N/A",
           "url": "https://www.cpu-monkey.com/en/benchmark-amd_ryzen_7_5700ge-cpu_z_benchmark_17_multi_core",
           "benchmark": "CPU-Z Benchmark 17 Multi-Core",
-          "checked_at": "2026-09-07T18:28:51Z"
+          "checked_at": "2026-09-07T18:29:22Z"
         }
       }
     },
@@ -53,7 +53,7 @@
           "value": "N/A",
           "url": "https://www.cpu-monkey.com/en/benchmark-amd_ryzen_7_5800-cpu_z_benchmark_17_single_core",
           "benchmark": "CPU-Z Benchmark 17 Single-Core",
-          "checked_at": "2026-09-07T18:28:51Z"
+          "checked_at": "2026-09-07T18:29:23Z"
         }
       }
     },
@@ -69,7 +69,7 @@
           "value": "N/A",
           "url": "https://www.cpu-monkey.com/en/benchmark-amd_ryzen_9_3900xt-cpu_z_benchmark_17_single_core",
           "benchmark": "CPU-Z Benchmark 17 Single-Core",
-          "checked_at": "2026-09-07T18:28:50Z"
+          "checked_at": "2026-09-07T18:29:21Z"
         }
       }
     },
@@ -85,7 +85,7 @@
           "value": "N/A",
           "url": "https://www.cpu-monkey.com/en/benchmark-amd_ryzen_9_5900-cpu_z_benchmark_17_single_core",
           "benchmark": "CPU-Z Benchmark 17 Single-Core",
-          "checked_at": "2026-09-07T18:28:52Z"
+          "checked_at": "2026-09-07T18:29:23Z"
         }
       }
     },
@@ -101,13 +101,13 @@
           "value": "N/A",
           "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_x3430-cpu_z_benchmark_17_single_core",
           "benchmark": "CPU-Z Benchmark 17 Single-Core",
-          "checked_at": "2026-09-07T18:28:53Z"
+          "checked_at": "2026-09-07T18:29:24Z"
         },
         "notaTrabalho": {
           "value": "N/A",
           "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_x3430-cpu_z_benchmark_17_multi_core",
           "benchmark": "CPU-Z Benchmark 17 Multi-Core",
-          "checked_at": "2026-09-07T18:28:54Z"
+          "checked_at": "2026-09-07T18:29:24Z"
         }
       }
     },
@@ -123,7 +123,7 @@
           "value": "N/A",
           "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_x3440-cpu_z_benchmark_17_single_core",
           "benchmark": "CPU-Z Benchmark 17 Single-Core",
-          "checked_at": "2026-09-07T18:28:54Z"
+          "checked_at": "2026-09-07T18:29:25Z"
         }
       }
     },
@@ -139,13 +139,13 @@
           "value": "N/A",
           "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_x3450-cpu_z_benchmark_17_single_core",
           "benchmark": "CPU-Z Benchmark 17 Single-Core",
-          "checked_at": "2026-09-07T18:28:55Z"
+          "checked_at": "2026-09-07T18:29:25Z"
         },
         "notaTrabalho": {
           "value": "N/A",
           "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_x3450-cpu_z_benchmark_17_multi_core",
           "benchmark": "CPU-Z Benchmark 17 Multi-Core",
-          "checked_at": "2026-09-07T18:28:55Z"
+          "checked_at": "2026-09-07T18:29:26Z"
         }
       }
     },
@@ -161,13 +161,13 @@
           "value": "N/A",
           "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_x3460-cpu_z_benchmark_17_single_core",
           "benchmark": "CPU-Z Benchmark 17 Single-Core",
-          "checked_at": "2026-09-07T18:28:56Z"
+          "checked_at": "2026-09-07T18:29:26Z"
         },
         "notaTrabalho": {
           "value": "N/A",
           "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_x3460-cpu_z_benchmark_17_multi_core",
           "benchmark": "CPU-Z Benchmark 17 Multi-Core",
-          "checked_at": "2026-09-07T18:28:56Z"
+          "checked_at": "2026-09-07T18:29:27Z"
         }
       }
     }
