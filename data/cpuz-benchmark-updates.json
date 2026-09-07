@@ -1,0 +1,14 @@
+{
+  "benchmark": "CPU-Z Benchmark 17",
+  "rules": {
+    "notaJogos": "Single-Core only",
+    "notaTrabalho": "Multi-Core only",
+    "missing_value": "N/A",
+    "no_estimates": true,
+    "allowed_sources": [
+      "CPU-Z",
+      "CPU Monkey"
+    ]
+  },
+  "updates": []
+}
