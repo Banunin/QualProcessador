@@ -1,0 +1,43 @@
+name: Apply CPU-Z benchmark updates
+
+on:
+  push:
+    branches:
+      - benchmark/fill-missing-cpuz-2026-09-07
+    paths:
+      - 'data/cpuz-benchmark-updates.json'
+      - 'scripts/apply_cpu_benchmark_updates.py'
+      - '.github/workflows/apply-cpuz-benchmark-updates.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout benchmark branch
+        uses: actions/checkout@v4
+        with:
+          ref: benchmark/fill-missing-cpuz-2026-09-07
+
+      - name: Report missing scores and apply verified updates
+        run: python3 scripts/apply_cpu_benchmark_updates.py
+
+      - name: Validate canonical JSON
+        run: |
+          python3 -m json.tool dados.json >/dev/null
+          git diff --check
+
+      - name: Commit regenerated dataset when changed
+        shell: bash
+        run: |
+          if git diff --quiet -- dados.json; then
+            echo "No benchmark changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dados.json
+          git commit -m "chore(data): apply verified CPU-Z benchmark updates"
+          git push origin benchmark/fill-missing-cpuz-2026-09-07
