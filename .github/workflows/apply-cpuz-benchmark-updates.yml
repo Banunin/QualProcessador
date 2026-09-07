@@ -22,9 +22,7 @@ jobs:
         with:
           ref: benchmark/fill-missing-cpuz-2026-09-07
 
-      - name: Research a validation batch on CPU Monkey
-        env:
-          CPU_MONKEY_LIMIT: '8'
+      - name: Research all missing CPU-Z fields on CPU Monkey
         run: python3 scripts/research_cpu_monkey_cpuz.py
 
       - name: Apply verified benchmark updates
