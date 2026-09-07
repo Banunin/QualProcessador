@@ -1,16 +1,16 @@
 {
   "$schema": "https://qualprocessador.vercel.app/schemas/processadores.schema.json",
   "schema_version": "2.0",
-  "dataset_version": "sha256-2a29447906f9555f",
+  "dataset_version": "sha256-05b49bd0e9da6824",
   "dataset": "QualProcessador CPU Database",
   "entity_type": "Dataset",
   "language": "pt-BR",
   "publisher": "QualProcessador",
   "canonical_url": "https://qualprocessador.vercel.app/dados.json",
   "description": "Base pública estruturada de processadores cadastrados no QualProcessador, com identidade persistente, relações, fichas técnicas e resultados CPU-Z quando disponíveis.",
-  "generated_at": "2026-09-06T02:13:11Z",
-  "last_modified": "2026-09-06T02:13:11Z",
-  "content_sha256": "2a29447906f9555f31ff7c406a7a2bcaf5e602acdd225c9921bf8ce69ccd0ecd",
+  "generated_at": "2026-09-07T18:39:20Z",
+  "last_modified": "2026-09-07T18:39:20Z",
+  "content_sha256": "05b49bd0e9da682436f5fefaa193a62dd0d4ef5312322a3433f1fa75b0d7bf33",
   "benchmark_semantics": {
     "notaJogos": "CPU-Z Benchmark 17 Single Thread",
     "notaTrabalho": "CPU-Z Benchmark 17 Multi Thread",
@@ -2941,8 +2941,8 @@
       "litografia": "7 nm (TSMC)",
       "memoria": "DDR4-3200",
       "analiseCompleta": "<h2>1. Visão Geral e Arquitetura do AMD Ryzen 7 5700GE</h2>\n        <p>O <strong>AMD Ryzen 7 5700GE</strong> representa um marco importante para utilizadores que procuram otimizar o orçamento do seu computador. Pertencente à família Ryzen 7 (Série 5000), ele utiliza o clássico encaixe <strong>AM4</strong>, garantindo uma fantástica compatibilidade com motherboards populares.</p>\n        <h2>2. Desempenho e Especificações Técnicas</h2>\n        <p>Contando com clocks estáveis de base in 3.2 GHz e picos de overclock automático (Boost) de até <strong>4.6 GHz</strong>, o chip gerencia com mestria cargas de trabalho simultâneas graças à tecnologia de multithreading. O seu consumo energético é contido, operando com um limite térmico de <strong>35 W</strong>.</p>",
-      "notaJogos": "N/A",
-      "notaTrabalho": "N/A",
+      "notaJogos": 623,
+      "notaTrabalho": 5473,
       "geracao": "5ª Geração",
       "arquitetura": "Zen 3",
       "lancamento": "2020",
@@ -2985,7 +2985,9 @@
           "qp:cpu:47",
           "qp:cpu:46"
         ]
-      }
+      },
+      "notaJogosFonte": "CPU-Z Benchmark 17 — CPU-Z Validator",
+      "notaTrabalhoFonte": "CPU-Z Benchmark 17 — CPU-Z Validator"
     },
     {
       "id": 42,
@@ -3767,7 +3769,7 @@
       "litografia": "45 nm",
       "memoria": "DDR3-1066/1333",
       "analiseCompleta": "<h2>1. Visão Geral e Arquitetura do Intel Xeon X3440</h2>\n        <p>O <strong>Intel Xeon X3440</strong> pertence à linha Xeon da INTEL baseada na arquitetura <strong>Nehalem / Westmere</strong>. Projetado para o segmento de Desktops utilizando o encaixe <strong>LGA1156</strong>.</p>\n        <h2>2. Desempenho e Consumo Térmico</h2>\n        <p>Conta com uma frequência base de 2.53 GHz atingindo picos automáticos de até <strong>2.93 GHz</strong> em tarefas exigentes. O seu perfil operacional trabalha sob o limite de TDP estruturado em <strong>95 W</strong>.</p>",
-      "notaJogos": "N/A",
+      "notaJogos": 215,
       "notaTrabalho": 1219,
       "geracao": "1ª Geração",
       "arquitetura": "Nehalem / Westmere",
@@ -3811,7 +3813,8 @@
           "qp:cpu:58",
           "qp:cpu:59"
         ]
-      }
+      },
+      "notaJogosFonte": "CPU-Z Benchmark 17 — CPU-Z Validator"
     },
     {
       "id": 54,
@@ -3835,8 +3838,8 @@
       "litografia": "45 nm",
       "memoria": "DDR3-1066/1333",
       "analiseCompleta": "<h2>1. Visão Geral e Arquitetura do Intel Xeon X3450</h2>\n        <p>O <strong>Intel Xeon X3450</strong> pertence à linha Xeon da INTEL baseada na arquitetura <strong>Nehalem / Westmere</strong>. Projetado para o segmento de Desktops utilizando o encaixe <strong>LGA1156</strong>.</p>\n        <h2>2. Desempenho e Consumo Térmico</h2>\n        <p>Conta com uma frequência base de 2.66 GHz atingindo picos automáticos de até <strong>3.2 GHz</strong> em tarefas exigentes. O seu perfil operacional trabalha sob o limite de TDP estruturado em <strong>95 W</strong>.</p>",
-      "notaJogos": "N/A",
-      "notaTrabalho": "N/A",
+      "notaJogos": 336,
+      "notaTrabalho": 1808,
       "geracao": "1ª Geração",
       "arquitetura": "Nehalem / Westmere",
       "lancamento": "2009",
@@ -3879,7 +3882,9 @@
           "qp:cpu:58",
           "qp:cpu:59"
         ]
-      }
+      },
+      "notaJogosFonte": "CPU-Z Benchmark 17 — CPU-Z Validator",
+      "notaTrabalhoFonte": "CPU-Z Benchmark 17 — CPU-Z Validator"
     },
     {
       "id": 55,
@@ -4311,8 +4316,8 @@
       "litografia": "45 nm",
       "memoria": "DDR3-1066/1333",
       "analiseCompleta": "<h2>1. Visão Geral e Arquitetura do Intel Core i3-560</h2>\n        <p>O <strong>Intel Core i3-560</strong> pertence à linha Core i3 da INTEL baseada na arquitetura <strong>Nehalem / Westmere</strong>. Projetado para o segmento de Desktops utilizando o encaixe <strong>LGA1156</strong>.</p>\n        <h2>2. Desempenho e Consumo Térmico</h2>\n        <p>Conta com uma frequência base de 3.33 GHz atingindo picos automáticos de até <strong>3.33 GHz</strong> em tarefas exigentes. O seu perfil operacional trabalha sob o limite de TDP estruturado em <strong>73 W</strong>.</p>",
-      "notaJogos": "N/A",
-      "notaTrabalho": "N/A",
+      "notaJogos": 199,
+      "notaTrabalho": 628,
       "geracao": "1ª Geração",
       "arquitetura": "Nehalem / Westmere",
       "lancamento": "2009",
@@ -4355,7 +4360,9 @@
           "qp:cpu:64",
           "qp:cpu:65"
         ]
-      }
+      },
+      "notaJogosFonte": "CPU-Z Benchmark 17 — CPU-Z Validator",
+      "notaTrabalhoFonte": "CPU-Z Benchmark 17 — CPU-Z Validator"
     },
     {
       "id": 62,
@@ -4719,8 +4726,8 @@
       "litografia": "45 nm",
       "memoria": "DDR3-1066/1333",
       "analiseCompleta": "<h2>1. Visão Geral e Arquitetura do Intel Core i5-680</h2>\n        <p>O <strong>Intel Core i5-680</strong> pertence à linha Core i5 da INTEL baseada na arquitetura <strong>Nehalem / Westmere</strong>. Projetado para o segmento de Desktops utilizando o encaixe <strong>LGA1156</strong>.</p>\n        <h2>2. Desempenho e Consumo Térmico</h2>\n        <p>Conta com uma frequência base de 3.6 GHz atingindo picos automáticos de até <strong>3.86 GHz</strong> em tarefas exigentes. O seu perfil operacional trabalha sob o limite de TDP estruturado em <strong>73 W</strong>.</p>",
-      "notaJogos": "N/A",
-      "notaTrabalho": "N/A",
+      "notaJogos": 378,
+      "notaTrabalho": 1030,
       "geracao": "1ª Geração",
       "arquitetura": "Nehalem / Westmere",
       "lancamento": "2009",
@@ -4763,7 +4770,9 @@
           "qp:cpu:69",
           "qp:cpu:75"
         ]
-      }
+      },
+      "notaJogosFonte": "CPU-Z Benchmark 17 — CPU-Z Validator",
+      "notaTrabalhoFonte": "CPU-Z Benchmark 17 — CPU-Z Validator"
     },
     {
       "id": 68,
@@ -8187,7 +8196,7 @@
       "litografia": "22 nm",
       "memoria": "DDR3-1600",
       "analiseCompleta": "<h2>1. Visão Geral e Arquitetura do Intel Xeon E3-1240 V2</h2>\n        <p>O <strong>Intel Xeon E3-1240 V2</strong> pertence à linha Xeon da INTEL baseada na arquitetura <strong>Ivy Bridge</strong>. Projetado para o segmento de Desktops utilizando o encaixe <strong>LGA1155</strong>.</p>\n        <h2>2. Desempenho e Consumo Térmico</h2>\n        <p>Conta com uma frequência base de 3.4 GHz atingindo picos automáticos de até <strong>3.8 GHz</strong> em tarefas exigentes. O seu perfil operacional trabalha sob o limite de TDP estruturado em <strong>69 W</strong>.</p>",
-      "notaJogos": "N/A",
+      "notaJogos": 315,
       "notaTrabalho": 1741,
       "geracao": "3ª Geração",
       "arquitetura": "Ivy Bridge",
@@ -8231,7 +8240,8 @@
           "qp:cpu:121",
           "qp:cpu:122"
         ]
-      }
+      },
+      "notaJogosFonte": "CPU-Z Benchmark 17 — CPU-Z Validator"
     },
     {
       "id": 119,
@@ -9751,8 +9761,8 @@
       "litografia": "22 nm",
       "memoria": "DDR3-1600",
       "analiseCompleta": "<h2>1. Visão Geral e Arquitetura do Intel Pentium G2120</h2>\n        <p>O <strong>Intel Pentium G2120</strong> pertence à linha Pentium da INTEL baseada na arquitetura <strong>Ivy Bridge</strong>. Projetado para o segmento de Desktops utilizando o encaixe <strong>LGA1155</strong>.</p>\n        <h2>2. Desempenho e Consumo Térmico</h2>\n        <p>Conta com uma frequência base de 3.1 GHz atingindo picos automáticos de até <strong>3.1 GHz</strong> em tarefas exigentes. O seu perfil operacional trabalha sob o limite de TDP estruturado em <strong>55 W</strong>.</p>",
-      "notaJogos": "N/A",
-      "notaTrabalho": "N/A",
+      "notaJogos": 314,
+      "notaTrabalho": 634,
       "geracao": "3ª Geração",
       "arquitetura": "Ivy Bridge",
       "lancamento": "2012",
@@ -9795,7 +9805,9 @@
           "qp:cpu:145",
           "qp:cpu:124"
         ]
-      }
+      },
+      "notaJogosFonte": "CPU-Z Benchmark 17 — CPU-Z Validator",
+      "notaTrabalhoFonte": "CPU-Z Benchmark 17 — CPU-Z Validator"
     },
     {
       "id": 142,
@@ -10023,8 +10035,8 @@
       "litografia": "22 nm",
       "memoria": "DDR3-1600",
       "analiseCompleta": "<h2>1. Visão Geral e Arquitetura do Intel Celeron G1630</h2>\n        <p>O <strong>Intel Celeron G1630</strong> pertence à linha Celeron da INTEL baseada na arquitetura <strong>Ivy Bridge</strong>. Projetado para o segmento de Desktops utilizando o encaixe <strong>LGA1155</strong>.</p>\n        <h2>2. Desempenho e Consumo Térmico</h2>\n        <p>Conta com uma frequência base de 2.8 GHz atingindo picos automáticos de até <strong>2.8 GHz</strong> em tarefas exigentes. O seu perfil operacional trabalha sob o limite de TDP estruturado em <strong>55 W</strong>.</p>",
-      "notaJogos": "N/A",
-      "notaTrabalho": "N/A",
+      "notaJogos": 247,
+      "notaTrabalho": 523,
       "geracao": "3ª Geração",
       "arquitetura": "Ivy Bridge",
       "lancamento": "2012",
@@ -10067,7 +10079,9 @@
           "qp:cpu:128",
           "qp:cpu:129"
         ]
-      }
+      },
+      "notaJogosFonte": "CPU-Z Benchmark 17 — CPU-Z Validator",
+      "notaTrabalhoFonte": "CPU-Z Benchmark 17 — CPU-Z Validator"
     },
     {
       "id": 146,
@@ -10227,7 +10241,7 @@
       "litografia": "22 nm",
       "memoria": "DDR3/DDR3L-1600",
       "analiseCompleta": "<h2>1. Visão Geral e Arquitetura do Intel Xeon E3-1230 V3</h2>\n        <p>O <strong>Intel Xeon E3-1230 V3</strong> pertence à linha Xeon da INTEL baseada na arquitetura <strong>Haswell</strong>. Projetado para o segmento de Desktops utilizando o encaixe <strong>LGA1150</strong>.</p>\n        <h2>2. Desempenho e Consumo Térmico</h2>\n        <p>Conta com uma frequência base de 3.3 GHz atingindo picos automáticos de até <strong>3.7 GHz</strong> em tarefas exigentes. O seu perfil operacional trabalha sob o limite de TDP estruturado em <strong>80 W</strong>.</p>",
-      "notaJogos": "N/A",
+      "notaJogos": 414,
       "notaTrabalho": 1899,
       "geracao": "4ª Geração",
       "arquitetura": "Haswell",
@@ -10271,7 +10285,8 @@
           "qp:cpu:153",
           "qp:cpu:154"
         ]
-      }
+      },
+      "notaJogosFonte": "CPU-Z Benchmark 17 — CPU-Z Validator"
     },
     {
       "id": 149,
@@ -10703,8 +10718,8 @@
       "litografia": "22 nm",
       "memoria": "DDR3/DDR3L-1600",
       "analiseCompleta": "<h2>1. Visão Geral e Arquitetura do Intel Xeon E3-1275 V3</h2>\n        <p>O <strong>Intel Xeon E3-1275 V3</strong> pertence à linha Xeon da INTEL baseada na arquitetura <strong>Haswell</strong>. Projetado para o segmento de Desktops utilizando o encaixe <strong>LGA1150</strong>.</p>\n        <h2>2. Desempenho e Consumo Térmico</h2>\n        <p>Conta com uma frequência base de 3.5 GHz atingindo picos automáticos de até <strong>3.9 GHz</strong> em tarefas exigentes. O seu perfil operacional trabalha sob o limite de TDP estruturado em <strong>84 W</strong>.</p>",
-      "notaJogos": "N/A",
-      "notaTrabalho": "N/A",
+      "notaJogos": 417,
+      "notaTrabalho": 2054,
       "geracao": "4ª Geração",
       "arquitetura": "Haswell",
       "lancamento": "2013",
@@ -10747,7 +10762,9 @@
           "qp:cpu:152",
           "qp:cpu:153"
         ]
-      }
+      },
+      "notaJogosFonte": "CPU-Z Benchmark 17 — CPU-Z Validator",
+      "notaTrabalhoFonte": "CPU-Z Benchmark 17 — CPU-Z Validator"
     },
     {
       "id": 156,
@@ -10771,8 +10788,8 @@
       "litografia": "22 nm",
       "memoria": "DDR3/DDR3L-1600",
       "analiseCompleta": "<h2>1. Visão Geral e Arquitetura do Intel Xeon E3-1280 V3</h2>\n        <p>O <strong>Intel Xeon E3-1280 V3</strong> pertence à linha Xeon da INTEL baseada na arquitetura <strong>Haswell</strong>. Projetado para o segmento de Desktops utilizando o encaixe <strong>LGA1150</strong>.</p>\n        <h2>2. Desempenho e Consumo Térmico</h2>\n        <p>Conta com uma frequência base de 3.6 GHz atingindo picos automáticos de até <strong>4.0 GHz</strong> em tarefas exigentes. O seu perfil operacional trabalha sob o limite de TDP estruturado em <strong>82 W</strong>.</p>",
-      "notaJogos": "N/A",
-      "notaTrabalho": "N/A",
+      "notaJogos": 279,
+      "notaTrabalho": 1967,
       "geracao": "4ª Geração",
       "arquitetura": "Haswell",
       "lancamento": "2013",
@@ -10815,7 +10832,9 @@
           "qp:cpu:152",
           "qp:cpu:153"
         ]
-      }
+      },
+      "notaJogosFonte": "CPU-Z Benchmark 17 — CPU-Z Validator",
+      "notaTrabalhoFonte": "CPU-Z Benchmark 17 — CPU-Z Validator"
     },
     {
       "id": 157,
@@ -11247,8 +11266,8 @@
       "litografia": "22 nm",
       "memoria": "DDR3/DDR3L-1600",
       "analiseCompleta": "<h2>1. Visão Geral e Arquitetura do Intel Core i3-4340</h2>\n        <p>O <strong>Intel Core i3-4340</strong> pertence à linha Core i3 da INTEL baseada na arquitetura <strong>Haswell</strong>. Projetado para o segmento de Desktops utilizando o encaixe <strong>LGA1150</strong>.</p>\n        <h2>2. Desempenho e Consumo Térmico</h2>\n        <p>Conta com uma frequência base de 3.6 GHz atingindo picos automáticos de até <strong>3.6 GHz</strong> em tarefas exigentes. O seu perfil operacional trabalha sob o limite de TDP estruturado em <strong>54 W</strong>.</p>",
-      "notaJogos": "N/A",
-      "notaTrabalho": "N/A",
+      "notaJogos": 341,
+      "notaTrabalho": 986,
       "geracao": "4ª Geração",
       "arquitetura": "Haswell",
       "lancamento": "2013",
@@ -11291,7 +11310,9 @@
           "qp:cpu:165",
           "qp:cpu:166"
         ]
-      }
+      },
+      "notaJogosFonte": "CPU-Z Benchmark 17 — CPU-Z Validator",
+      "notaTrabalhoFonte": "CPU-Z Benchmark 17 — CPU-Z Validator"
     },
     {
       "id": 164,
@@ -11315,8 +11336,8 @@
       "litografia": "22 nm",
       "memoria": "DDR3/DDR3L-1600",
       "analiseCompleta": "<h2>1. Visão Geral e Arquitetura do Intel Core i3-4350</h2>\n        <p>O <strong>Intel Core i3-4350</strong> pertence à linha Core i3 da INTEL baseada na arquitetura <strong>Haswell</strong>. Projetado para o segmento de Desktops utilizando o encaixe <strong>LGA1150</strong>.</p>\n        <h2>2. Desempenho e Consumo Térmico</h2>\n        <p>Conta com uma frequência base de 3.6 GHz atingindo picos automáticos de até <strong>3.6 GHz</strong> em tarefas exigentes. O seu perfil operacional trabalha sob o limite de TDP estruturado em <strong>55 W</strong>.</p>",
-      "notaJogos": "N/A",
-      "notaTrabalho": "N/A",
+      "notaJogos": 363,
+      "notaTrabalho": 982,
       "geracao": "4ª Geração",
       "arquitetura": "Haswell",
       "lancamento": "2013",
@@ -11359,7 +11380,9 @@
           "qp:cpu:165",
           "qp:cpu:166"
         ]
-      }
+      },
+      "notaJogosFonte": "CPU-Z Benchmark 17 — CPU-Z Validator",
+      "notaTrabalhoFonte": "CPU-Z Benchmark 17 — CPU-Z Validator"
     },
     {
       "id": 165,
@@ -12947,8 +12970,8 @@
       "litografia": "22 nm",
       "memoria": "DDR3/DDR3L-1600",
       "analiseCompleta": "<h2>1. Visão Geral e Arquitetura do Intel Pentium G3460</h2>\n        <p>O <strong>Intel Pentium G3460</strong> pertence à linha Pentium da INTEL baseada na arquitetura <strong>Haswell</strong>. Projetado para o segmento de Desktops utilizando o encaixe <strong>LGA1150</strong>.</p>\n        <h2>2. Desempenho e Consumo Térmico</h2>\n        <p>Conta com uma frequência base de 3.5 GHz atingindo picos automáticos de até <strong>3.5 GHz</strong> em tarefas exigentes. O seu perfil operacional trabalha sob o limite de TDP estruturado em <strong>53 W</strong>.</p>",
-      "notaJogos": "N/A",
-      "notaTrabalho": "N/A",
+      "notaJogos": 386,
+      "notaTrabalho": 725,
       "geracao": "4ª Geração",
       "arquitetura": "Haswell",
       "lancamento": "2013",
@@ -12991,7 +13014,9 @@
           "qp:cpu:186",
           "qp:cpu:187"
         ]
-      }
+      },
+      "notaJogosFonte": "CPU-Z Benchmark 17 — CPU-Z Validator",
+      "notaTrabalhoFonte": "CPU-Z Benchmark 17 — CPU-Z Validator"
     },
     {
       "id": 189,
