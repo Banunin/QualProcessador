@@ -5,7 +5,10 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 DATASET = ROOT / "dados.json"
-UPDATES = ROOT / "data" / "cpuz-benchmark-updates.json"
+UPDATE_FILES = (
+    ROOT / "data" / "cpuz-benchmark-updates.json",
+    ROOT / "data" / "cpuz-official-updates.json",
+)
 GENERATED_COMPAT = ROOT / "dados.js"
 
 MISSING = "N/A"
@@ -21,7 +24,7 @@ def is_missing(value):
 
 
 def valid_score(value):
-    return value == MISSING or (isinstance(value, (int, float)) and not isinstance(value, bool) and value >= 0)
+    return value == MISSING or (isinstance(value, (int, float)) and not isinstance(value, bool) and value > 0)
 
 
 def load_json(path):
@@ -40,6 +43,19 @@ def report_missing(processors, title):
     return missing
 
 
+def collect_updates():
+    updates = []
+    for path in UPDATE_FILES:
+        if not path.exists():
+            continue
+        payload = load_json(path)
+        items = payload.get("updates", [])
+        if not isinstance(items, list):
+            raise RuntimeError(f"updates precisa ser uma lista em {path.relative_to(ROOT)}")
+        updates.extend(items)
+    return updates
+
+
 def main():
     payload = load_json(DATASET)
     processors = payload.get("processors")
@@ -47,15 +63,10 @@ def main():
         raise RuntimeError("dados.json não contém a lista processors")
 
     report_missing(processors, "ANTES")
-
-    if not UPDATES.exists():
-        print(f"Arquivo de atualizações não encontrado: {UPDATES.relative_to(ROOT)}")
+    updates = collect_updates()
+    if not updates:
+        print("Nenhuma atualização de benchmark registrada.")
         return
-
-    update_payload = load_json(UPDATES)
-    updates = update_payload.get("updates", [])
-    if not isinstance(updates, list):
-        raise RuntimeError("updates precisa ser uma lista")
 
     by_name = {str(cpu.get("nome", "")).strip(): cpu for cpu in processors}
     changed = 0
