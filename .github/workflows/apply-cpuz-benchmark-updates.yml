@@ -6,6 +6,7 @@ on:
       - benchmark/fill-missing-cpuz-2026-09-07
     paths:
       - 'data/cpuz-benchmark-updates.json'
+      - 'scripts/research_cpu_monkey_cpuz.py'
       - 'scripts/apply_cpu_benchmark_updates.py'
       - '.github/workflows/apply-cpuz-benchmark-updates.yml'
 
@@ -21,23 +22,29 @@ jobs:
         with:
           ref: benchmark/fill-missing-cpuz-2026-09-07
 
-      - name: Report missing scores and apply verified updates
+      - name: Research a validation batch on CPU Monkey
+        env:
+          CPU_MONKEY_LIMIT: '8'
+        run: python3 scripts/research_cpu_monkey_cpuz.py
+
+      - name: Apply verified benchmark updates
         run: python3 scripts/apply_cpu_benchmark_updates.py
 
       - name: Validate canonical JSON
         run: |
           python3 -m json.tool dados.json >/dev/null
+          python3 -m json.tool data/cpuz-benchmark-updates.json >/dev/null
           git diff --check
 
-      - name: Commit regenerated dataset when changed
+      - name: Commit research ledger and regenerated dataset
         shell: bash
         run: |
-          if git diff --quiet -- dados.json; then
+          if git diff --quiet -- dados.json data/cpuz-benchmark-updates.json; then
             echo "No benchmark changes to commit."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add dados.json
+          git add dados.json data/cpuz-benchmark-updates.json
           git commit -m "chore(data): apply verified CPU-Z benchmark updates"
           git push origin benchmark/fill-missing-cpuz-2026-09-07
