@@ -82,9 +82,9 @@
     "legacy_adapter": "https://qualprocessador.vercel.app/dados.js",
     "structure": "self-describing object with processors array",
     "schema_version": "2.0",
-    "dataset_version": "sha256-2a29447906f9555f",
-    "content_sha256": "2a29447906f9555f31ff7c406a7a2bcaf5e602acdd225c9921bf8ce69ccd0ecd",
-    "last_modified": "2026-09-06T02:13:11Z",
+    "dataset_version": "sha256-82948b0027819704",
+    "content_sha256": "82948b002781970445e929e060381dd3e7be093ed61376373c3fd6c809a2239b",
+    "last_modified": "2026-09-07T18:44:02Z",
     "count": 223,
     "field_provenance": {
       "technical_specifications": {
