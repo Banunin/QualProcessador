@@ -17,7 +17,7 @@
     "zero_means_missing": true,
     "no_cross_cpu_substitution": true
   },
-  "researched_at": "2026-09-07T18:29:27Z",
+  "researched_at": "2026-09-07T18:31:44Z",
   "checks": [
     {
       "nome": "AMD Ryzen 7 5700GE",
@@ -31,13 +31,13 @@
           "value": "N/A",
           "url": "https://www.cpu-monkey.com/en/benchmark-amd_ryzen_7_5700ge-cpu_z_benchmark_17_single_core",
           "benchmark": "CPU-Z Benchmark 17 Single-Core",
-          "checked_at": "2026-09-07T18:29:22Z"
+          "checked_at": "2026-09-07T18:30:05Z"
         },
         "notaTrabalho": {
           "value": "N/A",
           "url": "https://www.cpu-monkey.com/en/benchmark-amd_ryzen_7_5700ge-cpu_z_benchmark_17_multi_core",
           "benchmark": "CPU-Z Benchmark 17 Multi-Core",
-          "checked_at": "2026-09-07T18:29:22Z"
+          "checked_at": "2026-09-07T18:30:05Z"
         }
       }
     },
@@ -53,7 +53,7 @@
           "value": "N/A",
           "url": "https://www.cpu-monkey.com/en/benchmark-amd_ryzen_7_5800-cpu_z_benchmark_17_single_core",
           "benchmark": "CPU-Z Benchmark 17 Single-Core",
-          "checked_at": "2026-09-07T18:29:23Z"
+          "checked_at": "2026-09-07T18:30:06Z"
         }
       }
     },
@@ -69,7 +69,7 @@
           "value": "N/A",
           "url": "https://www.cpu-monkey.com/en/benchmark-amd_ryzen_9_3900xt-cpu_z_benchmark_17_single_core",
           "benchmark": "CPU-Z Benchmark 17 Single-Core",
-          "checked_at": "2026-09-07T18:29:21Z"
+          "checked_at": "2026-09-07T18:30:04Z"
         }
       }
     },
@@ -85,7 +85,1967 @@
           "value": "N/A",
           "url": "https://www.cpu-monkey.com/en/benchmark-amd_ryzen_9_5900-cpu_z_benchmark_17_single_core",
           "benchmark": "CPU-Z Benchmark 17 Single-Core",
-          "checked_at": "2026-09-07T18:29:23Z"
+          "checked_at": "2026-09-07T18:30:06Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Celeron G1101",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_celeron_g1101-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:27Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_celeron_g1101-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:30:27Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Celeron G1610",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_celeron_g1610-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:14Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Celeron G1620",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_celeron_g1620-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:15Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Celeron G1630",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_celeron_g1630-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:16Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_celeron_g1630-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:31:16Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Celeron G1820",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_celeron_g1820-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:40Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Celeron G1830",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_celeron_g1830-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:40Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_celeron_g1830-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:31:41Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Celeron G1840",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_celeron_g1840-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:41Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Celeron G1850",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_celeron_g1850-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:42Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_celeron_g1850-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:31:43Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Celeron G440",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_celeron_g440-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:52Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_celeron_g440-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:30:52Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Celeron G530",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_celeron_g530-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:53Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Celeron G540",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_celeron_g540-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:53Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_celeron_g540-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:30:54Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Celeron G550",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_celeron_g550-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:55Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_celeron_g550-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:30:55Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Celeron G555",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_celeron_g555-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:56Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_celeron_g555-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:30:56Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Core i3-2125",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i3_2125-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:38Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i3_2125-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:30:39Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Core i3-2130",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i3_2130-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:39Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Core i3-3225",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i3_3225-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:05Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i3_3225-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:31:05Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Core i3-3245",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i3_3245-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:06Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i3_3245-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:31:07Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Core i3-3250",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i3_3250-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:07Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i3_3250-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:31:08Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Core i3-4330",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i3_4330-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:25Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i3_4330-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:31:26Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Core i3-4340",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i3_4340-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:26Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i3_4340-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:31:27Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Core i3-4350",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i3_4350-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:28Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i3_4350-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:31:28Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Core i3-4360",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i3_4360-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:29Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i3_4360-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:31:29Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Core i3-4370",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i3_4370-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:30Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i3_4370-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:31:31Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Core i3-530",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i3_530-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:13Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Core i3-540",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i3_540-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:13Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Core i3-550",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i3_550-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:14Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Core i3-560",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i3_560-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:15Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i3_560-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:30:15Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Core i5-2300",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i5_2300-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:40Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Core i5-2310",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i5_2310-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:40Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Core i5-2320",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i5_2320-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:41Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Core i5-2380P",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i5_2380p-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:42Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i5_2380p-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:30:42Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Core i5-2450P",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i5_2450p-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:43Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i5_2450p-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:30:43Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Core i5-3340",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i5_3340-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:08Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Core i5-3450",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i5_3450-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:09Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Core i5-3550",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i5_3550-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:10Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Core i5-4430",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i5_4430-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:31Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Core i5-4670",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i5_4670-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:32Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Core i5-655K",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i5_655k-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:16Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i5_655k-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:30:16Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Core i5-660",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i5_660-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:17Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i5_660-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:30:18Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Core i5-661",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i5_661-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:18Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i5_661-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:30:19Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Core i5-670",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i5_670-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:19Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i5_670-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:30:20Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Core i5-680",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i5_680-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:21Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i5_680-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:30:21Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Core i5-760",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i5_760-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:22Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Core i7-2700K",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i7_2700k-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:44Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Core i7-860",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i7_860-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:22Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Core i7-870",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i7_870-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:23Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Core i7-875K",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i7_875k-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:24Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Core i7-880",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i7_880-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:24Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_core_i7_880-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:30:25Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Pentium G2010",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_pentium_g2010-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:10Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Pentium G2020",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_pentium_g2020-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:11Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Pentium G2030",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_pentium_g2030-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:11Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Pentium G2120",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_pentium_g2120-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:12Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_pentium_g2120-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:31:13Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Pentium G2130",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_pentium_g2130-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:13Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_pentium_g2130-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:31:14Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Pentium G3220",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_pentium_g3220-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:32Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Pentium G3240",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_pentium_g3240-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:33Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Pentium G3250",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_pentium_g3250-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:34Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Pentium G3258",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_pentium_g3258-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:34Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Pentium G3260",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_pentium_g3260-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:35Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Pentium G3420",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_pentium_g3420-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:35Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Pentium G3440",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_pentium_g3440-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:36Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_pentium_g3440-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:31:37Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Pentium G3450",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_pentium_g3450-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:37Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_pentium_g3450-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:31:38Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Pentium G3460",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_pentium_g3460-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:38Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_pentium_g3460-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:31:39Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Pentium G620",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_pentium_g620-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:45Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Pentium G630",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_pentium_g630-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:45Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Pentium G640",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_pentium_g640-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:46Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_pentium_g640-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:30:46Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Pentium G645",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_pentium_g645-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:47Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Pentium G6950",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_pentium_g6950-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:25Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_pentium_g6950-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:30:26Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Pentium G840",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_pentium_g840-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:48Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_pentium_g840-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:30:48Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Pentium G850",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_pentium_g850-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:49Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_pentium_g850-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:30:49Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Pentium G860",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_pentium_g860-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:50Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Pentium G870",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_pentium_g870-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:50Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_pentium_g870-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:30:51Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Xeon E3-1220",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1220-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:28Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1220-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:30:28Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Xeon E3-1220 V2",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1220_v2-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:57Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Xeon E3-1220 V3",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1220_v3-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:17Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Xeon E3-1225",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1225-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:29Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1225-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:30:29Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Xeon E3-1225 V2",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1225_v2-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:57Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1225_v2-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:30:58Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Xeon E3-1225 V3",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1225_v3-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:17Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1225_v3-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:31:18Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Xeon E3-1230",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1230-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:30Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Xeon E3-1230 V2",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1230_v2-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:59Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Xeon E3-1230 V3",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1230_v3-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:19Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Xeon E3-1235",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1235-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:31Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1235-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:30:31Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Xeon E3-1235 V2",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1235_v2-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:59Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1235_v2-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:31:00Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Xeon E3-1240",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1240-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:32Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1240-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:30:32Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Xeon E3-1240 V2",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1240_v2-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:00Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Xeon E3-1240 V3",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1240_v3-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:19Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Xeon E3-1241 V3",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1241_v3-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:20Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Xeon E3-1245",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1245-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:33Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1245-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:30:33Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Xeon E3-1245 V2",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1245_v2-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:01Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Xeon E3-1245 V3",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1245_v3-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:20Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Xeon E3-1270",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1270-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:34Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Xeon E3-1270 V2",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1270_v2-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:01Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Xeon E3-1270 V3",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1270_v3-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:21Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Xeon E3-1271 V3",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1271_v3-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:22Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Xeon E3-1275",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1275-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:35Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1275-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:30:35Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Xeon E3-1275 V2",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1275_v2-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:02Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Xeon E3-1275 V3",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1275_v3-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:22Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1275_v3-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:31:23Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Xeon E3-1280",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1280-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:36Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1280-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:30:36Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Xeon E3-1280 V2",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1280_v2-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:03Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1280_v2-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:31:03Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Xeon E3-1280 V3",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1280_v3-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:23Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1280_v3-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:31:24Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Xeon E3-1281 V3",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1281_v3-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:25Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Xeon E3-1285 V4",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1285_v4-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:43Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1285_v4-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:31:44Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Xeon E3-1290",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1290-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:37Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1290-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:30:37Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Xeon E3-1290 V2",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1290_v2-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:31:04Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_e3_1290_v2-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:31:04Z"
         }
       }
     },
@@ -101,13 +2061,13 @@
           "value": "N/A",
           "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_x3430-cpu_z_benchmark_17_single_core",
           "benchmark": "CPU-Z Benchmark 17 Single-Core",
-          "checked_at": "2026-09-07T18:29:24Z"
+          "checked_at": "2026-09-07T18:30:07Z"
         },
         "notaTrabalho": {
           "value": "N/A",
           "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_x3430-cpu_z_benchmark_17_multi_core",
           "benchmark": "CPU-Z Benchmark 17 Multi-Core",
-          "checked_at": "2026-09-07T18:29:24Z"
+          "checked_at": "2026-09-07T18:30:08Z"
         }
       }
     },
@@ -123,7 +2083,7 @@
           "value": "N/A",
           "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_x3440-cpu_z_benchmark_17_single_core",
           "benchmark": "CPU-Z Benchmark 17 Single-Core",
-          "checked_at": "2026-09-07T18:29:25Z"
+          "checked_at": "2026-09-07T18:30:08Z"
         }
       }
     },
@@ -139,13 +2099,13 @@
           "value": "N/A",
           "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_x3450-cpu_z_benchmark_17_single_core",
           "benchmark": "CPU-Z Benchmark 17 Single-Core",
-          "checked_at": "2026-09-07T18:29:25Z"
+          "checked_at": "2026-09-07T18:30:09Z"
         },
         "notaTrabalho": {
           "value": "N/A",
           "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_x3450-cpu_z_benchmark_17_multi_core",
           "benchmark": "CPU-Z Benchmark 17 Multi-Core",
-          "checked_at": "2026-09-07T18:29:26Z"
+          "checked_at": "2026-09-07T18:30:09Z"
         }
       }
     },
@@ -161,22 +2121,60 @@
           "value": "N/A",
           "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_x3460-cpu_z_benchmark_17_single_core",
           "benchmark": "CPU-Z Benchmark 17 Single-Core",
-          "checked_at": "2026-09-07T18:29:26Z"
+          "checked_at": "2026-09-07T18:30:10Z"
         },
         "notaTrabalho": {
           "value": "N/A",
           "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_x3460-cpu_z_benchmark_17_multi_core",
           "benchmark": "CPU-Z Benchmark 17 Multi-Core",
-          "checked_at": "2026-09-07T18:29:27Z"
+          "checked_at": "2026-09-07T18:30:11Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Xeon X3470",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_x3470-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:11Z"
+        }
+      }
+    },
+    {
+      "nome": "Intel Xeon X3480",
+      "cpuZOfficial": {
+        "single": "N/A",
+        "multi": "N/A",
+        "note": "No stable exact per-model CPU-Z official result recorded in this research pass."
+      },
+      "cpuMonkey": {
+        "notaJogos": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_x3480-cpu_z_benchmark_17_single_core",
+          "benchmark": "CPU-Z Benchmark 17 Single-Core",
+          "checked_at": "2026-09-07T18:30:12Z"
+        },
+        "notaTrabalho": {
+          "value": "N/A",
+          "url": "https://www.cpu-monkey.com/en/benchmark-intel_xeon_x3480-cpu_z_benchmark_17_multi_core",
+          "benchmark": "CPU-Z Benchmark 17 Multi-Core",
+          "checked_at": "2026-09-07T18:30:12Z"
         }
       }
     }
   ],
   "last_run": {
-    "target_cpus": 8,
-    "checked_fields": 12,
-    "requests": 12,
+    "target_cpus": 113,
+    "checked_fields": 170,
+    "requests": 170,
     "found_fields": 0,
-    "limit": 8
+    "limit": null
   }
 }
